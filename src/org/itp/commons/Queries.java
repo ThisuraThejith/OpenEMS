@@ -3,19 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package employeemanagementsystem;
+package org.itp.commons;
 
 /**
  *
  * @author THISURA THEJITH
  */
-public class EmployeeManagementSystem {
+public class Queries {
+    public static class EMS{
+        public static class Insert{
+            public static String APPRAISALS="Insert into Appraisals values(default,?,?,?,?,?)";
+        }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+
     }
-    
 }
