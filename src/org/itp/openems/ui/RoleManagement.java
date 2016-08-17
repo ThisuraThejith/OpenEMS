@@ -5,6 +5,12 @@
  */
 package org.itp.openems.ui;
 
+import java.sql.PreparedStatement;
+import org.itp.commons.Queries;
+import java.sql.Connection;
+import org.itp.commons.DBConnect;
+import java.sql.SQLException;
+import org.itp.commons.Constants;
 /**
  *
  * @author THISURA THEJITH
@@ -29,11 +35,11 @@ public class RoleManagement extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        roleName = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        roleDesc = new javax.swing.JTextArea();
+        SaveBtn = new javax.swing.JButton();
+        BackBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Role Management");
@@ -42,16 +48,21 @@ public class RoleManagement extends javax.swing.JFrame {
 
         jLabel2.setText("Role Description");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        roleDesc.setColumns(20);
+        roleDesc.setRows(5);
+        jScrollPane1.setViewportView(roleDesc);
 
-        jButton1.setText("Save");
-
-        jButton2.setText("Back");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        SaveBtn.setText("Save");
+        SaveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                SaveBtnActionPerformed(evt);
+            }
+        });
+
+        BackBtn.setText("Back");
+        BackBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackBtnActionPerformed(evt);
             }
         });
 
@@ -66,14 +77,14 @@ public class RoleManagement extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addGap(81, 81, 81)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(roleName, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(40, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(SaveBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(BackBtn)
                 .addGap(9, 9, 9))
         );
         layout.setVerticalGroup(
@@ -82,7 +93,7 @@ public class RoleManagement extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(roleName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -91,19 +102,35 @@ public class RoleManagement extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(SaveBtn)
+                    .addComponent(BackBtn))
                 .addGap(31, 31, 31))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackBtnActionPerformed
             MainInterface m1=new MainInterface();
             m1.setVisible(true);
             this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_BackBtnActionPerformed
+
+    private void SaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveBtnActionPerformed
+         
+        try{
+        Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+        PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Insert.ROLE);
+        preparedStatement.setString(1,this.roleName.getText());
+        preparedStatement.setString(2,this.roleDesc.getText());
+        int affectedRows = preparedStatement.executeUpdate();
+        System.out.println("affected rows=" + affectedRows);
+        preparedStatement.close();
+        }
+        catch (SQLException e){
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_SaveBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,12 +168,12 @@ public class RoleManagement extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton BackBtn;
+    private javax.swing.JButton SaveBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextArea roleDesc;
+    private javax.swing.JTextField roleName;
     // End of variables declaration//GEN-END:variables
 }

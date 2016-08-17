@@ -3,7 +3,7 @@ CREATE TABLE Role (
 
 RoleID INT NOT NULL auto_increment,
 
-RoleName CHAR(15) UNIQUE NOT NULL,
+RoleName CHAR(30) UNIQUE NOT NULL,
 
 Description CHAR(100),
 
@@ -17,7 +17,7 @@ CREATE TABLE Salary (
 
 SalaryID INT NOT NULL auto_increment,
 
-Role CHAR(15) NOT NULL,
+RoleID INT NOT NULL,
 
 BasicSalary DECIMAL(8,2),
 
@@ -29,28 +29,12 @@ No_of_Leaves_for_no_pay INT NOT NULL,
 
 PRIMARY KEY (SalaryID),
 
-FOREIGN KEY (Role) REFERENCES Role(RoleName)
+FOREIGN KEY (RoleID) REFERENCES Role(RoleID)
 
 );
 
-3)Attendance table
-CREATE TABLE Attendance (
 
-AttendanceID INT NOT NULL auto_increment,
-
-EmpID INT NOT NULL,
-
-Work_Date DATE,
-
-Presence CHAR(10),
-
-PRIMARY KEY (AttendanceID),
-
-FOREIGN KEY (EmpID) REFERENCES Employee(EmployeeID)
-
-);
-
-4)Employee table
+3)Employee table
 CREATE TABLE Employee (
 
 EmployeeID INT NOT NULL auto_increment,
@@ -77,6 +61,25 @@ FOREIGN KEY (RoleID) REFERENCES Role(RoleID)
 
 );
 
+
+4)Attendance table
+CREATE TABLE Attendance (
+
+AttendanceID INT NOT NULL auto_increment,
+
+EmpID INT NOT NULL,
+
+Work_Date DATE,
+
+Presence CHAR(10),
+
+PRIMARY KEY (AttendanceID),
+
+FOREIGN KEY (EmpID) REFERENCES Employee(EmployeeID)
+
+);
+
+
 5)Appraisals table
 CREATE TABLE Appraisals(
 
@@ -102,26 +105,24 @@ Insert into Role
 
 Values (1,"Manager","Takes care of management issues of the company")
 
-
+;
 
 Insert into Salary
 
-Values (1,"Manager",50000.00,0.1,0.1,10)
-
-
+Values (1,1,50000.00,0.1,0.1,10);
 
 Insert into Employee
 
 Values (1,"Saranapala","Elpitiya",'1994-10-07',"942811110v","Working",1,1)
 
-
+;
 
 Insert into Attendance
 
-Values (1,1,'2016-08-16',"Present")
+Values (1,1,'2016-08-16',"Present");
 
 
 
 Insert into Appraisals
 
-Values (1,1,5,1000.00,"Nothing","Good")
+Values (1,1,5,1000.00,"Nothing","Good");

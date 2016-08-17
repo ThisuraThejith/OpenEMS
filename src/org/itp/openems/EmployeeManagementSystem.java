@@ -5,7 +5,12 @@
  */
 package org.itp.openems;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import org.itp.commons.DBConnect;
+import org.itp.commons.Queries;
+import org.itp.openems.ui.MainInterface;
 
 
 /**
@@ -18,8 +23,21 @@ public class EmployeeManagementSystem {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        MainInterface m1=new MainInterface();
+        m1.setVisible(true);
+            
         // TODO code application logic here
-        DBConnect connect = new DBConnect("root", "123456");
+//        try{
+//        Connection connect = new DBConnect("root", "123456").getConnection();
+//        
+//        PreparedStatement prep = connect.prepareStatement(Queries.EMS.Insert.APPRAISALS);
+//        PreparedStatement prep1 = connect.prepareStatement(Queries.EMS.Insert.ATTENDANCE);
+//        PreparedStatement prep2 = connect.prepareStatement(Queries.EMS.Insert.EMPLOYEE);
+//        
+//        
+//        
+//        
+//                }catch(SQLException e){}
     }
     
 }
