@@ -147,7 +147,9 @@ public class Appraisals extends javax.swing.JFrame {
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         try{
-         
+            this.gradingCmb.setSelectedItem("1");
+            this.bonusTxt.setText("");
+            this.reviewsTxt.setText("");
             Connection connect=new DBConnect (Constants.USER,Constants.PASSWORD).getConnection();
             PreparedStatement preparedStatement=connect.prepareStatement(Queries.EMS.Select.GET_APPRAISAL_BY_EMPLOYEE_ID);
             preparedStatement.setString(1,this.empIDTxt.getText());
