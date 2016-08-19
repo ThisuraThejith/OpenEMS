@@ -93,8 +93,8 @@ Bonus DECIMAL(6,2),
 
 Reviews VARCHAR(100),
 
-PRIMARY KEY (AppraisalID)
-
+PRIMARY KEY (AppraisalID),
+FOREIGN KEY (EmpID) REFERENCES Employee (EmployeeID)
 );
 
 -- Inserting values into tables

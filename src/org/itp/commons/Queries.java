@@ -24,9 +24,11 @@ public class Queries {
             public static String GET_SALARY_ID_BY_ROLE_ID="Select SalaryID from Salary Where RoleID=?";
             public static String GET_EMPLOYEE_BY_EMPLOYEE_ID="Select EmployeeName,Address,Date_of_Birth,NIC_No,Current_Status,RoleID from Employee where EmployeeID=?";
             public static String GET_ROLE_NAME_BY_ID="Select RoleName from Role Where RoleID=?";
+            public static String GET_APPRAISAL_BY_EMPLOYEE_ID="Select Grading,Bonus,Reviews from Appraisals where EmpID=?";
         }
         public static class Update{
             public static String EMPLOYEE="Update Employee Set EmployeeName=?,Address=?,Date_of_Birth=?,NIC_No=?,Current_Status=?,SalaryID=?,RoleID=? Where EmployeeID=?";
+            public static String APPRAISAL="Update Appraisals Set Grading=?,Bonus=?,Reviews=? Where EmpID=?";
         }
 
 
