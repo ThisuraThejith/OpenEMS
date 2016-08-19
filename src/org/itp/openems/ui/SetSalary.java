@@ -13,6 +13,8 @@ import org.itp.commons.DBConnect;
 import java.sql.SQLException;
 import java.util.Vector;
 import javax.swing.JComboBox;
+import org.itp.commons.Constants;
+import org.itp.commons.DBUtils;
 import org.itp.openems.model.Role;
 
 /**
@@ -26,26 +28,10 @@ public class SetSalary extends javax.swing.JFrame {
      */
     public SetSalary() {
         initComponents();
-        loadRoles();
+        DBUtils.loadRoles(roleCmb);
     }
     
-    private void loadRoles() {
-        
-        try{
-        Connection connect=new DBConnect ("root","123456").getConnection();
-        PreparedStatement preparedStatement =connect.prepareStatement(Queries.EMS.Select.GET_ROLES);
-        ResultSet resultset=preparedStatement.executeQuery();
-        
-            while (resultset.next())
-                {
-                    this.roleCmb.addItem(resultset.getString("RoleName"));
-		}
-        }
-        catch(SQLException e){
-            System.out.println(e);
-        }
-     
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -165,7 +151,7 @@ public class SetSalary extends javax.swing.JFrame {
     private void SaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveBtnActionPerformed
         try{
             int roleID=0;
-            Connection connect=new DBConnect ("root","123456").getConnection();
+            Connection connect=new DBConnect (Constants.USER,Constants.PASSWORD).getConnection();
             PreparedStatement preparedStatement =connect.prepareStatement(Queries.EMS.Select.GET_ROLE_ID_BY_NAME);
             preparedStatement.setString(1,this.roleCmb.getSelectedItem().toString());
             ResultSet resultset=preparedStatement.executeQuery();

@@ -39,15 +39,15 @@ CREATE TABLE Employee (
 
 EmployeeID INT NOT NULL auto_increment,
 
-EmployeeName CHAR(70) NOT NULL UNIQUE,
+EmployeeName CHAR(70) NOT NULL,
 
 Address VARCHAR(80) NOT NULL,
 
 Date_of_Birth DATE NOT NULL,
 
-NIC_No VARCHAR(10) NOT NULL,
+NIC_No VARCHAR(10) NOT NULL UNIQUE,
 
-Current_Status CHAR(10) NOT NULL,
+Current_Status CHAR(10) NOT NULL DEFAULT 'Working',
 
 SalaryID INT NOT NULL,
 
@@ -113,7 +113,7 @@ Values (1,1,50000.00,0.1,0.1,10);
 
 Insert into Employee
 
-Values (1,"Saranapala","Elpitiya",'1994-10-07',"942811110v","Working",1,1)
+Values (1,"Saranapala","Elpitiya",'1994-10-07',"942811110v","",1,1)
 
 ;
 
