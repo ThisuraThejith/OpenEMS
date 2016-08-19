@@ -207,7 +207,42 @@ public class UpdateEmployee extends javax.swing.JFrame {
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
-        
+        try{
+            int roleID=0;
+            int salaryID=0;
+            Connection connect=new DBConnect (Constants.USER,Constants.PASSWORD).getConnection();
+            PreparedStatement preparedStatement =connect.prepareStatement(Queries.EMS.Select.GET_ROLE_ID_BY_NAME);
+            preparedStatement.setString(1,this.roleCmb.getSelectedItem().toString());
+            ResultSet resultset=preparedStatement.executeQuery();
+            while (resultset.next()){
+                      roleID=resultset.getInt("RoleID");      
+            }
+            resultset.close();
+            preparedStatement.close();
+            preparedStatement =connect.prepareStatement(Queries.EMS.Select.GET_SALARY_ID_BY_ROLE_ID);
+            preparedStatement.setInt(1,roleID);
+                       
+            resultset=preparedStatement.executeQuery();
+            while (resultset.next()){
+                salaryID=resultset.getInt("SalaryID");
+            }
+            preparedStatement.close();
+            preparedStatement =connect.prepareStatement(Queries.EMS.Update.EMPLOYEE);
+            preparedStatement.setString(1, this.nameTxt.getText());
+            preparedStatement.setString(2,this.addressTxt.getText());
+            preparedStatement.setString(3,this.dobTxt.getText());
+            preparedStatement.setString(4,this.nicTxt.getText());
+            preparedStatement.setString(5,this.cstatusCmb.getSelectedItem().toString());
+            preparedStatement.setInt(6,salaryID);
+            preparedStatement.setInt(7,roleID);
+            preparedStatement.setString(8,this.empIDTxt.getText());
+            int affectedRows = preparedStatement.executeUpdate();
+            System.out.println("affected rows=" + affectedRows);
+            preparedStatement.close();
+        }
+        catch (SQLException e){
+            System.out.println(e);
+        }
     }//GEN-LAST:event_updateBtnActionPerformed
 
     /**

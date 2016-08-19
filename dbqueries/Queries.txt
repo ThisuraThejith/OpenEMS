@@ -91,8 +91,6 @@ Grading INT NOT NULL,
 
 Bonus DECIMAL(6,2),
 
-Liabilities VARCHAR(100),
-
 Reviews VARCHAR(100),
 
 PRIMARY KEY (AppraisalID)
@@ -125,4 +123,4 @@ Values (1,1,'2016-08-16',"Present");
 
 Insert into Appraisals
 
-Values (1,1,5,1000.00,"Nothing","Good");
+Values (1,1,5,1000.00,"Good");

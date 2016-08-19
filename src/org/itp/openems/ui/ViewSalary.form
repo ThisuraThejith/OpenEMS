@@ -127,7 +127,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Liabilities"/>
+        <Property name="text" type="java.lang.String" value="Total Salary"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField1">

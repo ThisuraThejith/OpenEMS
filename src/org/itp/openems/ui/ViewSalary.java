@@ -55,7 +55,7 @@ public class ViewSalary extends javax.swing.JFrame {
 
         jLabel5.setText("Bonus");
 
-        jLabel6.setText("Liabilities");
+        jLabel6.setText("Total Salary");
 
         jButton1.setText("Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
