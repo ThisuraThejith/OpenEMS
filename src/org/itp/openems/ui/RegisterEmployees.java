@@ -10,6 +10,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import org.itp.commons.Constants;
 import org.itp.commons.DBConnect;
 import org.itp.commons.DBUtils;
@@ -156,7 +157,7 @@ public class RegisterEmployees extends javax.swing.JFrame {
     private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
         try{
             int roleID=0;
-            int salaryID=0;
+            
             Connection connect=new DBConnect (Constants.USER,Constants.PASSWORD).getConnection();
             PreparedStatement preparedStatement =connect.prepareStatement(Queries.EMS.Select.GET_ROLE_ID_BY_NAME);
             preparedStatement.setString(1,this.roleCmb.getSelectedItem().toString());
@@ -166,21 +167,14 @@ public class RegisterEmployees extends javax.swing.JFrame {
             }
             resultset.close();
             preparedStatement.close();
-            preparedStatement =connect.prepareStatement(Queries.EMS.Select.GET_SALARY_ID_BY_ROLE_ID);
-            preparedStatement.setInt(1,roleID);
-                       
-            resultset=preparedStatement.executeQuery();
-            while (resultset.next()){
-                salaryID=resultset.getInt("SalaryID");
-            }
+           
             preparedStatement.close();
             preparedStatement=connect.prepareStatement(Queries.EMS.Insert.EMPLOYEE);
             preparedStatement.setString(1, this.nameTxt.getText());
             preparedStatement.setString(2,this.addressTxt.getText());
             preparedStatement.setString(3,this.dobTxt.getText());
             preparedStatement.setString(4,this.nicTxt.getText());
-            preparedStatement.setInt(5,salaryID);
-            preparedStatement.setInt(6,roleID);
+            preparedStatement.setInt(5,roleID);
             int affectedRows = preparedStatement.executeUpdate();
             System.out.println("affected rows=" + affectedRows);
             preparedStatement.close();
@@ -188,6 +182,9 @@ public class RegisterEmployees extends javax.swing.JFrame {
         catch(SQLException e){
                 System.out.println(e);
             }
+        if (dobTxt.getText().isEmpty() || addressTxt.getText().isEmpty()|| nameTxt.getText().isEmpty() || nicTxt.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null,"Fields Cannot be empty","Error",JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_registerBtnActionPerformed
 
     /**

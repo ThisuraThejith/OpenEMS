@@ -13,8 +13,8 @@ public class Queries {
     public static class EMS{
         public static class Insert{
             public static String APPRAISALS="Insert into Appraisals values(default,?,?,?,?)";
-            public static String ATTENDANCE="Insert into Attendance values(default,?,?,?,?)";
-            public static String EMPLOYEE="Insert into Employee values(default,?,?,?,?,default,?,?)";
+            public static String ATTENDANCE="Insert into Attendance values(default,?,?,?)";
+            public static String EMPLOYEE="Insert into Employee values(default,?,?,?,?,default,?)";
             public static String ROLE="Insert into Role values(default,?,?)";
             public static String SALARY="Insert into Salary values(default,?,?,?,?,?)";
         }
@@ -25,6 +25,9 @@ public class Queries {
             public static String GET_EMPLOYEE_BY_EMPLOYEE_ID="Select EmployeeName,Address,Date_of_Birth,NIC_No,Current_Status,RoleID from Employee where EmployeeID=?";
             public static String GET_ROLE_NAME_BY_ID="Select RoleName from Role Where RoleID=?";
             public static String GET_APPRAISAL_BY_EMPLOYEE_ID="Select Grading,Bonus,Reviews from Appraisals where EmpID=?";
+            public static String GET_ROLE_ID_BY_EMPLOYEE_ID="Select RoleID from Employee where EmployeeID=?";
+            public static String GET_BONUS_BY_EMPLOYEE_ID="Select Bonus from Appraisals where EmpID=?";
+            public static String GET_SALARY_BY_ROLE_ID="Select BasicSalary,EPF,ETF from Salary where RoleID=?";
         }
         public static class Update{
             public static String EMPLOYEE="Update Employee Set EmployeeName=?,Address=?,Date_of_Birth=?,NIC_No=?,Current_Status=?,SalaryID=?,RoleID=? Where EmployeeID=?";

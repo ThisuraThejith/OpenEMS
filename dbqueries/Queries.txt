@@ -3,21 +3,22 @@ CREATE TABLE Role (
 
 RoleID INT NOT NULL auto_increment,
 
+SalaryID INT NOT NULL,
+
 RoleName CHAR(30) UNIQUE NOT NULL,
 
 Description CHAR(100),
 
-PRIMARY KEY (RoleID)
+PRIMARY KEY (RoleID),
+
+FOREIGN KEY (SalaryID) REFERENCES Salary(SalaryID)
 
 );
-
 
 2)Salary table
 CREATE TABLE Salary (
 
 SalaryID INT NOT NULL auto_increment,
-
-RoleID INT NOT NULL,
 
 BasicSalary DECIMAL(8,2),
 
@@ -27,9 +28,7 @@ ETF FLOAT,
 
 No_of_Leaves_for_no_pay INT NOT NULL,
 
-PRIMARY KEY (SalaryID),
-
-FOREIGN KEY (RoleID) REFERENCES Role(RoleID)
+PRIMARY KEY (SalaryID)
 
 );
 
@@ -49,13 +48,9 @@ NIC_No VARCHAR(10) NOT NULL UNIQUE,
 
 Current_Status CHAR(10) NOT NULL DEFAULT 'Working',
 
-SalaryID INT NOT NULL,
-
 RoleID INT NOT NULL,
 
 PRIMARY KEY (EmployeeID),
-
-FOREIGN KEY (SalaryID) REFERENCES Salary(SalaryID),
 
 FOREIGN KEY (RoleID) REFERENCES Role(RoleID)
 
@@ -94,32 +89,30 @@ Bonus DECIMAL(6,2),
 Reviews VARCHAR(100),
 
 PRIMARY KEY (AppraisalID),
+
 FOREIGN KEY (EmpID) REFERENCES Employee (EmployeeID)
+
 );
 
 -- Inserting values into tables
 
 Insert into Role
 
-Values (1,"Manager","Takes care of management issues of the company")
-
-;
+Values (1,1,"Manager","Takes care of management issues of the company");
 
 Insert into Salary
 
-Values (1,1,50000.00,0.1,0.1,10);
+Values (1,50000.00,0.1,0.1,10);
 
-Insert into Employee
 
-Values (1,"Saranapala","Elpitiya",'1994-10-07',"942811110v","",1,1)
+Insert into Employee(EmployeeID,EmployeeName,Address,Date_of_Birth,NIC_No,RoleID)
 
-;
+Values (1,"Saranapala","Elpitiya",'1994-10-07',"942811110v",1);
+
 
 Insert into Attendance
 
 Values (1,1,'2016-08-16',"Present");
-
-
 
 Insert into Appraisals
 
