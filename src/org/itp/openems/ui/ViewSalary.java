@@ -209,10 +209,7 @@ public class ViewSalary extends javax.swing.JFrame {
     
     private double calculateSalary(double basicSalary,double EPF,double ETF,double bonus){
         double totalSalary;
-        basicSalary=Double.parseDouble(this.basicSalTxt.getText());
-        EPF=Double.parseDouble(this.epfTxt.getText());
-        ETF=Double.parseDouble(this.etfTxt.getText());
-        bonus=Double.parseDouble(this.bonusTxt.getText());
+        
         totalSalary=basicSalary-(EPF+ETF)*basicSalary+bonus;
         
         return totalSalary;
