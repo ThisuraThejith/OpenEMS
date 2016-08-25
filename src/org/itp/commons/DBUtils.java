@@ -24,7 +24,10 @@ public class DBUtils {
             
             while(resultset.next()){
                 combo.addItem(resultset.getString("RoleName"));
+                
             }
+            
+
         }
         catch (SQLException e){
             System.out.println(e);

@@ -10,6 +10,7 @@ import org.itp.commons.Queries;
 import java.sql.Connection;
 import org.itp.commons.DBConnect;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import org.itp.commons.Constants;
 /**
  *
@@ -126,6 +127,10 @@ public class RoleManagement extends javax.swing.JFrame {
         int affectedRows = preparedStatement.executeUpdate();
         System.out.println("affected rows=" + affectedRows);
         preparedStatement.close();
+        JOptionPane.showMessageDialog(null,"Successfully Added","Success",JOptionPane.INFORMATION_MESSAGE);
+        MainInterface m2=new MainInterface();
+        m2.setVisible(true);
+        this.dispose();
         }
         catch (SQLException e){
             System.out.println(e);

@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import org.itp.commons.Constants;
 import org.itp.commons.DBConnect;
 import org.itp.commons.DBUtils;
@@ -179,6 +180,10 @@ public class Appraisals extends javax.swing.JFrame {
             int affectedRows = preparedStatement.executeUpdate();
             System.out.println("affected rows=" + affectedRows);
             preparedStatement.close();
+            JOptionPane.showMessageDialog(null,"Successfully Updated","Success",JOptionPane.INFORMATION_MESSAGE);
+            MainInterface m2=new MainInterface();
+            m2.setVisible(true);
+            this.dispose();
         }
         catch (SQLException e){
             System.out.println(e);

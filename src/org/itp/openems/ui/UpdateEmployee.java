@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import org.itp.commons.Constants;
 import org.itp.commons.DBConnect;
 import org.itp.commons.DBUtils;
@@ -233,12 +234,15 @@ public class UpdateEmployee extends javax.swing.JFrame {
             preparedStatement.setString(3,this.dobTxt.getText());
             preparedStatement.setString(4,this.nicTxt.getText());
             preparedStatement.setString(5,this.cstatusCmb.getSelectedItem().toString());
-            preparedStatement.setInt(6,salaryID);
-            preparedStatement.setInt(7,roleID);
-            preparedStatement.setString(8,this.empIDTxt.getText());
+            preparedStatement.setInt(6,roleID);
+            preparedStatement.setString(7,this.empIDTxt.getText());
             int affectedRows = preparedStatement.executeUpdate();
             System.out.println("affected rows=" + affectedRows);
             preparedStatement.close();
+            JOptionPane.showMessageDialog(null,"Successfully Updated","Success",JOptionPane.INFORMATION_MESSAGE);
+            MainInterface m2=new MainInterface();
+            m2.setVisible(true);
+            this.dispose();
         }
         catch (SQLException e){
             System.out.println(e);

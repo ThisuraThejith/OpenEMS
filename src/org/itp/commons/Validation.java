@@ -5,6 +5,12 @@
  */
 package org.itp.commons;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.DateTimeException;
+import java.time.format.DateTimeParseException;
+
 /**
  *
  * @author THISURA THEJITH
@@ -24,7 +30,7 @@ public class Validation {
         }
         return valid;       
     }
-    public static boolean ValidNic(String nic){
+    public static boolean ValidNIC(String nic){
         boolean NIC=false;
         if (nic.length()==10) {
             
@@ -69,4 +75,18 @@ public class Validation {
         return false;        
     }
     
+    
+
+    public static boolean ValidDate(String date){ 
+
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            dateFormat.setLenient(false);
+            dateFormat.parse(date);
+            return true;
+        } 
+        catch (DateTimeException | ParseException e) {
+            return false;
+        }
+    }
 }
