@@ -26,6 +26,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
      */
     public UpdateEmployee() {
         initComponents();
+        roleCmb.addItem("--Select--");
         DBUtils.loadRoles(roleCmb);
     }
 
@@ -58,7 +59,6 @@ public class UpdateEmployee extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Update Employee");
-        setPreferredSize(new java.awt.Dimension(525, 460));
 
         jLabel1.setText("Name");
 
@@ -73,7 +73,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
 
         jLabel6.setText("Current Status");
 
-        cstatusCmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Working", "Resigned" }));
+        cstatusCmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Select--", "Working", "Resigned" }));
 
         updateBtn.setText("Update");
         updateBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -190,16 +190,25 @@ public class UpdateEmployee extends javax.swing.JFrame {
             PreparedStatement preparedStatement=connect.prepareStatement(Queries.EMS.Select.GET_EMPLOYEE_BY_EMPLOYEE_ID);
             preparedStatement.setString(1,this.empIDTxt.getText());
             ResultSet resultset=preparedStatement.executeQuery();
-            while (resultset.next()){
-                  this.nameTxt.setText(resultset.getString("EmployeeName"));
-                  this.addressTxt.setText(resultset.getString("Address"));
-                  this.dobTxt.setText(resultset.getString("Date_of_Birth"));
-                  this.nicTxt.setText(resultset.getString("NIC_No"));
-                  this.roleCmb.setSelectedItem(DBUtils.getRoleNameByID(resultset.getInt("RoleID")));
-                  this.cstatusCmb.setSelectedItem(resultset.getString("Current_Status"));
-            }
-            resultset.close();
-            preparedStatement.close();
+           
+            
+                
+            
+                int count=0;
+                while (resultset.next()) {
+                    this.nameTxt.setText(resultset.getString("EmployeeName"));
+                    this.addressTxt.setText(resultset.getString("Address"));
+                    this.dobTxt.setText(resultset.getString("Date_of_Birth"));
+                    this.nicTxt.setText(resultset.getString("NIC_No"));
+                    this.roleCmb.setSelectedItem(DBUtils.getRoleNameByID(resultset.getInt("RoleID")));
+                    this.cstatusCmb.setSelectedItem(resultset.getString("Current_Status"));
+                    count++;
+                }
+                if(count==0){
+                    JOptionPane.showMessageDialog(null,"An employee with this ID is not present","Error",JOptionPane.ERROR_MESSAGE);
+                }
+                resultset.close();
+                preparedStatement.close();
             
         }
         catch (SQLException e){
@@ -210,7 +219,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
         try{
             int roleID=0;
-            int salaryID=0;
+            
             Connection connect=new DBConnect (Constants.USER,Constants.PASSWORD).getConnection();
             PreparedStatement preparedStatement =connect.prepareStatement(Queries.EMS.Select.GET_ROLE_ID_BY_NAME);
             preparedStatement.setString(1,this.roleCmb.getSelectedItem().toString());
@@ -220,13 +229,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
             }
             resultset.close();
             preparedStatement.close();
-            preparedStatement =connect.prepareStatement(Queries.EMS.Select.GET_SALARY_ID_BY_ROLE_ID);
-            preparedStatement.setInt(1,roleID);
-                       
-            resultset=preparedStatement.executeQuery();
-            while (resultset.next()){
-                salaryID=resultset.getInt("SalaryID");
-            }
+            
             preparedStatement.close();
             preparedStatement =connect.prepareStatement(Queries.EMS.Update.EMPLOYEE);
             preparedStatement.setString(1, this.nameTxt.getText());
@@ -239,7 +242,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
             int affectedRows = preparedStatement.executeUpdate();
             System.out.println("affected rows=" + affectedRows);
             preparedStatement.close();
-            JOptionPane.showMessageDialog(null,"Successfully Updated","Success",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Updated Successfully","Success",JOptionPane.INFORMATION_MESSAGE);
             MainInterface m2=new MainInterface();
             m2.setVisible(true);
             this.dispose();

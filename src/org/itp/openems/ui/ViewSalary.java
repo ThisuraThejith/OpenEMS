@@ -195,8 +195,8 @@ public class ViewSalary extends javax.swing.JFrame {
                   etf = resultset.getDouble("ETF");
             }
             this.basicSalTxt.setText(Double.toString(basicSalary));
-            this.epfTxt.setText(Double.toString(epf));
-            this.etfTxt.setText(Double.toString(etf));
+            this.epfTxt.setText(Double.toString(epf*basicSalary));
+            this.etfTxt.setText(Double.toString(etf*basicSalary));
             resultset.close();
             preparedStatement.close();
             this.totalSalTxt.setText(Double.toString(calculateSalary(basicSalary, epf, etf, bonus)));

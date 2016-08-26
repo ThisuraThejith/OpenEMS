@@ -180,7 +180,7 @@ public class Appraisals extends javax.swing.JFrame {
             int affectedRows = preparedStatement.executeUpdate();
             System.out.println("affected rows=" + affectedRows);
             preparedStatement.close();
-            JOptionPane.showMessageDialog(null,"Successfully Updated","Success",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Updated Successfully","Success",JOptionPane.INFORMATION_MESSAGE);
             MainInterface m2=new MainInterface();
             m2.setVisible(true);
             this.dispose();

@@ -193,8 +193,10 @@ public class RegisterEmployees extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Fields Cannot be empty","Error",JOptionPane.ERROR_MESSAGE);
         }
         else{
+                clear();
                     
             try{
+                    
                     String dob=this.dobTxt.getText();
                     if (!Validation.ValidDate(dob)) {
                         dobLbl.setText("*Invalid Date");
@@ -208,9 +210,14 @@ public class RegisterEmployees extends javax.swing.JFrame {
                     if (!Validation.ValidNIC(this.nicTxt.getText())) {
                         nicLbl.setText("*Invalid NIC No");
                     }
-                    else if (Validation.ValidName(this.nameTxt.getText()) && Validation.ValidDate(dob) && Validation.ValidAddress(this.addressTxt.getText()) && Validation.ValidNIC(this.nicTxt.getText())) {
+                    String role=roleCmb.getSelectedItem().toString();
+                    if(role.equals("--Select--")){
+                        roleLbl.setText("Please select a role");
+                    }
+                    else if (Validation.ValidName(this.nameTxt.getText()) && Validation.ValidDate(dob) && Validation.ValidAddress(this.addressTxt.getText()) && Validation.ValidNIC(this.nicTxt.getText())&& !"--Select--".equals(role)) {
+                        
+                        clear();
                         int roleID = 0;
-
                         Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
                         PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_ROLE_ID_BY_NAME);
                         preparedStatement.setString(1, this.roleCmb.getSelectedItem().toString());
@@ -231,7 +238,7 @@ public class RegisterEmployees extends javax.swing.JFrame {
                         int affectedRows = preparedStatement.executeUpdate();
                         System.out.println("affected rows=" + affectedRows);
                         preparedStatement.close();
-                        JOptionPane.showMessageDialog(null,"Successfully Added","Success",JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null,"Added Successfully","Success",JOptionPane.INFORMATION_MESSAGE);
                         MainInterface m2=new MainInterface();
                         m2.setVisible(true);
                         this.dispose();
@@ -245,6 +252,14 @@ public class RegisterEmployees extends javax.swing.JFrame {
         
     }//GEN-LAST:event_registerBtnActionPerformed
 
+    private void clear(){
+        nameLbl.setText(null);
+        addressLbl.setText(null);
+        nicLbl.setText(null);
+        roleLbl.setText(null);
+        dobLbl.setText(null);
+    
+    }
     /**
      * @param args the command line arguments
      */

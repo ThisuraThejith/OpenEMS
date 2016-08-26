@@ -24,6 +24,13 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="SaveBtn" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="BackBtn" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+          </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -34,15 +41,10 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="roleName" min="-2" pref="161" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="181" max="-2" attributes="0"/>
+                  <Component id="roleNameLbl" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                  <Component id="descLbl" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="40" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="SaveBtn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="BackBtn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+              <EmptySpace pref="29" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -54,15 +56,16 @@
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="roleName" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="roleNameLbl" min="-2" pref="21" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Component id="jScrollPane1" pref="134" max="32767" attributes="0"/>
+                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="123" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="descLbl" min="-2" pref="23" max="-2" attributes="0"/>
+              <EmptySpace pref="8" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="SaveBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="BackBtn" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -115,6 +118,10 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BackBtnActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="roleNameLbl">
+    </Component>
+    <Component class="javax.swing.JLabel" name="descLbl">
     </Component>
   </SubComponents>
 </Form>

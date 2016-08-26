@@ -89,4 +89,23 @@ public class Validation {
             return false;
         }
     }
+    
+    
+    public static boolean ValidDigits(String digit){
+        boolean valid=false;
+        for (int i = 0; i < digit.length(); i++) {
+            char ch =digit.charAt(i);
+            if (!Character.isDigit(ch)) {
+                return false;
+            }
+            else{
+                valid=true;
+            }
+        }
+        if (valid) {
+            return true;
+        }
+        else
+            return false;
+    }
 }

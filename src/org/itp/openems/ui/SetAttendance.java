@@ -17,16 +17,17 @@ import java.util.Properties;
 import javax.swing.CellRendererPane;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.table.TableColumn;
 import net.proteanit.sql.DbUtils;
 import org.itp.commons.Constants;
 import org.itp.commons.DBConnect;
 import org.itp.commons.Queries;
+import org.itp.commons.Validation;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
-
 
 /**
  *
@@ -41,29 +42,31 @@ public class SetAttendance extends javax.swing.JFrame {
         initComponents();
         tableLoad();
         //appendDatePicker();
-        
+
     }
 
-    private void appendDatePicker(){
+    private void appendDatePicker() {
         UtilDateModel model = new UtilDateModel();
         Properties p = new Properties();
         p.put("text.today", "Today");
         p.put("text.month", "Month");
         p.put("text.year", "Year");
-        JDatePanelImpl datePanel = new JDatePanelImpl(model,p);
+        JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
         JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
         setLayout(new GridBagLayout());
         //calendarPanel.add(datePicker);
     }
-    private void setAttendanceCombo(){
-    TableColumn presenceColumn =attendanceTable.getColumnModel().getColumn(2);
-    JComboBox comboBox = new JComboBox();
-    comboBox.addItem("Present");
-    comboBox.addItem("Absent");
-    comboBox.addItem("Half_Day");
-    presenceColumn.setCellEditor(new DefaultCellEditor(comboBox));
-    presenceColumn.setCellRenderer(new ComboRenderer(new String[]{"Present","Absent","Half_day"}));
+
+    private void setAttendanceCombo() {
+        TableColumn presenceColumn = attendanceTable.getColumnModel().getColumn(2);
+        JComboBox comboBox = new JComboBox();
+        comboBox.addItem("Present");
+        comboBox.addItem("Absent");
+        comboBox.addItem("HalfDay");
+        presenceColumn.setCellEditor(new DefaultCellEditor(comboBox));
+        presenceColumn.setCellRenderer(new ComboRenderer(new String[]{"Present", "Absent", "HalfDay"}));
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -73,17 +76,23 @@ public class SetAttendance extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        saveBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
         dateTxt = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         attendanceTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        dateLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Set Attendance");
 
-        jButton1.setText("Save");
+        saveBtn.setText("Save");
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtnActionPerformed(evt);
+            }
+        });
 
         backBtn.setText("Back");
         backBtn.setName("backBtn"); // NOI18N
@@ -101,6 +110,7 @@ public class SetAttendance extends javax.swing.JFrame {
                 "EmployeeID", "Employee Name", "Presence"
             }
         ));
+        attendanceTable.setRowHeight(20);
         jScrollPane1.setViewportView(attendanceTable);
 
         jLabel1.setText("Work_Date");
@@ -110,73 +120,118 @@ public class SetAttendance extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(saveBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(backBtn)
                 .addGap(28, 28, 28))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(135, 135, 135)
+                        .addGap(137, 137, 137)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(dateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(dateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(dateLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(30, 30, 30)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(242, Short.MAX_VALUE))
+                .addContainerGap(165, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(dateLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backBtn)
-                    .addComponent(jButton1))
-                .addGap(21, 21, 21))
+                    .addComponent(saveBtn))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-            MainInterface m1=new MainInterface();
-            m1.setVisible(true);
-            this.dispose();
+        MainInterface m1 = new MainInterface();
+        m1.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
-    public void tableLoad(){
-        Map<String,String> records = new HashMap<String, String>();
-        
+
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        int rowCount = attendanceTable.getRowCount();
+        if (dateTxt.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Work_Date cannot be empty","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        else {
+            dateLbl.setText(null);
+            try {
+                
+                if (!Validation.ValidDate(this.dateTxt.getText())) {
+                        dateLbl.setText("*Invalid Date");
+                    }
+                else if (Validation.ValidDate(this.dateTxt.getText())) {
+                    dateLbl.setText(null);
+                    for (int row = 0; row < rowCount; row++) {
+
+                        Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+                        PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Insert.ATTENDANCE);
+                        preparedStatement.setString(1, attendanceTable.getValueAt(row, 0).toString());
+                        preparedStatement.setString(2, this.dateTxt.getText());
+                        preparedStatement.setString(3, attendanceTable.getValueAt(row, 2).toString());
+
+                        int affectedRows = preparedStatement.executeUpdate();
+                        System.out.println("affected rows=" + affectedRows);
+                        preparedStatement.close();
+
+                    }
+                    JOptionPane.showMessageDialog(null, "Added Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    MainInterface m2 = new MainInterface();
+                    m2.setVisible(true);
+                    this.dispose();
+                }
+            } 
+            catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+    }//GEN-LAST:event_saveBtnActionPerformed
+    public void tableLoad() {
+        Map<String, String> records = new HashMap<String, String>();
+
         try {
             Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
             PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_ATTENDANCE_LIST);
-            ResultSet resultset=preparedStatement.executeQuery();
-             while (resultset.next()){
-                 records.put(resultset.getString("EmployeeID"),resultset.getString("EmployeeName"));
+            ResultSet resultset = preparedStatement.executeQuery();
+            while (resultset.next()) {
+                records.put(resultset.getString("EmployeeID"), resultset.getString("EmployeeName"));
             }
             preparedStatement.close();
             Object[][] tableContent = new Object[records.size()][3];
-            int index=0;
-            for(String key : records.keySet()){
-               tableContent[index][0] = key; 
-               tableContent[index][1] = records.get(key); 
-               tableContent[index][2] = null; 
-               index++;
+            int index = 0;
+            for (String key : records.keySet()) {
+                tableContent[index][0] = key;
+                tableContent[index][1] = records.get(key);
+                tableContent[index][2] = "Present";
+                index++;
             }
             attendanceTable.setModel(new javax.swing.table.DefaultTableModel(
-            tableContent,new String [] {"EmployeeID", "Employee Name", "Presence"}));
+                    tableContent, new String[]{"EmployeeID", "Employee Name", "Presence"}));
             setAttendanceCombo();
+
         } catch (Exception e) {
+            System.out.println(e);
         }
-        
+
     }
+
     /**
      * @param args the command line arguments
      */
@@ -215,9 +270,10 @@ public class SetAttendance extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable attendanceTable;
     private javax.swing.JButton backBtn;
+    private javax.swing.JLabel dateLbl;
     private javax.swing.JTextField dateTxt;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton saveBtn;
     // End of variables declaration//GEN-END:variables
 }
