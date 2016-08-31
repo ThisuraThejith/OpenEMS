@@ -9,10 +9,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Calendar;
+import javax.swing.JOptionPane;
 import org.itp.commons.Constants;
 import org.itp.commons.DBConnect;
 import org.itp.commons.DBUtils;
 import org.itp.commons.Queries;
+import org.itp.openems.model.Salary;
 
 /**
  *
@@ -26,7 +29,7 @@ public class ViewSalary extends javax.swing.JFrame {
     public ViewSalary() {
         initComponents();
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -82,6 +85,11 @@ public class ViewSalary extends javax.swing.JFrame {
         });
 
         generateSalBtn.setText("Generate Salary Report");
+        generateSalBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generateSalBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -154,66 +162,35 @@ public class ViewSalary extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-            MainInterface m1=new MainInterface();
-            m1.setVisible(true);
-            this.dispose();
+        MainInterface m1 = new MainInterface();
+        m1.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-        try{
-            int roleID=0;
-            double bonus=0.0;
-            double epf=0.0;
-            double etf=0.0;
-            double basicSalary=0.0;
-            Connection connect=new DBConnect (Constants.USER,Constants.PASSWORD).getConnection();
-            PreparedStatement preparedStatement=connect.prepareStatement(Queries.EMS.Select.GET_BONUS_BY_EMPLOYEE_ID);
-            preparedStatement.setString(1,this.empIDTxt.getText());
-            ResultSet resultset=preparedStatement.executeQuery();
-            
-            while (resultset.next()){
-                  bonus = resultset.getDouble("Bonus");
+        try {
+            Salary salary = DBUtils.getSalaryForEmployeeID(Integer.parseInt(empIDTxt.getText()));
+            if (salary.getAbsentCount() + (salary.getHalfDayCount() / 2) > salary.getMaxLeaves()) {
+                JOptionPane.showMessageDialog(null, "The employee is in NOPAY status.", "No Salary", JOptionPane.INFORMATION_MESSAGE);
+                return;
             }
-            this.bonusTxt.setText(Double.toString(bonus));
-            resultset.close();
-            preparedStatement.close();
-            preparedStatement=connect.prepareStatement(Queries.EMS.Select.GET_ROLE_ID_BY_EMPLOYEE_ID);
-            preparedStatement.setString(1,this.empIDTxt.getText());
-            resultset=preparedStatement.executeQuery();
-            while (resultset.next()){
-                  roleID=resultset.getInt("RoleID");
-            }
-            resultset.close();
-            preparedStatement.close();
-            preparedStatement =connect.prepareStatement(Queries.EMS.Select.GET_SALARY_BY_ROLE_ID);
-            preparedStatement.setInt(1,roleID);
-                       
-            resultset=preparedStatement.executeQuery();
-            while (resultset.next()){
-                  basicSalary = resultset.getDouble("BasicSalary");
-                  epf = resultset.getDouble("EPF");
-                  etf = resultset.getDouble("ETF");
-            }
-            this.basicSalTxt.setText(Double.toString(basicSalary));
-            this.epfTxt.setText(Double.toString(epf*basicSalary));
-            this.etfTxt.setText(Double.toString(etf*basicSalary));
-            resultset.close();
-            preparedStatement.close();
-            this.totalSalTxt.setText(Double.toString(calculateSalary(basicSalary, epf, etf, bonus)));
-            
-        }
-        catch (SQLException e){
+            this.bonusTxt.setText(Double.toString(salary.getBonus()));
+            this.basicSalTxt.setText(Double.toString(salary.getBasicSalary()));
+            this.epfTxt.setText(Double.toString(salary.getEpf() * salary.getBasicSalary()));
+            this.etfTxt.setText(Double.toString(salary.getEtf() * salary.getBasicSalary()));
+            this.totalSalTxt.setText(Double.toString(salary.calculateSalary()));
+
+        } catch (SQLException e) {
             System.out.println(e);
         }
     }//GEN-LAST:event_searchBtnActionPerformed
-    
-    private double calculateSalary(double basicSalary,double EPF,double ETF,double bonus){
-        double totalSalary;
-        
-        totalSalary=basicSalary-(EPF+ETF)*basicSalary+bonus;
-        
-        return totalSalary;
-    }
+
+    private void generateSalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateSalBtnActionPerformed
+        int empid = Integer.parseInt(empIDTxt.getText());
+        ViewIReport.SalReport(empid);
+    }//GEN-LAST:event_generateSalBtnActionPerformed
+
+
     /**
      * @param args the command line arguments
      */

@@ -5,6 +5,22 @@
  */
 package org.itp.openems.ui;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import javax.swing.JOptionPane;
+import jdk.nashorn.internal.objects.NativeArray;
+import org.itp.commons.Constants;
+import org.itp.commons.DBConnect;
+import org.itp.commons.DBUtils;
+import org.itp.openems.model.Salary;
+
 /**
  *
  * @author THISURA THEJITH
@@ -30,7 +46,7 @@ public class MainInterface extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        calcSalBtn = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
@@ -61,7 +77,12 @@ public class MainInterface extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Calculate Salary");
+        calcSalBtn.setText("Calculate Salary");
+        calcSalBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calcSalBtnActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("View Salary");
         jButton5.setToolTipText("");
@@ -107,7 +128,7 @@ public class MainInterface extends javax.swing.JFrame {
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(calcSalBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
                                 .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
@@ -139,7 +160,7 @@ public class MainInterface extends javax.swing.JFrame {
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(calcSalBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton9)
@@ -150,46 +171,70 @@ public class MainInterface extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            RegisterEmployees r1=new RegisterEmployees();
-            r1.setVisible(true);
-            this.dispose();
+        RegisterEmployees r1 = new RegisterEmployees();
+        r1.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-            UpdateEmployee u1=new UpdateEmployee();
-            u1.setVisible(true);
-            this.dispose();
+        UpdateEmployee u1 = new UpdateEmployee();
+        u1.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-            SetSalary s1=new SetSalary();
-            s1.setVisible(true);
-            this.dispose();
+        SetSalary s1 = new SetSalary();
+        s1.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-            ViewSalary v1=new ViewSalary();
-            v1.setVisible(true);
-            this.dispose();
+        ViewSalary v1 = new ViewSalary();
+        v1.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-            RoleManagement rm1=new RoleManagement();
-            rm1.setVisible(true);
-            this.dispose();
+        RoleManagement rm1 = new RoleManagement();
+        rm1.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-            SetAttendance at1=new SetAttendance();
-            at1.setVisible(true);
-            this.dispose();
+        SetAttendance at1 = new SetAttendance();
+        at1.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-            Appraisals a1=new Appraisals();
-            a1.setVisible(true);
-            this.dispose();
+        Appraisals a1 = new Appraisals();
+        a1.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void calcSalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcSalBtnActionPerformed
+        try {
+            List<Integer> eids = DBUtils.getEmployeeIds();
+            File dir = new File(Constants.REPORT_LOCATION);
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            for(int eid : eids){
+                Salary salary = DBUtils.getSalaryForEmployeeID(eid);
+                File file = new File(Constants.REPORT_LOCATION + File.separator + eid + ".txt");
+                if(!file.exists()){
+                    file.createNewFile();
+                }
+                FileWriter writer = new FileWriter(file);
+                writer.write(salary.toString());
+                writer.flush();
+                writer.close();
+            }  
+             JOptionPane.showMessageDialog(null, "All the files are saved at the "+ Constants.REPORT_LOCATION+  " folder.", "Success", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException e) {
+        } catch (IOException e){}
+
+    }//GEN-LAST:event_calcSalBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -227,10 +272,10 @@ public class MainInterface extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton calcSalBtn;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
