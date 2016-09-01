@@ -33,9 +33,11 @@ public class Queries {
             public static String GET_NO_OF_ABSENTS_FOR_EMPLOYEE="SELECT COUNT(*) AS COUNT FROM openems.attendance WHERE (Work_Date BETWEEN ? AND ?) AND EmpID = ? AND Presence='Absent'";
             public static String GET_NO_OF_HALFDAYS_FOR_EMPLOYEE="SELECT COUNT(*) AS COUNT FROM openems.attendance WHERE (Work_Date BETWEEN ? AND ?) AND EmpID = ? AND Presence='Half_Day'";
             public static String GET_EMPLOYEE_IDS="SELECT EmployeeID FROM Employee";
+            public static String GET_EMPLOYEE_ID_BY_NIC="Select EmployeeID from Employee where NIC_No=?";
+            public static String GET_WORK_DATE="Select EmpID from Attendance where Work_Date=?";
         }
         public static class Update{
-            public static String EMPLOYEE="Update Employee Set EmployeeName=?,Address=?,Date_of_Birth=?,NIC_No=?,Current_Status=?,RoleID=? Where EmployeeID=?";
+            public static String EMPLOYEE="Update Employee Set EmployeeName=?,Address=?,Date_of_Birth=?,EmployeeID=?,Current_Status=?,RoleID=? Where NIC_No=?";
             public static String APPRAISAL="Update Appraisals Set Grading=?,Bonus=?,Reviews=? Where EmpID=?";
         }
 

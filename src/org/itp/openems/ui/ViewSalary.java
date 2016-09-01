@@ -11,10 +11,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import org.itp.commons.Constants;
 import org.itp.commons.DBConnect;
 import org.itp.commons.DBUtils;
 import org.itp.commons.Queries;
+import org.itp.commons.Validation;
 import org.itp.openems.model.Salary;
 
 /**
@@ -51,14 +53,15 @@ public class ViewSalary extends javax.swing.JFrame {
         bonusTxt = new javax.swing.JTextField();
         totalSalTxt = new javax.swing.JTextField();
         backBtn = new javax.swing.JButton();
-        empIDTxt = new javax.swing.JTextField();
+        nicNoTxt = new javax.swing.JTextField();
         searchBtn = new javax.swing.JButton();
         generateSalBtn = new javax.swing.JButton();
+        nicNoLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("View Salary");
 
-        jLabel1.setText("Employee ID");
+        jLabel1.setText("NIC No");
 
         jLabel2.setText("Basic Salary");
 
@@ -98,64 +101,71 @@ public class ViewSalary extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
                     .addComponent(jLabel3)
+                    .addComponent(jLabel1))
+                .addGap(107, 107, 107)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addGap(107, 107, 107)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(generateSalBtn)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(basicSalTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-                                .addComponent(epfTxt)
-                                .addComponent(etfTxt)
-                                .addComponent(bonusTxt)
-                                .addComponent(totalSalTxt)
-                                .addComponent(empIDTxt)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(searchBtn)
-                    .addComponent(backBtn))
-                .addGap(42, 42, 42))
+                            .addComponent(epfTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nicNoLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(42, 137, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(basicSalTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                            .addComponent(etfTxt)
+                            .addComponent(bonusTxt)
+                            .addComponent(totalSalTxt)
+                            .addComponent(nicNoTxt))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(searchBtn)
+                        .addGap(24, 24, 24))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(generateSalBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(backBtn)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nicNoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(empIDTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchBtn))
-                .addGap(18, 18, 18)
+                .addGap(1, 1, 1)
+                .addComponent(nicNoLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(basicSalTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                    .addComponent(basicSalTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(epfTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                    .addComponent(epfTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(etfTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                    .addComponent(etfTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(bonusTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                    .addComponent(bonusTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(totalSalTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
+                    .addComponent(totalSalTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backBtn)
                     .addComponent(generateSalBtn))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -166,12 +176,38 @@ public class ViewSalary extends javax.swing.JFrame {
         m1.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
-
+    int employeeID = 0;
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        nicNoLbl.setText(null);
+        clear();
+        if (nicNoTxt.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Please enter the NIC No","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        
         try {
-            Salary salary = DBUtils.getSalaryForEmployeeID(Integer.parseInt(empIDTxt.getText()));
+            if (!Validation.ValidNIC(this.nicNoTxt.getText())) {
+                nicNoLbl.setText("*Invalid NIC No");
+                JOptionPane.showMessageDialog(null,"The NIC No is invalid","Error",JOptionPane.ERROR_MESSAGE);
+            }
+            else if (Validation.ValidNIC(this.nicNoTxt.getText())) {
+            Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+            PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_EMPLOYEE_ID_BY_NIC);
+            preparedStatement.setString(1, this.nicNoTxt.getText());
+            ResultSet resultset = preparedStatement.executeQuery();
+            int count=0;
+            while (resultset.next()) {
+                employeeID = resultset.getInt("EmployeeID");
+                count++;
+            }
+            if (count == 0){
+                        JOptionPane.showMessageDialog(null, "An employee with this NIC No is not present", "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+            }
+            resultset.close();
+            preparedStatement.close();
+            Salary salary = DBUtils.getSalaryForEmployeeID(employeeID);
             if (salary.getAbsentCount() + (salary.getHalfDayCount() / 2) > salary.getMaxLeaves()) {
-                JOptionPane.showMessageDialog(null, "The employee is in NOPAY status.", "No Salary", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "The employee is in NOPAY status.", "No Salary", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             this.bonusTxt.setText(Double.toString(salary.getBonus()));
@@ -179,17 +215,48 @@ public class ViewSalary extends javax.swing.JFrame {
             this.epfTxt.setText(Double.toString(salary.getEpf() * salary.getBasicSalary()));
             this.etfTxt.setText(Double.toString(salary.getEtf() * salary.getBasicSalary()));
             this.totalSalTxt.setText(Double.toString(salary.calculateSalary()));
-
+            }
+            
         } catch (SQLException e) {
             System.out.println(e);
         }
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void generateSalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateSalBtnActionPerformed
-        int empid = Integer.parseInt(empIDTxt.getText());
-        ViewIReport.SalReport(empid);
-    }//GEN-LAST:event_generateSalBtnActionPerformed
+        try {
+            Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+            PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_EMPLOYEE_ID_BY_NIC);
+            preparedStatement.setString(1, this.nicNoTxt.getText());
+            ResultSet resultset = preparedStatement.executeQuery();
+            int count = 0;
+            while (resultset.next()) {
+                employeeID = resultset.getInt("EmployeeID");
+                count++;
+            }
+            if (count == 0) {
+                clear();
+                JOptionPane.showMessageDialog(null, "No Employee to generate salary report or the NIC No is invalid", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            } else {
+                int empid = employeeID;
+                ViewIReport.SalReport(empid);
+            }
+            resultset.close();
+            preparedStatement.close();
 
+        }
+        catch(SQLException e){
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_generateSalBtnActionPerformed
+    private void clear(){
+        basicSalTxt.setText(null);
+        epfTxt.setText(null);
+        bonusTxt.setText(null);
+        etfTxt.setText(null);
+        totalSalTxt.setText(null);
+    
+    }
 
     /**
      * @param args the command line arguments
@@ -230,7 +297,6 @@ public class ViewSalary extends javax.swing.JFrame {
     private javax.swing.JButton backBtn;
     private javax.swing.JTextField basicSalTxt;
     private javax.swing.JTextField bonusTxt;
-    private javax.swing.JTextField empIDTxt;
     private javax.swing.JTextField epfTxt;
     private javax.swing.JTextField etfTxt;
     private javax.swing.JButton generateSalBtn;
@@ -240,6 +306,8 @@ public class ViewSalary extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel nicNoLbl;
+    private javax.swing.JTextField nicNoTxt;
     private javax.swing.JButton searchBtn;
     private javax.swing.JTextField totalSalTxt;
     // End of variables declaration//GEN-END:variables

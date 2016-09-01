@@ -10,10 +10,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import org.itp.commons.Constants;
 import org.itp.commons.DBConnect;
 import org.itp.commons.DBUtils;
 import org.itp.commons.Queries;
+import org.itp.commons.Validation;
 
 /**
  *
@@ -46,13 +48,18 @@ public class Appraisals extends javax.swing.JFrame {
         reviewsTxt = new javax.swing.JTextField();
         updateBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
-        empIDTxt = new javax.swing.JTextField();
+        nicTxt = new javax.swing.JTextField();
         searchBtn = new javax.swing.JButton();
+        nicLbl = new javax.swing.JLabel();
+        insertBtn = new javax.swing.JButton();
+        gradingLbl = new javax.swing.JLabel();
+        bonusLbl = new javax.swing.JLabel();
+        reviewsLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Appraisals");
 
-        jLabel1.setText("Employee ID");
+        jLabel1.setText("NIC No");
 
         jLabel2.setText("Grading");
 
@@ -60,7 +67,7 @@ public class Appraisals extends javax.swing.JFrame {
 
         jLabel5.setText("Reviews");
 
-        gradingCmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
+        gradingCmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Select--", "1", "2", "3", "4", "5" }));
 
         updateBtn.setText("Update");
         updateBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -83,12 +90,21 @@ public class Appraisals extends javax.swing.JFrame {
             }
         });
 
+        insertBtn.setText("Insert");
+        insertBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insertBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(insertBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(updateBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(backBtn)
@@ -96,19 +112,37 @@ public class Appraisals extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(gradingCmb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(empIDTxt)
-                    .addComponent(bonusTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                    .addComponent(reviewsTxt))
-                .addGap(18, 18, 18)
-                .addComponent(searchBtn)
-                .addGap(0, 29, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(nicLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(gradingCmb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(nicTxt)
+                            .addComponent(bonusTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                            .addComponent(reviewsTxt))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(searchBtn)
+                                .addGap(0, 60, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(8, 8, 8)
+                                        .addComponent(gradingLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(bonusLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(reviewsLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addContainerGap())))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,24 +150,30 @@ public class Appraisals extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(empIDTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nicTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchBtn))
-                .addGap(34, 34, 34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nicLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(gradingCmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(gradingLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bonusTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(bonusLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(reviewsTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                    .addComponent(reviewsTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(reviewsLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(updateBtn)
-                    .addComponent(backBtn))
+                    .addComponent(backBtn)
+                    .addComponent(insertBtn))
                 .addGap(22, 22, 22))
         );
 
@@ -141,55 +181,158 @@ public class Appraisals extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-            MainInterface m1=new MainInterface();
-            m1.setVisible(true);
-            this.dispose();
+        MainInterface m1 = new MainInterface();
+        m1.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
-
+    int employeeID = 0;
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-        try{
-            this.gradingCmb.setSelectedItem("1");
-            this.bonusTxt.setText("");
-            this.reviewsTxt.setText("");
-            Connection connect=new DBConnect (Constants.USER,Constants.PASSWORD).getConnection();
-            PreparedStatement preparedStatement=connect.prepareStatement(Queries.EMS.Select.GET_APPRAISAL_BY_EMPLOYEE_ID);
-            preparedStatement.setString(1,this.empIDTxt.getText());
-            ResultSet resultset=preparedStatement.executeQuery();
-            while (resultset.next()){
-                  this.gradingCmb.setSelectedItem(resultset.getString("Grading"));
-                  this.bonusTxt.setText(resultset.getString("Bonus"));
-                  this.reviewsTxt.setText(resultset.getString("Reviews"));               
+        nicLbl.setText(null);
+        clear();
+        if (nicTxt.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please enter the NIC No", "Error", JOptionPane.ERROR_MESSAGE);
+        } 
+        else {
+            try {
+                if (!Validation.ValidNIC(this.nicTxt.getText())) {
+                    nicLbl.setText("*Invalid NIC No");
+                    JOptionPane.showMessageDialog(null, "The NIC No is invalid", "Error", JOptionPane.ERROR_MESSAGE);
+                } 
+                else if (Validation.ValidNIC(this.nicTxt.getText())) {
+                    clear();
+                    Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+                    PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_EMPLOYEE_ID_BY_NIC);
+                    preparedStatement.setString(1, this.nicTxt.getText());
+                    ResultSet resultset = preparedStatement.executeQuery();
+                    int count = 0;
+                    while (resultset.next()) {
+                        employeeID = resultset.getInt("EmployeeID");
+                        count++;
+                    }
+                    if (count == 0) {
+                        JOptionPane.showMessageDialog(null, "An employee with this NIC No is not present", "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    resultset.close();
+                    preparedStatement.close();
+                    connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+                    preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_APPRAISAL_BY_EMPLOYEE_ID);
+                    preparedStatement.setInt(1, employeeID);
+                    resultset = preparedStatement.executeQuery();
+                    int count1 = 0;
+                    while (resultset.next()) {
+                        this.gradingCmb.setSelectedItem(resultset.getString("Grading"));
+                        this.bonusTxt.setText(resultset.getString("Bonus"));
+                        this.reviewsTxt.setText(resultset.getString("Reviews"));
+                        count1++;
+                    }
+                    if (count1 == 0) {
+                        JOptionPane.showMessageDialog(null, "An appraisal for this employee is not present", "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    resultset.close();
+                    preparedStatement.close();
+                }
+
+            } catch (SQLException e) {
+                System.out.println(e);
             }
-            resultset.close();
-            preparedStatement.close();
-            
-        }
-        catch (SQLException e){
-            System.out.println(e);
         }
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
-        try{
-            Connection connect=new DBConnect (Constants.USER,Constants.PASSWORD).getConnection();
-            PreparedStatement preparedStatement =connect.prepareStatement(Queries.EMS.Update.APPRAISAL);
-            preparedStatement.setString(1,this.gradingCmb.getSelectedItem().toString());
-            preparedStatement.setString(2,this.bonusTxt.getText());
-            preparedStatement.setString(3,this.reviewsTxt.getText());                   
-            preparedStatement.setString(4,this.empIDTxt.getText());
-            int affectedRows = preparedStatement.executeUpdate();
-            System.out.println("affected rows=" + affectedRows);
-            preparedStatement.close();
-            JOptionPane.showMessageDialog(null,"Updated Successfully","Success",JOptionPane.INFORMATION_MESSAGE);
-            MainInterface m2=new MainInterface();
-            m2.setVisible(true);
-            this.dispose();
+        nicLbl.setText(null);
+        if (nicTxt.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"No employee to update","Error",JOptionPane.ERROR_MESSAGE);
         }
-        catch (SQLException e){
-            System.out.println(e);
+        if(Double.parseDouble(this.bonusTxt.getText())<0){
+            JOptionPane.showMessageDialog(null,"Bonus cannot be minus","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        else if(bonusTxt.getText().isEmpty()||reviewsTxt.getText().isEmpty()||gradingCmb.getSelectedItem().toString().equals("--Select--")){
+            JOptionPane.showMessageDialog(null,"Please press the search button to load appraisal details","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        else {
+            try {
+                    Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+                    PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_EMPLOYEE_ID_BY_NIC);
+                    preparedStatement.setString(1, this.nicTxt.getText());
+                    ResultSet resultset = preparedStatement.executeQuery();
+                    int count = 0;
+                    while (resultset.next()) {
+                        employeeID = resultset.getInt("EmployeeID");
+                    count++;
+                    }
+                    
+                resultset.close();
+                preparedStatement.close();
+                connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+                preparedStatement = connect.prepareStatement(Queries.EMS.Update.APPRAISAL);
+                preparedStatement.setString(1, this.gradingCmb.getSelectedItem().toString());
+                preparedStatement.setString(2, this.bonusTxt.getText());
+                preparedStatement.setString(3, this.reviewsTxt.getText());
+                preparedStatement.setInt(4, employeeID);
+                int affectedRows = preparedStatement.executeUpdate();
+                System.out.println("affected rows=" + affectedRows);
+                preparedStatement.close();
+                JOptionPane.showMessageDialog(null, "Updated Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                MainInterface m2 = new MainInterface();
+                m2.setVisible(true);
+                this.dispose();
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
         }
     }//GEN-LAST:event_updateBtnActionPerformed
 
+    private void insertBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertBtnActionPerformed
+        nicLbl.setText(null);
+        if (nicTxt.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"No employee to insert the appraisal","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        if(bonusTxt.getText().isEmpty()){
+            bonusLbl.setText("*Insert ");
+        }
+        if(Double.parseDouble(this.bonusTxt.getText())<0){
+            JOptionPane.showMessageDialog(null,"Bonus cannot be minus","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        
+        else {
+            try {
+                Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+                PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_EMPLOYEE_ID_BY_NIC);
+                preparedStatement.setString(1, this.nicTxt.getText());
+                ResultSet resultset = preparedStatement.executeQuery();
+                int count = 0;
+                while (resultset.next()) {
+                    employeeID = resultset.getInt("EmployeeID");
+                    count++;
+                }
+                connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+                preparedStatement = connect.prepareStatement(Queries.EMS.Insert.APPRAISALS);
+                preparedStatement.setInt(1, employeeID);
+                preparedStatement.setString(2, this.gradingCmb.getSelectedItem().toString());
+                preparedStatement.setString(3, this.bonusTxt.getText());
+                preparedStatement.setString(4, this.reviewsTxt.getText());
+                
+                int affectedRows = preparedStatement.executeUpdate();
+                System.out.println("affected rows=" + affectedRows);
+                preparedStatement.close();
+                JOptionPane.showMessageDialog(null, "Inserted Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                MainInterface m2 = new MainInterface();
+                m2.setVisible(true);
+                this.dispose();
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        }
+    }//GEN-LAST:event_insertBtnActionPerformed
+    private void clear(){
+        gradingCmb.setSelectedItem("--Select--");
+        reviewsTxt.setText(null);
+        bonusTxt.setText(null);
+        nicLbl.setText(null);
+         
+    }
     /**
      * @param args the command line arguments
      */
@@ -227,13 +370,18 @@ public class Appraisals extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
+    private javax.swing.JLabel bonusLbl;
     private javax.swing.JTextField bonusTxt;
-    private javax.swing.JTextField empIDTxt;
     private javax.swing.JComboBox<String> gradingCmb;
+    private javax.swing.JLabel gradingLbl;
+    private javax.swing.JButton insertBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel nicLbl;
+    private javax.swing.JTextField nicTxt;
+    private javax.swing.JLabel reviewsLbl;
     private javax.swing.JTextField reviewsTxt;
     private javax.swing.JButton searchBtn;
     private javax.swing.JButton updateBtn;

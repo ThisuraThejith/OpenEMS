@@ -92,22 +92,15 @@ public class Validation {
     }
     
     
-    public static boolean ValidDigits(String digit){
-        boolean valid=false;
-        for (int i = 0; i < digit.length(); i++) {
-            char ch =digit.charAt(i);
-            if (!Character.isDigit(ch)) {
-                return false;
-            }
-            else{
-                valid=true;
-            }
-        }
-        if (valid) {
-            return true;
-        }
-        else
+    public static boolean ValidDigits(String digit) {
+
+        try {
+            Double.parseDouble(digit);
+        } catch (NumberFormatException nfe) {
             return false;
+        }
+        return true;
+
     }
     
     public static boolean FutureDate(Date comDate){

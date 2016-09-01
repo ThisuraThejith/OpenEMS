@@ -55,6 +55,7 @@ public class MainInterface extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Employee Management System");
+        setPreferredSize(new java.awt.Dimension(4000, 1000));
 
         jButton1.setText("Register Employees");
         jButton1.addActionListener(new java.awt.event.ActionListener() {

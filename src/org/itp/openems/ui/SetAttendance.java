@@ -10,8 +10,10 @@ import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -19,6 +21,7 @@ import javax.swing.CellRendererPane;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.TableColumn;
 import net.proteanit.sql.DbUtils;
 import org.itp.commons.Constants;
@@ -42,23 +45,14 @@ public class SetAttendance extends javax.swing.JFrame {
     public SetAttendance() {
         initComponents();
         tableLoad();
-        //appendDatePicker();
+        Date date = new Date();
+        workDateDc.setDate(date);
 
     }
    
     
 
-    private void appendDatePicker() {
-        UtilDateModel model = new UtilDateModel();
-        Properties p = new Properties();
-        p.put("text.today", "Today");
-        p.put("text.month", "Month");
-        p.put("text.year", "Year");
-        JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
-        JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
-        setLayout(new GridBagLayout());
-        //calendarPanel.add(datePicker);
-    }
+    
 
     private void setAttendanceCombo() {
         TableColumn presenceColumn = attendanceTable.getColumnModel().getColumn(2);
@@ -81,12 +75,10 @@ public class SetAttendance extends javax.swing.JFrame {
 
         saveBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
-        dateTxt = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         attendanceTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        dateLbl = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        workDateDc = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Set Attendance");
@@ -119,7 +111,7 @@ public class SetAttendance extends javax.swing.JFrame {
 
         jLabel1.setText("Work_Date");
 
-        jDateChooser1.setDateFormatString("yyyy-MM-dd");
+        workDateDc.setDateFormatString("yyyy-MM-dd");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -137,29 +129,22 @@ public class SetAttendance extends javax.swing.JFrame {
                         .addGap(137, 137, 137)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(dateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44)
-                        .addComponent(dateLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(workDateDc, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(165, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(dateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1)
-                        .addComponent(dateLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(workDateDc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backBtn)
                     .addComponent(saveBtn))
@@ -174,27 +159,39 @@ public class SetAttendance extends javax.swing.JFrame {
         m1.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
-
+    
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         int rowCount = attendanceTable.getRowCount();
-        if (dateTxt.getText().isEmpty()){
+        
+        if (((JTextField)workDateDc.getDateEditor().getUiComponent()).getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"Work_Date cannot be empty","Error",JOptionPane.ERROR_MESSAGE);
         }
+        
         else {
-            dateLbl.setText(null);
+            
             try {
-                
-                if (!Validation.ValidDate(this.dateTxt.getText())) {
-                        dateLbl.setText("*Invalid Date");
-                    }
-                else if (Validation.ValidDate(this.dateTxt.getText())) {
-                    dateLbl.setText(null);
-                    for (int row = 0; row < rowCount; row++) {
-
-                        Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
-                        PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Insert.ATTENDANCE);
+                int EmpID=0;
+                Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+                PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_WORK_DATE);
+                preparedStatement.setString(1, ((JTextField) this.workDateDc.getDateEditor().getUiComponent()).getText());
+                ResultSet resultset = preparedStatement.executeQuery();
+                int count=0;
+                while (resultset.next()) {
+                    EmpID = resultset.getInt("EmpID");
+                    count++;
+                }
+                if (count != 0) {
+                    JOptionPane.showMessageDialog(null, "Attendance details of this work date has already been added", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                resultset.close();
+                preparedStatement.close();
+                for (int row = 0; row < rowCount; row++) {
+                        
+                        connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+                        preparedStatement = connect.prepareStatement(Queries.EMS.Insert.ATTENDANCE);
                         preparedStatement.setString(1, attendanceTable.getValueAt(row, 0).toString());
-                        preparedStatement.setString(2, this.dateTxt.getText());
+                        preparedStatement.setString(2, ((JTextField)this.workDateDc.getDateEditor().getUiComponent()).getText());
                         preparedStatement.setString(3, attendanceTable.getValueAt(row, 2).toString());
 
                         int affectedRows = preparedStatement.executeUpdate();
@@ -206,7 +203,7 @@ public class SetAttendance extends javax.swing.JFrame {
                     MainInterface m2 = new MainInterface();
                     m2.setVisible(true);
                     this.dispose();
-                }
+                
             } 
             catch (Exception e) {
                 System.out.println(e);
@@ -280,11 +277,9 @@ public class SetAttendance extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable attendanceTable;
     private javax.swing.JButton backBtn;
-    private javax.swing.JLabel dateLbl;
-    private javax.swing.JTextField dateTxt;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton saveBtn;
+    private com.toedter.calendar.JDateChooser workDateDc;
     // End of variables declaration//GEN-END:variables
 }

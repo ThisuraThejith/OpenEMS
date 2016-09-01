@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import org.itp.commons.Constants;
 import org.itp.commons.DBConnect;
 import org.itp.commons.DBUtils;
@@ -49,7 +50,6 @@ public class UpdateEmployee extends javax.swing.JFrame {
         nameTxt = new javax.swing.JTextField();
         addressTxt = new javax.swing.JTextField();
         nicTxt = new javax.swing.JTextField();
-        dobTxt = new javax.swing.JTextField();
         cstatusCmb = new javax.swing.JComboBox<>();
         updateBtn = new javax.swing.JButton();
         cancelBtn = new javax.swing.JButton();
@@ -58,6 +58,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
         empIDTxt = new javax.swing.JTextField();
         searchBtn = new javax.swing.JButton();
         nicNoLbl = new javax.swing.JLabel();
+        dobDc = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Update Employee");
@@ -100,6 +101,8 @@ public class UpdateEmployee extends javax.swing.JFrame {
             }
         });
 
+        dobDc.setDateFormatString("yyyy-MM-dd");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -124,16 +127,15 @@ public class UpdateEmployee extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nicNoLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nicTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(addressTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                                    .addComponent(dobTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                                    .addComponent(roleCmb, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cstatusCmb, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(nameTxt))
-                                .addComponent(empIDTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(dobDc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(nicTxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(addressTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                                .addComponent(roleCmb, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cstatusCmb, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(nameTxt))
+                            .addComponent(empIDTxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))
                         .addGap(43, 43, 43)
                         .addComponent(searchBtn)))
                 .addGap(0, 87, Short.MAX_VALUE))
@@ -160,11 +162,11 @@ public class UpdateEmployee extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(empIDTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
-                    .addComponent(dobTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                    .addComponent(dobDc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(roleCmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
@@ -190,6 +192,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         nicNoLbl.setText(null);
+        clear();
         if (nicTxt.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"Please enter the NIC No","Error",JOptionPane.ERROR_MESSAGE);
         }
@@ -197,6 +200,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
             try {
                 if (!Validation.ValidNIC(this.nicTxt.getText())) {
                         nicNoLbl.setText("*Invalid NIC No");
+                        JOptionPane.showMessageDialog(null,"The NIC No is invalid","Error",JOptionPane.ERROR_MESSAGE);
                     }
                 else if (Validation.ValidNIC(this.nicTxt.getText())) {
                     Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
@@ -208,7 +212,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
                     while (resultset.next()) {
                         this.nameTxt.setText(resultset.getString("EmployeeName"));
                         this.addressTxt.setText(resultset.getString("Address"));
-                        this.dobTxt.setText(resultset.getString("Date_of_Birth"));
+                        ((JTextField)dobDc.getDateEditor().getUiComponent()).setText((resultset.getString("Date_of_Birth")));
                         this.empIDTxt.setText(resultset.getString("EmployeeID"));
                         this.roleCmb.setSelectedItem(DBUtils.getRoleNameByID(resultset.getInt("RoleID")));
                         this.cstatusCmb.setSelectedItem(resultset.getString("Current_Status"));
@@ -230,6 +234,12 @@ public class UpdateEmployee extends javax.swing.JFrame {
         if (nicTxt.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"No employee to update","Error",JOptionPane.ERROR_MESSAGE);
         }
+        else if(nameTxt.getText().isEmpty()||addressTxt.getText().isEmpty()||((JTextField)dobDc.getDateEditor().getUiComponent()).getText().isEmpty()||empIDTxt.getText().isEmpty()||roleCmb.getSelectedItem().toString().equals("--Select--")||cstatusCmb.getSelectedItem().toString().equals("--Select--")){
+            JOptionPane.showMessageDialog(null,"Please press the search button to load employee details","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        else if (Validation.FutureDate(dobDc.getDate())){
+                       JOptionPane.showMessageDialog(null,"The date of birth is invalid","Error",JOptionPane.ERROR_MESSAGE);
+                    }
         else {
             try {
                 int roleID = 0;
@@ -248,11 +258,11 @@ public class UpdateEmployee extends javax.swing.JFrame {
                 preparedStatement = connect.prepareStatement(Queries.EMS.Update.EMPLOYEE);
                 preparedStatement.setString(1, this.nameTxt.getText());
                 preparedStatement.setString(2, this.addressTxt.getText());
-                preparedStatement.setString(3, this.dobTxt.getText());
-                preparedStatement.setString(4, this.nicTxt.getText());
+                preparedStatement.setString(3, ((JTextField)dobDc.getDateEditor().getUiComponent()).getText());
+                preparedStatement.setString(4, this.empIDTxt.getText());
                 preparedStatement.setString(5, this.cstatusCmb.getSelectedItem().toString());
                 preparedStatement.setInt(6, roleID);
-                preparedStatement.setString(7, this.empIDTxt.getText());
+                preparedStatement.setString(7, this.nicTxt.getText());
                 int affectedRows = preparedStatement.executeUpdate();
                 System.out.println("affected rows=" + affectedRows);
                 preparedStatement.close();
@@ -266,6 +276,15 @@ public class UpdateEmployee extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_updateBtnActionPerformed
 
+    private void clear(){
+        nameTxt.setText(null);
+        addressTxt.setText(null);
+        ((JTextField)dobDc.getDateEditor().getUiComponent()).setText(null);
+        empIDTxt.setText(null);
+        roleCmb.setSelectedItem("--Select--");
+        cstatusCmb.setSelectedItem("--Select--");
+    
+    }
     /**
      * @param args the command line arguments
      */
@@ -305,7 +324,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
     private javax.swing.JTextField addressTxt;
     private javax.swing.JButton cancelBtn;
     private javax.swing.JComboBox<String> cstatusCmb;
-    private javax.swing.JTextField dobTxt;
+    private com.toedter.calendar.JDateChooser dobDc;
     private javax.swing.JTextField empIDTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
