@@ -48,7 +48,7 @@
                       <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="29" max="32767" attributes="0"/>
+              <EmptySpace pref="32" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -148,7 +148,9 @@
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
       <Properties>
-        <Property name="dateFormatString" type="java.lang.String" value="MMM d, yyyy "/>
+        <Property name="dateFormatString" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="&quot;yyyy-MM-dd&quot;" type="code"/>
+        </Property>
       </Properties>
     </Component>
   </SubComponents>

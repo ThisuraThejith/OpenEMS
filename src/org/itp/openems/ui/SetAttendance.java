@@ -10,6 +10,7 @@ import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -44,6 +45,8 @@ public class SetAttendance extends javax.swing.JFrame {
         //appendDatePicker();
 
     }
+   
+    
 
     private void appendDatePicker() {
         UtilDateModel model = new UtilDateModel();
@@ -116,7 +119,7 @@ public class SetAttendance extends javax.swing.JFrame {
 
         jLabel1.setText("Work_Date");
 
-        jDateChooser1.setDateFormatString("MMM d, yyyy ");
+        jDateChooser1.setDateFormatString("yyyy-MM-dd");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -142,7 +145,7 @@ public class SetAttendance extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

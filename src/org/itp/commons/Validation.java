@@ -10,6 +10,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DateTimeException;
 import java.time.format.DateTimeParseException;
+import java.util.Date;
 
 /**
  *
@@ -108,4 +109,21 @@ public class Validation {
         else
             return false;
     }
+    
+    public static boolean FutureDate(Date comDate){
+        
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date currentdate= new Date();
+        
+        
+        int difference = (comDate.compareTo(currentdate));
+            
+            if (difference>0) {
+                return true;
+            }
+            else if (difference<=0)
+                return false;
+            return false;
+    }
 }
+

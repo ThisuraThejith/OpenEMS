@@ -57,7 +57,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         empIDTxt = new javax.swing.JTextField();
         searchBtn = new javax.swing.JButton();
-        empIDLbl = new javax.swing.JLabel();
+        nicNoLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Update Employee");
@@ -112,43 +112,43 @@ public class UpdateEmployee extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(empIDTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel3))
+                .addGap(70, 70, 70)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nicNoLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel1))
-                        .addGap(70, 70, 70)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(nicTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                            .addComponent(addressTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                            .addComponent(dobTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                            .addComponent(roleCmb, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cstatusCmb, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nameTxt)
-                            .addComponent(empIDLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(40, 40, 40)
-                .addComponent(searchBtn)
-                .addGap(0, 72, Short.MAX_VALUE))
+                            .addComponent(nicTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(addressTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                                    .addComponent(dobTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                                    .addComponent(roleCmb, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cstatusCmb, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nameTxt))
+                                .addComponent(empIDTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(43, 43, 43)
+                        .addComponent(searchBtn)))
+                .addGap(0, 87, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(empIDTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchBtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(empIDLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(searchBtn)
+                    .addComponent(nicTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(1, 1, 1)
+                .addComponent(nicNoLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -158,8 +158,8 @@ public class UpdateEmployee extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nicTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(empIDTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -189,18 +189,19 @@ public class UpdateEmployee extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-        if (empIDTxt.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"Please enter an employee ID","Error",JOptionPane.ERROR_MESSAGE);
+        nicNoLbl.setText(null);
+        if (nicTxt.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Please enter the NIC No","Error",JOptionPane.ERROR_MESSAGE);
         }
         else {
             try {
-                if (!Validation.ValidDigits(this.empIDTxt.getText())) {
-                        empIDLbl.setText("*Invalid Employee ID");
+                if (!Validation.ValidNIC(this.nicTxt.getText())) {
+                        nicNoLbl.setText("*Invalid NIC No");
                     }
-                else if (Validation.ValidDigits(this.empIDTxt.getText())) {
+                else if (Validation.ValidNIC(this.nicTxt.getText())) {
                     Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
-                    PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_EMPLOYEE_BY_EMPLOYEE_ID);
-                    preparedStatement.setString(1, this.empIDTxt.getText());
+                    PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_EMPLOYEE_BY_NIC_NO);
+                    preparedStatement.setString(1, this.nicTxt.getText());
                     ResultSet resultset = preparedStatement.executeQuery();
 
                     int count = 0;
@@ -208,13 +209,13 @@ public class UpdateEmployee extends javax.swing.JFrame {
                         this.nameTxt.setText(resultset.getString("EmployeeName"));
                         this.addressTxt.setText(resultset.getString("Address"));
                         this.dobTxt.setText(resultset.getString("Date_of_Birth"));
-                        this.nicTxt.setText(resultset.getString("NIC_No"));
+                        this.empIDTxt.setText(resultset.getString("EmployeeID"));
                         this.roleCmb.setSelectedItem(DBUtils.getRoleNameByID(resultset.getInt("RoleID")));
                         this.cstatusCmb.setSelectedItem(resultset.getString("Current_Status"));
                         count++;
                     }
                     if (count == 0) {
-                        JOptionPane.showMessageDialog(null, "An employee with this ID is not present", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "An employee with this NIC No is not present", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                     resultset.close();
                     preparedStatement.close();
@@ -226,7 +227,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
-        if (empIDTxt.getText().isEmpty()){
+        if (nicTxt.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"No employee to update","Error",JOptionPane.ERROR_MESSAGE);
         }
         else {
@@ -305,7 +306,6 @@ public class UpdateEmployee extends javax.swing.JFrame {
     private javax.swing.JButton cancelBtn;
     private javax.swing.JComboBox<String> cstatusCmb;
     private javax.swing.JTextField dobTxt;
-    private javax.swing.JLabel empIDLbl;
     private javax.swing.JTextField empIDTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -315,6 +315,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField nameTxt;
+    private javax.swing.JLabel nicNoLbl;
     private javax.swing.JTextField nicTxt;
     private javax.swing.JComboBox<String> roleCmb;
     private javax.swing.JButton searchBtn;
