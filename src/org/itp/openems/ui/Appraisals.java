@@ -186,19 +186,18 @@ public class Appraisals extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
     int employeeID = 0;
+    int appraisalID=0;
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         nicLbl.setText(null);
         clear();
         if (nicTxt.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please enter the NIC No", "Error", JOptionPane.ERROR_MESSAGE);
-        } 
-        else {
+        } else {
             try {
                 if (!Validation.ValidNIC(this.nicTxt.getText())) {
                     nicLbl.setText("*Invalid NIC No");
                     JOptionPane.showMessageDialog(null, "The NIC No is invalid", "Error", JOptionPane.ERROR_MESSAGE);
-                } 
-                else if (Validation.ValidNIC(this.nicTxt.getText())) {
+                } else if (Validation.ValidNIC(this.nicTxt.getText())) {
                     clear();
                     Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
                     PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_EMPLOYEE_ID_BY_NIC);
@@ -242,27 +241,48 @@ public class Appraisals extends javax.swing.JFrame {
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
         nicLbl.setText(null);
-        if (nicTxt.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"No employee to update","Error",JOptionPane.ERROR_MESSAGE);
+        
+        if (nicTxt.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No employee to update", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-        if(Double.parseDouble(this.bonusTxt.getText())<0){
-            JOptionPane.showMessageDialog(null,"Bonus cannot be minus","Error",JOptionPane.ERROR_MESSAGE);
+
+        if (bonusTxt.getText().isEmpty() || gradingCmb.getSelectedItem().toString().equals("--Select--")) {
+            JOptionPane.showMessageDialog(null, "Please press the search button to load appraisal details", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-        else if(bonusTxt.getText().isEmpty()||reviewsTxt.getText().isEmpty()||gradingCmb.getSelectedItem().toString().equals("--Select--")){
-            JOptionPane.showMessageDialog(null,"Please press the search button to load appraisal details","Error",JOptionPane.ERROR_MESSAGE);
-        }
-        else {
+
+        if (!Validation.ValidDigits(this.bonusTxt.getText())) {
+            bonusLbl.setText("*Invalid Salary");
+        } else if (Double.parseDouble(this.bonusTxt.getText()) < 0) {
+            JOptionPane.showMessageDialog(null, "Bonus cannot be negative", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            gradingLbl.setText(null);
+            bonusLbl.setText(null);
             try {
-                    Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
-                    PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_EMPLOYEE_ID_BY_NIC);
-                    preparedStatement.setString(1, this.nicTxt.getText());
-                    ResultSet resultset = preparedStatement.executeQuery();
-                    int count = 0;
-                    while (resultset.next()) {
-                        employeeID = resultset.getInt("EmployeeID");
+                Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+                PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_EMPLOYEE_ID_BY_NIC);
+                preparedStatement.setString(1, this.nicTxt.getText());
+                ResultSet resultset = preparedStatement.executeQuery();
+                int count = 0;
+                while (resultset.next()) {
+                    employeeID = resultset.getInt("EmployeeID");
                     count++;
-                    }
-                    
+                }
+                connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+                preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_APPRAISAL_ID_BY_EMPLOYEE_ID);
+                preparedStatement.setInt(1, employeeID);
+                resultset = preparedStatement.executeQuery();
+                int count1=0;
+                while (resultset.next()) {
+                    appraisalID = resultset.getInt("AppraisalID");
+                    count1++;
+                }
+                if (count1 == 0) {
+                    JOptionPane.showMessageDialog(null, "Can't update a non-existing record", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
                 resultset.close();
                 preparedStatement.close();
                 connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
@@ -275,9 +295,8 @@ public class Appraisals extends javax.swing.JFrame {
                 System.out.println("affected rows=" + affectedRows);
                 preparedStatement.close();
                 JOptionPane.showMessageDialog(null, "Updated Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-                MainInterface m2 = new MainInterface();
-                m2.setVisible(true);
-                this.dispose();
+                nicTxt.setText(null);
+                clear();
             } catch (SQLException e) {
                 System.out.println(e);
             }
@@ -286,17 +305,23 @@ public class Appraisals extends javax.swing.JFrame {
 
     private void insertBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertBtnActionPerformed
         nicLbl.setText(null);
-        if (nicTxt.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"No employee to insert the appraisal","Error",JOptionPane.ERROR_MESSAGE);
+        gradingLbl.setText(null);
+        if (nicTxt.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No employee to insert the appraisal", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-        if(bonusTxt.getText().isEmpty()){
-            bonusLbl.setText("*Insert ");
+        if (gradingCmb.getSelectedItem().toString().equals("--Select--")) {
+            gradingLbl.setText("*Select a grading");
         }
-        if(Double.parseDouble(this.bonusTxt.getText())<0){
-            JOptionPane.showMessageDialog(null,"Bonus cannot be minus","Error",JOptionPane.ERROR_MESSAGE);
+        if (bonusTxt.getText().isEmpty()) {
+            bonusLbl.setText("*Insert the bonus amount");
+        } else if (Double.parseDouble(this.bonusTxt.getText()) < 0) {
+            JOptionPane.showMessageDialog(null, "Bonus cannot be negative", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-        
-        else {
+         else {
+            gradingLbl.setText(null);
+            bonusLbl.setText(null);
             try {
                 Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
                 PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_EMPLOYEE_ID_BY_NIC);
@@ -313,7 +338,7 @@ public class Appraisals extends javax.swing.JFrame {
                 preparedStatement.setString(2, this.gradingCmb.getSelectedItem().toString());
                 preparedStatement.setString(3, this.bonusTxt.getText());
                 preparedStatement.setString(4, this.reviewsTxt.getText());
-                
+
                 int affectedRows = preparedStatement.executeUpdate();
                 System.out.println("affected rows=" + affectedRows);
                 preparedStatement.close();
@@ -326,13 +351,14 @@ public class Appraisals extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_insertBtnActionPerformed
-    private void clear(){
+    private void clear() {
         gradingCmb.setSelectedItem("--Select--");
         reviewsTxt.setText(null);
         bonusTxt.setText(null);
         nicLbl.setText(null);
-         
+
     }
+
     /**
      * @param args the command line arguments
      */

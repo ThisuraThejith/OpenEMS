@@ -35,6 +35,7 @@ public class Queries {
             public static String GET_EMPLOYEE_IDS="SELECT EmployeeID FROM Employee";
             public static String GET_EMPLOYEE_ID_BY_NIC="Select EmployeeID from Employee where NIC_No=?";
             public static String GET_WORK_DATE="Select EmpID from Attendance where Work_Date=?";
+            public static String GET_APPRAISAL_ID_BY_EMPLOYEE_ID="Select AppraisalID from Appraisals where EmpID=?";
         }
         public static class Update{
             public static String EMPLOYEE="Update Employee Set EmployeeName=?,Address=?,Date_of_Birth=?,EmployeeID=?,Current_Status=?,RoleID=? Where NIC_No=?";
