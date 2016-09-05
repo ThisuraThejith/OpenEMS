@@ -10,10 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import org.itp.commons.Constants;
 import org.itp.commons.DBConnect;
-import org.itp.commons.DBUtils;
 import org.itp.commons.Queries;
 import org.itp.commons.Validation;
 
@@ -126,22 +124,17 @@ public class Appraisals extends javax.swing.JFrame {
                             .addComponent(gradingCmb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(nicTxt)
                             .addComponent(bonusTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                            .addComponent(reviewsTxt))
+                            .addComponent(reviewsTxt)
+                            .addComponent(gradingLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bonusLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(searchBtn)
                                 .addGap(0, 60, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(8, 8, 8)
-                                        .addComponent(gradingLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(bonusLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(reviewsLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(reviewsLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addContainerGap())))))
         );
         layout.setVerticalGroup(
@@ -157,14 +150,16 @@ public class Appraisals extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(gradingCmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(gradingLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                    .addComponent(jLabel2))
+                .addGap(5, 5, 5)
+                .addComponent(gradingLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bonusTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(bonusLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bonusLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(reviewsTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -186,7 +181,7 @@ public class Appraisals extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
     int employeeID = 0;
-    int appraisalID=0;
+    int appraisalID = 0;
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         nicLbl.setText(null);
         clear();
@@ -241,6 +236,7 @@ public class Appraisals extends javax.swing.JFrame {
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
         nicLbl.setText(null);
+        gradingLbl.setText(null);
         
         if (nicTxt.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "No employee to update", "Error", JOptionPane.ERROR_MESSAGE);
@@ -253,7 +249,8 @@ public class Appraisals extends javax.swing.JFrame {
         }
 
         if (!Validation.ValidDigits(this.bonusTxt.getText())) {
-            bonusLbl.setText("*Invalid Salary");
+            bonusLbl.setText("*Invalid bonus");
+            JOptionPane.showMessageDialog(null, "The bonus is invalid", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (Double.parseDouble(this.bonusTxt.getText()) < 0) {
             JOptionPane.showMessageDialog(null, "Bonus cannot be negative", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
@@ -273,7 +270,7 @@ public class Appraisals extends javax.swing.JFrame {
                 preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_APPRAISAL_ID_BY_EMPLOYEE_ID);
                 preparedStatement.setInt(1, employeeID);
                 resultset = preparedStatement.executeQuery();
-                int count1=0;
+                int count1 = 0;
                 while (resultset.next()) {
                     appraisalID = resultset.getInt("AppraisalID");
                     count1++;
@@ -308,18 +305,14 @@ public class Appraisals extends javax.swing.JFrame {
         gradingLbl.setText(null);
         if (nicTxt.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "No employee to insert the appraisal", "Error", JOptionPane.ERROR_MESSAGE);
+            clear();
+            return;
+        } else if (!Validation.ValidNIC(this.nicTxt.getText())) {
+            nicLbl.setText("*Invalid NIC No");
+            JOptionPane.showMessageDialog(null, "The NIC No is invalid", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (gradingCmb.getSelectedItem().toString().equals("--Select--")) {
-            gradingLbl.setText("*Select a grading");
-        }
-        if (bonusTxt.getText().isEmpty()) {
-            bonusLbl.setText("*Insert the bonus amount");
-        } else if (Double.parseDouble(this.bonusTxt.getText()) < 0) {
-            JOptionPane.showMessageDialog(null, "Bonus cannot be negative", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-         else {
+        else {
             gradingLbl.setText(null);
             bonusLbl.setText(null);
             try {
@@ -332,6 +325,55 @@ public class Appraisals extends javax.swing.JFrame {
                     employeeID = resultset.getInt("EmployeeID");
                     count++;
                 }
+                if (count == 0) {
+                    JOptionPane.showMessageDialog(null, "An employee with this NIC No is not registered", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                resultset.close();
+                preparedStatement.close();
+                
+                connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+                preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_APPRAISAL_ID_BY_EMPLOYEE_ID);
+                preparedStatement.setInt(1, employeeID);
+                resultset = preparedStatement.executeQuery();
+                int count1 = 0;
+                while (resultset.next()) {
+                    appraisalID = resultset.getInt("AppraisalID");
+                    count1++;
+                }
+                if (count1 != 0) {
+                    JOptionPane.showMessageDialog(null, "This employee already has an appraisal ", "Error", JOptionPane.ERROR_MESSAGE);
+                    nicLbl.setText(null);
+                    gradingLbl.setText(null);
+                    return;
+                }
+
+                resultset.close();
+                preparedStatement.close();
+
+                connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+                preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_EMPLOYEE_ID_BY_NIC);
+                preparedStatement.setString(1, this.nicTxt.getText());
+                resultset = preparedStatement.executeQuery();
+                int count2 = 0;
+                while (resultset.next()) {
+                    employeeID = resultset.getInt("EmployeeID");
+                    count2++;
+                }
+                if (gradingCmb.getSelectedItem().toString().equals("--Select--")) {
+                    gradingLbl.setText("*Select a grading");
+                }
+                if (bonusTxt.getText().isEmpty()) {
+                    bonusLbl.setText("*Insert the bonus amount");
+                }
+                if (bonusTxt.getText().isEmpty()||gradingCmb.getSelectedItem().toString().equals("--Select--")){
+                    JOptionPane.showMessageDialog(null, "You havent inserted the grading or bonus of this employee", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                else if (Double.parseDouble(this.bonusTxt.getText()) < 0) {
+                    JOptionPane.showMessageDialog(null, "Bonus cannot be negative", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
                 connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
                 preparedStatement = connect.prepareStatement(Queries.EMS.Insert.APPRAISALS);
                 preparedStatement.setInt(1, employeeID);
@@ -343,9 +385,7 @@ public class Appraisals extends javax.swing.JFrame {
                 System.out.println("affected rows=" + affectedRows);
                 preparedStatement.close();
                 JOptionPane.showMessageDialog(null, "Inserted Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-                MainInterface m2 = new MainInterface();
-                m2.setVisible(true);
-                this.dispose();
+                clear();
             } catch (SQLException e) {
                 System.out.println(e);
             }

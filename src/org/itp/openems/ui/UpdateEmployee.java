@@ -193,8 +193,8 @@ public class UpdateEmployee extends javax.swing.JFrame {
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         nicNoLbl.setText(null);
         clear();
-        if (nicTxt.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"Please enter the NIC No","Error",JOptionPane.ERROR_MESSAGE);
+        if (nicTxt.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please enter the NIC No", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else {
             try {
@@ -237,9 +237,12 @@ public class UpdateEmployee extends javax.swing.JFrame {
         else if(nameTxt.getText().isEmpty()||addressTxt.getText().isEmpty()||((JTextField)dobDc.getDateEditor().getUiComponent()).getText().isEmpty()||empIDTxt.getText().isEmpty()||roleCmb.getSelectedItem().toString().equals("--Select--")||cstatusCmb.getSelectedItem().toString().equals("--Select--")){
             JOptionPane.showMessageDialog(null,"Please press the search button to load employee details","Error",JOptionPane.ERROR_MESSAGE);
         }
-        else if (Validation.FutureDate(dobDc.getDate())){
-                       JOptionPane.showMessageDialog(null,"The date of birth is invalid","Error",JOptionPane.ERROR_MESSAGE);
-                    }
+        else if (Validation.FutureDate(dobDc.getDate())) {
+            JOptionPane.showMessageDialog(null, "The date of birth is invalid", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else if (!Validation.ValidName(this.nameTxt.getText())||!Validation.ValidAddress(this.addressTxt.getText())||!Validation.ValidNIC(this.nicTxt.getText())){
+            JOptionPane.showMessageDialog(null, "These fields are invalid", "Error", JOptionPane.ERROR_MESSAGE);
+        }
         else {
             try {
                 int roleID = 0;
@@ -283,7 +286,6 @@ public class UpdateEmployee extends javax.swing.JFrame {
         empIDTxt.setText(null);
         roleCmb.setSelectedItem("--Select--");
         cstatusCmb.setSelectedItem("--Select--");
-    
     }
     /**
      * @param args the command line arguments

@@ -176,43 +176,52 @@ public class SetSalary extends javax.swing.JFrame {
     private void SaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveBtnActionPerformed
         if (basicSalaryTxt.getText().isEmpty() || epfTxt.getText().isEmpty() || etfTxt.getText().isEmpty() || nopayTxt.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Fields Cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
+        } 
+        else {
             clear();
             try {
 
                 if (!validateFields()) {
                     JOptionPane.showMessageDialog(null, "One or more fields are invalid", "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
+                    
+                }
+                
+                else if(roleCmb.getSelectedItem().toString().equals("--Select--")){
+                    roleLbl.setText("Please select a role");
+                    JOptionPane.showMessageDialog(null, "You haven't selected a role", "Error", JOptionPane.ERROR_MESSAGE);
+                    
                 }
 
                 //clear();
-                int roleID = 0;
-                Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
-                PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_ROLE_ID_BY_NAME);
-                preparedStatement.setString(1, this.roleCmb.getSelectedItem().toString());
-                ResultSet resultset = preparedStatement.executeQuery();
-                while (resultset.next()) {
-                    roleID = resultset.getInt("RoleID");
+                else {
+                    int roleID = 0;
+                    Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+                    PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_ROLE_ID_BY_NAME);
+                    preparedStatement.setString(1, this.roleCmb.getSelectedItem().toString());
+                    ResultSet resultset = preparedStatement.executeQuery();
+                    while (resultset.next()) {
+                        roleID = resultset.getInt("RoleID");
+                    }
+                    preparedStatement.close();
+                    preparedStatement = connect.prepareStatement(Queries.EMS.Insert.SALARY);
+                    preparedStatement.setInt(1, roleID);
+                    preparedStatement.setDouble(2, Double.parseDouble(this.basicSalaryTxt.getText()));
+                    preparedStatement.setFloat(3, Float.parseFloat(this.epfTxt.getText()));
+                    preparedStatement.setFloat(4, Float.parseFloat(this.etfTxt.getText()));
+                    preparedStatement.setInt(5, Integer.parseInt(this.nopayTxt.getText()));
+                    int affectedRows = preparedStatement.executeUpdate();
+                    System.out.println("affected rows=" + affectedRows);
+                    preparedStatement.close();
+                    JOptionPane.showMessageDialog(null, "Added Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    MainInterface m2 = new MainInterface();
+                    m2.setVisible(true);
+                    this.dispose();
                 }
-                preparedStatement.close();
-                preparedStatement = connect.prepareStatement(Queries.EMS.Insert.SALARY);
-                preparedStatement.setInt(1, roleID);
-                preparedStatement.setDouble(2, Double.parseDouble(this.basicSalaryTxt.getText()));
-                preparedStatement.setFloat(3, Float.parseFloat(this.epfTxt.getText()));
-                preparedStatement.setFloat(4, Float.parseFloat(this.etfTxt.getText()));
-                preparedStatement.setInt(5, Integer.parseInt(this.nopayTxt.getText()));
-                int affectedRows = preparedStatement.executeUpdate();
-                System.out.println("affected rows=" + affectedRows);
-                preparedStatement.close();
-                JOptionPane.showMessageDialog(null, "Added Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-                MainInterface m2 = new MainInterface();
-                m2.setVisible(true);
-                this.dispose();
 
             } catch (SQLException e) {
                 System.out.println(e);
             }
-
+            
         }
 
     }//GEN-LAST:event_SaveBtnActionPerformed
@@ -222,7 +231,8 @@ public class SetSalary extends javax.swing.JFrame {
         if (!Validation.ValidDigits(this.basicSalaryTxt.getText())) {
             basicSalLbl.setText("*Invalid Salary");
             isValid = false;
-        } else if (Double.parseDouble(this.basicSalaryTxt.getText()) < 0) {
+        } 
+        else if (Double.parseDouble(this.basicSalaryTxt.getText()) < 0) {
             basicSalLbl.setText("*Salary cannot be negative");
             isValid = false;
         }
@@ -235,12 +245,7 @@ public class SetSalary extends javax.swing.JFrame {
             etfLbl.setText("*Invalid ETF");
             isValid = false;
         }
-        String role = roleCmb.getSelectedItem().toString();
-        if (role.equals("--Select--")) {
-            roleLbl.setText("Please select a role");
-            isValid = false;
-        }
-
+        
         if (!Validation.ValidDigits(this.nopayTxt.getText())) {
             nopayLbl.setText("*Invalid Leave amount");
             isValid = false;

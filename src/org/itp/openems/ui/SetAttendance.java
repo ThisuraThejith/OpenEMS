@@ -5,33 +5,22 @@
  */
 package org.itp.openems.ui;
 
-import java.awt.GridBagLayout;
-import java.util.List;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
-import javax.swing.CellRendererPane;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.TableColumn;
-import net.proteanit.sql.DbUtils;
 import org.itp.commons.Constants;
 import org.itp.commons.DBConnect;
 import org.itp.commons.Queries;
-import org.itp.commons.Validation;
-import org.jdatepicker.impl.JDatePanelImpl;
-import org.jdatepicker.impl.JDatePickerImpl;
-import org.jdatepicker.impl.UtilDateModel;
-import sun.swing.table.DefaultTableCellHeaderRenderer;
+
 
 /**
  *

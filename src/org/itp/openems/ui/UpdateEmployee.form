@@ -49,12 +49,10 @@
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="dobDc" alignment="0" max="32767" attributes="0"/>
                           <Component id="nicTxt" alignment="0" pref="178" max="32767" attributes="0"/>
-                          <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="addressTxt" pref="178" max="32767" attributes="0"/>
-                              <Component id="roleCmb" alignment="0" min="-2" pref="131" max="-2" attributes="0"/>
-                              <Component id="cstatusCmb" alignment="0" min="-2" pref="131" max="-2" attributes="0"/>
-                              <Component id="nameTxt" alignment="0" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="addressTxt" alignment="0" pref="178" max="32767" attributes="0"/>
+                          <Component id="roleCmb" alignment="0" min="-2" pref="131" max="-2" attributes="0"/>
+                          <Component id="cstatusCmb" alignment="0" min="-2" pref="131" max="-2" attributes="0"/>
+                          <Component id="nameTxt" alignment="0" max="32767" attributes="0"/>
                           <Component id="empIDTxt" alignment="0" pref="178" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>

@@ -134,9 +134,12 @@ public class RoleManagement extends javax.swing.JFrame {
             try {
                 if (!Validation.ValidName(this.roleName.getText())) {
                     roleNameLbl.setText("*Invalid Role name");
+                    JOptionPane.showMessageDialog(null,"This role name is invalid","Error",JOptionPane.ERROR_MESSAGE);
+                    return;
                 }
                 if(roleDesc.getText().isEmpty()){
                     descLbl.setText("*Enter a description for the role");
+                    JOptionPane.showMessageDialog(null,"Please enter a role description","Error",JOptionPane.ERROR_MESSAGE);
                 }
                 else if (Validation.ValidName(this.roleName.getText())&& !roleDesc.getText().isEmpty()) {
                     roleNameLbl.setText(null);

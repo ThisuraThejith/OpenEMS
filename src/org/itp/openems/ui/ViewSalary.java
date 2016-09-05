@@ -182,6 +182,7 @@ public class ViewSalary extends javax.swing.JFrame {
         clear();
         if (nicNoTxt.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"Please enter the NIC No","Error",JOptionPane.ERROR_MESSAGE);
+            return;
         }
         
         try {
