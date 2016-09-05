@@ -185,8 +185,6 @@ public class UpdateEmployee extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
-            MainInterface m1=new MainInterface();
-            m1.setVisible(true);
             this.dispose();
     }//GEN-LAST:event_cancelBtnActionPerformed
 
@@ -241,7 +239,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "The date of birth is invalid", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else if (!Validation.ValidName(this.nameTxt.getText())||!Validation.ValidAddress(this.addressTxt.getText())||!Validation.ValidNIC(this.nicTxt.getText())){
-            JOptionPane.showMessageDialog(null, "These fields are invalid", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "One or more fields are invalid", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else {
             try {

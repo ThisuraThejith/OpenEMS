@@ -40,6 +40,7 @@ public class Queries {
         public static class Update{
             public static String EMPLOYEE="Update Employee Set EmployeeName=?,Address=?,Date_of_Birth=?,EmployeeID=?,Current_Status=?,RoleID=? Where NIC_No=?";
             public static String APPRAISAL="Update Appraisals Set Grading=?,Bonus=?,Reviews=? Where EmpID=?";
+            public static String SALARY="Update Salary Set BasicSalary=?,EPF=?,ETF=?,No_of_Leaves_for_no_pay=? Where RoleID=?";
         }
 
 

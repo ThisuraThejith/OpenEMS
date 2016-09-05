@@ -119,8 +119,6 @@ public class RoleManagement extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackBtnActionPerformed
-            MainInterface m1=new MainInterface();
-            m1.setVisible(true);
             this.dispose();
     }//GEN-LAST:event_BackBtnActionPerformed
 

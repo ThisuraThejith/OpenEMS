@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import org.itp.commons.Constants;
 import org.itp.commons.DBUtils;
 import org.itp.commons.Validation;
@@ -60,6 +61,8 @@ public class SetSalary extends javax.swing.JFrame {
         epfLbl = new javax.swing.JLabel();
         etfLbl = new javax.swing.JLabel();
         nopayLbl = new javax.swing.JLabel();
+        updateBtn = new javax.swing.JButton();
+        searchBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Set Salary");
@@ -88,11 +91,25 @@ public class SetSalary extends javax.swing.JFrame {
             }
         });
 
+        updateBtn.setText("Update");
+        updateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBtnActionPerformed(evt);
+            }
+        });
+
+        searchBtn.setText("Search");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
@@ -100,43 +117,46 @@ public class SetSalary extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(etfTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(roleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(etfTxt, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nopayLbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(basicSalaryTxt, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nopayTxt, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(epfTxt)
-                            .addComponent(epfLbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(etfLbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(roleCmb, javax.swing.GroupLayout.Alignment.LEADING, 0, 148, Short.MAX_VALUE)
-                            .addComponent(basicSalLbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(roleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                            .addComponent(basicSalLbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(epfLbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(etfLbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(10, 10, 10)
+                        .addComponent(searchBtn)))
+                .addGap(76, 76, 76))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(SaveBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(updateBtn)
+                .addGap(5, 5, 5)
                 .addComponent(CancelBtn)
-                .addGap(25, 25, 25))
+                .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(roleCmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(basicSalaryTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)))
-                    .addComponent(roleLbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(roleCmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(searchBtn))
+                .addGap(3, 3, 3)
+                .addComponent(roleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(basicSalaryTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(basicSalLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -160,7 +180,8 @@ public class SetSalary extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SaveBtn)
-                    .addComponent(CancelBtn))
+                    .addComponent(CancelBtn)
+                    .addComponent(updateBtn))
                 .addGap(40, 40, 40))
         );
 
@@ -168,31 +189,63 @@ public class SetSalary extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBtnActionPerformed
-        MainInterface m1 = new MainInterface();
-        m1.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_CancelBtnActionPerformed
 
     private void SaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveBtnActionPerformed
+        clear();
+        if (roleCmb.getSelectedItem().toString().equals("--Select--")) {
+            roleLbl.setText("Please select a role");
+            JOptionPane.showMessageDialog(null, "You haven't selected a role", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        else {
+            try {
+                int roleID = 0;
+                int salaryID = 0;
+                Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+                PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_ROLE_ID_BY_NAME);
+                preparedStatement.setString(1, this.roleCmb.getSelectedItem().toString());
+                ResultSet resultset = preparedStatement.executeQuery();
+                while (resultset.next()) {
+                    roleID = resultset.getInt("RoleID");
+                }
+                resultset.close();
+                preparedStatement.close();
+
+                connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+                preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_SALARY_ID_BY_ROLE_ID);
+                preparedStatement.setInt(1, roleID);
+                resultset = preparedStatement.executeQuery();
+                int count = 0;
+                while (resultset.next()) {
+                    salaryID = resultset.getInt("SalaryID");
+                    count++;
+                }
+                if (count != 0) {
+                    JOptionPane.showMessageDialog(null, "This role already has an assigned salary", "Error", JOptionPane.ERROR_MESSAGE);
+                    clear();
+                    return;
+                }
+                resultset.close();
+                preparedStatement.close();
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        }
+        
         if (basicSalaryTxt.getText().isEmpty() || epfTxt.getText().isEmpty() || etfTxt.getText().isEmpty() || nopayTxt.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Fields Cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         } 
         else {
-            clear();
+            
             try {
 
                 if (!validateFields()) {
                     JOptionPane.showMessageDialog(null, "One or more fields are invalid", "Error", JOptionPane.ERROR_MESSAGE);
                     
                 }
-                
-                else if(roleCmb.getSelectedItem().toString().equals("--Select--")){
-                    roleLbl.setText("Please select a role");
-                    JOptionPane.showMessageDialog(null, "You haven't selected a role", "Error", JOptionPane.ERROR_MESSAGE);
-                    
-                }
-
-                //clear();
                 else {
                     int roleID = 0;
                     Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
@@ -202,7 +255,15 @@ public class SetSalary extends javax.swing.JFrame {
                     while (resultset.next()) {
                         roleID = resultset.getInt("RoleID");
                     }
+                    resultset.close();
                     preparedStatement.close();
+                    
+                    
+                    if (Double.parseDouble(this.basicSalaryTxt.getText()) < 0) {
+                        JOptionPane.showMessageDialog(null, "Basic Salary cannot be negative", "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
                     preparedStatement = connect.prepareStatement(Queries.EMS.Insert.SALARY);
                     preparedStatement.setInt(1, roleID);
                     preparedStatement.setDouble(2, Double.parseDouble(this.basicSalaryTxt.getText()));
@@ -226,6 +287,129 @@ public class SetSalary extends javax.swing.JFrame {
 
     }//GEN-LAST:event_SaveBtnActionPerformed
 
+    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
+        clear();
+        if (roleCmb.getSelectedItem().toString().equals("--Select--")){
+            JOptionPane.showMessageDialog(null,"No role is selected to update salary","Error",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        else if(basicSalaryTxt.getText().isEmpty() || epfTxt.getText().isEmpty() || etfTxt.getText().isEmpty() || nopayTxt.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Please press the search button to load salary details","Error",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        else if(!validateFields()){
+            JOptionPane.showMessageDialog(null,"One or more fields are invalid", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        else {
+            try {
+                int roleID = 0;
+                int salaryID = 0;
+                Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+                PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_ROLE_ID_BY_NAME);
+                preparedStatement.setString(1, this.roleCmb.getSelectedItem().toString());
+                ResultSet resultset = preparedStatement.executeQuery();
+                while (resultset.next()) {
+                    roleID = resultset.getInt("RoleID");
+                }
+                resultset.close();
+                preparedStatement.close();
+                
+                connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+                preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_SALARY_ID_BY_ROLE_ID);
+                preparedStatement.setInt(1, roleID);
+                resultset = preparedStatement.executeQuery();
+                int count = 0;
+                while (resultset.next()) {
+                    salaryID = resultset.getInt("SalaryID");
+                    count++;
+                }
+                if (count == 0) {
+                    JOptionPane.showMessageDialog(null, "Can't update a non existing record", "Error", JOptionPane.ERROR_MESSAGE);
+                    clear();
+                    return;
+                }
+                resultset.close();
+                preparedStatement.close();
+                preparedStatement = connect.prepareStatement(Queries.EMS.Update.SALARY);
+                preparedStatement.setString(1, this.basicSalaryTxt.getText());
+                preparedStatement.setString(2, this.epfTxt.getText());
+                preparedStatement.setString(3, this.etfTxt.getText());
+                preparedStatement.setString(4, this.nopayTxt.getText());
+                preparedStatement.setInt(5, roleID);
+                int affectedRows = preparedStatement.executeUpdate();
+                System.out.println("affected rows=" + affectedRows);
+                preparedStatement.close();
+                JOptionPane.showMessageDialog(null, "Updated Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                MainInterface m2 = new MainInterface();
+                m2.setVisible(true);
+                this.dispose();
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        }
+    }//GEN-LAST:event_updateBtnActionPerformed
+
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        //roleLbl.setText(null);
+        clear();
+        if (roleCmb.getSelectedItem().toString().equals("--Select--")) {
+            roleLbl.setText("*Please select a role");
+            JOptionPane.showMessageDialog(null, "You haven't selected a role", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else {
+            try {
+                int roleID = 0;
+                int salaryID=0;
+                Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+                PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_ROLE_ID_BY_NAME);
+                preparedStatement.setString(1, this.roleCmb.getSelectedItem().toString());
+                ResultSet resultset = preparedStatement.executeQuery();
+                while (resultset.next()) {
+                    roleID = resultset.getInt("RoleID");
+                }
+                resultset.close();
+                preparedStatement.close();
+                
+                connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+                preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_SALARY_ID_BY_ROLE_ID);
+                preparedStatement.setInt(1, roleID);
+                resultset = preparedStatement.executeQuery();
+                int count = 0;
+                while (resultset.next()) {
+                    salaryID = resultset.getInt("SalaryID");
+                    count++;
+                }
+                if (count == 0) {
+                    JOptionPane.showMessageDialog(null, "A salary for this role is not defined", "Error", JOptionPane.ERROR_MESSAGE);
+                    clear();
+                    return;
+                }
+                resultset.close();
+                preparedStatement.close();
+                connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+                preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_SALARY_BY_ROLE_ID);
+                preparedStatement.setInt(1, roleID);
+                resultset = preparedStatement.executeQuery();
+
+                int count1 = 0;
+                while (resultset.next()) {
+                    this.basicSalaryTxt.setText(resultset.getString("BasicSalary"));
+                    this.epfTxt.setText(resultset.getString("EPF"));
+                    this.etfTxt.setText(resultset.getString("ETF"));
+                    this.nopayTxt.setText(resultset.getString("No_of_Leaves_for_no_pay"));
+                    count1++;
+                }
+                
+                resultset.close();
+                preparedStatement.close();
+
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        }
+    }//GEN-LAST:event_searchBtnActionPerformed
+
     private boolean validateFields() {
         boolean isValid = true;
         if (!Validation.ValidDigits(this.basicSalaryTxt.getText())) {
@@ -234,6 +418,18 @@ public class SetSalary extends javax.swing.JFrame {
         } 
         else if (Double.parseDouble(this.basicSalaryTxt.getText()) < 0) {
             basicSalLbl.setText("*Salary cannot be negative");
+            isValid = false;
+        }
+        else if (Double.parseDouble(this.epfTxt.getText()) < 0) {
+            epfLbl.setText("*EPF cannot be negative");
+            isValid = false;
+        }
+        else if (Double.parseDouble(this.etfTxt.getText()) < 0) {
+            etfLbl.setText("*ETF cannot be negative");
+            isValid = false;
+        }
+        else if (Double.parseDouble(this.nopayTxt.getText()) < 0) {
+            nopayLbl.setText("*No pay number cannot be negative");
             isValid = false;
         }
         if (!Validation.ValidDigits(this.epfTxt.getText())) {
@@ -315,5 +511,7 @@ public class SetSalary extends javax.swing.JFrame {
     private javax.swing.JTextField nopayTxt;
     private javax.swing.JComboBox<String> roleCmb;
     private javax.swing.JLabel roleLbl;
+    private javax.swing.JButton searchBtn;
+    private javax.swing.JButton updateBtn;
     // End of variables declaration//GEN-END:variables
 }

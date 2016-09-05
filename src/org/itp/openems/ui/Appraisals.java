@@ -176,8 +176,6 @@ public class Appraisals extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        MainInterface m1 = new MainInterface();
-        m1.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
     int employeeID = 0;
@@ -360,6 +358,8 @@ public class Appraisals extends javax.swing.JFrame {
                     employeeID = resultset.getInt("EmployeeID");
                     count2++;
                 }
+                resultset.close();
+                preparedStatement.close();
                 if (gradingCmb.getSelectedItem().toString().equals("--Select--")) {
                     gradingLbl.setText("*Select a grading");
                 }

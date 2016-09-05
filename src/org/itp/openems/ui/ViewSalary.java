@@ -172,8 +172,6 @@ public class ViewSalary extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        MainInterface m1 = new MainInterface();
-        m1.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
     int employeeID = 0;

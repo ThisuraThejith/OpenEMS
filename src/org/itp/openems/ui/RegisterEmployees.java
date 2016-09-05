@@ -53,7 +53,6 @@ public class RegisterEmployees extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         registerBtn = new javax.swing.JButton();
-        backBtn = new javax.swing.JButton();
         nameTxt = new javax.swing.JTextField();
         addressTxt = new javax.swing.JTextField();
         nicTxt = new javax.swing.JTextField();
@@ -65,6 +64,7 @@ public class RegisterEmployees extends javax.swing.JFrame {
         nicLbl = new javax.swing.JLabel();
         roleLbl = new javax.swing.JLabel();
         dobDc = new com.toedter.calendar.JDateChooser();
+        backBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Register Employees");
@@ -84,13 +84,6 @@ public class RegisterEmployees extends javax.swing.JFrame {
             }
         });
 
-        backBtn.setText("Back");
-        backBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backBtnActionPerformed(evt);
-            }
-        });
-
         nameTxt.setName("Name"); // NOI18N
 
         addressTxt.setName("Address"); // NOI18N
@@ -101,6 +94,13 @@ public class RegisterEmployees extends javax.swing.JFrame {
 
         dobDc.setDateFormatString("yyyy-MM-dd");
 
+        backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -108,9 +108,9 @@ public class RegisterEmployees extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(registerBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(backBtn)
-                .addGap(24, 24, 24))
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,11 +183,6 @@ public class RegisterEmployees extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-            MainInterface m1=new MainInterface();
-            m1.setVisible(true);
-            this.dispose();    }//GEN-LAST:event_backBtnActionPerformed
-
     private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
         if (((JTextField)dobDc.getDateEditor().getUiComponent()).getText().isEmpty()|| addressTxt.getText().isEmpty()|| nameTxt.getText().isEmpty() || nicTxt.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null,"Fields Cannot be empty","Error",JOptionPane.ERROR_MESSAGE);
@@ -255,6 +250,10 @@ public class RegisterEmployees extends javax.swing.JFrame {
         }  
         
     }//GEN-LAST:event_registerBtnActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_backBtnActionPerformed
 
     private void clear(){
         nameLbl.setText(null);
