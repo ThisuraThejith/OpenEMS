@@ -57,6 +57,7 @@ public class ViewSalary extends javax.swing.JFrame {
         searchBtn = new javax.swing.JButton();
         generateSalBtn = new javax.swing.JButton();
         nicNoLbl = new javax.swing.JLabel();
+        demoBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("View Salary");
@@ -94,6 +95,13 @@ public class ViewSalary extends javax.swing.JFrame {
             }
         });
 
+        demoBtn.setText("Demo");
+        demoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                demoBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,6 +134,8 @@ public class ViewSalary extends javax.swing.JFrame {
                         .addGap(24, 24, 24))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(demoBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(generateSalBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(backBtn)
@@ -164,7 +174,8 @@ public class ViewSalary extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backBtn)
-                    .addComponent(generateSalBtn))
+                    .addComponent(generateSalBtn)
+                    .addComponent(demoBtn))
                 .addContainerGap())
         );
 
@@ -248,6 +259,10 @@ public class ViewSalary extends javax.swing.JFrame {
             System.out.println(e);
         }
     }//GEN-LAST:event_generateSalBtnActionPerformed
+
+    private void demoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_demoBtnActionPerformed
+        this.nicNoTxt.setText("942811110v");
+    }//GEN-LAST:event_demoBtnActionPerformed
     private void clear(){
         basicSalTxt.setText(null);
         epfTxt.setText(null);
@@ -296,6 +311,7 @@ public class ViewSalary extends javax.swing.JFrame {
     private javax.swing.JButton backBtn;
     private javax.swing.JTextField basicSalTxt;
     private javax.swing.JTextField bonusTxt;
+    private javax.swing.JButton demoBtn;
     private javax.swing.JTextField epfTxt;
     private javax.swing.JTextField etfTxt;
     private javax.swing.JButton generateSalBtn;

@@ -59,6 +59,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
         searchBtn = new javax.swing.JButton();
         nicNoLbl = new javax.swing.JLabel();
         dobDc = new com.toedter.calendar.JDateChooser();
+        demoBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Update Employee");
@@ -103,12 +104,21 @@ public class UpdateEmployee extends javax.swing.JFrame {
 
         dobDc.setDateFormatString("yyyy-MM-dd");
 
+        demoBtn.setText("Demo");
+        demoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                demoBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(demoBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(updateBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cancelBtn)
@@ -130,11 +140,10 @@ public class UpdateEmployee extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(dobDc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(nicTxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(addressTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                                .addComponent(roleCmb, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cstatusCmb, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(nameTxt))
+                            .addComponent(addressTxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                            .addComponent(roleCmb, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cstatusCmb, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nameTxt, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(empIDTxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))
                         .addGap(43, 43, 43)
                         .addComponent(searchBtn)))
@@ -177,7 +186,8 @@ public class UpdateEmployee extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelBtn)
-                    .addComponent(updateBtn))
+                    .addComponent(updateBtn)
+                    .addComponent(demoBtn))
                 .addGap(32, 32, 32))
         );
 
@@ -268,14 +278,17 @@ public class UpdateEmployee extends javax.swing.JFrame {
                 System.out.println("affected rows=" + affectedRows);
                 preparedStatement.close();
                 JOptionPane.showMessageDialog(null, "Updated Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-                MainInterface m2 = new MainInterface();
-                m2.setVisible(true);
-                this.dispose();
+                nicTxt.setText(null);
+                clear();
             } catch (SQLException e) {
                 System.out.println(e);
             }
         }
     }//GEN-LAST:event_updateBtnActionPerformed
+
+    private void demoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_demoBtnActionPerformed
+        this.nicTxt.setText("942811110v");
+    }//GEN-LAST:event_demoBtnActionPerformed
 
     private void clear(){
         nameTxt.setText(null);
@@ -324,6 +337,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
     private javax.swing.JTextField addressTxt;
     private javax.swing.JButton cancelBtn;
     private javax.swing.JComboBox<String> cstatusCmb;
+    private javax.swing.JButton demoBtn;
     private com.toedter.calendar.JDateChooser dobDc;
     private javax.swing.JTextField empIDTxt;
     private javax.swing.JLabel jLabel1;

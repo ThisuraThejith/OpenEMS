@@ -53,6 +53,7 @@ public class Appraisals extends javax.swing.JFrame {
         gradingLbl = new javax.swing.JLabel();
         bonusLbl = new javax.swing.JLabel();
         reviewsLbl = new javax.swing.JLabel();
+        demoBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Appraisals");
@@ -95,12 +96,21 @@ public class Appraisals extends javax.swing.JFrame {
             }
         });
 
+        demoBtn.setText("Demo");
+        demoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                demoBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(demoBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(insertBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(updateBtn)
@@ -127,13 +137,12 @@ public class Appraisals extends javax.swing.JFrame {
                             .addComponent(reviewsTxt)
                             .addComponent(gradingLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(bonusLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
                                 .addComponent(searchBtn)
-                                .addGap(0, 60, Short.MAX_VALUE))
+                                .addGap(0, 72, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(reviewsLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addContainerGap())))))
         );
@@ -168,7 +177,8 @@ public class Appraisals extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(updateBtn)
                     .addComponent(backBtn)
-                    .addComponent(insertBtn))
+                    .addComponent(insertBtn)
+                    .addComponent(demoBtn))
                 .addGap(22, 22, 22))
         );
 
@@ -275,6 +285,7 @@ public class Appraisals extends javax.swing.JFrame {
                 }
                 if (count1 == 0) {
                     JOptionPane.showMessageDialog(null, "Can't update a non-existing record", "Error", JOptionPane.ERROR_MESSAGE);
+                    clear();
                     return;
                 }
 
@@ -391,6 +402,10 @@ public class Appraisals extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_insertBtnActionPerformed
+
+    private void demoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_demoBtnActionPerformed
+        this.nicTxt.setText("942811110v");
+    }//GEN-LAST:event_demoBtnActionPerformed
     private void clear() {
         gradingCmb.setSelectedItem("--Select--");
         reviewsTxt.setText(null);
@@ -438,6 +453,7 @@ public class Appraisals extends javax.swing.JFrame {
     private javax.swing.JButton backBtn;
     private javax.swing.JLabel bonusLbl;
     private javax.swing.JTextField bonusTxt;
+    private javax.swing.JButton demoBtn;
     private javax.swing.JComboBox<String> gradingCmb;
     private javax.swing.JLabel gradingLbl;
     private javax.swing.JButton insertBtn;

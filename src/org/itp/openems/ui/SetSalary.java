@@ -63,6 +63,7 @@ public class SetSalary extends javax.swing.JFrame {
         nopayLbl = new javax.swing.JLabel();
         updateBtn = new javax.swing.JButton();
         searchBtn = new javax.swing.JButton();
+        demoBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Set Salary");
@@ -105,6 +106,13 @@ public class SetSalary extends javax.swing.JFrame {
             }
         });
 
+        demoBtn.setText("Demo");
+        demoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                demoBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -136,6 +144,8 @@ public class SetSalary extends javax.swing.JFrame {
                 .addGap(76, 76, 76))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(demoBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(SaveBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(updateBtn)
@@ -181,7 +191,8 @@ public class SetSalary extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SaveBtn)
                     .addComponent(CancelBtn)
-                    .addComponent(updateBtn))
+                    .addComponent(updateBtn)
+                    .addComponent(demoBtn))
                 .addGap(40, 40, 40))
         );
 
@@ -193,7 +204,7 @@ public class SetSalary extends javax.swing.JFrame {
     }//GEN-LAST:event_CancelBtnActionPerformed
 
     private void SaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveBtnActionPerformed
-        clear();
+        clear1();
         if (roleCmb.getSelectedItem().toString().equals("--Select--")) {
             roleLbl.setText("Please select a role");
             JOptionPane.showMessageDialog(null, "You haven't selected a role", "Error", JOptionPane.ERROR_MESSAGE);
@@ -224,7 +235,7 @@ public class SetSalary extends javax.swing.JFrame {
                 }
                 if (count != 0) {
                     JOptionPane.showMessageDialog(null, "This role already has an assigned salary", "Error", JOptionPane.ERROR_MESSAGE);
-                    clear();
+                    clear2();
                     return;
                 }
                 resultset.close();
@@ -274,9 +285,7 @@ public class SetSalary extends javax.swing.JFrame {
                     System.out.println("affected rows=" + affectedRows);
                     preparedStatement.close();
                     JOptionPane.showMessageDialog(null, "Added Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-                    MainInterface m2 = new MainInterface();
-                    m2.setVisible(true);
-                    this.dispose();
+                    clear2();
                 }
 
             } catch (SQLException e) {
@@ -288,7 +297,7 @@ public class SetSalary extends javax.swing.JFrame {
     }//GEN-LAST:event_SaveBtnActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
-        clear();
+        clear1();
         if (roleCmb.getSelectedItem().toString().equals("--Select--")){
             JOptionPane.showMessageDialog(null,"No role is selected to update salary","Error",JOptionPane.ERROR_MESSAGE);
             return;
@@ -326,7 +335,7 @@ public class SetSalary extends javax.swing.JFrame {
                 }
                 if (count == 0) {
                     JOptionPane.showMessageDialog(null, "Can't update a non existing record", "Error", JOptionPane.ERROR_MESSAGE);
-                    clear();
+                    clear1();
                     return;
                 }
                 resultset.close();
@@ -341,9 +350,7 @@ public class SetSalary extends javax.swing.JFrame {
                 System.out.println("affected rows=" + affectedRows);
                 preparedStatement.close();
                 JOptionPane.showMessageDialog(null, "Updated Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-                MainInterface m2 = new MainInterface();
-                m2.setVisible(true);
-                this.dispose();
+                clear2();
             } catch (SQLException e) {
                 System.out.println(e);
             }
@@ -352,7 +359,7 @@ public class SetSalary extends javax.swing.JFrame {
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         //roleLbl.setText(null);
-        clear();
+        clear1();
         if (roleCmb.getSelectedItem().toString().equals("--Select--")) {
             roleLbl.setText("*Please select a role");
             JOptionPane.showMessageDialog(null, "You haven't selected a role", "Error", JOptionPane.ERROR_MESSAGE);
@@ -382,7 +389,7 @@ public class SetSalary extends javax.swing.JFrame {
                 }
                 if (count == 0) {
                     JOptionPane.showMessageDialog(null, "A salary for this role is not defined", "Error", JOptionPane.ERROR_MESSAGE);
-                    clear();
+                    clear1();
                     return;
                 }
                 resultset.close();
@@ -409,6 +416,14 @@ public class SetSalary extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_searchBtnActionPerformed
+
+    private void demoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_demoBtnActionPerformed
+        this.roleCmb.setSelectedItem("Driver");
+        this.basicSalaryTxt.setText("20000");
+        this.epfTxt.setText("0.1");
+        this.etfTxt.setText("0.1");
+        this.nopayTxt.setText("10");
+    }//GEN-LAST:event_demoBtnActionPerformed
 
     private boolean validateFields() {
         boolean isValid = true;
@@ -449,13 +464,19 @@ public class SetSalary extends javax.swing.JFrame {
         return isValid;
     }
 
-    private void clear() {
+    private void clear1() {
         epfLbl.setText(null);
         etfLbl.setText(null);
         basicSalLbl.setText(null);
         roleLbl.setText(null);
         nopayLbl.setText(null);
 
+    }
+    private void clear2(){
+        basicSalaryTxt.setText(null);
+        epfTxt.setText(null);
+        etfTxt.setText(null);
+        nopayTxt.setText(null);
     }
 
     /**
@@ -498,6 +519,7 @@ public class SetSalary extends javax.swing.JFrame {
     private javax.swing.JButton SaveBtn;
     private javax.swing.JLabel basicSalLbl;
     private javax.swing.JTextField basicSalaryTxt;
+    private javax.swing.JButton demoBtn;
     private javax.swing.JLabel epfLbl;
     private javax.swing.JTextField epfTxt;
     private javax.swing.JLabel etfLbl;

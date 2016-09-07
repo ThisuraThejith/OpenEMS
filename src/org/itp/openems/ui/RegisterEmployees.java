@@ -65,6 +65,7 @@ public class RegisterEmployees extends javax.swing.JFrame {
         roleLbl = new javax.swing.JLabel();
         dobDc = new com.toedter.calendar.JDateChooser();
         backBtn = new javax.swing.JButton();
+        demoBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Register Employees");
@@ -101,12 +102,21 @@ public class RegisterEmployees extends javax.swing.JFrame {
             }
         });
 
+        demoBtn.setText("Demo");
+        demoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                demoBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(demoBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(registerBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(backBtn)
@@ -176,7 +186,8 @@ public class RegisterEmployees extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(registerBtn)
-                            .addComponent(backBtn))
+                            .addComponent(backBtn)
+                            .addComponent(demoBtn))
                         .addGap(19, 19, 19))))
         );
 
@@ -235,9 +246,7 @@ public class RegisterEmployees extends javax.swing.JFrame {
                         System.out.println("affected rows=" + affectedRows);
                         preparedStatement.close();
                         JOptionPane.showMessageDialog(null,"Added Successfully","Success",JOptionPane.INFORMATION_MESSAGE);
-                        MainInterface m2=new MainInterface();
-                        m2.setVisible(true);
-                        this.dispose();
+                        clear1();
 
                     }
                     else{
@@ -255,6 +264,14 @@ public class RegisterEmployees extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 
+    private void demoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_demoBtnActionPerformed
+        this.nameTxt.setText("Thejith");
+        this.addressTxt.setText("Galle");
+        this.nicTxt.setText("942833330v");
+        ((JTextField)this.dobDc.getDateEditor().getUiComponent()).setText("1994-07-10");
+        this.roleCmb.setSelectedItem("Manager");
+    }//GEN-LAST:event_demoBtnActionPerformed
+
     private void clear(){
         nameLbl.setText(null);
         addressLbl.setText(null);
@@ -262,6 +279,13 @@ public class RegisterEmployees extends javax.swing.JFrame {
         roleLbl.setText(null);
         dobLbl.setText(null);
     
+    }
+    private void clear1(){
+        nameTxt.setText(null);
+        addressTxt.setText(null);
+        nicTxt.setText(null);
+        ((JTextField)this.dobDc.getDateEditor().getUiComponent()).setText(null);
+        this.roleCmb.setSelectedItem("--Select--");
     }
     /**
      * @param args the command line arguments
@@ -302,6 +326,7 @@ public class RegisterEmployees extends javax.swing.JFrame {
     private javax.swing.JLabel addressLbl;
     private javax.swing.JTextField addressTxt;
     private javax.swing.JButton backBtn;
+    private javax.swing.JButton demoBtn;
     private com.toedter.calendar.JDateChooser dobDc;
     private javax.swing.JLabel dobLbl;
     private javax.swing.JLabel jLabel1;

@@ -187,8 +187,6 @@ public class SetAttendance extends javax.swing.JFrame {
 
                     }
                     JOptionPane.showMessageDialog(null, "Added Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-                    MainInterface m2 = new MainInterface();
-                    m2.setVisible(true);
                     this.dispose();
                 
             } 

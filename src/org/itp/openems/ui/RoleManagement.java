@@ -150,9 +150,8 @@ public class RoleManagement extends javax.swing.JFrame {
                     System.out.println("affected rows=" + affectedRows);
                     preparedStatement.close();
                     JOptionPane.showMessageDialog(null, "Added Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-                    MainInterface m2 = new MainInterface();
-                    m2.setVisible(true);
-                    this.dispose();
+                    this.roleName.setText("");
+                    this.roleDesc.setText("");
                 } 
             }
             catch (SQLException e) {
