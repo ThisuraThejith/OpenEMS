@@ -48,9 +48,7 @@ public class RegisterEmployees extends javax.swing.JFrame {
         try{
         
         Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
-        //AbstractTableModel table = null;
-        String query="Select * from Employee";
-        PreparedStatement preparedStatement = connect.prepareStatement(query);
+        PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_EMPLOYEE_TABLE);
         ResultSet resultset = preparedStatement.executeQuery();
         employeeTable.setModel(DbUtils.resultSetToTableModel(resultset));
         }catch (SQLException e){
@@ -58,16 +56,19 @@ public class RegisterEmployees extends javax.swing.JFrame {
         }
     }
     
-    public void tableload(JTable table,String sql){
+    public void tableload(String keyword){
         try {
             Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
         //String sqlq="select * from employees where fe1="+jTextField1.getText();
 
             //To remove previously added rows
-            PreparedStatement preparedStatement = connect.prepareStatement(sql);
+            PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.SEARCH_EMPLOYEE);
+            for (int i=1;i<13;i++){
+                preparedStatement.setString(i,"%"+keyword+"%");
+            }
             ResultSet resultset = preparedStatement.executeQuery();
-            while (table.getRowCount() > 0) {
-                ((DefaultTableModel) table.getModel()).removeRow(0);
+            while (employeeTable.getRowCount() > 0) {
+                ((DefaultTableModel) employeeTable.getModel()).removeRow(0);
             }
             int columns = resultset.getMetaData().getColumnCount();
             while (resultset.next()) {
@@ -75,7 +76,7 @@ public class RegisterEmployees extends javax.swing.JFrame {
                 for (int i = 1; i <= columns; i++) {
                     row[i - 1] = resultset.getObject(i);
                 }
-                ((DefaultTableModel) table.getModel()).insertRow(resultset.getRow() - 1, row);
+                ((DefaultTableModel) employeeTable.getModel()).insertRow(resultset.getRow() - 1, row);
             }
 
             resultset.close();
@@ -220,7 +221,7 @@ public class RegisterEmployees extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jLabel9)
-                .addGap(120, 384, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
@@ -233,7 +234,7 @@ public class RegisterEmployees extends javax.swing.JFrame {
                     .addComponent(emailTxt))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(mobileLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(mobileLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
                     .addComponent(homeLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(emailLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -286,15 +287,6 @@ public class RegisterEmployees extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(roleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(47, 47, 47))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addGap(96, 96, 96)
-                                .addComponent(cstatusCmb, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel6))
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -326,7 +318,16 @@ public class RegisterEmployees extends javax.swing.JFrame {
                                     .addComponent(nicTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(dobDc, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(dobLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(113, 113, 113))))))
+                                .addGap(113, 113, 113))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addGap(96, 96, 96)
+                                .addComponent(cstatusCmb, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel6))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -363,33 +364,32 @@ public class RegisterEmployees extends javax.swing.JFrame {
                 .addComponent(dobLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(radioMale)
-                                .addComponent(radioFemale))
-                            .addComponent(jLabel5))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(radioMarried)
-                            .addComponent(radioSingle)
-                            .addComponent(jLabel6))
-                        .addGap(26, 26, 26)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cstatusCmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14))
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(roleCmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)))
-                    .addComponent(roleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(radioMale)
+                        .addComponent(radioFemale))
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(radioMarried)
+                    .addComponent(radioSingle)
+                    .addComponent(jLabel6))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cstatusCmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(roleCmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7))
+                    .addComponent(roleLbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(10, 70, 548, 630);
+        jPanel1.setBounds(10, 80, 548, 620);
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/log.png"))); // NOI18N
         getContentPane().add(jLabel13);
@@ -490,11 +490,11 @@ public class RegisterEmployees extends javax.swing.JFrame {
                         .addComponent(searchBtn))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(demoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(22, 22, 22)
                         .addComponent(registerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(updateBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(clearBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -783,8 +783,9 @@ public class RegisterEmployees extends javax.swing.JFrame {
         }
         try {
             String keyword = searchTxt.getText();
-            String sql = "select * from Employee where First_Name like '%" + keyword + "%' or Last_Name like '%" + keyword + "%' or Address like '%" + keyword + "%' or Date_of_Birth like '%" + keyword + "%' or NIC_No like '%" + keyword + "%' or Gender like '%" + keyword + "%' or Marital_Status like '%" + keyword + "%' or Mobile_No like '%" + keyword + "%' or Home_No like '%" + keyword + "%' or Email like '%" + keyword + "%'or Current_Status like '%" + keyword + "%'or RoleID like '%" + keyword + "%'";
-            tableload(employeeTable,sql);
+           // String sql = "select * from Employee where First_Name like '%" + keyword + "%' or Last_Name like '%" + keyword + "%' or Address like '%" + keyword + "%' or Date_of_Birth like '%" + keyword + "%' or NIC_No like '%" + keyword + "%' or Gender like '%" + keyword + "%' or Marital_Status like '%" + keyword + "%' or Mobile_No like '%" + keyword + "%' or Home_No like '%" + keyword + "%' or Email like '%" + keyword + "%'or Current_Status like '%" + keyword + "%'or RoleID like '%" + keyword + "%'";
+           
+           tableload(keyword);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }

@@ -33,9 +33,10 @@ public class SetAttendance extends javax.swing.JFrame {
      */
     public SetAttendance() {
         initComponents();
-        tableLoad();
         Date date = new Date();
         workDateDc.setDate(date);
+        loadTableforAttendance();
+        
 
     }
    
@@ -44,7 +45,7 @@ public class SetAttendance extends javax.swing.JFrame {
     
 
     private void setAttendanceCombo() {
-        TableColumn presenceColumn = attendanceTable.getColumnModel().getColumn(2);
+        TableColumn presenceColumn = attendanceTable.getColumnModel().getColumn(3);
         JComboBox comboBox = new JComboBox();
         comboBox.addItem("Present");
         comboBox.addItem("Absent");
@@ -68,10 +69,15 @@ public class SetAttendance extends javax.swing.JFrame {
         attendanceTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         workDateDc = new com.toedter.calendar.JDateChooser();
+        jLabel2 = new javax.swing.JLabel();
+        searchTxt = new javax.swing.JTextField();
+        searchBtn = new javax.swing.JButton();
+        markattBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Set Attendance");
 
+        saveBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         saveBtn.setText("Save");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,6 +85,7 @@ public class SetAttendance extends javax.swing.JFrame {
             }
         });
 
+        backBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         backBtn.setText("Back");
         backBtn.setName("backBtn"); // NOI18N
         backBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -98,46 +105,81 @@ public class SetAttendance extends javax.swing.JFrame {
         attendanceTable.setRowHeight(20);
         jScrollPane1.setViewportView(attendanceTable);
 
-        jLabel1.setText("Work_Date");
+        jLabel1.setText("Work  Date");
 
         workDateDc.setDateFormatString("yyyy-MM-dd");
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/log.png"))); // NOI18N
+
+        searchTxt.setToolTipText("EmployeeID or Employee Name");
+
+        searchBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        searchBtn.setText("Search");
+        searchBtn.setToolTipText("Delete the non searching field");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
+
+        markattBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        markattBtn.setText("Mark Attendance");
+        markattBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                markattBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(saveBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(backBtn)
-                .addGap(28, 28, 28))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(workDateDc, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(95, 95, 95)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(165, Short.MAX_VALUE))
+                        .addGap(71, 71, 71)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(saveBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(backBtn))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(workDateDc, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(searchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(searchBtn)
+                                .addGap(2, 2, 2)
+                                .addComponent(markattBtn))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1)
-                    .addComponent(workDateDc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(workDateDc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(markattBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(searchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backBtn)
-                    .addComponent(saveBtn))
-                .addContainerGap())
+                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(111, 111, 111))
         );
 
         pack();
@@ -195,7 +237,24 @@ public class SetAttendance extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_saveBtnActionPerformed
-    public void tableLoad() {
+
+    private void markattBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_markattBtnActionPerformed
+        Date date = new Date();
+        workDateDc.setDate(date);
+        loadTableforAttendance();
+        
+    }//GEN-LAST:event_markattBtnActionPerformed
+
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        if(((JTextField)this.workDateDc.getDateEditor().getUiComponent()).getText().isEmpty()&&searchTxt.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Please set a keyword to search","Error",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        else if(!((JTextField)this.workDateDc.getDateEditor().getUiComponent()).getText().isEmpty()&&!searchTxt.getText().isEmpty()){
+            
+        }
+    }//GEN-LAST:event_searchBtnActionPerformed
+    public void loadTableforAttendance() {
         Map<String, String> records = new HashMap<String, String>();
 
         try {
@@ -203,25 +262,25 @@ public class SetAttendance extends javax.swing.JFrame {
             PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_ATTENDANCE_LIST);
             ResultSet resultset = preparedStatement.executeQuery();
             while (resultset.next()) {
-                records.put(resultset.getString("EmployeeID"), resultset.getString("EmployeeName"));
+                records.put(resultset.getString("EmployeeID"), resultset.getString("First_Name")+" "+resultset.getString("Last_Name"));
             }
             preparedStatement.close();
-            Object[][] tableContent = new Object[records.size()][3];
+            Object[][] tableContent = new Object[records.size()][4];
             int index = 0;
             for (String key : records.keySet()) {
                 tableContent[index][0] = key;
                 tableContent[index][1] = records.get(key);
-                tableContent[index][2] = "Present";
+                tableContent[index][2] = ((JTextField)this.workDateDc.getDateEditor().getUiComponent()).getText();
+                tableContent[index][3] = "Present";
                 index++;
             }
             attendanceTable.setModel(new javax.swing.table.DefaultTableModel(
-                    tableContent, new String[]{"EmployeeID", "Employee Name", "Presence"}));
+                    tableContent, new String[]{"EmployeeID", "Employee Name","Work Date", "Presence"}));
             setAttendanceCombo();
 
         } catch (Exception e) {
             System.out.println(e);
         }
-
     }
 
     /**
@@ -263,8 +322,12 @@ public class SetAttendance extends javax.swing.JFrame {
     private javax.swing.JTable attendanceTable;
     private javax.swing.JButton backBtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton markattBtn;
     private javax.swing.JButton saveBtn;
+    private javax.swing.JButton searchBtn;
+    private javax.swing.JTextField searchTxt;
     private com.toedter.calendar.JDateChooser workDateDc;
     // End of variables declaration//GEN-END:variables
 }

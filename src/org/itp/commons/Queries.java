@@ -12,7 +12,7 @@ package org.itp.commons;
 public class Queries {
     public static class EMS{
         public static class Insert{
-            public static String APPRAISALS="Insert into Appraisals values(default,?,?,?,?)";
+            public static String APPRAISALS="Insert into Appraisals values(default,?,?,?)";
             public static String ATTENDANCE="Insert into Attendance values(default,?,?,?)";
             public static String EMPLOYEE="Insert into Employee values(default,?,?,?,?,?,?,?,?,?,?,default,?)";
             public static String ROLE="Insert into Role values(default,?,?)";
@@ -25,21 +25,24 @@ public class Queries {
             public static String GET_EMPLOYEE_BY_EMPLOYEE_ID="Select EmployeeName,Address,Date_of_Birth,NIC_No,Current_Status,RoleID from Employee where EmployeeID=?";
             public static String GET_EMPLOYEE_BY_NIC_NO="Select EmployeeID,EmployeeName,Address,Date_of_Birth,Current_Status,RoleID from Employee where NIC_No=?";
             public static String GET_ROLE_NAME_BY_ID="Select RoleName from Role Where RoleID=?";
-            public static String GET_APPRAISAL_BY_EMPLOYEE_ID="Select Grading,Bonus,Reviews from Appraisals where EmpID=?";
+            public static String GET_APPRAISAL_BY_EMPLOYEE_ID="Select Bonus,Reviews from Appraisals where EmpID=?";
             public static String GET_ROLE_ID_BY_EMPLOYEE_ID="Select RoleID from Employee where EmployeeID=?";
             public static String GET_BONUS_BY_EMPLOYEE_ID="Select Bonus from Appraisals where EmpID=?";
             public static String GET_SALARY_BY_ROLE_ID="Select BasicSalary,EPF,ETF,No_of_Leaves_for_no_pay from Salary where RoleID=?";
-            public static String GET_ATTENDANCE_LIST="Select EmployeeID,EmployeeName from Employee where Current_Status='Working'";
+            public static String GET_ATTENDANCE_LIST="Select EmployeeID,First_Name,Last_Name from Employee where Current_Status='Working'";
             public static String GET_NO_OF_ABSENTS_FOR_EMPLOYEE="SELECT COUNT(*) AS COUNT FROM openems.attendance WHERE (Work_Date BETWEEN ? AND ?) AND EmpID = ? AND Presence='Absent'";
             public static String GET_NO_OF_HALFDAYS_FOR_EMPLOYEE="SELECT COUNT(*) AS COUNT FROM openems.attendance WHERE (Work_Date BETWEEN ? AND ?) AND EmpID = ? AND Presence='Half_Day'";
             public static String GET_EMPLOYEE_IDS="SELECT EmployeeID FROM Employee";
             public static String GET_EMPLOYEE_ID_BY_NIC="Select EmployeeID from Employee where NIC_No=?";
             public static String GET_WORK_DATE="Select EmpID from Attendance where Work_Date=?";
             public static String GET_APPRAISAL_ID_BY_EMPLOYEE_ID="Select AppraisalID from Appraisals where EmpID=?";
+            public static String GET_EMPLOYEE_TABLE="Select * from Employee";
+            public static String GET_APPRAISAL_TABLE="Select EmployeeID,First_Name AS \"First Name\",Last_Name AS \"Last Name\",NIC_No,AppraisalID,Bonus,Reviews from Employee e,Appraisals a where a.EmpID=e.EmployeeID";
+            public static String SEARCH_EMPLOYEE="select * from Employee where First_Name like ? or Last_Name like ? or Address like ? or Date_of_Birth like ? or NIC_No like ? or Gender like ? or Marital_Status like ? or Mobile_No like ? or Home_No like ? or Email like ?or Current_Status like ?or RoleID like ?";
         }
         public static class Update{
             public static String EMPLOYEE="Update Employee Set First_Name=?,Last_Name=?,Address=?,Date_of_Birth=?,NIC_No=?,Gender=?,Marital_Status=?,Mobile_No=?,Home_No=?,Email=?,Current_Status=?,RoleID=? Where EmployeeID=?";
-            public static String APPRAISAL="Update Appraisals Set Grading=?,Bonus=?,Reviews=? Where EmpID=?";
+            public static String APPRAISAL="Update Appraisals Set Bonus=?,Reviews=? Where EmpID=?";
             public static String SALARY="Update Salary Set BasicSalary=?,EPF=?,ETF=?,No_of_Leaves_for_no_pay=? Where RoleID=?";
         }
 
