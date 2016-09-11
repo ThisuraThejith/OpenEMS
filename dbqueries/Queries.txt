@@ -42,12 +42,12 @@ CREATE TABLE Employee (
 EmployeeID INT NOT NULL auto_increment,
 
 
-First_Name CHAR(70) NOT NULL,
+First_Name CHAR(100) NOT NULL,
 
-Last_Name CHAR(70) NOT NULL,
+Last_Name CHAR(100) NOT NULL,
 
 
-Address VARCHAR(80) NOT NULL,
+Address VARCHAR(300) NOT NULL,
 
 
 Date_of_Birth DATE NOT NULL,
@@ -104,8 +104,6 @@ CREATE TABLE Appraisals(
 AppraisalID INT NOT NULL auto_increment,
 
 EmpID INT NOT NULL,
-
-Grading INT NOT NULL,
 
 Bonus DECIMAL(6,2),
 
