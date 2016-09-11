@@ -14,7 +14,7 @@ public class Queries {
         public static class Insert{
             public static String APPRAISALS="Insert into Appraisals values(default,?,?,?,?)";
             public static String ATTENDANCE="Insert into Attendance values(default,?,?,?)";
-            public static String EMPLOYEE="Insert into Employee values(default,?,?,?,?,default,?)";
+            public static String EMPLOYEE="Insert into Employee values(default,?,?,?,?,?,?,?,?,?,?,default,?)";
             public static String ROLE="Insert into Role values(default,?,?)";
             public static String SALARY="Insert into Salary values(default,?,?,?,?,?)";
         }

@@ -38,23 +38,44 @@ FOREIGN KEY (RoleID) REFERENCES Role(RoleID)
 3)Employee table
 CREATE TABLE Employee (
 
+
 EmployeeID INT NOT NULL auto_increment,
 
-EmployeeName CHAR(70) NOT NULL,
+
+First_Name CHAR(70) NOT NULL,
+
+Last_Name CHAR(70) NOT NULL,
+
 
 Address VARCHAR(80) NOT NULL,
 
+
 Date_of_Birth DATE NOT NULL,
+
 
 NIC_No VARCHAR(10) NOT NULL UNIQUE,
 
+Gender CHAR(10) NOT NULL,
+
+Marital_Status CHAR (10) NOT NULL,
+
+Mobile_No CHAR(10),
+
+Home_No CHAR(10),
+
+Email VARCHAR(100),
+
 Current_Status CHAR(10) NOT NULL DEFAULT 'Working',
+
 
 RoleID INT NOT NULL,
 
+
 PRIMARY KEY (EmployeeID),
 
+
 FOREIGN KEY (RoleID) REFERENCES Role(RoleID)
+
 
 );
 

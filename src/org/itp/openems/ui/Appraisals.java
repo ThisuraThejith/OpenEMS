@@ -274,6 +274,11 @@ public class Appraisals extends javax.swing.JFrame {
                     employeeID = resultset.getInt("EmployeeID");
                     count++;
                 }
+                if (count == 0) {
+                    JOptionPane.showMessageDialog(null, "You haven't pressed the search button.An employee with this NIC No doesn't exist", "Error", JOptionPane.ERROR_MESSAGE);
+                    clear();
+                    return;
+                }
                 connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
                 preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_APPRAISAL_ID_BY_EMPLOYEE_ID);
                 preparedStatement.setInt(1, employeeID);

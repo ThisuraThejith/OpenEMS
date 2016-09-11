@@ -37,7 +37,7 @@ public class ViewIReport extends JFrame{
             try{
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
 
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/openems?", "root","123456");
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/openems?zeroDateTimeBehavior=convertToNull", "root","123456");
 
 
                 JasperPrint print = JasperFillManager.fillReport(fileName, parameter, con);

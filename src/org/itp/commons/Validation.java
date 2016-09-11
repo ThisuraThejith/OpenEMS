@@ -11,6 +11,8 @@ import java.text.SimpleDateFormat;
 import java.time.DateTimeException;
 import java.time.format.DateTimeParseException;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -118,5 +120,59 @@ public class Validation {
                 return false;
             return false;
     }
+    
+    public static boolean ValidAge(Date comDate){
+        
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date currentdate= new Date();
+        
+        
+        int difference = (currentdate.compareTo(comDate));
+            
+            if (difference>18||difference==18) {
+                return true;
+            }
+            else if (difference<18)
+                return false;
+            return false;
+    }
+    
+    public static boolean ValidContactNo(String text){
+     boolean valid =false;
+     
+     if (text.length()==10) {
+         for (int i = 0; i < 10; i++) {
+             char ch = text.charAt(i);
+             if (!Character.isDigit(ch)) {
+                 return false;                 
+             }
+             else
+                 valid = true;
+         }
+     }
+     if (valid) {
+         return  true;
+     }        
+     return false;
+    }
+            
+    public static boolean validateEmail(String Email){
+
+                        boolean status =false;
+                        String EMAIL_PATTERN = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+                        Pattern pattern =Pattern.compile(EMAIL_PATTERN);
+                        Matcher matcher =pattern.matcher(Email);
+                        if(matcher.matches())
+                        {
+
+                        status = true;
+                        }
+                        else{
+
+                         status = false;
+                        }
+                        return status;
+    }
 }
+
 

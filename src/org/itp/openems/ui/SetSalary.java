@@ -11,14 +11,11 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import org.itp.commons.DBConnect;
 import java.sql.SQLException;
-import java.util.Vector;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import org.itp.commons.Constants;
 import org.itp.commons.DBUtils;
 import org.itp.commons.Validation;
-import org.itp.openems.model.Role;
+
 
 /**
  *
