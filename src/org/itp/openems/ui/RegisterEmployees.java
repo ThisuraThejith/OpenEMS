@@ -220,23 +220,25 @@ public class RegisterEmployees extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jLabel9)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel12))
-                .addGap(135, 135, 135)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(homeTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-                    .addComponent(mobileTxt)
-                    .addComponent(emailTxt))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(mobileLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
-                    .addComponent(homeLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(emailLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel12))
+                        .addGap(135, 135, 135)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(homeTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                            .addComponent(mobileTxt)
+                            .addComponent(emailTxt))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(mobileLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
+                            .addComponent(homeLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(emailLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -519,7 +521,7 @@ public class RegisterEmployees extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel4);
-        jPanel4.setBounds(570, 440, 540, 200);
+        jPanel4.setBounds(650, 410, 540, 200);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -585,7 +587,7 @@ public class RegisterEmployees extends javax.swing.JFrame {
                     }
                     
                     if(!emailTxt.getText().isEmpty()){
-                        if(!Validation.ValidContactNo(emailTxt.getText())){
+                        if(!Validation.validateEmail(emailTxt.getText())){
                             emailLbl.setText("*Invalid");
                             JOptionPane.showMessageDialog(null,"The email is invalid","Error",JOptionPane.ERROR_MESSAGE);
                             return;
@@ -696,7 +698,7 @@ public class RegisterEmployees extends javax.swing.JFrame {
                 }
 
                 if (!emailTxt.getText().isEmpty()) {
-                    if (!Validation.ValidContactNo(emailTxt.getText())) {
+                    if (!Validation.validateEmail(emailTxt.getText())) {
                         emailLbl.setText("*Invalid");
                         JOptionPane.showMessageDialog(null, "The email is invalid", "Error", JOptionPane.ERROR_MESSAGE);
                         return;

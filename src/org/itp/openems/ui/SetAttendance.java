@@ -73,6 +73,7 @@ public class SetAttendance extends javax.swing.JFrame {
         searchTxt = new javax.swing.JTextField();
         searchBtn = new javax.swing.JButton();
         markattBtn = new javax.swing.JButton();
+        updateBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Set Attendance");
@@ -130,36 +131,40 @@ public class SetAttendance extends javax.swing.JFrame {
             }
         });
 
+        updateBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        updateBtn.setText("Update");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(95, 95, 95)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(saveBtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(backBtn))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(workDateDc, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(searchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(searchBtn)
-                                .addGap(2, 2, 2)
-                                .addComponent(markattBtn))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(90, Short.MAX_VALUE))
+                        .addComponent(saveBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(updateBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(backBtn))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(95, 95, 95)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(71, 71, 71)
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(workDateDc, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(searchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(searchBtn)
+                            .addGap(2, 2, 2)
+                            .addComponent(markattBtn))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(71, 71, 71)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,11 +180,13 @@ public class SetAttendance extends javax.swing.JFrame {
                     .addComponent(searchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(111, 111, 111))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(updateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
 
         pack();
@@ -221,7 +228,7 @@ public class SetAttendance extends javax.swing.JFrame {
                         preparedStatement = connect.prepareStatement(Queries.EMS.Insert.ATTENDANCE);
                         preparedStatement.setString(1, attendanceTable.getValueAt(row, 0).toString());
                         preparedStatement.setString(2, ((JTextField)this.workDateDc.getDateEditor().getUiComponent()).getText());
-                        preparedStatement.setString(3, attendanceTable.getValueAt(row, 2).toString());
+                        preparedStatement.setString(3, attendanceTable.getValueAt(row, 3).toString());
 
                         int affectedRows = preparedStatement.executeUpdate();
                         System.out.println("affected rows=" + affectedRows);
@@ -251,7 +258,9 @@ public class SetAttendance extends javax.swing.JFrame {
             return;
         }
         else if(!((JTextField)this.workDateDc.getDateEditor().getUiComponent()).getText().isEmpty()&&!searchTxt.getText().isEmpty()){
-            
+            searchTableLoad(Queries.EMS.Select.SEARCH_ATTENDANCE_TOGETHER);
+        }else{
+            searchTableLoad(Queries.EMS.Select.SEARCH_ATTENDANCE_SEPERATE);
         }
     }//GEN-LAST:event_searchBtnActionPerformed
     public void loadTableforAttendance() {
@@ -272,6 +281,42 @@ public class SetAttendance extends javax.swing.JFrame {
                 tableContent[index][1] = records.get(key);
                 tableContent[index][2] = ((JTextField)this.workDateDc.getDateEditor().getUiComponent()).getText();
                 tableContent[index][3] = "Present";
+                index++;
+            }
+            attendanceTable.setModel(new javax.swing.table.DefaultTableModel(
+                    tableContent, new String[]{"EmployeeID", "Employee Name","Work Date", "Presence"}));
+            setAttendanceCombo();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
+    public void searchTableLoad(String sqlQuery){
+        Map<String, String> records = new HashMap<String, String>();
+        Map<String,String> attendance = new HashMap<String, String>();
+
+        try {
+            Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+            PreparedStatement preparedStatement = connect.prepareStatement(sqlQuery);
+            
+            preparedStatement.setString(1,((JTextField)this.workDateDc.getDateEditor().getUiComponent()).getText());
+            preparedStatement.setString(2,searchTxt.getText());
+            preparedStatement.setString(3,searchTxt.getText());
+            preparedStatement.setString(4,searchTxt.getText());
+            ResultSet resultset = preparedStatement.executeQuery();
+            while (resultset.next()) {
+                records.put(resultset.getString("EmpID"), resultset.getString("First_Name")+" "+resultset.getString("Last_Name"));
+                attendance.put(resultset.getString("EmpID"), resultset.getString("Presence"));
+            }
+            preparedStatement.close();
+            Object[][] tableContent = new Object[records.size()][4];
+            int index = 0;
+            for (String key : records.keySet()) {
+                tableContent[index][0] = key;
+                tableContent[index][1] = records.get(key);
+                tableContent[index][2] = ((JTextField)this.workDateDc.getDateEditor().getUiComponent()).getText();
+                tableContent[index][3] = attendance.get(key);
                 index++;
             }
             attendanceTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -328,6 +373,7 @@ public class SetAttendance extends javax.swing.JFrame {
     private javax.swing.JButton saveBtn;
     private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchTxt;
+    private javax.swing.JButton updateBtn;
     private com.toedter.calendar.JDateChooser workDateDc;
     // End of variables declaration//GEN-END:variables
 }

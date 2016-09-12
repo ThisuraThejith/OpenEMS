@@ -39,11 +39,14 @@ public class Queries {
             public static String GET_EMPLOYEE_TABLE="Select * from Employee";
             public static String GET_APPRAISAL_TABLE="Select EmployeeID,First_Name AS \"First Name\",Last_Name AS \"Last Name\",NIC_No,AppraisalID,Bonus,Reviews from Employee e,Appraisals a where a.EmpID=e.EmployeeID";
             public static String SEARCH_EMPLOYEE="select * from Employee where First_Name like ? or Last_Name like ? or Address like ? or Date_of_Birth like ? or NIC_No like ? or Gender like ? or Marital_Status like ? or Mobile_No like ? or Home_No like ? or Email like ?or Current_Status like ?or RoleID like ?";
+            public static String SEARCH_ATTENDANCE_TOGETHER="select EmpID,First_Name,Last_Name,Work_Date,Presence from Employee e,Attendance a where e.EmployeeID=a.EmpID and (Work_Date=? and (EmpID like ? or First_Name like ? or Last_Name like ?))";
+            public static String SEARCH_ATTENDANCE_SEPERATE="select EmpID,First_Name,Last_Name,Work_Date,Presence from Employee e,Attendance a where e.EmployeeID=a.EmpID and (Work_Date=? or (EmpID like ? or First_Name like ? or Last_Name like ?))";
         }
         public static class Update{
             public static String EMPLOYEE="Update Employee Set First_Name=?,Last_Name=?,Address=?,Date_of_Birth=?,NIC_No=?,Gender=?,Marital_Status=?,Mobile_No=?,Home_No=?,Email=?,Current_Status=?,RoleID=? Where EmployeeID=?";
             public static String APPRAISAL="Update Appraisals Set Bonus=?,Reviews=? Where EmpID=?";
             public static String SALARY="Update Salary Set BasicSalary=?,EPF=?,ETF=?,No_of_Leaves_for_no_pay=? Where RoleID=?";
+            public static String ROLE="Update Role Set RoleName=?,Description=? Where RoleID=?";
         }
 
 
