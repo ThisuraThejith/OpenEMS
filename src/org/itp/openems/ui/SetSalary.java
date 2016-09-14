@@ -86,7 +86,7 @@ public class SetSalary extends javax.swing.JFrame {
         CancelBtn = new javax.swing.JButton();
         clearBtn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Set Salary");
         setSize(new java.awt.Dimension(632, 482));
 

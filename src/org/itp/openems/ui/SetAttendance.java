@@ -71,7 +71,7 @@ public class SetAttendance extends javax.swing.JFrame {
         markattBtn = new javax.swing.JButton();
         updateBtn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Set Attendance");
 
         saveBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N

@@ -46,7 +46,7 @@ public class RoleManagement extends javax.swing.JFrame {
         descLbl = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Role Management");
 
         jLabel1.setText("Role Name");

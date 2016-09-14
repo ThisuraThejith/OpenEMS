@@ -145,7 +145,7 @@ public class ViewAttendance extends javax.swing.JFrame {
         updateBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/log.png"))); // NOI18N
 
@@ -172,6 +172,7 @@ public class ViewAttendance extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        attendanceTable.setRowHeight(20);
         jScrollPane1.setViewportView(attendanceTable);
 
         updateBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -229,9 +230,9 @@ public class ViewAttendance extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(workDateDc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(6, 6, 6)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(7, 7, 7)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(backBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                     .addComponent(updateBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -242,6 +243,8 @@ public class ViewAttendance extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        DefaultTableModel model = (DefaultTableModel) attendanceTable.getModel();
+        model.setRowCount(0);
         if (((JTextField) this.workDateDc.getDateEditor().getUiComponent()).getText().isEmpty() && searchTxt.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please set a keyword to search", "Error", JOptionPane.ERROR_MESSAGE);
             return;

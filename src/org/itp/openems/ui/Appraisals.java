@@ -33,6 +33,7 @@ public class Appraisals extends javax.swing.JFrame {
     public Appraisals() {
         initComponents();
         tableload();
+        updateBtn.setEnabled(false);
     }
     public void tableload(){
         try{
@@ -104,7 +105,7 @@ public class Appraisals extends javax.swing.JFrame {
         searchkBtn = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Appraisals");
 
         jLabel1.setText("NIC No");
@@ -126,6 +127,12 @@ public class Appraisals extends javax.swing.JFrame {
                 searchBtnActionPerformed(evt);
             }
         });
+
+        nicLbl.setForeground(new java.awt.Color(255, 0, 51));
+
+        bonusLbl.setForeground(new java.awt.Color(255, 0, 51));
+
+        reviewsLbl.setForeground(new java.awt.Color(255, 0, 51));
 
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -336,6 +343,7 @@ public class Appraisals extends javax.swing.JFrame {
     int employeeID = 0;
     int appraisalID = 0;
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        updateBtn.setEnabled(true);
         nicLbl.setText(null);
         clear();
         if (nicTxt.getText().isEmpty()) {
@@ -402,8 +410,10 @@ public class Appraisals extends javax.swing.JFrame {
         if (!Validation.ValidDigits(this.bonusTxt.getText())) {
             bonusLbl.setText("*Invalid bonus");
             JOptionPane.showMessageDialog(null, "The bonus is invalid", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         } else if (Double.parseDouble(this.bonusTxt.getText()) < 0) {
             JOptionPane.showMessageDialog(null, "Bonus cannot be negative", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         } else {
             bonusLbl.setText(null);
             try {
@@ -450,6 +460,7 @@ public class Appraisals extends javax.swing.JFrame {
                 tableload();
                 nicTxt.setText(null);
                 clear();
+                updateBtn.setEnabled(false);
             } catch (SQLException e) {
                 System.out.println(e);
             }

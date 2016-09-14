@@ -148,7 +148,7 @@ public class RegisterEmployees extends javax.swing.JFrame {
         updateBtn = new javax.swing.JButton();
         clearBtn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Register Employees");
         setExtendedState(5);
         setPreferredSize(new java.awt.Dimension(1366, 768));
@@ -160,6 +160,11 @@ public class RegisterEmployees extends javax.swing.JFrame {
         jLabel1.setText("First Name");
 
         fnameTxt.setName("Name"); // NOI18N
+        fnameTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                fnameTxtFocusLost(evt);
+            }
+        });
         fnameTxt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 fnameTxtMouseClicked(evt);
@@ -168,9 +173,20 @@ public class RegisterEmployees extends javax.swing.JFrame {
 
         jLabel8.setText("Last Name");
 
+        lnameTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                lnameTxtFocusLost(evt);
+            }
+        });
+
         jLabel2.setText("Address");
 
         addressTxt.setName("Address"); // NOI18N
+        addressTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                addressTxtFocusLost(evt);
+            }
+        });
         addressTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addressTxtActionPerformed(evt);
@@ -180,10 +196,20 @@ public class RegisterEmployees extends javax.swing.JFrame {
         jLabel3.setText("NIC No");
 
         nicTxt.setName("NIC"); // NOI18N
+        nicTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                nicTxtFocusLost(evt);
+            }
+        });
 
         jLabel4.setText("Date of Birth");
 
         dobDc.setDateFormatString("yyyy-MM-dd");
+        dobDc.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                dobDcFocusLost(evt);
+            }
+        });
 
         jLabel5.setText("Gender");
 
@@ -222,6 +248,24 @@ public class RegisterEmployees extends javax.swing.JFrame {
         jLabel10.setText("Mobile");
 
         jLabel11.setText("Home");
+
+        mobileTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                mobileTxtFocusLost(evt);
+            }
+        });
+
+        homeTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                homeTxtFocusLost(evt);
+            }
+        });
+
+        emailTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                emailTxtFocusLost(evt);
+            }
+        });
 
         jLabel12.setText("E-mail");
 
@@ -326,16 +370,16 @@ public class RegisterEmployees extends javax.swing.JFrame {
                                 .addGap(184, 184, 184))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(fnameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(fnameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lnameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lnameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(addressLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(addressTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(nicLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(nicTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(dobDc, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(dobLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(dobLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(fnameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lnameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(addressLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nicLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(113, 113, 113))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -573,8 +617,10 @@ public class RegisterEmployees extends javax.swing.JFrame {
                 int affectedRows = preparedStatement.executeUpdate();
                 System.out.println("affected rows=" + affectedRows);
                 preparedStatement.close();
-                JOptionPane.showMessageDialog(null, "Added Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Registered Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
                 clearText();
+                gender.clearSelection();
+                marital.clearSelection();
                 tableload();
 
             } catch (SQLException e) {
@@ -589,11 +635,18 @@ public class RegisterEmployees extends javax.swing.JFrame {
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void demoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_demoBtnActionPerformed
-        this.fnameTxt.setText("Thejith");
-        this.addressTxt.setText("Galle");
+        clearLabels();
+        this.fnameTxt.setText("Arnold");
+        this.lnameTxt.setText("Subasingha");
+        this.addressTxt.setText("Negombo,Gampaha");
         this.nicTxt.setText("942833330v");
-        ((JTextField) this.dobDc.getDateEditor().getUiComponent()).setText("1994-07-10");
+        gender.setSelected(radioMale.getModel(), true);
+        marital.setSelected(radioMarried.getModel(), true);
+        ((JTextField) this.dobDc.getDateEditor().getUiComponent()).setText("1993-06-10");
         this.roleCmb.setSelectedItem("Manager");
+        this.mobileTxt.setText("0775453334");
+        this.homeTxt.setText("0112388992");
+        this.emailTxt.setText("arnold.subs1234@yahoo.com");
     }//GEN-LAST:event_demoBtnActionPerformed
 
     private void addressTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressTxtActionPerformed
@@ -641,6 +694,8 @@ public class RegisterEmployees extends javax.swing.JFrame {
                         preparedStatement.close();
                         JOptionPane.showMessageDialog(null, "Updated Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
                         clearText();
+                        gender.clearSelection();
+                        marital.clearSelection();
                         tableload();
                         updateBtn.setEnabled(false);
                         registerBtn.setEnabled(true);
@@ -667,6 +722,7 @@ public class RegisterEmployees extends javax.swing.JFrame {
     }//GEN-LAST:event_updateBtnActionPerformed
 
     private void employeeTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_employeeTableMouseClicked
+        clearLabels();
         updateBtn.setEnabled(true);
         int i = employeeTable.getSelectedRow();
         TableModel model = employeeTable.getModel();
@@ -675,7 +731,18 @@ public class RegisterEmployees extends javax.swing.JFrame {
         addressTxt.setText(model.getValueAt(i, 3).toString());
         ((JTextField) this.dobDc.getDateEditor().getUiComponent()).setText(model.getValueAt(i, 4).toString());
         nicTxt.setText(model.getValueAt(i, 5).toString());
-        //gender.setSelected(model.getValueAt(i, 6).toString());
+        if(model.getValueAt(i, 6).toString().equals("Male")){
+            gender.setSelected(radioMale.getModel(), true);
+        }
+        else{
+            gender.setSelected(radioFemale.getModel(), true);
+        }
+        if(model.getValueAt(i, 7).toString().equals("Single")){
+            marital.setSelected(radioSingle.getModel(), true);
+        }
+        else{
+            marital.setSelected(radioMarried.getModel(), true);
+        }
         mobileTxt.setText(model.getValueAt(i, 8).toString());
         homeTxt.setText(model.getValueAt(i, 9).toString());
         emailTxt.setText(model.getValueAt(i, 10).toString());
@@ -691,8 +758,6 @@ public class RegisterEmployees extends javax.swing.JFrame {
         }
         try {
             String keyword = searchTxt.getText();
-            // String sql = "select * from Employee where First_Name like '%" + keyword + "%' or Last_Name like '%" + keyword + "%' or Address like '%" + keyword + "%' or Date_of_Birth like '%" + keyword + "%' or NIC_No like '%" + keyword + "%' or Gender like '%" + keyword + "%' or Marital_Status like '%" + keyword + "%' or Mobile_No like '%" + keyword + "%' or Home_No like '%" + keyword + "%' or Email like '%" + keyword + "%'or Current_Status like '%" + keyword + "%'or RoleID like '%" + keyword + "%'";
-
             tableload(keyword);
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -702,6 +767,11 @@ public class RegisterEmployees extends javax.swing.JFrame {
     private void clearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBtnActionPerformed
         clearLabels();
         clearText();
+        tableload();
+        gender.clearSelection();
+        marital.clearSelection();
+        registerBtn.setEnabled(true);
+        updateBtn.setEnabled(false);
     }//GEN-LAST:event_clearBtnActionPerformed
 
     private void fnameTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fnameTxtMouseClicked
@@ -709,6 +779,78 @@ public class RegisterEmployees extends javax.swing.JFrame {
             registerBtn.setEnabled(true);
         }
     }//GEN-LAST:event_fnameTxtMouseClicked
+
+    private void fnameTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fnameTxtFocusLost
+        if(this.fnameTxt.getText().isEmpty()){
+            fnameLbl.setText("*This field is necessary");
+        }
+        else if (!Validation.ValidName(this.fnameTxt.getText())) {
+                fnameLbl.setText("*Invalid First Name");
+        }
+    }//GEN-LAST:event_fnameTxtFocusLost
+
+    private void lnameTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lnameTxtFocusLost
+        if(this.lnameTxt.getText().isEmpty()){
+            lnameLbl.setText("*This field is necessary");
+        }
+        else if (!Validation.ValidName(this.lnameTxt.getText())) {
+                lnameLbl.setText("*Invalid Last Name");
+        }
+    }//GEN-LAST:event_lnameTxtFocusLost
+
+    private void addressTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_addressTxtFocusLost
+        if(this.addressTxt.getText().isEmpty()){
+            addressLbl.setText("*This field is necessary");
+        }
+        else if (!Validation.ValidAddress(this.addressTxt.getText())) {
+                addressLbl.setText("*Invalid Address");
+        }
+    }//GEN-LAST:event_addressTxtFocusLost
+
+    private void nicTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nicTxtFocusLost
+        if(this.nicTxt.getText().isEmpty()){
+            nicLbl.setText("*This field is necessary");
+        }
+        else if (!Validation.ValidNIC(this.nicTxt.getText())) {
+                nicLbl.setText("*Invalid NIC No");
+        }
+    }//GEN-LAST:event_nicTxtFocusLost
+
+    private void mobileTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mobileTxtFocusLost
+        if (!mobileTxt.getText().isEmpty()) {
+                if (!Validation.ValidContactNo(mobileTxt.getText())) {
+                    mobileLbl.setText("*Invalid");
+                }
+        }
+    }//GEN-LAST:event_mobileTxtFocusLost
+
+    private void homeTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_homeTxtFocusLost
+        if (!homeTxt.getText().isEmpty()) {
+                if (!Validation.ValidContactNo(homeTxt.getText())) {
+                    homeLbl.setText("*Invalid");
+                }
+        }
+    }//GEN-LAST:event_homeTxtFocusLost
+
+    private void emailTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailTxtFocusLost
+        if (!emailTxt.getText().isEmpty()) {
+                if (!Validation.validateEmail(emailTxt.getText())) {
+                    emailLbl.setText("*Invalid");
+                }
+        } 
+    }//GEN-LAST:event_emailTxtFocusLost
+
+    private void dobDcFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dobDcFocusLost
+        if (Validation.FutureDate(dobDc.getDate())) {
+                dobLbl.setText("*Invalid Date of Birth");
+        }
+        else if (Validation.ValidAge(dobDc.getDate())) {
+                dobLbl.setText("*Below 18");
+        }
+        else{
+            dobLbl.setText("*This field is necessary");
+        }
+    }//GEN-LAST:event_dobDcFocusLost
 
     private void clearLabels() {
         fnameLbl.setText(null);
