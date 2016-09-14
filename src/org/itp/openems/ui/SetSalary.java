@@ -94,9 +94,9 @@ public class SetSalary extends javax.swing.JFrame {
 
         jLabel2.setText("Basic Salary");
 
-        jLabel3.setText("EPF");
+        jLabel3.setText("EPF(Percentage%)");
 
-        jLabel4.setText("ETF");
+        jLabel4.setText("ETF(Percentage%)");
 
         jLabel5.setText("No of leaves for no pay");
 
@@ -519,7 +519,9 @@ public class SetSalary extends javax.swing.JFrame {
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
        //roleLbl.setText(null);
         clearlabels();
+        
         if (roleCmb.getSelectedItem().toString().equals("--Select--")) {
+            cleartext();
             roleLbl.setText("*Please select a role");
             JOptionPane.showMessageDialog(null, "You haven't selected a role", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -620,12 +622,12 @@ public class SetSalary extends javax.swing.JFrame {
             nopayLbl.setText("*No pay number cannot be negative");
             isValid = false;
         }
-        if (!Validation.ValidDigits(this.epfTxt.getText())) {
+        if (!Validation.ValidPercentage(this.epfTxt.getText())) {
             epfLbl.setText("*Invalid EPF");
             isValid = false;
         }
 
-        if (!Validation.ValidDigits(this.etfTxt.getText())) {
+        if (!Validation.ValidPercentage(this.etfTxt.getText())) {
             etfLbl.setText("*Invalid ETF");
             isValid = false;
         }

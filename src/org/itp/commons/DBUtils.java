@@ -68,7 +68,7 @@ public class DBUtils {
         resultset.close();
         preparedStatement.close();
 
-        preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_NO_OF_ABSENTS_FOR_EMPLOYEE);
+        preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_NO_OF_HALFDAYS_FOR_EMPLOYEE);
         preparedStatement.setString(1, Integer.toString(Calendar.getInstance().get(Calendar.YEAR)) + "01-01");
         preparedStatement.setDate(2, new java.sql.Date(Calendar.getInstance().getTime().getTime()));
         preparedStatement.setInt(3, employeeID);

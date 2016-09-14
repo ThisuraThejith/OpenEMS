@@ -129,6 +129,11 @@ public class SetAttendance extends javax.swing.JFrame {
 
         updateBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         updateBtn.setText("Update");
+        updateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -257,6 +262,10 @@ public class SetAttendance extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_searchBtnActionPerformed
+
+    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
+        
+    }//GEN-LAST:event_updateBtnActionPerformed
     public void loadTableforAttendance() {
         Map<String, String> records = new HashMap<String, String>();
 

@@ -65,9 +65,9 @@ public class ViewSalary extends javax.swing.JFrame {
 
         jLabel2.setText("Basic Salary");
 
-        jLabel3.setText("EPF");
+        jLabel3.setText("EPF(Percentage%)");
 
-        jLabel4.setText("ETF");
+        jLabel4.setText("ETF(Percentage%)");
 
         jLabel5.setText("Bonus");
 
@@ -235,8 +235,8 @@ public class ViewSalary extends javax.swing.JFrame {
             }
             this.bonusTxt.setText(Double.toString(salary.getBonus()));
             this.basicSalTxt.setText(Double.toString(salary.getBasicSalary()));
-            this.epfTxt.setText(Double.toString(salary.getEpf() * salary.getBasicSalary()));
-            this.etfTxt.setText(Double.toString(salary.getEtf() * salary.getBasicSalary()));
+            this.epfTxt.setText(Double.toString(salary.getEpf()/100 * salary.getBasicSalary()));
+            this.etfTxt.setText(Double.toString(salary.getEtf()/100 * salary.getBasicSalary()));
             this.totalSalTxt.setText(Double.toString(salary.calculateSalary()));
             }
             

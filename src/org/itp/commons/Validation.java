@@ -159,7 +159,7 @@ public class Validation {
     public static boolean validateEmail(String Email){
 
                         boolean status =false;
-                        String EMAIL_PATTERN = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+                        String EMAIL_PATTERN = "^[a-z0-9]+@[a-z]+\\.[a-zA-Z]{2,6}$";
                         Pattern pattern =Pattern.compile(EMAIL_PATTERN);
                         Matcher matcher =pattern.matcher(Email);
                         if(matcher.matches())
@@ -172,6 +172,16 @@ public class Validation {
                          status = false;
                         }
                         return status;
+    }
+    
+    public static boolean ValidPercentage(String digit) {
+
+        if(ValidDigits(digit)){
+            if(Double.parseDouble(digit)<100){
+                return true;
+            }
+        }
+        return false;
     }
 }
 

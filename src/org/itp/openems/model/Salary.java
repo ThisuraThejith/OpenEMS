@@ -135,7 +135,7 @@ public class Salary {
     public double calculateSalary() {
         double totalSalary;
 
-        totalSalary = basicSalary - (epf + etf) * basicSalary + bonus;
+        totalSalary = basicSalary - ((epf + etf)/100) * basicSalary + bonus;
 
         return totalSalary;
     }
@@ -145,8 +145,8 @@ public class Salary {
         StringBuilder builder = new StringBuilder();
         builder.append("Basic Salary : " + this.basicSalary + "\n");
         builder.append("Bonus : " + this.bonus + "\n");
-        builder.append("EPF : " + this.epf * this.basicSalary + "\n");
-        builder.append("ETF : " + this.etf * this.basicSalary+ "\n");
+        builder.append("EPF : " + this.epf/100 * this.basicSalary + "\n");
+        builder.append("ETF : " + this.etf/100 * this.basicSalary+ "\n");
         builder.append("Total Salary : " + this.calculateSalary()+ "\n");
         return builder.toString();
     }
