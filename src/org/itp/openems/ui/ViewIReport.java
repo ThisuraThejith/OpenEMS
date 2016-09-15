@@ -67,7 +67,7 @@ public class ViewIReport extends JFrame{
     public static void SalReport(int EmpID){
         HashMap param = new HashMap();
         param.put("EmployeeID", EmpID);
-        ViewIReport viewer = new ViewIReport("./reports/report1.jasper",param);
+        ViewIReport viewer = new ViewIReport("./reports/salaryreport.jasper",param);
         viewer.setVisible(true);
     }
 //    public static void RentalAgreement(Integer RentID){

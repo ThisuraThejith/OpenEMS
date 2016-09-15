@@ -278,7 +278,7 @@ public class ViewSalary extends javax.swing.JFrame {
         bonusTxt.setText(null);
         etfTxt.setText(null);
         totalSalTxt.setText(null);
-    
+        //nicNoTxt.setText(null);
     }
 
     /**

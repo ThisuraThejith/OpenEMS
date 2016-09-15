@@ -268,6 +268,7 @@ public class SetAttendance extends javax.swing.JFrame {
         Map<Integer, Attendance> records = new HashMap<Integer, Attendance>();
 
         try {
+            boolean shouldUpdate = false;
             Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
             PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_ATTENDANCE_FOR_DATE);
             String workDate = ((JTextField) this.workDateDc.getDateEditor().getUiComponent()).getText();
@@ -281,6 +282,14 @@ public class SetAttendance extends javax.swing.JFrame {
                 attendance.setWorkDate(resultset.getString("Work_Date"));
                 attendance.setPresence(resultset.getString("Presence"));
                 records.put(attendance.getEmployeeID(), attendance);
+                shouldUpdate = true;
+            }
+            if (shouldUpdate) {
+                updateBtn.setEnabled(true);
+                saveBtn.setEnabled(false);
+            } else {
+                updateBtn.setEnabled(false);
+                saveBtn.setEnabled(true);
             }
             preparedStatement.close();
             
@@ -356,6 +365,8 @@ public class SetAttendance extends javax.swing.JFrame {
             attendanceTable.setModel(new javax.swing.table.DefaultTableModel(
                     tableContent, new String[]{"EmployeeID", "Employee Name", "Work Date", "Presence"}));
             setAttendanceCombo();
+            saveBtn.setEnabled(false);
+            updateBtn.setEnabled(true);
 
         } catch (Exception e) {
             System.out.println(e);

@@ -7,6 +7,8 @@ RoleName CHAR(30) UNIQUE NOT NULL,
 
 Description CHAR(100),
 
+role_status char(10) NOT NULL DEFAULT 'Active',
+
 PRIMARY KEY (RoleID)
 
 );
