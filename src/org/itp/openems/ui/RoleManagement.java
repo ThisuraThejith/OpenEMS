@@ -8,9 +8,13 @@ package org.itp.openems.ui;
 import java.sql.PreparedStatement;
 import org.itp.commons.Queries;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import org.itp.commons.DBConnect;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.table.TableModel;
+import net.proteanit.sql.DbUtils;
 import org.itp.commons.Constants;
 import org.itp.commons.Validation;
 /**
@@ -24,8 +28,22 @@ public class RoleManagement extends javax.swing.JFrame {
      */
     public RoleManagement() {
         initComponents();
+        tableload();
+        updateBtn.setEnabled(false);
+        deleteBtn.setEnabled(false);
     }
 
+    public void tableload() {
+        try {
+
+            Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+            PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_ROLE_TABLE);
+            ResultSet resultset = preparedStatement.executeQuery();
+            roleTable.setModel(DbUtils.resultSetToTableModel(resultset));
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,11 +58,17 @@ public class RoleManagement extends javax.swing.JFrame {
         roleName = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         roleDesc = new javax.swing.JTextArea();
-        SaveBtn = new javax.swing.JButton();
-        BackBtn = new javax.swing.JButton();
         roleNameLbl = new javax.swing.JLabel();
         descLbl = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        roleTable = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        BackBtn = new javax.swing.JButton();
+        clearBtn = new javax.swing.JButton();
+        deleteBtn = new javax.swing.JButton();
+        updateBtn = new javax.swing.JButton();
+        SaveBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Role Management");
@@ -57,13 +81,29 @@ public class RoleManagement extends javax.swing.JFrame {
         roleDesc.setRows(5);
         jScrollPane1.setViewportView(roleDesc);
 
-        SaveBtn.setText("Save");
-        SaveBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SaveBtnActionPerformed(evt);
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/log.png"))); // NOI18N
+
+        roleTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        roleTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                roleTableMouseClicked(evt);
             }
         });
+        jScrollPane2.setViewportView(roleTable);
 
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        BackBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         BackBtn.setText("Back");
         BackBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,7 +111,67 @@ public class RoleManagement extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/log.png"))); // NOI18N
+        clearBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        clearBtn.setText("Clear");
+        clearBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearBtnActionPerformed(evt);
+            }
+        });
+
+        deleteBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        deleteBtn.setText("Delete");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
+
+        updateBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        updateBtn.setText("Update");
+        updateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBtnActionPerformed(evt);
+            }
+        });
+
+        SaveBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        SaveBtn.setText("Save");
+        SaveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addComponent(SaveBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(updateBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(deleteBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(clearBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BackBtn)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(35, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BackBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(clearBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SaveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,6 +179,7 @@ public class RoleManagement extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 916, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -86,19 +187,18 @@ public class RoleManagement extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addGap(57, 57, 57)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(descLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(roleName, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(roleName, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(roleNameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(roleNameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(SaveBtn)
-                                    .addGap(6, 6, 6)
-                                    .addComponent(BackBtn))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(descLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 60, Short.MAX_VALUE))
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -107,22 +207,23 @@ public class RoleManagement extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(roleName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(roleNameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel1)
+                                .addComponent(roleName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(roleNameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(descLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(SaveBtn)
-                    .addComponent(BackBtn))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
@@ -133,43 +234,164 @@ public class RoleManagement extends javax.swing.JFrame {
     }//GEN-LAST:event_BackBtnActionPerformed
 
     private void SaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveBtnActionPerformed
-        if (roleName.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null,"Role name cannot be empty","Error",JOptionPane.ERROR_MESSAGE);
-        }
-        else {
-                roleNameLbl.setText(null);
-                descLbl.setText(null);
+        roleNameLbl.setText(null);
+        descLbl.setText(null);
+        if (validateFields()) {
             try {
-                if (!Validation.ValidName(this.roleName.getText())) {
-                    roleNameLbl.setText("*Invalid Role name");
-                    JOptionPane.showMessageDialog(null,"This role name is invalid","Error",JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                if(roleDesc.getText().isEmpty()){
-                    descLbl.setText("*Enter a description for the role");
-                    JOptionPane.showMessageDialog(null,"Please enter a role description","Error",JOptionPane.ERROR_MESSAGE);
-                }
-                else if (Validation.ValidName(this.roleName.getText())&& !roleDesc.getText().isEmpty()) {
-                    roleNameLbl.setText(null);
-                    descLbl.setText(null);
-                    Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
-                    PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Insert.ROLE);
-                    preparedStatement.setString(1, this.roleName.getText());
-                    preparedStatement.setString(2, this.roleDesc.getText());
-                    int affectedRows = preparedStatement.executeUpdate();
-                    System.out.println("affected rows=" + affectedRows);
-                    preparedStatement.close();
-                    JOptionPane.showMessageDialog(null, "Added Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-                    this.roleName.setText("");
-                    this.roleDesc.setText("");
-                } 
-            }
-            catch (SQLException e) {
+                Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+                PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Insert.ROLE);
+                preparedStatement.setString(1, this.roleName.getText());
+                preparedStatement.setString(2, this.roleDesc.getText());
+                int affectedRows = preparedStatement.executeUpdate();
+                System.out.println("affected rows=" + affectedRows);
+                preparedStatement.close();
+                JOptionPane.showMessageDialog(null, "Added Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                this.roleName.setText("");
+                this.roleDesc.setText("");
+                tableload();
+
+            } catch (SQLException e) {
                 System.out.println(e);
             }
         }
     }//GEN-LAST:event_SaveBtnActionPerformed
 
+    private void roleTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roleTableMouseClicked
+        roleNameLbl.setText(null);
+        descLbl.setText(null);
+        updateBtn.setEnabled(true);
+        deleteBtn.setEnabled(true);
+        int i = roleTable.getSelectedRow();
+        TableModel model = roleTable.getModel();
+        roleName.setText(model.getValueAt(i, 1).toString());
+        roleDesc.setText(model.getValueAt(i, 2).toString());
+        SaveBtn.setEnabled(false);
+    }//GEN-LAST:event_roleTableMouseClicked
+
+    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
+        int selectedRow = roleTable.getSelectedRow();
+        if (validateFields()) {
+            try {
+
+                if (selectedRow != -1) {
+                    int RoleID = (int) roleTable.getValueAt(selectedRow, 0);
+                    
+                    try {
+                        Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+                        PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Update.ROLE);
+                        preparedStatement.setString(1, this.roleName.getText());
+                        preparedStatement.setString(2, this.roleDesc.getText());
+                        preparedStatement.setInt(3, RoleID);
+                        int affectedRows = preparedStatement.executeUpdate();
+                        System.out.println("affected rows=" + affectedRows);
+                        preparedStatement.close();
+                        JOptionPane.showMessageDialog(null, "Updated Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                        roleName.setText(null);
+                        roleDesc.setText(null);
+                        tableload();
+                        updateBtn.setEnabled(false);
+                        deleteBtn.setEnabled(false);
+                        SaveBtn.setEnabled(true);
+
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(null, "Role update failed", "Error", JOptionPane.ERROR_MESSAGE);
+                        System.out.println(ex);
+                        return;
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Please select a record to update", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+            } catch (Exception e) {
+                System.out.println(e);
+
+            }
+        }
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(null, "Please select a record to update", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_updateBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        int selectedRow = roleTable.getSelectedRow();
+        if (validateFields()) {
+            try {
+
+                if (selectedRow != -1) {
+                    int RoleID = (int) roleTable.getValueAt(selectedRow, 0);
+                    
+                    try {
+                        Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+                        PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Update.ROLE_DELETE);
+                        preparedStatement.setInt(1, RoleID);
+                        int affectedRows = preparedStatement.executeUpdate();
+                        System.out.println("affected rows=" + affectedRows);
+                        preparedStatement.close();
+                        JOptionPane.showMessageDialog(null, "Role deleted Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                        roleName.setText(null);
+                        roleDesc.setText(null);
+                        tableload();
+                        updateBtn.setEnabled(false);
+                        deleteBtn.setEnabled(false);
+                        SaveBtn.setEnabled(true);
+
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(null, "Role delete failed", "Error", JOptionPane.ERROR_MESSAGE);
+                        System.out.println(ex);
+                        return;
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Please select a record to delete", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+            } catch (Exception e) {
+                System.out.println(e);
+
+            }
+        }
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(null, "Please select a record to delete", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_deleteBtnActionPerformed
+
+    private void clearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBtnActionPerformed
+        roleNameLbl.setText(null);
+        descLbl.setText(null);
+        roleName.setText(null);
+        roleDesc.setText(null);
+        tableload();
+        SaveBtn.setEnabled(true);
+        updateBtn.setEnabled(false);
+        deleteBtn.setEnabled(false);
+    }//GEN-LAST:event_clearBtnActionPerformed
+    
+    
+    private boolean validateFields() {
+        if (roleName.getText().isEmpty() || roleDesc.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Necessary fields cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        } else {
+            roleNameLbl.setText(null);
+            descLbl.setText(null);
+            boolean isValid = true;
+            if (!Validation.ValidName(this.roleName.getText())) {
+                    roleNameLbl.setText("*Invalid Role name");
+                    isValid=false;
+                }
+            if(roleDesc.getText().isEmpty()){
+                    descLbl.setText("*Enter a description for the role");
+                    JOptionPane.showMessageDialog(null,"Please enter a role description","Error",JOptionPane.ERROR_MESSAGE);
+                    isValid=false;
+            }
+           
+            if (!isValid) {
+                JOptionPane.showMessageDialog(null, "One or more fields are invalid", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            return isValid;
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -208,13 +430,19 @@ public class RoleManagement extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackBtn;
     private javax.swing.JButton SaveBtn;
+    private javax.swing.JButton clearBtn;
+    private javax.swing.JButton deleteBtn;
     private javax.swing.JLabel descLbl;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea roleDesc;
     private javax.swing.JTextField roleName;
     private javax.swing.JLabel roleNameLbl;
+    private javax.swing.JTable roleTable;
+    private javax.swing.JButton updateBtn;
     // End of variables declaration//GEN-END:variables
 }

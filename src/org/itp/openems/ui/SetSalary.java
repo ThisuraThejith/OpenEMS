@@ -34,6 +34,7 @@ public class SetSalary extends javax.swing.JFrame {
         roleCmb.addItem("--Select--");
         DBUtils.loadRoles(roleCmb);
         tableload();
+        updateBtn.setEnabled(false);
     }
     
     public void tableload(){
@@ -100,11 +101,44 @@ public class SetSalary extends javax.swing.JFrame {
 
         jLabel5.setText("No of leaves for no pay");
 
+        basicSalaryTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                basicSalaryTxtFocusLost(evt);
+            }
+        });
         basicSalaryTxt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 basicSalaryTxtMouseClicked(evt);
             }
         });
+
+        epfTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                epfTxtFocusLost(evt);
+            }
+        });
+
+        etfTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                etfTxtFocusLost(evt);
+            }
+        });
+
+        nopayTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                nopayTxtFocusLost(evt);
+            }
+        });
+
+        roleLbl.setForeground(new java.awt.Color(255, 0, 51));
+
+        basicSalLbl.setForeground(new java.awt.Color(255, 0, 51));
+
+        epfLbl.setForeground(new java.awt.Color(255, 0, 51));
+
+        etfLbl.setForeground(new java.awt.Color(255, 0, 51));
+
+        nopayLbl.setForeground(new java.awt.Color(255, 0, 51));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/log.png"))); // NOI18N
 
@@ -142,7 +176,7 @@ public class SetSalary extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -234,7 +268,11 @@ public class SetSalary extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(177, 177, 177)
+                                .addComponent(roleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(77, 77, 77))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -278,12 +316,9 @@ public class SetSalary extends javax.swing.JFrame {
                                         .addComponent(jLabel1)
                                         .addGap(121, 121, 121)
                                         .addComponent(roleCmb, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(5, 5, 5))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(roleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(searchBtn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                        .addComponent(searchBtn)
-                        .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -302,6 +337,11 @@ public class SetSalary extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addComponent(jLabel6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(roleCmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -334,12 +374,7 @@ public class SetSalary extends javax.swing.JFrame {
                                     .addComponent(nopayTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(nopayLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(roleCmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(54, 54, 54))
@@ -419,10 +454,10 @@ public class SetSalary extends javax.swing.JFrame {
                     preparedStatement.close();
                     
                     
-                    if (Double.parseDouble(this.basicSalaryTxt.getText()) < 0) {
+                    /**if (Double.parseDouble(this.basicSalaryTxt.getText()) < 0) {
                         JOptionPane.showMessageDialog(null, "Basic Salary cannot be negative", "Error", JOptionPane.ERROR_MESSAGE);
                         return;
-                    }
+                    }*/
                     connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
                     preparedStatement = connect.prepareStatement(Queries.EMS.Insert.SALARY);
                     preparedStatement.setInt(1, roleID);
@@ -519,6 +554,7 @@ public class SetSalary extends javax.swing.JFrame {
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
        //roleLbl.setText(null);
         clearlabels();
+        SaveBtn.setEnabled(false);
         
         if (roleCmb.getSelectedItem().toString().equals("--Select--")) {
             cleartext();
@@ -579,6 +615,9 @@ public class SetSalary extends javax.swing.JFrame {
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void salaryTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salaryTableMouseClicked
+        SaveBtn.setEnabled(false);
+        searchBtn.setEnabled(false);
+        updateBtn.setEnabled(true);
         int i = salaryTable.getSelectedRow();
         TableModel model = salaryTable.getModel();
         roleCmb.setSelectedItem(DBUtils.getRoleNameByID(Integer.parseInt(model.getValueAt(i, 1).toString())));
@@ -592,6 +631,9 @@ public class SetSalary extends javax.swing.JFrame {
     private void clearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBtnActionPerformed
         clearlabels();
         cleartext();
+        updateBtn.setEnabled(false);
+        SaveBtn.setEnabled(true);
+        searchBtn.setEnabled(true);
     }//GEN-LAST:event_clearBtnActionPerformed
 
     private void basicSalaryTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_basicSalaryTxtMouseClicked
@@ -599,6 +641,54 @@ public class SetSalary extends javax.swing.JFrame {
             SaveBtn.setEnabled(true);
         }
     }//GEN-LAST:event_basicSalaryTxtMouseClicked
+
+    private void basicSalaryTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_basicSalaryTxtFocusLost
+        if(this.basicSalaryTxt.getText().isEmpty()){
+            basicSalLbl.setText("*Necessary Field");
+        }
+        else if (!Validation.ValidDigits(this.basicSalaryTxt.getText())) {
+            basicSalLbl.setText("*Invalid Salary");
+        }
+        else if (Double.parseDouble(this.basicSalaryTxt.getText()) < 0) {
+            basicSalLbl.setText("*Salary cannot be negative");
+        }
+    }//GEN-LAST:event_basicSalaryTxtFocusLost
+
+    private void epfTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_epfTxtFocusLost
+        if(this.epfTxt.getText().isEmpty()){
+            epfLbl.setText("*Necessary Field");
+        }
+        else if (!Validation.ValidDigits(this.epfTxt.getText())) {
+            epfLbl.setText("*Invalid EPF");
+        }
+        else if (Double.parseDouble(this.epfTxt.getText()) < 0) {
+            epfLbl.setText("*EPF cannot be negative");
+        }
+    }//GEN-LAST:event_epfTxtFocusLost
+
+    private void etfTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_etfTxtFocusLost
+        if(this.etfTxt.getText().isEmpty()){
+            etfLbl.setText("*Necessary Field");
+        }
+        else if (!Validation.ValidDigits(this.etfTxt.getText())) {
+            etfLbl.setText("*Invalid ETF");
+        }
+        else if (Double.parseDouble(this.etfTxt.getText()) < 0) {
+            etfLbl.setText("*ETF cannot be negative");
+        }
+    }//GEN-LAST:event_etfTxtFocusLost
+
+    private void nopayTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nopayTxtFocusLost
+        if(this.nopayTxt.getText().isEmpty()){
+            nopayLbl.setText("*Necessary Field");
+        }
+        else if (!Validation.ValidDigits(this.nopayTxt.getText())) {
+            nopayLbl.setText("*Invalid Leave Amount");
+        }
+        else if (Double.parseDouble(this.nopayTxt.getText()) < 0) {
+            nopayLbl.setText("*Leaves cannot be negative");
+        }
+    }//GEN-LAST:event_nopayTxtFocusLost
 
     private boolean validateFields() {
         boolean isValid = true;

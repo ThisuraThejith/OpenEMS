@@ -40,15 +40,13 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="epfTxt" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="basicSalTxt" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="etfTxt" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="bonusTxt" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="totalSalTxt" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="nicNoTxt" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="nicNoLbl" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="basicSalTxt" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="etfTxt" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="bonusTxt" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="totalSalTxt" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="nicNoTxt" alignment="0" pref="146" max="32767" attributes="0"/>
+                                  <Component id="nicNoLbl" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="searchBtn" min="-2" max="-2" attributes="0"/>

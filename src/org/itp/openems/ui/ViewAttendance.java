@@ -53,7 +53,7 @@ public class ViewAttendance extends javax.swing.JFrame {
 
         try {
             Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
-            PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_ATTENDANCE_LIST);
+            PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_ACTIVE_EMPLOYEES_LIST);
             ResultSet resultset = preparedStatement.executeQuery();
             while (resultset.next()) {
                 records.put(resultset.getString("EmployeeID"), resultset.getString("First_Name") + " " + resultset.getString("Last_Name"));

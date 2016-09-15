@@ -701,7 +701,7 @@ public class RegisterEmployees extends javax.swing.JFrame {
                         registerBtn.setEnabled(true);
 
                     } catch (SQLException ex) {
-                        JOptionPane.showMessageDialog(null, "Customer update failed", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Employee update failed", "Error", JOptionPane.ERROR_MESSAGE);
                         System.out.println(ex);
                         return;
                     }
@@ -752,6 +752,10 @@ public class RegisterEmployees extends javax.swing.JFrame {
     }//GEN-LAST:event_employeeTableMouseClicked
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        clearLabels();
+        clearText();
+        gender.clearSelection();
+        marital.clearSelection();
         if (this.searchTxt.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please enter a search keyword", "Error", JOptionPane.ERROR_MESSAGE);
             return;
@@ -894,7 +898,7 @@ public class RegisterEmployees extends javax.swing.JFrame {
             if (Validation.FutureDate(dobDc.getDate())) {
                 dobLbl.setText("*Invalid Date of Birth");
                 isValid = false;
-            } else if (Validation.ValidAge(dobDc.getDate())) {
+            } else if (!Validation.ValidAge(dobDc.getDate())) {
                 dobLbl.setText("*Below 18");
                 isValid = false;
             }

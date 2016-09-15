@@ -10,7 +10,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DateTimeException;
 import java.time.format.DateTimeParseException;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -121,20 +123,23 @@ public class Validation {
             return false;
     }
     
-    public static boolean ValidAge(Date comDate){
-        
+    public static Calendar getCalendar(Date date) {
+        Calendar cal = Calendar.getInstance(Locale.US);
+        cal.setTime(date);
+        return cal;
+    }
+    
+    public static boolean ValidAge(Date comDate) {
+
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date currentdate= new Date();
-        
-        
-        int difference = (currentdate.compareTo(comDate));
-            
-            if (difference>18||difference==18) {
-                return true;
-            }
-            else if (difference<18)
-                return false;
-            return false;
+        Date currentdate = new Date();
+        Calendar a=getCalendar(comDate);
+        Calendar b=getCalendar(currentdate);
+        int difference =b.get(Calendar.YEAR)-a.get(Calendar.YEAR);
+        if (difference >= 18) {
+            return true;
+        }
+        return false;
     }
     
     public static boolean ValidContactNo(String text){
@@ -159,7 +164,7 @@ public class Validation {
     public static boolean validateEmail(String Email){
 
                         boolean status =false;
-                        String EMAIL_PATTERN = "^[a-z0-9]+@[a-z]+\\.[a-zA-Z]{2,6}$";
+                        String EMAIL_PATTERN = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
                         Pattern pattern =Pattern.compile(EMAIL_PATTERN);
                         Matcher matcher =pattern.matcher(Email);
                         if(matcher.matches())

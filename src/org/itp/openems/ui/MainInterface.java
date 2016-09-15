@@ -237,16 +237,33 @@ public class MainInterface extends javax.swing.JFrame {
             }
             for(int eid : eids){
                 Salary salary = DBUtils.getSalaryForEmployeeID(eid);
+                String status=DBUtils.getStatusByEmployeeID(eid);
                 File file = new File(Constants.REPORT_LOCATION + File.separator + eid + ".txt");
-                if(!file.exists()){
-                    file.createNewFile();
+                
+                if (salary.getAbsentCount() + (salary.getHalfDayCount() / 2) > salary.getMaxLeaves()){
+                    if(!file.exists()){
+                        file.createNewFile();
+                    }
+                    FileWriter writer = new FileWriter(file);
+                    writer.write("No Pay");
+                    writer.flush();
+                    writer.close();
                 }
-                FileWriter writer = new FileWriter(file);
-                writer.write(salary.toString());
-                writer.flush();
-                writer.close();
+                else if(status.equals("Resigned")){
+                    //writer.close();
+                    continue;
+                }
+                else{
+                    if(!file.exists()){
+                        file.createNewFile();
+                    }
+                    FileWriter writer = new FileWriter(file);
+                    writer.write(salary.toString());
+                    writer.flush();
+                    writer.close();
+                }
             }  
-             JOptionPane.showMessageDialog(null, "All the files are saved at the "+ Constants.REPORT_LOCATION+  " folder.", "Success", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "All the files are saved at the "+ Constants.REPORT_LOCATION+  " folder.", "Success", JOptionPane.INFORMATION_MESSAGE);
         } 
         catch (SQLException e) {
         } 

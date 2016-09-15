@@ -53,6 +53,23 @@ public class DBUtils {
         }
         return roleName;
     }
+    
+    public static String getStatusByEmployeeID(int employeeID){
+        String status="";
+        try{
+            Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+            PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_CSTATUS_BY_EMPLOYEE_ID);
+            preparedStatement.setInt(1,employeeID);
+            ResultSet resultset = preparedStatement.executeQuery();
+            while (resultset.next()) {
+                status = resultset.getString("Current_Status");
+            }
+        }
+        catch(SQLException e){
+            System.out.println(e);
+        }
+        return status;
+    }
 
     public static Salary getSalaryForEmployeeID(int employeeID) throws SQLException {
         Salary salary = new Salary();

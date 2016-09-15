@@ -47,16 +47,17 @@ public class Appraisals extends javax.swing.JFrame {
         }
     }
     
-    public void tableload(JTable table,String sql){
+    public void tableload(String keyword) {
         try {
             Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
-        //String sqlq="select * from employees where fe1="+jTextField1.getText();
-
-            //To remove previously added rows
-            PreparedStatement preparedStatement = connect.prepareStatement(sql);
+            
+            PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.SEARCH_APPRAISALS);
+            for (int i = 1; i < 6; i++) {
+                preparedStatement.setString(i, "%" + keyword + "%");
+            }
             ResultSet resultset = preparedStatement.executeQuery();
-            while (table.getRowCount() > 0) {
-                ((DefaultTableModel) table.getModel()).removeRow(0);
+            while (appraisalTable.getRowCount() > 0) {
+                ((DefaultTableModel) appraisalTable.getModel()).removeRow(0);
             }
             int columns = resultset.getMetaData().getColumnCount();
             while (resultset.next()) {
@@ -64,7 +65,7 @@ public class Appraisals extends javax.swing.JFrame {
                 for (int i = 1; i <= columns; i++) {
                     row[i - 1] = resultset.getObject(i);
                 }
-                ((DefaultTableModel) table.getModel()).insertRow(resultset.getRow() - 1, row);
+                ((DefaultTableModel) appraisalTable.getModel()).insertRow(resultset.getRow() - 1, row);
             }
 
             resultset.close();
@@ -403,7 +404,7 @@ public class Appraisals extends javax.swing.JFrame {
         }
 
         if (bonusTxt.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please press the search button to load appraisal details", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please press the search button or select a record to load appraisal details", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -560,6 +561,8 @@ public class Appraisals extends javax.swing.JFrame {
     }//GEN-LAST:event_demoBtnActionPerformed
 
     private void appraisalTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_appraisalTableMouseClicked
+        updateBtn.setEnabled(true);
+        insertBtn.setEnabled(false);
         int i = appraisalTable.getSelectedRow();
         TableModel model = appraisalTable.getModel();
         nicTxt.setText(model.getValueAt(i, 3).toString());
@@ -570,6 +573,8 @@ public class Appraisals extends javax.swing.JFrame {
 
     private void clearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBtnActionPerformed
         clear();
+        updateBtn.setEnabled(false);
+        insertBtn.setEnabled(true);
         nicTxt.setText(null);
         reviewsLbl.setText(null);
         bonusLbl.setText(null);
@@ -588,8 +593,7 @@ public class Appraisals extends javax.swing.JFrame {
         }
         try {
             String keyword = searchTxt.getText();
-            String sql ="Select EmployeeID,First_Name AS \"First Name\",Last_Name AS \"Last Name\",NIC_No,AppraisalID,Bonus,Reviews from Employee e,Appraisals a where a.EmpID=e.EmployeeID AND First_Name like '%" + keyword + "%' or Last_Name like '%" + keyword +"%' or NIC_No like '%" + keyword +"%' or Bonus like '%" + keyword +"%' or Reviews like '%" + keyword +"%'";
-            tableload(appraisalTable,sql);
+            tableload(keyword);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }

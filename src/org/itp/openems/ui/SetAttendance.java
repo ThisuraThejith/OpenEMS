@@ -149,9 +149,6 @@ public class SetAttendance extends javax.swing.JFrame {
                         .addComponent(backBtn))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(95, 95, 95)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
                             .addGap(71, 71, 71)
                             .addComponent(jLabel1)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -164,7 +161,10 @@ public class SetAttendance extends javax.swing.JFrame {
                             .addComponent(markattBtn))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(71, 71, 71)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(95, 95, 95)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(76, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -245,8 +245,6 @@ public class SetAttendance extends javax.swing.JFrame {
 
     private void markattBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_markattBtnActionPerformed
         searchTxt.setText(null);
-        Date date = new Date();
-        workDateDc.setDate(date);
         loadTableforAttendance();
 
     }//GEN-LAST:event_markattBtnActionPerformed
@@ -267,23 +265,46 @@ public class SetAttendance extends javax.swing.JFrame {
         
     }//GEN-LAST:event_updateBtnActionPerformed
     public void loadTableforAttendance() {
-        Map<String, String> records = new HashMap<String, String>();
+        Map<Integer, Attendance> records = new HashMap<Integer, Attendance>();
 
         try {
             Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
-            PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_ATTENDANCE_LIST);
+            PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_ATTENDANCE_FOR_DATE);
+            String workDate = ((JTextField) this.workDateDc.getDateEditor().getUiComponent()).getText();
+            preparedStatement.setString(1, workDate );
             ResultSet resultset = preparedStatement.executeQuery();
             while (resultset.next()) {
-                records.put(resultset.getString("EmployeeID"), resultset.getString("First_Name") + " " + resultset.getString("Last_Name"));
+                Attendance attendance = new Attendance();
+                attendance.setEmployeeID(resultset.getInt("EmpID"));
+                attendance.setFirstName(resultset.getString("First_Name"));
+                attendance.setLastName(resultset.getString("Last_Name"));
+                attendance.setWorkDate(resultset.getString("Work_Date"));
+                attendance.setPresence(resultset.getString("Presence"));
+                records.put(attendance.getEmployeeID(), attendance);
+            }
+            preparedStatement.close();
+            
+            preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_ACTIVE_EMPLOYEES_LIST);
+            resultset = preparedStatement.executeQuery();
+            while (resultset.next()) {
+                if (!records.keySet().contains(resultset.getInt("EmployeeID"))) {
+                    Attendance attendance = new Attendance();
+                    attendance.setEmployeeID(resultset.getInt("EmployeeID"));
+                    attendance.setFirstName(resultset.getString("First_Name"));
+                    attendance.setLastName(resultset.getString("Last_Name"));
+                    attendance.setWorkDate(workDate);
+                    attendance.setPresence("Present");
+                    records.put(attendance.getEmployeeID(), attendance);
+                }
             }
             preparedStatement.close();
             Object[][] tableContent = new Object[records.size()][4];
             int index = 0;
-            for (String key : records.keySet()) {
+            for (Integer key : records.keySet()) {
                 tableContent[index][0] = key;
-                tableContent[index][1] = records.get(key);
-                tableContent[index][2] = ((JTextField) this.workDateDc.getDateEditor().getUiComponent()).getText();
-                tableContent[index][3] = "Present";
+                tableContent[index][1] = records.get(key).getFirstName() + " " + records.get(key).getLastName();
+                tableContent[index][2] = records.get(key).getWorkDate();
+                tableContent[index][3] = records.get(key).getPresence();
                 index++;
             }
             attendanceTable.setModel(new javax.swing.table.DefaultTableModel(
