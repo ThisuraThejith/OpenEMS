@@ -1077,6 +1077,18 @@ public class RegisterEmployees extends javax.swing.JFrame {
 
     private boolean validateFields() {
         if (((JTextField) dobDc.getDateEditor().getUiComponent()).getText().isEmpty() || addressTxt.getText().isEmpty() || fnameTxt.getText().isEmpty() || nicTxt.getText().isEmpty() || lnameTxt.getText().isEmpty()) {
+            if(fnameTxt.getText().isEmpty()){
+                fnameLbl.setText("*This field is necessary");
+            }
+            if(lnameTxt.getText().isEmpty()){
+                lnameLbl.setText("*This field is necessary");
+            }
+            if(addressTxt.getText().isEmpty()){
+                addressLbl.setText("*This field is necessary");
+            }
+            if(nicTxt.getText().isEmpty()){
+                nicLbl.setText("*This field is necessary");
+            }
             if(((JTextField) dobDc.getDateEditor().getUiComponent()).getText().isEmpty()){
                 dobLbl.setText("*This field is necessary");
             }
