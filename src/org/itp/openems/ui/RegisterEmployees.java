@@ -174,6 +174,9 @@ public class RegisterEmployees extends javax.swing.JFrame {
         jLabel8.setText("Last Name");
 
         lnameTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                lnameTxtFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 lnameTxtFocusLost(evt);
             }
@@ -183,6 +186,9 @@ public class RegisterEmployees extends javax.swing.JFrame {
 
         addressTxt.setName("Address"); // NOI18N
         addressTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                addressTxtFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 addressTxtFocusLost(evt);
             }
@@ -197,6 +203,9 @@ public class RegisterEmployees extends javax.swing.JFrame {
 
         nicTxt.setName("NIC"); // NOI18N
         nicTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                nicTxtFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 nicTxtFocusLost(evt);
             }
@@ -208,6 +217,17 @@ public class RegisterEmployees extends javax.swing.JFrame {
         dobDc.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 dobDcFocusLost(evt);
+            }
+        });
+        dobDc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dobDcMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                dobDcMouseEntered(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                dobDcMousePressed(evt);
             }
         });
 
@@ -228,6 +248,12 @@ public class RegisterEmployees extends javax.swing.JFrame {
         radioMarried.setText("Married");
 
         jLabel7.setText("Role");
+
+        roleCmb.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                roleCmbMouseClicked(evt);
+            }
+        });
 
         roleLbl.setForeground(new java.awt.Color(255, 0, 51));
 
@@ -250,20 +276,34 @@ public class RegisterEmployees extends javax.swing.JFrame {
         jLabel11.setText("Home");
 
         mobileTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                mobileTxtFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 mobileTxtFocusLost(evt);
             }
         });
 
         homeTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                homeTxtFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 homeTxtFocusLost(evt);
             }
         });
 
         emailTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                emailTxtFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 emailTxtFocusLost(evt);
+            }
+        });
+        emailTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailTxtActionPerformed(evt);
             }
         });
 
@@ -513,6 +553,12 @@ public class RegisterEmployees extends javax.swing.JFrame {
 
         jLabel15.setText("Search Keyword");
 
+        searchTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                searchTxtFocusGained(evt);
+            }
+        });
+
         searchBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         searchBtn.setText("Search");
         searchBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -752,10 +798,10 @@ public class RegisterEmployees extends javax.swing.JFrame {
     }//GEN-LAST:event_employeeTableMouseClicked
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-        clearLabels();
-        clearText();
-        gender.clearSelection();
-        marital.clearSelection();
+        //clearLabels();
+        //clearText();
+        //gender.clearSelection();
+        //marital.clearSelection();
         if (this.searchTxt.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please enter a search keyword", "Error", JOptionPane.ERROR_MESSAGE);
             return;
@@ -771,6 +817,7 @@ public class RegisterEmployees extends javax.swing.JFrame {
     private void clearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBtnActionPerformed
         clearLabels();
         clearText();
+        searchTxt.setText(null);
         tableload();
         gender.clearSelection();
         marital.clearSelection();
@@ -791,6 +838,9 @@ public class RegisterEmployees extends javax.swing.JFrame {
         else if (!Validation.ValidName(this.fnameTxt.getText())) {
                 fnameLbl.setText("*Invalid First Name");
         }
+        else{
+            fnameLbl.setText(null);
+        }
     }//GEN-LAST:event_fnameTxtFocusLost
 
     private void lnameTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lnameTxtFocusLost
@@ -799,6 +849,9 @@ public class RegisterEmployees extends javax.swing.JFrame {
         }
         else if (!Validation.ValidName(this.lnameTxt.getText())) {
                 lnameLbl.setText("*Invalid Last Name");
+        }
+        else{
+            lnameLbl.setText(null);
         }
     }//GEN-LAST:event_lnameTxtFocusLost
 
@@ -809,6 +862,9 @@ public class RegisterEmployees extends javax.swing.JFrame {
         else if (!Validation.ValidAddress(this.addressTxt.getText())) {
                 addressLbl.setText("*Invalid Address");
         }
+        else{
+            addressLbl.setText(null);
+        }
     }//GEN-LAST:event_addressTxtFocusLost
 
     private void nicTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nicTxtFocusLost
@@ -818,12 +874,18 @@ public class RegisterEmployees extends javax.swing.JFrame {
         else if (!Validation.ValidNIC(this.nicTxt.getText())) {
                 nicLbl.setText("*Invalid NIC No");
         }
+        else{
+            nicLbl.setText(null);
+        }
     }//GEN-LAST:event_nicTxtFocusLost
 
     private void mobileTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mobileTxtFocusLost
         if (!mobileTxt.getText().isEmpty()) {
                 if (!Validation.ValidContactNo(mobileTxt.getText())) {
                     mobileLbl.setText("*Invalid");
+                }
+                else{
+                    mobileLbl.setText(null);
                 }
         }
     }//GEN-LAST:event_mobileTxtFocusLost
@@ -833,6 +895,9 @@ public class RegisterEmployees extends javax.swing.JFrame {
                 if (!Validation.ValidContactNo(homeTxt.getText())) {
                     homeLbl.setText("*Invalid");
                 }
+                else{
+                    homeLbl.setText(null);
+                }
         }
     }//GEN-LAST:event_homeTxtFocusLost
 
@@ -840,6 +905,9 @@ public class RegisterEmployees extends javax.swing.JFrame {
         if (!emailTxt.getText().isEmpty()) {
                 if (!Validation.validateEmail(emailTxt.getText())) {
                     emailLbl.setText("*Invalid");
+                }
+                else{
+                    emailLbl.setText(null);
                 }
         } 
     }//GEN-LAST:event_emailTxtFocusLost
@@ -855,6 +923,125 @@ public class RegisterEmployees extends javax.swing.JFrame {
             dobLbl.setText("*This field is necessary");
         }
     }//GEN-LAST:event_dobDcFocusLost
+
+    private void searchTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchTxtFocusGained
+        fnameLbl.setText(null);
+    }//GEN-LAST:event_searchTxtFocusGained
+
+    private void lnameTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lnameTxtFocusGained
+        if(fnameTxt.getText().isEmpty()){
+            fnameLbl.setText("*This field is necessary");
+        }
+    }//GEN-LAST:event_lnameTxtFocusGained
+
+    private void addressTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_addressTxtFocusGained
+        if(fnameTxt.getText().isEmpty()||lnameTxt.getText().isEmpty()){
+            if(fnameTxt.getText().isEmpty()){
+                fnameLbl.setText("*This field is necessary");
+            }
+            if(lnameTxt.getText().isEmpty()){
+                lnameLbl.setText("*This field is necessary");
+            }
+        }
+    }//GEN-LAST:event_addressTxtFocusGained
+
+    private void nicTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nicTxtFocusGained
+        if(fnameTxt.getText().isEmpty()||lnameTxt.getText().isEmpty()||addressTxt.getText().isEmpty()){
+            if(fnameTxt.getText().isEmpty()){
+                fnameLbl.setText("*This field is necessary");
+            }
+            if(lnameTxt.getText().isEmpty()){
+                lnameLbl.setText("*This field is necessary");
+            }
+            if(addressTxt.getText().isEmpty()){
+                addressLbl.setText("*This field is necessary");
+            }
+        }
+    }//GEN-LAST:event_nicTxtFocusGained
+
+    private void roleCmbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roleCmbMouseClicked
+        if(fnameTxt.getText().isEmpty()||lnameTxt.getText().isEmpty()||addressTxt.getText().isEmpty()||nicTxt.getText().isEmpty()){
+            if(fnameTxt.getText().isEmpty()){
+                fnameLbl.setText("*This field is necessary");
+            }
+            if(lnameTxt.getText().isEmpty()){
+                lnameLbl.setText("*This field is necessary");
+            }
+            if(addressTxt.getText().isEmpty()){
+                addressLbl.setText("*This field is necessary");
+            }
+            if(nicTxt.getText().isEmpty()){
+                nicLbl.setText("*This field is necessary");
+            }
+        }
+    }//GEN-LAST:event_roleCmbMouseClicked
+
+    private void mobileTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mobileTxtFocusGained
+        if(fnameTxt.getText().isEmpty()||lnameTxt.getText().isEmpty()||addressTxt.getText().isEmpty()||nicTxt.getText().isEmpty()){
+            if(fnameTxt.getText().isEmpty()){
+                fnameLbl.setText("*This field is necessary");
+            }
+            if(lnameTxt.getText().isEmpty()){
+                lnameLbl.setText("*This field is necessary");
+            }
+            if(addressTxt.getText().isEmpty()){
+                addressLbl.setText("*This field is necessary");
+            }
+            if(nicTxt.getText().isEmpty()){
+                nicLbl.setText("*This field is necessary");
+            }
+        }
+    }//GEN-LAST:event_mobileTxtFocusGained
+
+    private void homeTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_homeTxtFocusGained
+        if(fnameTxt.getText().isEmpty()||lnameTxt.getText().isEmpty()||addressTxt.getText().isEmpty()||nicTxt.getText().isEmpty()){
+            if(fnameTxt.getText().isEmpty()){
+                fnameLbl.setText("*This field is necessary");
+            }
+            if(lnameTxt.getText().isEmpty()){
+                lnameLbl.setText("*This field is necessary");
+            }
+            if(addressTxt.getText().isEmpty()){
+                addressLbl.setText("*This field is necessary");
+            }
+            if(nicTxt.getText().isEmpty()){
+                nicLbl.setText("*This field is necessary");
+            }
+        }
+    }//GEN-LAST:event_homeTxtFocusGained
+
+    private void emailTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailTxtActionPerformed
+
+    private void emailTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailTxtFocusGained
+        if(fnameTxt.getText().isEmpty()||lnameTxt.getText().isEmpty()||addressTxt.getText().isEmpty()||nicTxt.getText().isEmpty()){
+            if(fnameTxt.getText().isEmpty()){
+                fnameLbl.setText("*This field is necessary");
+            }
+            if(lnameTxt.getText().isEmpty()){
+                lnameLbl.setText("*This field is necessary");
+            }
+            if(addressTxt.getText().isEmpty()){
+                addressLbl.setText("*This field is necessary");
+            }
+            if(nicTxt.getText().isEmpty()){
+                nicLbl.setText("*This field is necessary");
+            }
+        }
+    }//GEN-LAST:event_emailTxtFocusGained
+
+    private void dobDcMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dobDcMouseClicked
+  
+    }//GEN-LAST:event_dobDcMouseClicked
+
+    private void dobDcMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dobDcMouseEntered
+
+    }//GEN-LAST:event_dobDcMouseEntered
+
+    private void dobDcMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dobDcMousePressed
+   
+    }//GEN-LAST:event_dobDcMousePressed
 
     private void clearLabels() {
         fnameLbl.setText(null);
@@ -890,6 +1077,9 @@ public class RegisterEmployees extends javax.swing.JFrame {
 
     private boolean validateFields() {
         if (((JTextField) dobDc.getDateEditor().getUiComponent()).getText().isEmpty() || addressTxt.getText().isEmpty() || fnameTxt.getText().isEmpty() || nicTxt.getText().isEmpty() || lnameTxt.getText().isEmpty()) {
+            if(((JTextField) dobDc.getDateEditor().getUiComponent()).getText().isEmpty()){
+                dobLbl.setText("*This field is necessary");
+            }
             JOptionPane.showMessageDialog(null, "Necessary fields cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         } else {

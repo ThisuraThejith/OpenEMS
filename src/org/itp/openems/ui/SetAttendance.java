@@ -201,7 +201,7 @@ public class SetAttendance extends javax.swing.JFrame {
         int rowCount = attendanceTable.getRowCount();
 
         if (((JTextField) workDateDc.getDateEditor().getUiComponent()).getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Work_Date cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Work Date cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
 
             try {

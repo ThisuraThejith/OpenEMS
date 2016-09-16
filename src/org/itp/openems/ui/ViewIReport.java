@@ -58,7 +58,7 @@ public class ViewIReport extends JFrame{
             catch(Exception e){
             e.printStackTrace();
             }
-            setBounds(10, 10, 600, 500);
+            setBounds(10, 10, 1200, 700);
             setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
     
@@ -70,10 +70,12 @@ public class ViewIReport extends JFrame{
         ViewIReport viewer = new ViewIReport("./reports/salaryreport.jasper",param);
         viewer.setVisible(true);
     }
-//    public static void RentalAgreement(Integer RentID){
-//        HashMap param = new HashMap();
-//        param.put("RentID", RentID);
-//        ViewIReport viewer = new ViewIReport("./reports/RentAgreementReport.jasper",param);
-//        viewer.setVisible(true);
-//    }
+    
+    public static void EmpReport(int EmpID){
+        HashMap param = new HashMap();
+        param.put("EmployeeID", EmpID);
+        ViewIReport viewer = new ViewIReport("./reports/employeeReport.jasper",param);
+        viewer.setVisible(true);
+    }
+
 }

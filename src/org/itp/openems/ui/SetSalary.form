@@ -217,22 +217,26 @@
     </Component>
     <Component class="javax.swing.JTextField" name="basicSalaryTxt">
       <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="basicSalaryTxtFocusGained"/>
         <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="basicSalaryTxtFocusLost"/>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="basicSalaryTxtMouseClicked"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="epfTxt">
       <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="epfTxtFocusGained"/>
         <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="epfTxtFocusLost"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="etfTxt">
       <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="etfTxtFocusGained"/>
         <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="etfTxtFocusLost"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="nopayTxt">
       <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="nopayTxtFocusGained"/>
         <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="nopayTxtFocusLost"/>
       </Events>
     </Component>

@@ -77,9 +77,27 @@ public class RoleManagement extends javax.swing.JFrame {
 
         jLabel2.setText("Role Description");
 
+        roleName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                roleNameFocusLost(evt);
+            }
+        });
+
         roleDesc.setColumns(20);
         roleDesc.setRows(5);
+        roleDesc.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                roleDescFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                roleDescFocusLost(evt);
+            }
+        });
         jScrollPane1.setViewportView(roleDesc);
+
+        roleNameLbl.setForeground(new java.awt.Color(255, 0, 51));
+
+        descLbl.setForeground(new java.awt.Color(255, 0, 51));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/log.png"))); // NOI18N
 
@@ -175,29 +193,29 @@ public class RoleManagement extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 916, Short.MAX_VALUE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addGap(57, 57, 57)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addGap(57, 57, 57)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(descLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(roleNameLbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(roleName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)))
-                                .addGap(82, 82, 82)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(deleteBtn)))
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(descLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(roleNameLbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(roleName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)))
+                        .addGap(82, 82, 82)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(deleteBtn)))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(304, 304, 304))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,8 +254,8 @@ public class RoleManagement extends javax.swing.JFrame {
     }//GEN-LAST:event_BackBtnActionPerformed
 
     private void SaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveBtnActionPerformed
-        roleNameLbl.setText(null);
-        descLbl.setText(null);
+        //roleNameLbl.setText(null);
+        //descLbl.setText(null);
         if (validateFields()) {
             try {
                 Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
@@ -368,6 +386,33 @@ public class RoleManagement extends javax.swing.JFrame {
         updateBtn.setEnabled(false);
         deleteBtn.setEnabled(false);
     }//GEN-LAST:event_clearBtnActionPerformed
+
+    private void roleDescFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_roleDescFocusGained
+        if(roleName.getText().isEmpty()){
+            roleNameLbl.setText("*Necessary field");
+        }
+    }//GEN-LAST:event_roleDescFocusGained
+
+    private void roleNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_roleNameFocusLost
+        if (!Validation.ValidName(this.roleName.getText())) {
+                    roleNameLbl.setText("*Invalid Role name");
+            }
+        if (this.roleName.getText().isEmpty()) {
+                    roleNameLbl.setText("*Necessary field");
+            }
+        else{
+            roleNameLbl.setText(null);
+        }
+    }//GEN-LAST:event_roleNameFocusLost
+
+    private void roleDescFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_roleDescFocusLost
+        if (this.roleDesc.getText().isEmpty()) {
+                    descLbl.setText("*Necessary field");
+            }
+        else{
+            descLbl.setText(null);
+        }
+    }//GEN-LAST:event_roleDescFocusLost
     
     
     private boolean validateFields() {

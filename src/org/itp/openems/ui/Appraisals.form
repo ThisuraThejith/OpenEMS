@@ -121,6 +121,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="bonusTxt">
+      <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="bonusTxtFocusLost"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="reviewsTxt">
     </Component>

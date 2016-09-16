@@ -97,6 +97,8 @@ public class ViewSalary extends javax.swing.JFrame {
             }
         });
 
+        nicNoLbl.setForeground(new java.awt.Color(255, 0, 51));
+
         demoBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         demoBtn.setText("Demo");
         demoBtn.addActionListener(new java.awt.event.ActionListener() {

@@ -122,7 +122,7 @@ public class MainInterface extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/log.png"))); // NOI18N
 
         jButton2.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        jButton2.setText("View Attendance");
+        jButton2.setText("Employee Reports");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -273,8 +273,8 @@ public class MainInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_calcSalBtnActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ViewAttendance vt1 = new ViewAttendance();
-        vt1.setVisible(true);
+        EmployeeReports em=new EmployeeReports();
+        em.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

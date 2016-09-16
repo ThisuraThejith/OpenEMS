@@ -115,6 +115,12 @@ public class Appraisals extends javax.swing.JFrame {
 
         jLabel5.setText("Reviews");
 
+        bonusTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                bonusTxtFocusLost(evt);
+            }
+        });
+
         nicTxt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 nicTxtMouseClicked(evt);
@@ -366,7 +372,7 @@ public class Appraisals extends javax.swing.JFrame {
                         count++;
                     }
                     if (count == 0) {
-                        JOptionPane.showMessageDialog(null, "An employee with this NIC No is not present", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "An employee with this NIC No is not registered", "Error", JOptionPane.ERROR_MESSAGE);
                         return;
                     }
                     resultset.close();
@@ -383,6 +389,7 @@ public class Appraisals extends javax.swing.JFrame {
                     }
                     if (count1 == 0) {
                         JOptionPane.showMessageDialog(null, "An appraisal for this employee is not present", "Error", JOptionPane.ERROR_MESSAGE);
+                        updateBtn.setEnabled(false);
                         return;
                     }
                     resultset.close();
@@ -404,7 +411,7 @@ public class Appraisals extends javax.swing.JFrame {
         }
 
         if (bonusTxt.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please press the search button or select a record to load appraisal details", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please insert the bonus amount for the employee", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -461,6 +468,7 @@ public class Appraisals extends javax.swing.JFrame {
                 tableload();
                 nicTxt.setText(null);
                 clear();
+                insertBtn.setEnabled(true);
                 updateBtn.setEnabled(false);
             } catch (SQLException e) {
                 System.out.println(e);
@@ -534,10 +542,17 @@ public class Appraisals extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "You havent inserted the bonus of this employee", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
+                else if(!Validation.ValidDigits(this.bonusTxt.getText())){
+                    bonusLbl.setText("*Invalid bonus");
+                    JOptionPane.showMessageDialog(null, "The bonus is invalid", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
                 else if (Double.parseDouble(this.bonusTxt.getText()) < 0) {
+                    bonusLbl.setText("*Bonus cannot be negative");
                     JOptionPane.showMessageDialog(null, "Bonus cannot be negative", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
+                
                 connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
                 preparedStatement = connect.prepareStatement(Queries.EMS.Insert.APPRAISALS);
                 preparedStatement.setInt(1, employeeID);
@@ -578,6 +593,8 @@ public class Appraisals extends javax.swing.JFrame {
         nicTxt.setText(null);
         reviewsLbl.setText(null);
         bonusLbl.setText(null);
+        searchTxt.setText(null);
+        tableload();
     }//GEN-LAST:event_clearBtnActionPerformed
 
     private void nicTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nicTxtMouseClicked
@@ -598,6 +615,22 @@ public class Appraisals extends javax.swing.JFrame {
             System.err.println(e.getMessage());
         }
     }//GEN-LAST:event_searchkBtnActionPerformed
+
+    private void bonusTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_bonusTxtFocusLost
+        if (this.bonusTxt.getText().isEmpty()){
+                bonusLbl.setText("*Insert the bonus amount");
+        }
+        else if(!Validation.ValidDigits(this.bonusTxt.getText())){
+                bonusLbl.setText("*Invalid bonus");
+        }
+        else if (Double.parseDouble(this.bonusTxt.getText()) < 0) {
+                bonusLbl.setText("*Bonus cannot be negative");
+        }
+        else{
+                bonusLbl.setText(null);
+        }
+        
+    }//GEN-LAST:event_bonusTxtFocusLost
     private void clear() {
         reviewsTxt.setText(null);
         bonusTxt.setText(null);
