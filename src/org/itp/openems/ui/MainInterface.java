@@ -57,6 +57,7 @@ public class MainInterface extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Employee Management System");
+        setExtendedState(5);
         setSize(new java.awt.Dimension(1366, 768));
 
         jButton1.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N

@@ -119,14 +119,12 @@ public class EmployeeReports extends javax.swing.JFrame {
     private void generateRepBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateRepBtnActionPerformed
         if (nicNoTxt.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please enter the NIC No", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        else {
+        } else {
             try {
                 if (!Validation.ValidNIC(this.nicNoTxt.getText())) {
                     nicNoLbl.setText("*Invalid NIC No");
                     JOptionPane.showMessageDialog(null, "The NIC No is invalid", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-                else if(Validation.ValidNIC(this.nicNoTxt.getText()))  {
+                } else if (Validation.ValidNIC(this.nicNoTxt.getText())) {
                     int employeeID = 0;
                     Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
                     PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_EMPLOYEE_ID_BY_NIC);
@@ -155,13 +153,11 @@ public class EmployeeReports extends javax.swing.JFrame {
     }//GEN-LAST:event_generateRepBtnActionPerformed
 
     private void nicNoTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nicNoTxtFocusLost
-        if(this.nicNoTxt.getText().isEmpty()){
+        if (this.nicNoTxt.getText().isEmpty()) {
             nicNoLbl.setText("*Insert the NIC No");
-        }
-        else if(!Validation.ValidNIC(this.nicNoTxt.getText())){
+        } else if (!Validation.ValidNIC(this.nicNoTxt.getText())) {
             nicNoLbl.setText("*Invalid NIC No");
-        }
-        else{
+        } else {
             nicNoLbl.setText(null);
         }
     }//GEN-LAST:event_nicNoTxtFocusLost
