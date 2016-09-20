@@ -10,7 +10,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import org.itp.commons.DBConnect;
 import org.itp.commons.Queries;
-import org.itp.openems.ui.MainInterface;
+import org.itp.customer.management.CleanManagementSystem;
+import org.itp.customer.management.Login;
+import org.itp.openems.ui.EmployeeMainInterface;
 
 
 /**
@@ -23,8 +25,8 @@ public class EmployeeManagementSystem {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        MainInterface m1=new MainInterface();
-        m1.setVisible(true);
+        Login l1=new Login();
+        l1.setVisible(true);
             
         // TODO code application logic here
 //        try{

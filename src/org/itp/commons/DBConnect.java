@@ -36,7 +36,7 @@ public class DBConnect {
     private void setConnection() throws SQLException {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/openems?zeroDateTimeBehavior=convertToNull" + "&user=" + this.user + "&password=" + this.password);
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/cleanmaster?zeroDateTimeBehavior=convertToNull" + "&user=" + this.user + "&password=" + this.password);
         } catch (ClassNotFoundException e) {
             System.out.println(e);
         }
