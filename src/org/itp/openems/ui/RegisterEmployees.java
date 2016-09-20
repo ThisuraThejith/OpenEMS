@@ -147,13 +147,15 @@ public class RegisterEmployees extends javax.swing.JFrame {
         searchBtn = new javax.swing.JButton();
         updateBtn = new javax.swing.JButton();
         clearBtn = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Register Employees");
         setExtendedState(5);
         setPreferredSize(new java.awt.Dimension(1366, 768));
         setSize(new java.awt.Dimension(1366, 768));
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Employee Details"));
 
@@ -490,12 +492,10 @@ public class RegisterEmployees extends javax.swing.JFrame {
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(10, 80, 548, 620);
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/log.png"))); // NOI18N
-        getContentPane().add(jLabel13);
-        jLabel13.setBounds(290, 10, 520, 72);
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 520, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Employee Details"));
         jPanel2.setEnabled(false);
@@ -522,10 +522,10 @@ public class RegisterEmployees extends javax.swing.JFrame {
         jPanel2.add(jScrollPane1);
         jScrollPane1.setBounds(10, 30, 720, 264);
 
-        getContentPane().add(jPanel2);
-        jPanel2.setBounds(570, 90, 740, 310);
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 90, 740, 310));
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         demoBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         demoBtn.setText("Demo");
@@ -534,6 +534,7 @@ public class RegisterEmployees extends javax.swing.JFrame {
                 demoBtnActionPerformed(evt);
             }
         });
+        jPanel4.add(demoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 113, 70, 32));
 
         registerBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         registerBtn.setText("Register");
@@ -542,6 +543,7 @@ public class RegisterEmployees extends javax.swing.JFrame {
                 registerBtnActionPerformed(evt);
             }
         });
+        jPanel4.add(registerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 113, 90, 32));
 
         backBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         backBtn.setText("Back");
@@ -550,14 +552,17 @@ public class RegisterEmployees extends javax.swing.JFrame {
                 backBtnActionPerformed(evt);
             }
         });
+        jPanel4.add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(378, 113, 80, 32));
 
         jLabel15.setText("Search Keyword");
+        jPanel4.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
 
         searchTxt.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 searchTxtFocusGained(evt);
             }
         });
+        jPanel4.add(searchTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 110, 30));
 
         searchBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         searchBtn.setText("Search");
@@ -566,6 +571,7 @@ public class RegisterEmployees extends javax.swing.JFrame {
                 searchBtnActionPerformed(evt);
             }
         });
+        jPanel4.add(searchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, -1, 30));
 
         updateBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         updateBtn.setText("Update");
@@ -574,6 +580,7 @@ public class RegisterEmployees extends javax.swing.JFrame {
                 updateBtnActionPerformed(evt);
             }
         });
+        jPanel4.add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(224, 113, -1, 32));
 
         clearBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         clearBtn.setText("Clear");
@@ -582,52 +589,15 @@ public class RegisterEmployees extends javax.swing.JFrame {
                 clearBtnActionPerformed(evt);
             }
         });
+        jPanel4.add(clearBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(305, 113, -1, 32));
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(searchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(searchBtn))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(demoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22)
-                        .addComponent(registerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(updateBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(clearBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(80, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(searchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(demoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(registerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(updateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(clearBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53))
-        );
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b1.jpg"))); // NOI18N
+        jPanel4.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 470, 180));
 
-        getContentPane().add(jPanel4);
-        jPanel4.setBounds(650, 410, 540, 200);
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 410, 490, 200));
+
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
+        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1320, 730));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1221,6 +1191,8 @@ public class RegisterEmployees extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

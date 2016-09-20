@@ -65,9 +65,9 @@ public class ViewSalary extends javax.swing.JFrame {
 
         jLabel2.setText("Basic Salary");
 
-        jLabel3.setText("EPF(Percentage%)");
+        jLabel3.setText("EPF");
 
-        jLabel4.setText("ETF(Percentage%)");
+        jLabel4.setText("ETF");
 
         jLabel5.setText("Bonus");
 
@@ -247,7 +247,7 @@ public class ViewSalary extends javax.swing.JFrame {
         try {
             Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
             PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_EMPLOYEE_ID_BY_NIC);
-            preparedStatement.setString(1, this.nicNoTxt.getText());
+            preparedStatement.setString(1,this.nicNoTxt.getText());
             ResultSet resultset = preparedStatement.executeQuery();
             int count = 0;
             while (resultset.next()) {

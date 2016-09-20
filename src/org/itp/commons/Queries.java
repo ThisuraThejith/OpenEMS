@@ -44,7 +44,7 @@ public class Queries {
             public static String SEARCH_ATTENDANCE_SEPERATE_KEY="select EmpID,First_Name,Last_Name,Work_Date,Presence from Employee e,Attendance a where e.EmployeeID=a.EmpID and (EmpID like ? or First_Name like ? or Last_Name like ?)";
             public static String GET_ATTENDANCE_FOR_DATE = "select EmpID,First_Name,Last_Name,Work_Date,Presence from Employee e,Attendance a where e.EmployeeID=a.EmpID and Work_Date=?";
             public static String GET_CSTATUS_BY_EMPLOYEE_ID="Select Current_Status from Employee where EmployeeID=?";
-            public static String SEARCH_APPRAISALS="Select EmployeeID,First_Name,Last_Name,NIC_No,AppraisalID,Bonus,Reviews from Employee e,Appraisals a where a.EmpID=e.EmployeeID AND (First_Name like ? or Last_Name like ? or NIC_No like ? or Bonus like ? or Reviews like ?)";
+            public static String SEARCH_APPRAISALS="Select EmployeeID,First_Name,Last_Name,NIC_No,AppraisalID,Bonus,Reviews from Employee e,Appraisals a where a.EmpID=e.EmployeeID AND (EmployeeID like ? or First_Name like ? or Last_Name like ? or NIC_No like ? or Bonus like ? or Reviews like ?)";
             public static String GET_ROLE_TABLE="Select RoleID,RoleName,Description from Role where role_status='Active'";
         }
         public static class Update{
@@ -52,7 +52,8 @@ public class Queries {
             public static String APPRAISAL="Update Appraisals Set Bonus=?,Reviews=? Where EmpID=?";
             public static String SALARY="Update Salary Set BasicSalary=?,EPF=?,ETF=?,No_of_Leaves_for_no_pay=? Where RoleID=?";
             public static String ROLE="Update Role Set RoleName=?,Description=? Where RoleID=?";
-            public static String ATTENDANCE="Update Attendance set Work_Date=?,Presence=? where EmpID=?";
+            public static String ATTENDANCE_UPDATE="Update Attendance set Presence=? where EmpID=? and Work_Date=?";
+            public static String ATTENDANCE="Update Attendance set Presence=? Where Work_Date=?";
             public static String ROLE_DELETE="Update Role Set role_status='Deactive' Where RoleID=?";
         }
 

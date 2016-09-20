@@ -52,7 +52,7 @@ public class Appraisals extends javax.swing.JFrame {
             Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
             
             PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.SEARCH_APPRAISALS);
-            for (int i = 1; i < 6; i++) {
+            for (int i = 1; i < 7; i++) {
                 preparedStatement.setString(i, "%" + keyword + "%");
             }
             ResultSet resultset = preparedStatement.executeQuery();
@@ -82,22 +82,13 @@ public class Appraisals extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        bonusTxt = new javax.swing.JTextField();
-        reviewsTxt = new javax.swing.JTextField();
-        nicTxt = new javax.swing.JTextField();
-        searchBtn = new javax.swing.JButton();
-        nicLbl = new javax.swing.JLabel();
-        bonusLbl = new javax.swing.JLabel();
-        reviewsLbl = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         demoBtn = new javax.swing.JButton();
         insertBtn = new javax.swing.JButton();
         updateBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
         clearBtn = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         appraisalTable = new javax.swing.JTable();
@@ -105,43 +96,25 @@ public class Appraisals extends javax.swing.JFrame {
         searchTxt = new javax.swing.JTextField();
         searchkBtn = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        nicLbl = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        nicTxt = new javax.swing.JTextField();
+        searchBtn = new javax.swing.JButton();
+        bonusLbl = new javax.swing.JLabel();
+        bonusTxt = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        reviewsLbl = new javax.swing.JLabel();
+        reviewsTxt = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Appraisals");
-
-        jLabel1.setText("NIC No");
-
-        jLabel3.setText("Bonus");
-
-        jLabel5.setText("Reviews");
-
-        bonusTxt.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                bonusTxtFocusLost(evt);
-            }
-        });
-
-        nicTxt.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                nicTxtMouseClicked(evt);
-            }
-        });
-
-        searchBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        searchBtn.setText("Search");
-        searchBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchBtnActionPerformed(evt);
-            }
-        });
-
-        nicLbl.setForeground(new java.awt.Color(255, 0, 51));
-
-        bonusLbl.setForeground(new java.awt.Color(255, 0, 51));
-
-        reviewsLbl.setForeground(new java.awt.Color(255, 0, 51));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         demoBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         demoBtn.setText("Demo");
@@ -150,6 +123,7 @@ public class Appraisals extends javax.swing.JFrame {
                 demoBtnActionPerformed(evt);
             }
         });
+        jPanel1.add(demoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 22, -1, 34));
 
         insertBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         insertBtn.setText("Insert");
@@ -158,6 +132,7 @@ public class Appraisals extends javax.swing.JFrame {
                 insertBtnActionPerformed(evt);
             }
         });
+        jPanel1.add(insertBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 22, -1, 34));
 
         updateBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         updateBtn.setText("Update");
@@ -166,6 +141,7 @@ public class Appraisals extends javax.swing.JFrame {
                 updateBtnActionPerformed(evt);
             }
         });
+        jPanel1.add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(205, 22, -1, 34));
 
         backBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         backBtn.setText("Back");
@@ -174,6 +150,7 @@ public class Appraisals extends javax.swing.JFrame {
                 backBtnActionPerformed(evt);
             }
         });
+        jPanel1.add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(359, 22, -1, 34));
 
         clearBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         clearBtn.setText("Clear");
@@ -182,36 +159,12 @@ public class Appraisals extends javax.swing.JFrame {
                 clearBtnActionPerformed(evt);
             }
         });
+        jPanel1.add(clearBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(286, 22, -1, 34));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(demoBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(insertBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(updateBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(clearBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(backBtn)
-                .addGap(51, 51, 51))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(updateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(insertBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(demoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(clearBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b1.jpg"))); // NOI18N
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 440, 60));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 460, 80));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Appraisal details"));
 
@@ -265,7 +218,7 @@ public class Appraisals extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(searchkBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -273,73 +226,60 @@ public class Appraisals extends javax.swing.JFrame {
                 .addGap(16, 16, 16))
         );
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/log.png"))); // NOI18N
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, -1, 300));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(41, 41, 41)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nicLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(nicTxt)
-                                            .addComponent(bonusTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                                            .addComponent(reviewsTxt)
-                                            .addComponent(bonusLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(searchBtn))
-                                    .addComponent(reviewsLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(266, 266, 266)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(nicTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nicLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(bonusTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bonusLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(reviewsTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(reviewsLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/log.png"))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(266, 11, 475, 78));
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Appraisal"));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        nicLbl.setForeground(new java.awt.Color(255, 0, 51));
+        jPanel3.add(nicLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 150, 20));
+
+        jLabel1.setText("NIC No");
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
+
+        nicTxt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nicTxtMouseClicked(evt);
+            }
+        });
+        jPanel3.add(nicTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 157, -1));
+
+        searchBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        searchBtn.setText("Search");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(searchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, -1, 31));
+
+        bonusLbl.setForeground(new java.awt.Color(255, 0, 51));
+        jPanel3.add(bonusLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 157, 20));
+
+        bonusTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                bonusTxtFocusLost(evt);
+            }
+        });
+        jPanel3.add(bonusTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 157, -1));
+
+        jLabel3.setText("Bonus");
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
+
+        reviewsLbl.setForeground(new java.awt.Color(255, 0, 51));
+        jPanel3.add(reviewsLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 150, 20));
+        jPanel3.add(reviewsTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 157, -1));
+
+        jLabel5.setText("Reviews");
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, 20));
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 350, 270));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 930, 510));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -351,15 +291,21 @@ public class Appraisals extends javax.swing.JFrame {
     int appraisalID = 0;
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         updateBtn.setEnabled(true);
+        insertBtn.setEnabled(false);
         nicLbl.setText(null);
         clear();
         if (nicTxt.getText().isEmpty()) {
+            nicLbl.setText("*Enter the NIC No");
             JOptionPane.showMessageDialog(null, "Please enter the NIC No", "Error", JOptionPane.ERROR_MESSAGE);
+            updateBtn.setEnabled(false);
+            insertBtn.setEnabled(true);
         } else {
             try {
                 if (!Validation.ValidNIC(this.nicTxt.getText())) {
                     nicLbl.setText("*Invalid NIC No");
                     JOptionPane.showMessageDialog(null, "The NIC No is invalid", "Error", JOptionPane.ERROR_MESSAGE);
+                    updateBtn.setEnabled(false);
+                    insertBtn.setEnabled(true);
                 } else if (Validation.ValidNIC(this.nicTxt.getText())) {
                     clear();
                     Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
@@ -373,6 +319,8 @@ public class Appraisals extends javax.swing.JFrame {
                     }
                     if (count == 0) {
                         JOptionPane.showMessageDialog(null, "An employee with this NIC No is not registered", "Error", JOptionPane.ERROR_MESSAGE);
+                        updateBtn.setEnabled(false);
+                        insertBtn.setEnabled(true);
                         return;
                     }
                     resultset.close();
@@ -686,8 +634,11 @@ public class Appraisals extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel nicLbl;
     private javax.swing.JTextField nicTxt;

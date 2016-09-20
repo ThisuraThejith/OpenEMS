@@ -235,7 +235,7 @@ public class SetAttendance extends javax.swing.JFrame {
 
                 }
                 JOptionPane.showMessageDialog(null, "Added Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-                this.dispose();
+                //this.dispose();
 
             } catch (Exception e) {
                 System.out.println(e);
@@ -244,8 +244,13 @@ public class SetAttendance extends javax.swing.JFrame {
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void markattBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_markattBtnActionPerformed
-        searchTxt.setText(null);
-        loadTableforAttendance();
+        if(((JTextField) this.workDateDc.getDateEditor().getUiComponent()).getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please select a date to mark attendance", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            searchTxt.setText(null);
+            loadTableforAttendance();
+        }
 
     }//GEN-LAST:event_markattBtnActionPerformed
 
@@ -262,7 +267,35 @@ public class SetAttendance extends javax.swing.JFrame {
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
-        
+        int rowCount = attendanceTable.getRowCount();
+
+        if (((JTextField) workDateDc.getDateEditor().getUiComponent()).getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Work Date cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+
+            try {
+                
+                for (int row = 0; row < rowCount; row++) {
+
+                    Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+                    PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Update.ATTENDANCE_UPDATE);
+                    
+                    preparedStatement.setString(1, attendanceTable.getValueAt(row, 3).toString());
+                    preparedStatement.setString(2, attendanceTable.getValueAt(row, 0).toString());
+                    preparedStatement.setString(3, ((JTextField) this.workDateDc.getDateEditor().getUiComponent()).getText());
+
+                    int affectedRows = preparedStatement.executeUpdate();
+                    System.out.println("affected rows=" + affectedRows);
+                    preparedStatement.close();
+
+                }
+                JOptionPane.showMessageDialog(null, "Updated Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                //this.dispose();
+
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
     }//GEN-LAST:event_updateBtnActionPerformed
     public void loadTableforAttendance() {
         Map<Integer, Attendance> records = new HashMap<Integer, Attendance>();

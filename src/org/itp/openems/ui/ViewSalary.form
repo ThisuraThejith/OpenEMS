@@ -133,12 +133,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="EPF(Percentage%)"/>
+        <Property name="text" type="java.lang.String" value="EPF"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="ETF(Percentage%)"/>
+        <Property name="text" type="java.lang.String" value="ETF"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">

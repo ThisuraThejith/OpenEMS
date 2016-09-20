@@ -21,7 +21,7 @@ import net.sf.jasperreports.view.JRViewer;
 
 /**
  *
- * @author Sachindra
+ * @author THISURA THEJITH
  */
 public class ViewIReport extends JFrame{
     
