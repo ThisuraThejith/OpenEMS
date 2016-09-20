@@ -131,8 +131,8 @@ public class Change_Password extends javax.swing.JFrame {
         Change_Password_lbl5.setText("New Password           :");
         getContentPane().add(Change_Password_lbl5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 260, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/4.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 470, 400));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 400));
 
         pack();
         setLocationRelativeTo(null);

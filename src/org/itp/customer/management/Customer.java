@@ -111,7 +111,7 @@ public class Customer extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(1500, 735));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/log.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/log.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 0, 980, 50));
 
         jLabel2.setForeground(new java.awt.Color(0, 102, 102));
@@ -516,7 +516,7 @@ public class Customer extends javax.swing.JFrame {
         jLabel16.setText("Search Keyword");
         jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
-        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/b1.jpg"))); // NOI18N
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b1.jpg"))); // NOI18N
         jPanel3.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 170));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 520, 500, 170));
@@ -532,7 +532,7 @@ public class Customer extends javax.swing.JFrame {
         getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 10, -1, -1));
         getContentPane().add(jID, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 50, 20));
 
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/b2.jpg"))); // NOI18N
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
         getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1470, 680));
 
         pack();

@@ -6,7 +6,11 @@
 package org.itp.customer.management;
 
 import com.mysql.jdbc.Connection;
+import org.itp.finance.management.MainFinance;
 import org.itp.openems.ui.EmployeeMainInterface;
+import org.itp.sales.handling.Sales_Main;
+import org.itp.service.scheduling.jobschedulemain;
+import org.itp.transport.handling.transportmain;
 
 /**
  *
@@ -62,6 +66,11 @@ public class CleanManagementSystem extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(0, 153, 153));
         jButton3.setText("Financial Management System");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(355, 176, 270, -1));
 
         jButton4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -108,6 +117,11 @@ public class CleanManagementSystem extends javax.swing.JFrame {
         jButton9.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton9.setForeground(new java.awt.Color(0, 153, 153));
         jButton9.setText("Transport Management System");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 261, 244, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/log.png"))); // NOI18N
@@ -131,10 +145,10 @@ public class CleanManagementSystem extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-//        schedulemain sh1=new schedulemain();
-//        this.setVisible(false);
-//        this.dispose();
+         
+        jobschedulemain sh1=new jobschedulemain();
+        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
@@ -145,8 +159,9 @@ public class CleanManagementSystem extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-         this.setVisible(false);
-//                    new Sales_Main().setVisible(true);
+         Sales_Main sam=new Sales_Main();
+         sam.setVisible(true);
+         this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -157,7 +172,20 @@ public class CleanManagementSystem extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         EmployeeMainInterface em=new EmployeeMainInterface();
         em.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        MainFinance mf=new MainFinance();
+        mf.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        transportmain tm=new transportmain();
+        tm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments

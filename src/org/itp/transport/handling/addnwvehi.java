@@ -286,7 +286,7 @@ public class addnwvehi extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        main m1=new main();
+        transportmain m1=new transportmain();
         m1 . setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed

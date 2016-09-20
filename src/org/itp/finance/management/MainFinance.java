@@ -1,6 +1,7 @@
 package org.itp.finance.management;
 
 
+import org.itp.customer.management.CleanManagementSystem;
 import org.itp.finance.management.IssuePayment;
 import org.itp.finance.management.Csr;
 import org.itp.finance.management.CustomerBills;
@@ -76,6 +77,11 @@ public class MainFinance extends javax.swing.JFrame {
         jLabel2.setText("Finance Management.");
 
         jButton5.setText("HOME");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -135,6 +141,12 @@ public class MainFinance extends javax.swing.JFrame {
         csr.setVisible(true);
         this.dispose();         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        CleanManagementSystem cm1=new CleanManagementSystem();
+        setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
