@@ -68,7 +68,7 @@ public class Validation {
         
         for (int i = 0; i < text.length(); i++) {  
             char ch = text.charAt(i);
-            if (Character.isLetter(ch) || Character.isDigit(ch)|| Character.isWhitespace(ch) || ch ==',' || ch =='.' || ch =='/' || ch ==';' || ch ==':' || ch =='#' || ch =='\'') {                
+            if (Character.isLetter(ch) || Character.isDigit(ch)|| Character.isWhitespace(ch) || ch ==',' || ch =='.' || ch =='/' || ch ==';' || ch ==':' || ch =='#' || ch=='-' || ch =='\'') {                
                 valid=true;                
             }
             else

@@ -257,26 +257,26 @@ public class Appraisals extends javax.swing.JFrame {
         jPanel3.add(searchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, -1, 31));
 
         bonusLbl.setForeground(new java.awt.Color(255, 0, 51));
-        jPanel3.add(bonusLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 157, 20));
+        jPanel3.add(bonusLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 157, 20));
 
         bonusTxt.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 bonusTxtFocusLost(evt);
             }
         });
-        jPanel3.add(bonusTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 157, -1));
+        jPanel3.add(bonusTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 157, -1));
 
         jLabel3.setText("Bonus");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
 
         reviewsLbl.setForeground(new java.awt.Color(255, 0, 51));
-        jPanel3.add(reviewsLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 150, 20));
-        jPanel3.add(reviewsTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 157, -1));
+        jPanel3.add(reviewsLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 150, 20));
+        jPanel3.add(reviewsTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 157, -1));
 
         jLabel5.setText("Reviews");
-        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, 20));
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, 20));
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 350, 270));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 350, 250));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 930, 510));
