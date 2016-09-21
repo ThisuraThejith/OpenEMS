@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.itp.openems.ui.EmployeeMainInterface;
 /**
  *
  * @author CHATHURAAKSHA
@@ -198,6 +199,7 @@ PreparedStatement pst=null;
                 {
                     this.setVisible(false);
                     new CleanManagementSystem().setVisible(true);
+                    
                 }
         else if (n.equals("MANAGER") && (p.equals("mgr@123")))
                 {

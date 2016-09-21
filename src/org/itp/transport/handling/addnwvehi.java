@@ -5,6 +5,7 @@
 package org.itp.transport.handling;
 
 import com.mysql.jdbc.PreparedStatement;
+import com.sun.xml.internal.bind.v2.model.core.ID;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -39,6 +40,8 @@ public class addnwvehi extends javax.swing.JFrame {
         setSize(1500, 1000);
         
         tableload();
+        
+       // fillComco();
     }
 
     
@@ -81,14 +84,17 @@ public class addnwvehi extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         num1 = new javax.swing.JTextField();
+        jButton5 = new javax.swing.JButton();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe Script", 1, 36)); // NOI18N
         jLabel1.setText("Add New Vehicle");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(410, 10, 304, 44);
+        jLabel1.setBounds(410, 10, 340, 59);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Brand");
@@ -148,7 +154,7 @@ public class addnwvehi extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(20, 410, 67, 25);
+        jButton1.setBounds(10, 470, 67, 25);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("vehicle_num");
@@ -163,7 +169,7 @@ public class addnwvehi extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(150, 410, 90, 25);
+        jButton2.setBounds(140, 470, 90, 25);
 
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton3.setText("Delete");
@@ -173,7 +179,7 @@ public class addnwvehi extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(280, 410, 100, 25);
+        jButton3.setBounds(270, 470, 100, 25);
 
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton4.setText("Back");
@@ -192,6 +198,23 @@ public class addnwvehi extends javax.swing.JFrame {
         });
         getContentPane().add(num1);
         num1.setBounds(130, 190, 100, 30);
+
+        jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton5.setText("Search");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton5);
+        jButton5.setBounds(280, 410, 100, 30);
+        getContentPane().add(jTextField4);
+        jTextField4.setBounds(120, 410, 130, 30);
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setText("Brand");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(10, 410, 80, 30);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -299,6 +322,20 @@ public class addnwvehi extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_num1FocusLost
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        String id = jTextField4.getText();
+
+        String sql = "SELECT Vehi_Num,Brand,Model,Rate FROM vehivle where Brand Like '%"+id+"%' ";
+        try {
+            pst =(PreparedStatement) conn.prepareStatement(sql);
+
+            rs =  pst.executeQuery();
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -338,13 +375,16 @@ public class addnwvehi extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField mdlbox;
     private javax.swing.JTextField num1;
     private javax.swing.JTextField rtbox;

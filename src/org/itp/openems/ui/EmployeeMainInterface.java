@@ -21,6 +21,7 @@ import org.itp.commons.Constants;
 import org.itp.commons.DBConnect;
 import org.itp.commons.DBUtils;
 import org.itp.customer.management.CleanManagementSystem;
+import org.itp.customer.management.Login;
 import org.itp.openems.model.Salary;
 
 /**
@@ -45,16 +46,17 @@ public class EmployeeMainInterface extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        registerEmpBtn = new javax.swing.JButton();
+        setSalaryBtn = new javax.swing.JButton();
         calcSalBtn = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        viewSalaryEmp = new javax.swing.JButton();
+        setAttBtn = new javax.swing.JButton();
+        roleManageBtn = new javax.swing.JButton();
+        appraisalBtn = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        empRepBtn = new javax.swing.JButton();
+        logoutBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -63,23 +65,23 @@ public class EmployeeMainInterface extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1366, 768));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        jButton1.setText("Register Employees");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        registerEmpBtn.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        registerEmpBtn.setText("Register Employees");
+        registerEmpBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                registerEmpBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 164, 342, 75));
+        getContentPane().add(registerEmpBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 164, 342, 75));
 
-        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        jButton3.setText("Set Salary");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        setSalaryBtn.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        setSalaryBtn.setText("Set Salary");
+        setSalaryBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                setSalaryBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 285, 342, 75));
+        getContentPane().add(setSalaryBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 285, 342, 75));
 
         calcSalBtn.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         calcSalBtn.setText("Calculate Salary");
@@ -90,42 +92,42 @@ public class EmployeeMainInterface extends javax.swing.JFrame {
         });
         getContentPane().add(calcSalBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 534, 342, 75));
 
-        jButton5.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        jButton5.setText("View Salary");
-        jButton5.setToolTipText("");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        viewSalaryEmp.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        viewSalaryEmp.setText("View Salary");
+        viewSalaryEmp.setToolTipText("");
+        viewSalaryEmp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                viewSalaryEmpActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 410, 342, 75));
+        getContentPane().add(viewSalaryEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 410, 342, 75));
 
-        jButton6.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        jButton6.setText("Set Attendance");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        setAttBtn.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        setAttBtn.setText("Set Attendance");
+        setAttBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                setAttBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(895, 164, 342, 75));
+        getContentPane().add(setAttBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(895, 164, 342, 75));
 
-        jButton7.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        jButton7.setText("Role Management");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        roleManageBtn.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        roleManageBtn.setText("Role Management");
+        roleManageBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                roleManageBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(895, 410, 342, 75));
+        getContentPane().add(roleManageBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(895, 410, 342, 75));
 
-        jButton8.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        jButton8.setText("Appraisals");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        appraisalBtn.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        appraisalBtn.setText("Appraisals");
+        appraisalBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                appraisalBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(895, 534, 342, 75));
+        getContentPane().add(appraisalBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(895, 534, 342, 75));
 
         jButton9.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jButton9.setText("Back");
@@ -139,14 +141,23 @@ public class EmployeeMainInterface extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/log.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(428, 48, 519, 75));
 
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        jButton2.setText("Employee Reports");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        empRepBtn.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        empRepBtn.setText("Employee Reports");
+        empRepBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                empRepBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(895, 285, 342, 75));
+        getContentPane().add(empRepBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(895, 285, 342, 75));
+
+        logoutBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        logoutBtn.setText("Log Out");
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(logoutBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 93, 100, 30));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 760));
@@ -154,41 +165,41 @@ public class EmployeeMainInterface extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void registerEmpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerEmpBtnActionPerformed
         RegisterEmployees r1 = new RegisterEmployees();
         r1.setVisible(true);
         //this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_registerEmpBtnActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void setSalaryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setSalaryBtnActionPerformed
         SetSalary s1 = new SetSalary();
         s1.setVisible(true);
         //this.dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_setSalaryBtnActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void viewSalaryEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewSalaryEmpActionPerformed
         ViewSalary v1 = new ViewSalary();
         v1.setVisible(true);
         //this.dispose();
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_viewSalaryEmpActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void roleManageBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleManageBtnActionPerformed
         RoleManagement rm1 = new RoleManagement();
         rm1.setVisible(true);
         //this.dispose();
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_roleManageBtnActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void setAttBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setAttBtnActionPerformed
         SetAttendance at1 = new SetAttendance();
         at1.setVisible(true);
         //this.dispose();
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_setAttBtnActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void appraisalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appraisalBtnActionPerformed
         Appraisals a1 = new Appraisals();
         a1.setVisible(true);
         //this.dispose();
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_appraisalBtnActionPerformed
 
     private void calcSalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcSalBtnActionPerformed
         try {
@@ -238,16 +249,22 @@ public class EmployeeMainInterface extends javax.swing.JFrame {
 
     }//GEN-LAST:event_calcSalBtnActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void empRepBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empRepBtnActionPerformed
         EmployeeReports em=new EmployeeReports();
         em.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_empRepBtnActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         CleanManagementSystem cm=new CleanManagementSystem();
         cm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+        Login lg=new Login();
+        lg.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_logoutBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -286,16 +303,17 @@ public class EmployeeMainInterface extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton appraisalBtn;
     private javax.swing.JButton calcSalBtn;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JButton empRepBtn;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton logoutBtn;
+    private javax.swing.JButton registerEmpBtn;
+    private javax.swing.JButton roleManageBtn;
+    private javax.swing.JButton setAttBtn;
+    private javax.swing.JButton setSalaryBtn;
+    private javax.swing.JButton viewSalaryEmp;
     // End of variables declaration//GEN-END:variables
 }

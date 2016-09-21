@@ -20,6 +20,7 @@ import org.itp.commons.DBConnect;
 import org.itp.commons.DBUtils;
 import org.itp.commons.Queries;
 import org.itp.commons.Validation;
+import org.itp.customer.management.Login;
 
 /**
  *
@@ -164,7 +165,7 @@ public class Appraisals extends javax.swing.JFrame {
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b1.jpg"))); // NOI18N
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 440, 60));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 460, 80));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 460, 80));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Appraisal details"));
 
@@ -279,7 +280,7 @@ public class Appraisals extends javax.swing.JFrame {
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 350, 250));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 930, 510));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 520));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -338,6 +339,7 @@ public class Appraisals extends javax.swing.JFrame {
                     if (count1 == 0) {
                         JOptionPane.showMessageDialog(null, "An appraisal for this employee is not present", "Error", JOptionPane.ERROR_MESSAGE);
                         updateBtn.setEnabled(false);
+                        insertBtn.setEnabled(true);
                         return;
                     }
                     resultset.close();

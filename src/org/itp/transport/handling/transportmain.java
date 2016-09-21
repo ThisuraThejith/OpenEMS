@@ -41,12 +41,12 @@ public class transportmain extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel1.setText("Tranceport");
+        jLabel1.setFont(new java.awt.Font("Segoe Script", 1, 36)); // NOI18N
+        jLabel1.setText("Transport");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(600, 10, 231, 44);
+        jLabel1.setBounds(600, 10, 231, 59);
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Showcard Gothic", 1, 18)); // NOI18N
         jButton2.setText("Check Items");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,9 +54,9 @@ public class transportmain extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(650, 400, 210, 40);
+        jButton2.setBounds(580, 380, 280, 60);
 
-        c1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        c1.setFont(new java.awt.Font("Showcard Gothic", 1, 18)); // NOI18N
         c1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Type Add", "Add New Supplier", "Add New Vehicle" }));
         c1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,9 +64,9 @@ public class transportmain extends javax.swing.JFrame {
             }
         });
         getContentPane().add(c1);
-        c1.setBounds(410, 220, 240, 40);
+        c1.setBounds(340, 200, 310, 60);
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jComboBox1.setFont(new java.awt.Font("Showcard Gothic", 1, 18)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Get Type", "Get Job", "Get Items" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,7 +74,7 @@ public class transportmain extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jComboBox1);
-        jComboBox1.setBounds(840, 210, 230, 40);
+        jComboBox1.setBounds(770, 190, 300, 60);
 
         jPanel1.setBackground(new java.awt.Color(204, 0, 153));
         jPanel1.setPreferredSize(new java.awt.Dimension(2000, 200));
@@ -86,7 +86,7 @@ public class transportmain extends javax.swing.JFrame {
         getContentPane().add(jPanel3);
         jPanel3.setBounds(0, 60, 1950, 80);
 
-        back.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        back.setFont(new java.awt.Font("Showcard Gothic", 1, 18)); // NOI18N
         back.setText("Back");
         back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,7 +94,7 @@ public class transportmain extends javax.swing.JFrame {
             }
         });
         getContentPane().add(back);
-        back.setBounds(980, 550, 120, 40);
+        back.setBounds(960, 513, 110, 50);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -124,15 +124,16 @@ public class transportmain extends javax.swing.JFrame {
         int gt=jComboBox1.getSelectedIndex();
        if (gt==1)
        {
-            GetItem gi=new GetItem();
-            gi . setVisible(true);
+           
+            Getjob gb=new Getjob();
+            gb . setVisible(true);
             this.dispose();
        }
        else
            if(gt==2)
            {
-            Getjob gb=new Getjob();
-            gb . setVisible(true);
+             GetItem gi=new GetItem();
+            gi . setVisible(true);
             this.dispose();
            }
     }//GEN-LAST:event_jComboBox1ActionPerformed
@@ -145,8 +146,8 @@ public class transportmain extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-        CleanManagementSystem cm2= new CleanManagementSystem();
-        cm2.setVisible(true);
+        CleanManagementSystem cmm=new CleanManagementSystem();
+        cmm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backActionPerformed
 

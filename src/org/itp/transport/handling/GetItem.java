@@ -5,6 +5,7 @@
 package org.itp.transport.handling;
 
 import com.mysql.jdbc.PreparedStatement;
+import com.sun.org.apache.regexp.internal.StreamCharacterIterator;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
@@ -71,15 +72,16 @@ public class GetItem extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe Script", 1, 36)); // NOI18N
         jLabel1.setText("Get Items");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(470, 10, 180, 44);
+        jLabel1.setBounds(470, 10, 170, 59);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -111,7 +113,7 @@ public class GetItem extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton4);
-        jButton4.setBounds(130, 400, 90, 30);
+        jButton4.setBounds(130, 490, 90, 30);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("Search");
@@ -164,15 +166,18 @@ public class GetItem extends javax.swing.JFrame {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(40, 190, 100, 20);
 
-        jButton5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton5.setText("Back");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setText("Available_Items");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(40, 240, 110, 30);
+
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                jTextField3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5);
-        jButton5.setBounds(1250, 600, 61, 25);
+        getContentPane().add(jTextField3);
+        jTextField3.setBounds(170, 250, 130, 40);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -217,12 +222,15 @@ public class GetItem extends javax.swing.JFrame {
         // TODO add your handling code here:
         String id = jTextField1.getText();
         String name=jTextField2.getText();
-      
+         String av=jTextField2.getText();
       
         
         try{
-            String q = "INSERT INTO check_items(Issu_or_Return,Product_Id,Product_Name) values ('Return','"+id+"','"+name+"')";
-        pst = (PreparedStatement) conn.prepareStatement(q);
+           
+            String q = "INSERT INTO check_items(Issu_or_Return,Product_Id,Product_Name,Product_Id) values ('Return','"+id+"','"+name+"','"+av+"')";
+            pst = (PreparedStatement) conn.prepareStatement(q);
+            
+        
         
         pst .execute();
         
@@ -253,12 +261,9 @@ public class GetItem extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
-        transportmain m1=new transportmain();
-        m1 . setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_jTextField3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -299,15 +304,16 @@ public class GetItem extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }

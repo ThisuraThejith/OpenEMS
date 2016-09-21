@@ -105,7 +105,7 @@ public class MngrMain extends javax.swing.JFrame {
         jButton9.setText("Transport Management System");
         getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 261, 240, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/log.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/log.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 461, 50));
 
         jButton11.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
@@ -118,7 +118,7 @@ public class MngrMain extends javax.swing.JFrame {
         });
         getContentPane().add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(597, 315, 75, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/b2.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 410));
 
         pack();

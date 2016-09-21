@@ -100,7 +100,7 @@ public class DEOCust extends javax.swing.JFrame {
         jLabel8.setText("Tarrif");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 490, -1, -1));
 
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/log.png"))); // NOI18N
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/log.png"))); // NOI18N
         getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 490, 40));
 
         jLabel16.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -234,7 +234,7 @@ public class DEOCust extends javax.swing.JFrame {
         jEMail.setForeground(new java.awt.Color(0, 51, 51));
         getContentPane().add(jEMail, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, 210, 20));
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/b2.jpg"))); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 610, 560));
 
         setSize(new java.awt.Dimension(611, 587));
