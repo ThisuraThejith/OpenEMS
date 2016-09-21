@@ -767,7 +767,7 @@ public class Customer extends javax.swing.JFrame {
             if (selectedRow != -1) {
                 int CusID = (int) jTable_tableitp.getValueAt(selectedRow, 0);
 
-                String query = "UPDATE customer SET Title='" + jTitle.getSelectedItem() + "',FName='" + jFName.getText() + "',LName='" + jLName.getText() + "',NIC='" + jNIC.getText() + "',Ad1='" + jAds1.getText() + "',Ad2='" + jAds2.getText() + "',City='" + jCity.getSelectedItem() + "',Gender='" + gender + ",Mobile='" + jMobile.getText() + "',Office='" + jOffice.getText() + "',email='" + jEmail.getText() + "',Type='" + CustomerType + "',Level='" + jCity.getSelectedItem() + "' WHERE Cusid='" + CusID + "'";
+                String query = "UPDATE customer SET Title='" + jTitle.getSelectedItem() + "',FName='" + jFName.getText() + "',LName='" + jLName.getText() + "',NIC='" + jNIC.getText() + "',Ad1='" + jAds1.getText() + "',Ad2='" + jAds2.getText() + "',City='" + jCity.getSelectedItem() + "',Gender='" + gender + ",Mobile='" + jMobile.getText() + "',Office='" + jOffice.getText() + "',email='" + jEmail.getText() + "',Type='" + CustomerType + "',Level='" + jCity.getSelectedItem() + "' WHERE Cusid=" + CusID + "";
 
                 System.out.println(query);
                 try {
@@ -778,6 +778,7 @@ public class Customer extends javax.swing.JFrame {
 
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "Customer update failed");
+                    System.out.println(ex);
                     return;
                 }
 

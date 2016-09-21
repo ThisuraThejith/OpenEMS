@@ -58,6 +58,7 @@ public class ManagerInterface extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Employee Management System");
         setExtendedState(5);
+        setPreferredSize(new java.awt.Dimension(1150, 650));
         setSize(new java.awt.Dimension(1366, 768));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -68,7 +69,7 @@ public class ManagerInterface extends javax.swing.JFrame {
                 empDetBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(empDetBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 342, 75));
+        getContentPane().add(empDetBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 342, 75));
 
         viewSalaryEmp.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         viewSalaryEmp.setText("View Salary");
@@ -108,7 +109,7 @@ public class ManagerInterface extends javax.swing.JFrame {
                 empRepBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(empRepBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 170, 342, 75));
+        getContentPane().add(empRepBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 210, 342, 75));
 
         logoutBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         logoutBtn.setText("Log Out");

@@ -157,7 +157,7 @@ public class EmployeeMainInterface extends javax.swing.JFrame {
                 logoutBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(logoutBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 93, 100, 30));
+        getContentPane().add(logoutBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 100, 100, 30));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 760));

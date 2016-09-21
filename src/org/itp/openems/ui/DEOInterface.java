@@ -58,6 +58,7 @@ public class DEOInterface extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Employee Management System");
         setExtendedState(5);
+        setPreferredSize(new java.awt.Dimension(1031, 650));
         setSize(new java.awt.Dimension(1366, 768));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
