@@ -6,19 +6,19 @@
 package org.itp.customer.management;
 
 import com.mysql.jdbc.Connection;
-import org.itp.openems.ui.ManagerInterface;
+import org.itp.openems.ui.DEOInterface;
 
 /**
  *
  * @author Kavinda
  */
-public class MngrMain extends javax.swing.JFrame {
+public class DeoMain extends javax.swing.JFrame {
 
     /**
      * Creates new form usrmain
      */
     java.sql.Connection con2= DBconnect.connect();
-    public MngrMain() {
+    public DeoMain() {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
@@ -156,8 +156,8 @@ public class MngrMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ManagerInterface mi=new ManagerInterface();
-        mi.setVisible(true);
+        DEOInterface de=new DEOInterface();
+        de.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -178,14 +178,18 @@ public class MngrMain extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MngrMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeoMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MngrMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeoMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MngrMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeoMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MngrMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeoMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -194,7 +198,7 @@ public class MngrMain extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MngrMain().setVisible(true);
+                new DeoMain().setVisible(true);
             }
         });
     }

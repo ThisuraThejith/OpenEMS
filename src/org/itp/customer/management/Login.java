@@ -198,7 +198,7 @@ PreparedStatement pst=null;
         else if (n.equals("DEO") && (p.equals("deo@123")))
                 {
                     this.setVisible(false);
-                    new CleanManagementSystem().setVisible(true);
+                    new DeoMain().setVisible(true);
                     
                 }
         else if (n.equals("MANAGER") && (p.equals("mgr@123")))
