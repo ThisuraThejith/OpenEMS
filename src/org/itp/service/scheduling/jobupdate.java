@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -85,7 +86,6 @@ public class jobupdate extends javax.swing.JFrame {
         btnChk = new javax.swing.JButton();
         btnUd = new javax.swing.JButton();
         jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -103,6 +103,9 @@ public class jobupdate extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        jdate = new com.toedter.calendar.JDateChooser();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
@@ -111,20 +114,25 @@ public class jobupdate extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("previous details");
         jLabel1.setToolTipText("");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(516, 86, -1, -1));
 
         jLabel2.setText("job ID");
         jLabel2.setToolTipText("");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 115, -1, -1));
 
         jLabel3.setText("date");
         jLabel3.setToolTipText("");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(487, 146, -1, -1));
 
         ji.setToolTipText("");
         ji.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         ji.setEnabled(false);
         ji.setName("ji"); // NOI18N
+        getContentPane().add(ji, new org.netbeans.lib.awtextra.AbsoluteConstraints(527, 112, 105, -1));
 
         jButton1.setText("Back");
         jButton1.setToolTipText("");
@@ -133,6 +141,7 @@ public class jobupdate extends javax.swing.JFrame {
                 jButton1MouseClicked(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(575, 19, 57, -1));
 
         btnChk.setText("Check availability");
         btnChk.setEnabled(false);
@@ -141,6 +150,7 @@ public class jobupdate extends javax.swing.JFrame {
                 btnChkActionPerformed(evt);
             }
         });
+        getContentPane().add(btnChk, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 250, -1, -1));
 
         btnUd.setText("Update job");
         btnUd.setEnabled(false);
@@ -149,15 +159,11 @@ public class jobupdate extends javax.swing.JFrame {
                 btnUdActionPerformed(evt);
             }
         });
+        getContentPane().add(btnUd, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 361, -1, -1));
 
         jTextField3.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jTextField3.setEnabled(false);
-
-        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField4KeyReleased(evt);
-            }
-        });
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(182, 291, 69, -1));
 
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -175,56 +181,70 @@ public class jobupdate extends javax.swing.JFrame {
                 jTextField5KeyTyped(evt);
             }
         });
+        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(189, 161, 118, -1));
 
         jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField6KeyReleased(evt);
             }
         });
+        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(189, 131, 118, -1));
 
         jLabel5.setText("new job details");
         jLabel5.setToolTipText("");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 86, -1, -1));
 
         jLabel6.setText("Date");
         jLabel6.setToolTipText("");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 111, -1, -1));
 
         jLabel7.setText("place");
         jLabel7.setToolTipText("");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 134, -1, -1));
 
         jLabel8.setText("No. of employees needed");
         jLabel8.setToolTipText("");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 157, 144, 28));
 
         jLabel9.setText("No. of employees available");
         jLabel9.setToolTipText("");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 294, -1, -1));
 
         dt.setToolTipText("");
         dt.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         dt.setEnabled(false);
         dt.setName("dt"); // NOI18N
+        getContentPane().add(dt, new org.netbeans.lib.awtextra.AbsoluteConstraints(527, 143, 105, -1));
 
         ea.setToolTipText("");
         ea.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         ea.setEnabled(false);
         ea.setName("ea"); // NOI18N
+        getContentPane().add(ea, new org.netbeans.lib.awtextra.AbsoluteConstraints(527, 201, 105, -1));
 
         lc.setToolTipText("");
         lc.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         lc.setEnabled(false);
         lc.setName("lc"); // NOI18N
+        getContentPane().add(lc, new org.netbeans.lib.awtextra.AbsoluteConstraints(527, 175, 105, -1));
 
         jLabel10.setText("employees assigned");
         jLabel10.setToolTipText("");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(413, 201, -1, -1));
 
         jLabel11.setText("location");
         jLabel11.setToolTipText("");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(472, 178, -1, -1));
 
         jLabel12.setText("gross price");
         jLabel12.setToolTipText("");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(457, 227, -1, -1));
 
         gp.setToolTipText("");
         gp.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         gp.setEnabled(false);
         gp.setName("gp"); // NOI18N
+        getContentPane().add(gp, new org.netbeans.lib.awtextra.AbsoluteConstraints(527, 227, 105, -1));
 
         jButton4.setText("Clear");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -232,144 +252,23 @@ public class jobupdate extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(575, 45, -1, -1));
 
         jLabel4.setText("gross price ");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 322, -1, -1));
 
         jTextField1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jTextField1.setEnabled(false);
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(182, 322, 69, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnUd)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel4))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
-                                    .addComponent(jTextField1))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 162, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnChk)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel5)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel7)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
-                                    .addComponent(jTextField5)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING))))
-                        .addGap(106, 106, 106)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel10)
-                                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(59, 59, 59)
-                                            .addComponent(jLabel11)))
-                                    .addGap(18, 18, 18))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addGap(67, 67, 67)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel3))
-                                    .addGap(18, 18, 18)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(dt, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(ji, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lc, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(ea, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(gp, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(103, 103, 103)
-                        .addComponent(jLabel1)))
-                .addGap(32, 32, 32))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jButton1)
-                .addGap(3, 3, 3)
-                .addComponent(jButton4)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnChk))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(26, 26, 26)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(ji, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel2)))
-                                    .addComponent(jLabel1))
-                                .addGap(31, 31, 31))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel3)
-                                .addComponent(dt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(12, 12, 12)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(lc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(gp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12))
-                        .addGap(0, 26, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addComponent(btnUd)
-                .addGap(23, 23, 23))
-        );
+        jdate.setDateFormatString("yyyy-MM-dd");
+        getContentPane().add(jdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(189, 105, 118, -1));
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/log.png"))); // NOI18N
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 460, 60));
+
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 410));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -382,6 +281,20 @@ public class jobupdate extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
+        try {
+            sqlq = "select basicSalary as BS from salary where RoleID=4";
+            pst = con2.prepareStatement(sqlq);
+            rs1 = pst.executeQuery(sqlq);
+            //int eTotavil = 0;
+            if (rs1.next()) {
+                spr = rs1.getDouble("BS");
+                spr=spr/30.0;
+                System.out.println(spr);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         String jsid = Integer.toString(jobb);
         System.out.println("dddddd");
         //if(jsid.isEmpty())
@@ -446,7 +359,7 @@ public class jobupdate extends javax.swing.JFrame {
         btnChk.setEnabled(true);
         //jLabel4.setVisible(false);
 
-        boolean tb4 = !(jTextField4.getText().isEmpty()); //true if empty
+        boolean tb4 = !(((JTextField) jdate.getDateEditor().getUiComponent()).getText().isEmpty()); //true if empty
         boolean tb6 = !(jTextField6.getText().isEmpty());
         boolean tb5 = !(jTextField5.getText().isEmpty());
 
@@ -459,7 +372,7 @@ public class jobupdate extends javax.swing.JFrame {
 
     private void jTextField6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyReleased
         // TODO add your handling code here:
-        boolean tb4 = !(jTextField4.getText().isEmpty()); //true if empty
+        boolean tb4 = !(((JTextField) jdate.getDateEditor().getUiComponent()).getText().isEmpty()); //true if empty
         boolean tb6 = !(jTextField6.getText().isEmpty());
         boolean tb5 = !(jTextField5.getText().isEmpty());
 
@@ -470,25 +383,12 @@ public class jobupdate extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextField6KeyReleased
 
-    private void jTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyReleased
-        // TODO add your handling code here:
-        boolean tb4 = !(jTextField4.getText().isEmpty()); //true if empty
-        boolean tb6 = !(jTextField6.getText().isEmpty());
-        boolean tb5 = !(jTextField5.getText().isEmpty());
-
-        if (tb5 && tb6 && tb4) {
-            btnChk.setEnabled(true);
-        } else {
-            btnChk.setEnabled(false);
-        }
-    }//GEN-LAST:event_jTextField4KeyReleased
-
     private void btnChkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChkActionPerformed
-        datee = jTextField4.getText();
+        datee = ((JTextField) jdate.getDateEditor().getUiComponent()).getText();
         sqlq = "SELECT sum(empass) as ta FROM empassigned where jdate='" + datee + "'";
 
         //employees in leave in that date
-        sql2 = "SELECT count(l.empid) as tl FROM leavek l where l.date='" + datee + "'";
+        sql2 = "SELECT count(l.empid) as tl FROM attendance l where l.work_date='" + datee + "' and presence='Absent'";
 
         //total employees working
         String sql3 = "select count(*) as tot from employee where Current_Status='working'";
@@ -545,7 +445,7 @@ public class jobupdate extends javax.swing.JFrame {
         // jobupdate
         //UPDATE table_name SET column1=value1,column2=value2,... WHERE some_column=some_value;
         String jjid=ji.getText();
-        String dtt = jTextField4.getText();
+        String dtt = ((JTextField) jdate.getDateEditor().getUiComponent()).getText();
         String plc = jTextField6.getText();
         String eneed = jTextField5.getText();
         gpr = Double.parseDouble(eneed) * spr * 1.15;
@@ -563,9 +463,9 @@ public class jobupdate extends javax.swing.JFrame {
             //sql3 = "select count(*) as tot from employee where Current_Status='working'";
             
             if(Integer.parseInt(eneed)<=eAva)
-                sql3 = "insert into empassigned values("+jjid+",'" + dtt + "',"+eneed+");";
+                sql3 = "insert into empassigned values("+jjid+",'" + dtt + "',"+eneed+", null, 'pending');";
             else
-                sql3 = "insert into empassigned values("+jjid+",'" + dtt + "',"+eAva+");";
+                sql3 = "insert into empassigned values("+jjid+",'" + dtt + "',"+eAva+", null, 'pending');";
             System.out.println("EmpAss: "+sql3);
             
             pst = con2.prepareStatement(sql3);
@@ -598,7 +498,7 @@ public class jobupdate extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        jTextField4.setText("");
+        ((JTextField) this.jdate.getDateEditor().getUiComponent()).setText(null);
         jTextField5.setText("");
         jTextField6.setText("");
         jTextField3.setText("");
@@ -655,6 +555,8 @@ public class jobupdate extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -666,9 +568,9 @@ public class jobupdate extends javax.swing.JFrame {
     private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
+    private com.toedter.calendar.JDateChooser jdate;
     private javax.swing.JTextField ji;
     private javax.swing.JTextField lc;
     // End of variables declaration//GEN-END:variables

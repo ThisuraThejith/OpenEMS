@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import net.sf.jasperreports.web.actions.SearchData;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -81,7 +82,6 @@ public class CustomerBills extends javax.swing.JFrame {
         sbbx = new javax.swing.JComboBox();
         jLabel11 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        searchbx = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
         jTextArea1.setColumns(20);
@@ -145,8 +145,6 @@ public class CustomerBills extends javax.swing.JFrame {
 
         jLabel2.setText("search customer.");
 
-        searchbx.setText("jTextField1");
-
         jButton1.setText("search");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,12 +203,12 @@ public class CustomerBills extends javax.swing.JFrame {
                                     .addComponent(cnbx)
                                     .addComponent(cidbx)
                                     .addComponent(bpbx)
-                                    .addComponent(sbbx, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(sbbx, 0, 261, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(searchbx, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton1)))))))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jButton1)
+                                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE)))))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -220,7 +218,6 @@ public class CustomerBills extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(searchbx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -324,13 +321,17 @@ public class CustomerBills extends javax.swing.JFrame {
     }//GEN-LAST:event_bpbxActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     try{String name = searchbx.getText();
+    new jobSearchCus();
+            
+        //new 
+        /*try{String name = searchbx.getText();
      String sql = "Select CusID,Title,Fname,Lname,NIC,Ad1,Ad2,City,Gender,Mobile,office,email,Type,Level,Tariff,PReason from customer where Fname LIKE'%"+name+"%'";
      pst = conn.prepareStatement(sql);
      rs = pst.executeQuery();
      }catch(SQLException e){
      
-     }
+     }*/
+     
      
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -397,7 +398,6 @@ public class CustomerBills extends javax.swing.JFrame {
     private javax.swing.JTextField nojbx;
     private javax.swing.JLabel sb;
     private javax.swing.JComboBox sbbx;
-    private javax.swing.JTextField searchbx;
     private javax.swing.JButton submit;
     private javax.swing.JLabel ta;
     private javax.swing.JTextField tabx;

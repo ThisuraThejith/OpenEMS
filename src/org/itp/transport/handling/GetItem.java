@@ -37,7 +37,7 @@ public class GetItem extends javax.swing.JFrame {
     public void tableload() 
     {
         try {
-            String sql = "SELECT Product_Id,Product_Name,Available_Items  FROM product_details";
+            String sql = "SELECT Product_Id,Product_Name,Quantity FROM sales";
          pst =(PreparedStatement) conn.prepareStatement(sql);
         
           rs=pst .executeQuery();
@@ -70,10 +70,13 @@ public class GetItem extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        RQt = new javax.swing.JTextField();
+        IQt = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        Qt = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -103,7 +106,7 @@ public class GetItem extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(340, 150, 910, 360);
+        jScrollPane1.setBounds(510, 210, 800, 330);
 
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton4.setText("Back");
@@ -113,7 +116,7 @@ public class GetItem extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton4);
-        jButton4.setBounds(130, 490, 90, 30);
+        jButton4.setBounds(130, 660, 90, 30);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("Search");
@@ -135,49 +138,59 @@ public class GetItem extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Product_Id");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(40, 130, 70, 30);
+        jLabel2.setBounds(40, 210, 90, 40);
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(170, 140, 130, 30);
+        jTextField1.setBounds(170, 210, 150, 40);
         getContentPane().add(jTextField2);
-        jTextField2.setBounds(170, 190, 130, 30);
+        jTextField2.setBounds(170, 270, 150, 40);
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setText("Return");
+        jButton2.setText("Enter");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(60, 333, 100, 30);
-
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton3.setText("Issue");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton3);
-        jButton3.setBounds(200, 333, 90, 30);
+        jButton2.setBounds(170, 520, 120, 40);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Product_Name");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(40, 190, 100, 20);
+        jLabel3.setBounds(40, 270, 120, 30);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Available_Items");
+        jLabel4.setText("Return Quntity");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(40, 240, 110, 30);
+        jLabel4.setBounds(40, 400, 100, 40);
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setText("Issue Quntity");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(40, 450, 100, 30);
+
+        RQt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                RQtActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField3);
-        jTextField3.setBounds(170, 250, 130, 40);
+        getContentPane().add(RQt);
+        RQt.setBounds(170, 400, 90, 30);
+        getContentPane().add(IQt);
+        IQt.setBounds(170, 450, 90, 30);
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setText("Quntity");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(50, 324, 70, 40);
+
+        Qt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                QtActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Qt);
+        Qt.setBounds(170, 330, 90, 40);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -195,11 +208,12 @@ public class GetItem extends javax.swing.JFrame {
         
         String id=jTable1.getValueAt(r, 0).toString();
         String name=jTable1.getValueAt(r, 1).toString();
-        String add=jTable1.getValueAt(r, 2).toString();
+        String qt=jTable1.getValueAt(r, 2).toString();
         
         
          jTextField1.setText(id);
         jTextField2.setText(name);
+        Qt.setText(qt);
         
         
     }//GEN-LAST:event_jTable1MouseClicked
@@ -208,7 +222,7 @@ public class GetItem extends javax.swing.JFrame {
         // TODO add your handling code here:
         String name = jTextField4.getText();
         
-        String sql = "SELECT Product_Id,Product_Name FROM product_details where Product_Name Like '%"+name+"%' ";
+        String sql = "SELECT Product_Id,Product_Name,Quantity FROM product_details where Product_Name Like '%"+name+"%' ";
         try {
             pst =(PreparedStatement) conn.prepareStatement(sql);
         
@@ -222,12 +236,15 @@ public class GetItem extends javax.swing.JFrame {
         // TODO add your handling code here:
         String id = jTextField1.getText();
         String name=jTextField2.getText();
-         String av=jTextField2.getText();
+        String Qunt=Qt.getText();
+        String RQunt=RQt.getText();
+        String IQunt=IQt.getText();       
+        
       
         
         try{
            
-            String q = "INSERT INTO check_items(Issu_or_Return,Product_Id,Product_Name,Product_Id) values ('Return','"+id+"','"+name+"','"+av+"')";
+            String q = "INSERT INTO check_items(Product_Id,Product_Name,Return_Qunty,Issue_Qunty) values ('"+id+"','"+name+"','"+RQunt+"','"+IQunt+"')";
             pst = (PreparedStatement) conn.prepareStatement(q);
             
         
@@ -242,28 +259,13 @@ public class GetItem extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void RQtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RQtActionPerformed
         // TODO add your handling code here:
-         String id = jTextField1.getText();
-        String name=jTextField2.getText();
-        
-        
-        try{
-            String q = "INSERT INTO check_items(Issu_or_Return,Product_Id,Product_Name) values ('Issue','"+id+"','"+name+"')";
-        pst = (PreparedStatement) conn.prepareStatement(q);
-        
-        pst .execute();
-        
-        }
-        
-       catch(Exception e)
-        {
-        }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_RQtActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void QtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_QtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -300,20 +302,23 @@ public class GetItem extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField IQt;
+    private javax.swing.JTextField Qt;
+    private javax.swing.JTextField RQt;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }

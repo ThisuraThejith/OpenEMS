@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.*;
 import org.itp.customer.management.CleanManagementSystem;
+import org.itp.openems.ui.ViewIReport;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -65,31 +66,39 @@ public class jobschedulemain extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
+        back = new javax.swing.JButton();
         jTextField3 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        back = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Scheduling system");
         setName("Scheduling System"); // NOI18N
         setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Search job");
         jLabel1.setToolTipText("");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(503, 124, -1, -1));
 
         jLabel2.setText("job ID");
         jLabel2.setToolTipText("");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(454, 152, -1, -1));
 
         jLabel3.setText("keyword");
         jLabel3.setToolTipText("");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(442, 204, -1, -1));
 
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField1KeyReleased(evt);
             }
         });
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(487, 149, 119, -1));
 
         jTextField2.setToolTipText("");
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(487, 201, 119, -1));
 
         jButton2.setText("Add new job");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -97,6 +106,7 @@ public class jobschedulemain extends javax.swing.JFrame {
                 jButton2MouseClicked(evt);
             }
         });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 239, -1, -1));
 
         jButton3.setText("Edit job");
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -109,6 +119,7 @@ public class jobschedulemain extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 239, -1, -1));
 
         jButton4.setText("cancel job");
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -121,6 +132,7 @@ public class jobschedulemain extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(205, 239, -1, -1));
 
         jButton5.setText("Search");
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -128,6 +140,7 @@ public class jobschedulemain extends javax.swing.JFrame {
                 jButton5MouseClicked(evt);
             }
         });
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(541, 239, -1, -1));
 
         jTable1.setAutoCreateRowSorter(true);
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -142,15 +155,10 @@ public class jobschedulemain extends javax.swing.JFrame {
         jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jTable1);
 
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 273, 573, 129));
+
         jLabel4.setText("customer ID");
-
-        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField3KeyReleased(evt);
-            }
-        });
-
-        jLabel5.setText("jLabel5");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(425, 178, -1, -1));
 
         back.setText("Back");
         back.addActionListener(new java.awt.event.ActionListener() {
@@ -158,83 +166,29 @@ public class jobschedulemain extends javax.swing.JFrame {
                 backActionPerformed(evt);
             }
         });
+        getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(113, 113, 113))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(jLabel2)
-                                                    .addComponent(jLabel4)
-                                                    .addComponent(jLabel3))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jButton2)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jButton3)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jButton4)
-                                                .addGap(201, 201, 201)))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(jTextField1)
-                                                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
-                                                .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE))
-                                            .addComponent(jButton5)))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(back)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap(31, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(83, 83, 83))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel5)
-                .addGap(27, 27, 27)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
-                    .addComponent(jButton4)
-                    .addComponent(jButton3)
-                    .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(back)
-                .addContainerGap(18, Short.MAX_VALUE))
-        );
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField3KeyReleased(evt);
+            }
+        });
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(487, 175, 119, -1));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/log.png"))); // NOI18N
+        jLabel5.setText("jLabel5");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 462, -1));
+
+        jButton1.setText("Report");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 410, -1, -1));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 450));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -375,6 +329,11 @@ public class jobschedulemain extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_backActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        ViewIReport.scheduleReport();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -441,6 +400,7 @@ public class jobschedulemain extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -450,6 +410,7 @@ public class jobschedulemain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

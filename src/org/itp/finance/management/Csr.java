@@ -1,5 +1,7 @@
 package org.itp.finance.management;
 
+import javax.swing.ButtonGroup;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -17,6 +19,13 @@ public class Csr extends javax.swing.JFrame {
      */
     public Csr() {
         initComponents();
+        ButtonGroup bg1 = new ButtonGroup( );
+        bg1.add(pmbx);
+        bg1.add(pm3bx);
+        bg1.add(pm6bx);
+        bg1.add(pybx);
+        bg1.add(stp);
+ 
     }
 
     /**

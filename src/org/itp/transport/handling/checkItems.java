@@ -73,6 +73,8 @@ public class checkItems extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -148,19 +150,19 @@ public class checkItems extends javax.swing.JFrame {
         jLabel2.setBounds(40, 154, 100, 30);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("Issu_or_Return");
+        jLabel3.setText("Product_Id");
         getContentPane().add(jLabel3);
         jLabel3.setBounds(40, 204, 100, 30);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Product_Id");
+        jLabel4.setText("Product_Name");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(40, 254, 100, 30);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setText("Product_Name");
+        jLabel6.setText("Issue_Quntity");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(40, 314, 100, 30);
+        jLabel6.setBounds(40, 360, 100, 30);
         getContentPane().add(jTextField1);
         jTextField1.setBounds(160, 150, 140, 40);
         getContentPane().add(jTextField2);
@@ -174,7 +176,20 @@ public class checkItems extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextField5);
-        jTextField5.setBounds(160, 310, 140, 40);
+        jTextField5.setBounds(160, 360, 140, 40);
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setText("Return_Quntity");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(40, 314, 100, 30);
+
+        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField6ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextField6);
+        jTextField6.setBounds(160, 310, 140, 40);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -230,15 +245,22 @@ public class checkItems extends javax.swing.JFrame {
         int r = jTable1.getSelectedRow();
         
         String id=jTable1.getValueAt(r, 0).toString();
-        String ior=jTable1.getValueAt(r, 1).toString();
-        String pid=jTable1.getValueAt(r, 2).toString();
-        String pname=jTable1.getValueAt(r, 3).toString();
+        String Pid=jTable1.getValueAt(r, 1).toString();
+        String pname=jTable1.getValueAt(r, 2).toString();
+        String RQunt=jTable1.getValueAt(r, 3).toString();
+        String IQunt=jTable1.getValueAt(r, 4).toString();
         
         jTextField1.setText(id);
-        jTextField2.setText(ior);
-        jTextField3.setText(pid);
-        jTextField5.setText(pname);
+        jTextField2.setText(Pid);
+        jTextField3.setText(pname);
+        jTextField5.setText(IQunt);
+        jTextField6.setText(RQunt);
+        
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -284,6 +306,7 @@ public class checkItems extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
@@ -291,5 +314,6 @@ public class checkItems extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
 }

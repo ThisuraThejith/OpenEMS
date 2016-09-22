@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.itp.transport.handling;
+package tranceport;
 
 import com.mysql.jdbc.Connection;
 import java.sql.DriverManager;
@@ -22,7 +22,7 @@ public class dbcoonnect {
             try {
                    Class.forName("com.mysql.jdbc.Driver");
                    
-                   conn= (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/cleanmaster?zeroDateTimeBehavior=convertToNull","root","123456");           
+                   conn= (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/newtransport","root","");           
             } 
             catch (Exception e) 
             { 

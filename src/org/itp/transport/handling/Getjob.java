@@ -7,6 +7,7 @@ package org.itp.transport.handling;
 import com.mysql.jdbc.PreparedStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -29,13 +30,15 @@ public class Getjob extends javax.swing.JFrame {
         setSize(1500, 1000);
         
         tableload();
+        
+        fillcombo();
     }
 
     
      public void tableload() 
     {
         try {
-            String sql = "SELECT empID,jobID FROM empjobs";
+            String sql = "SELECT * FROM empassigned";
          pst =(PreparedStatement) conn.prepareStatement(sql);
         
           rs=pst .executeQuery();
@@ -47,6 +50,22 @@ public class Getjob extends javax.swing.JFrame {
         {
         }
     }
+     
+     private void fillcombo()
+     {
+         try {
+             String sql1 = "SELECT * FROM vehivle ";
+             pst= (PreparedStatement)  conn.prepareStatement(sql1);
+             rs=pst .executeQuery(); 
+             
+             while (rs.next()){
+             String vnum = rs.getString("Vehi_Num");
+             
+             vnumcbox.addItem(vnum);
+             }
+         } catch (Exception e) {
+         }
+     }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,6 +82,15 @@ public class Getjob extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
+        completecombo = new javax.swing.JToggleButton();
+        vnumcbox = new javax.swing.JComboBox();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jid = new javax.swing.JTextField();
+        jd = new javax.swing.JTextField();
+        ep = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -84,6 +112,11 @@ public class Getjob extends javax.swing.JFrame {
             }
         ));
         jTable1.setRowHeight(20);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         getContentPane().add(jScrollPane1);
@@ -97,7 +130,7 @@ public class Getjob extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(100, 280, 100, 30);
+        jButton1.setBounds(100, 210, 100, 30);
         getContentPane().add(jTextField4);
         jTextField4.setBounds(140, 150, 130, 30);
 
@@ -114,7 +147,58 @@ public class Getjob extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton4);
-        jButton4.setBounds(100, 400, 90, 30);
+        jButton4.setBounds(1120, 540, 90, 40);
+
+        completecombo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        completecombo.setText("Complete");
+        completecombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                completecomboActionPerformed(evt);
+            }
+        });
+        getContentPane().add(completecombo);
+        completecombo.setBounds(110, 560, 120, 30);
+
+        vnumcbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        vnumcbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vnumcboxActionPerformed(evt);
+            }
+        });
+        getContentPane().add(vnumcbox);
+        vnumcbox.setBounds(160, 470, 120, 30);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setText("Job ID");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(30, 274, 120, 30);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setText("Job Date");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(30, 314, 120, 30);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setText("Employee Pass");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(30, 360, 110, 30);
+
+        jid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jidActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jid);
+        jid.setBounds(170, 260, 150, 30);
+        getContentPane().add(jd);
+        jd.setBounds(170, 310, 150, 30);
+        getContentPane().add(ep);
+        ep.setBounds(170, 360, 150, 30);
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setText("Vehi num");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(50, 470, 80, 30);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -139,6 +223,76 @@ public class Getjob extends javax.swing.JFrame {
         m1 . setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void completecomboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_completecomboActionPerformed
+        // TODO add your handling code here:
+        //String  id = vnumcbox.getSelectedItem().toString();
+        
+        int x= JOptionPane.showConfirmDialog(null,"Do You Realy Want To Update");
+       
+       if(x==0)
+       {
+        String id = jid.getText();
+        String date=jd.getText();
+        String emp_pass=ep.getText();
+        String vnum =vnumcbox.getSelectedItem().toString();
+        
+        try{
+            String val1, q="select jobid as vv from empassigned";
+            pst = (PreparedStatement) conn.prepareStatement(q);
+            rs=pst.executeQuery(q);
+            while(rs.next()){
+                val1=rs.getString("vv");
+                System.out.println(val1);
+                if(id.compareToIgnoreCase(val1)==0){
+                    JOptionPane.showMessageDialog(rootPane, "Alredy Completed");
+                    return;
+                }
+            }
+            
+        }
+        catch(Exception e){
+            
+        }
+           
+           String sql = "UPDATE empassigned SET jobid ='"+id+"', jdate = '"+date+"',empass= '"+emp_pass+"',Vehi_Num = '"+vnum+"',stat='Complete' where jobid ='"+id+"'";
+           try {
+               pst= (PreparedStatement)  conn.prepareStatement(sql);
+               
+               pst.execute();
+               
+               tableload();
+           } 
+           catch (Exception e) 
+           {
+           }
+       }
+    }//GEN-LAST:event_completecomboActionPerformed
+
+    private void vnumcboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vnumcboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_vnumcboxActionPerformed
+
+    private void jidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jidActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        int r = jTable1.getSelectedRow();
+        
+        String id=jTable1.getValueAt(r, 0).toString();
+        String name=jTable1.getValueAt(r, 1).toString();
+        String add=jTable1.getValueAt(r, 2).toString();
+        String cnum=jTable1.getValueAt(r, 3).toString();
+        
+        jid.setText(id);
+        jd.setText(name);
+        ep.setText(add);
+        
+      
+
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -175,12 +329,21 @@ public class Getjob extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton completecombo;
+    private javax.swing.JTextField ep;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jd;
+    private javax.swing.JTextField jid;
+    private javax.swing.JComboBox vnumcbox;
     // End of variables declaration//GEN-END:variables
 }

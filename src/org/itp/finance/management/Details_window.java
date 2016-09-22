@@ -74,16 +74,6 @@ public class Details_window extends javax.swing.JFrame {
 
         jLabel7.setText("Net profit as a percentage.");
 
-        jTextField1.setText("jTextField1");
-
-        jTextField2.setText("jTextField2");
-
-        jTextField3.setText("jTextField3");
-
-        jTextField4.setText("jTextField4");
-
-        jTextField5.setText("jTextField5");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(

@@ -70,11 +70,11 @@ public class addnwsupp extends javax.swing.JFrame {
         namebox = new javax.swing.JTextField();
         addbox = new javax.swing.JTextField();
         cnbox = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Update = new javax.swing.JButton();
+        insrt = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        delete = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jTextField4 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -140,25 +140,25 @@ public class addnwsupp extends javax.swing.JFrame {
         getContentPane().add(cnbox);
         cnbox.setBounds(260, 310, 90, 30);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("Update");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Update.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Update.setText("Update");
+        Update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                UpdateActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(240, 520, 90, 25);
+        getContentPane().add(Update);
+        Update.setBounds(240, 520, 90, 25);
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton2.setText("Insert");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        insrt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        insrt.setText("Insert");
+        insrt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                insrtActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(80, 520, 67, 25);
+        getContentPane().add(insrt);
+        insrt.setBounds(80, 520, 67, 25);
 
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton4.setText("Back");
@@ -188,15 +188,15 @@ public class addnwsupp extends javax.swing.JFrame {
         getContentPane().add(jTextField1);
         jTextField1.setBounds(260, 170, 120, 30);
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton3.setText("Delete");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        delete.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        delete.setText("Delete");
+        delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                deleteActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3);
-        jButton3.setBounds(430, 520, 71, 25);
+        getContentPane().add(delete);
+        delete.setBounds(430, 520, 71, 25);
 
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton5.setText("Search");
@@ -222,13 +222,32 @@ public class addnwsupp extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cnboxActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void insrtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insrtActionPerformed
         // TODO add your handling code here:
         String id = jTextField1.getText();
         String name=namebox.getText();
         String add=addbox.getText();
         String cnum =cnbox.getText();
         
+          try{
+            String val1, q="select Name as vv from supplier";
+            pst = (PreparedStatement) conn.prepareStatement(q);
+            rs=pst.executeQuery(q);
+            while(rs.next()){
+                val1=rs.getString("vv");
+                System.out.println(val1);
+                if((name.compareToIgnoreCase(val1)==0)){
+                    JOptionPane.showMessageDialog(rootPane, "Alredy Entered ");
+                    return;
+                }
+            }
+            
+        }
+        catch(Exception e){
+             
+        }
+
+        //insertion
         try{
             String q = "INSERT INTO supplier(Supplier_ID,Name,Address,Con_Num) values ('"+id+"','"+name+"','"+add+"','"+cnum+"')";
         pst = (PreparedStatement) conn.prepareStatement(q);
@@ -243,8 +262,9 @@ public class addnwsupp extends javax.swing.JFrame {
         
         catch(Exception e)
         {
+            
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_insrtActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
@@ -261,7 +281,7 @@ public class addnwsupp extends javax.swing.JFrame {
         cnbox.setText(cnum);
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
         // TODO add your handling code here:
         int x= JOptionPane.showConfirmDialog(null,"Do You Realy Want To Update");
        
@@ -284,9 +304,9 @@ public class addnwsupp extends javax.swing.JFrame {
            {
            }
        }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_UpdateActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         // TODO add your handling code here:
         int x= JOptionPane.showConfirmDialog(null,"Do You Realy Want To Delete");
          if(x==0)
@@ -305,7 +325,7 @@ public class addnwsupp extends javax.swing.JFrame {
            {
            }
        }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_deleteActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
@@ -379,11 +399,11 @@ public class addnwsupp extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Update;
     private javax.swing.JTextField addbox;
     private javax.swing.JTextField cnbox;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton delete;
+    private javax.swing.JButton insrt;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;

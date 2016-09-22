@@ -50,10 +50,13 @@ public class CleanManagementSystem extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setExtendedState(5);
+        setPreferredSize(new java.awt.Dimension(1370, 760));
         setResizable(false);
+        setSize(new java.awt.Dimension(1366, 768));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 153, 153));
         jButton2.setText("Employee Management System");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -61,9 +64,9 @@ public class CleanManagementSystem extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 135, 244, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 342, 75));
 
-        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jButton3.setForeground(new java.awt.Color(0, 153, 153));
         jButton3.setText("Financial Management System");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -71,14 +74,14 @@ public class CleanManagementSystem extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(355, 176, 270, -1));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 270, 360, 75));
 
-        jButton4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jButton4.setForeground(new java.awt.Color(0, 153, 153));
         jButton4.setText("Inventory Management System");
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(355, 135, 270, -1));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 130, 360, 75));
 
-        jButton5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton5.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jButton5.setForeground(new java.awt.Color(0, 153, 153));
         jButton5.setText("Service Scheduling");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -86,9 +89,9 @@ public class CleanManagementSystem extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(355, 220, 270, -1));
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 410, 360, 75));
 
-        jButton6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton6.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jButton6.setForeground(new java.awt.Color(0, 153, 153));
         jButton6.setText("Sales handling");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -96,9 +99,9 @@ public class CleanManagementSystem extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 220, 244, -1));
+        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 410, 342, 75));
 
-        jButton7.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton7.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jButton7.setForeground(new java.awt.Color(0, 153, 153));
         jButton7.setText("Customer Management System");
         jButton7.setToolTipText("");
@@ -107,14 +110,14 @@ public class CleanManagementSystem extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 176, 244, -1));
+        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, 342, 75));
 
-        jButton8.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton8.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jButton8.setForeground(new java.awt.Color(0, 153, 153));
         jButton8.setText("Feedback & Complaint rating System");
-        getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(355, 261, 270, -1));
+        getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 560, 360, 75));
 
-        jButton9.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton9.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jButton9.setForeground(new java.awt.Color(0, 153, 153));
         jButton9.setText("Transport Management System");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -122,12 +125,12 @@ public class CleanManagementSystem extends javax.swing.JFrame {
                 jButton9ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 261, 244, -1));
+        getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 560, 342, 75));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/log.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 461, 75));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 461, 75));
 
-        jButton11.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton11.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jButton11.setForeground(new java.awt.Color(153, 0, 0));
         jButton11.setText("Log Out");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
@@ -135,10 +138,10 @@ public class CleanManagementSystem extends javax.swing.JFrame {
                 jButton11ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 320, 75, -1));
+        getContentPane().add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 680, 110, 40));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 370));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1360, 760));
 
         pack();
         setLocationRelativeTo(null);

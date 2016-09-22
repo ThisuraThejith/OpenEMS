@@ -3,25 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.itp.service.scheduling;
+package org.itp.finance.management;
 
-import com.mysql.jdbc.Connection;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
+import org.itp.finance.management.dbconnec;
 /**
  *
  * @author Kavinda
  */
 public class jobSearchCus extends javax.swing.JFrame {
-    Connection con2 = DBconnect.connect();
-    PreparedStatement pst;
+    //Connection conn = null;
+    PreparedStatement pst = null;
+    ResultSet rs=null;
+    Connection conn = dbconnec.connect();
+    
     String sqlq;
-    ResultSet rs1;
+    
     String datee;
     int cusID=0;
 
@@ -41,21 +44,21 @@ public class jobSearchCus extends javax.swing.JFrame {
 
             //String sqlq="select * from employees where fe1="+jTextField1.getText();
             //To remove previously added rows
-            PreparedStatement pst = con2.prepareStatement(sqlq);
-            rs1 = pst.executeQuery();
+            PreparedStatement pst = conn.prepareStatement(sqlq);
+            rs = pst.executeQuery();
             while (table.getRowCount() > 0) {
                 ((DefaultTableModel) table.getModel()).removeRow(0);
             }
-            int columns = rs1.getMetaData().getColumnCount();
-            while (rs1.next()) {
+            int columns = rs.getMetaData().getColumnCount();
+            while (rs.next()) {
                 Object[] row = new Object[columns];
                 for (int i = 1; i <= columns; i++) {
-                    row[i - 1] = rs1.getObject(i);
+                    row[i - 1] = rs.getObject(i);
                 }
-                ((DefaultTableModel) table.getModel()).insertRow(rs1.getRow() - 1, row);
+                ((DefaultTableModel) table.getModel()).insertRow(rs.getRow() - 1, row);
             }
 
-            rs1.close();
+            rs.close();
             //stat.close();
             //conn2.close();
         } catch (SQLException e) {
@@ -103,7 +106,7 @@ public class jobSearchCus extends javax.swing.JFrame {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 88, -1, -1));
         getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 85, 127, -1));
 
-        jButton1.setText("Back");
+        jButton1.setText("Close");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -164,14 +167,14 @@ public class jobSearchCus extends javax.swing.JFrame {
         //else
         System.out.println(val);
 
-        jobaddnew a2 = new jobaddnew(val);
+        ///jobaddnew a2 = new jobaddnew(val);
         this.dispose();
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-       jobaddnew a2=new jobaddnew(cusID);
+       //jobaddnew a2=new jobaddnew(cusID);
        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
