@@ -11,8 +11,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
+import org.itp.commons.Constants;
+import org.itp.commons.DBConnect;
+import org.itp.commons.Queries;
 
 
 
@@ -40,10 +44,26 @@ public class addnwvehi extends javax.swing.JFrame {
         setSize(1500, 1000);
         
         tableload();
+        loadSupplierID(supplierCombo);
         
        // fillComco();
     }
+    public void loadSupplierID(JComboBox combo) {
+        try {
+            String sql="SELECT Supplier_ID from supplier";
+            pst=(PreparedStatement) conn.prepareStatement(sql);
+            rs=pst.executeQuery();
+            
 
+            while (rs.next()) {
+                combo.addItem(rs.getString("Supplier_ID"));
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+    }
     
     public void tableload() 
     {
@@ -87,6 +107,8 @@ public class addnwvehi extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jTextField4 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        supplierCombo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -215,6 +237,14 @@ public class addnwvehi extends javax.swing.JFrame {
         jLabel6.setText("Brand");
         getContentPane().add(jLabel6);
         jLabel6.setBounds(10, 410, 80, 30);
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setText("Supplier ID");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(20, 380, 70, 17);
+
+        getContentPane().add(supplierCombo);
+        supplierCombo.setBounds(130, 380, 100, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -382,12 +412,14 @@ public class addnwvehi extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField mdlbox;
     private javax.swing.JTextField num1;
     private javax.swing.JTextField rtbox;
+    private javax.swing.JComboBox<String> supplierCombo;
     private javax.swing.JTextField typbox;
     // End of variables declaration//GEN-END:variables
 }

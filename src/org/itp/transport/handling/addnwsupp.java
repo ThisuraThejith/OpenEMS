@@ -334,7 +334,7 @@ public class addnwsupp extends javax.swing.JFrame {
         // TODO add your handling code here:
         String name = jTextField4.getText();
 
-        String sql = "SELECT Product_Id,Product_Name FROM product_details where Product_Name Like '%"+name+"%' ";
+        String sql = "SELECT * FROM supplier where Name Like '%"+name+"%' ";
         try {
             pst =(PreparedStatement) conn.prepareStatement(sql);
 
