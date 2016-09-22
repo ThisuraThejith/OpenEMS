@@ -213,8 +213,13 @@ public class EmployeeMainInterface extends javax.swing.JFrame {
                 dir.mkdirs();
             }
             for(int eid : eids){
-                Salary salary = DBUtils.getSalaryForEmployeeID(eid);
+                
                 String status=DBUtils.getStatusByEmployeeID(eid);
+                if(status.equals("Resigned")){
+                    //writer.close();
+                    continue;
+                }
+                Salary salary = DBUtils.getSalaryForEmployeeID(eid);
                 File file = new File(Constants.REPORT_LOCATION + File.separator + eid + ".txt");
                 
                 if (salary.getAbsentCount() + (salary.getHalfDayCount() / 2) > salary.getMaxLeaves()){
@@ -226,10 +231,7 @@ public class EmployeeMainInterface extends javax.swing.JFrame {
                     writer.flush();
                     writer.close();
                 }
-                else if(status.equals("Resigned")){
-                    //writer.close();
-                    continue;
-                }
+                
                 else{
                     if(!file.exists()){
                         file.createNewFile();

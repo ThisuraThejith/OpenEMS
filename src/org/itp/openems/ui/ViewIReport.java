@@ -80,7 +80,6 @@ public class ViewIReport extends JFrame{
 
     public static void scheduleReport(){
         HashMap param = new HashMap();
-       // param.put("JobID", jobID);
         ViewIReport viewer = new ViewIReport("./reports/jobReport.jasper",param);
         viewer.setVisible(true);
     }
