@@ -1190,7 +1190,7 @@ public class Customer extends javax.swing.JFrame {
     private void jOfficeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jOfficeFocusLost
         if (this.jOffice.getText().isEmpty()) {
             ofcLbl.setText("*This field is necessary");
-        } else if (!Validation.validateTel(this.jMobile.getText())) {
+        } else if (!Validation.validateTel(this.jOffice.getText())) {
             ofcLbl.setText("*Invalid Office Number");
         } else {
             ofcLbl.setText(null);
@@ -1268,7 +1268,7 @@ public class Customer extends javax.swing.JFrame {
         if (this.jEmail.getText().isEmpty()) {
             emailLbl.setText("*This field is necessary");
         } else if (!Validation.validateEmail(this.jEmail.getText())) {
-            emailLbl.setText("*Invalid Mobile");
+            emailLbl.setText("*Invalid Email");
         } else {
             emailLbl.setText(null);
         }

@@ -34,7 +34,7 @@ public class addnwvehi extends javax.swing.JFrame {
 
         conn = dbcoonnect.connect();
 
-        setSize(1500, 1000);
+        setSize(1272, 734);
 
         tableload();
         loadSupplierID(supplierCombo);
@@ -223,7 +223,7 @@ public class addnwvehi extends javax.swing.JFrame {
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(332, 11, 468, 74));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 740));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 730));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -237,7 +237,7 @@ public class addnwvehi extends javax.swing.JFrame {
         String type = typbox.getText();
         String model = mdlbox.getText();
         String rate = rtbox.getText();
-
+        String sid = supplierCombo.getSelectedItem().toString();
         try{
             String val1, q="select Vehi_Num as vv from vehivle";
             pst = (PreparedStatement) conn.prepareStatement(q);
@@ -259,7 +259,7 @@ public class addnwvehi extends javax.swing.JFrame {
         //insertion
         try {
             
-                String q = "INSERT INTO vehivle(Vehi_Num, Brand, Model, Rate,Availability) values ('" + num + "','" + type + "','" + model + "','" + rate + "','Available')";
+                String q = "INSERT INTO vehivle(Vehi_Num, Brand, Model, Rate,Supplier_ID) values ('" + num + "','" + type + "','" + model + "','" + rate + "','"+sid+"')";
                 pst = (PreparedStatement) conn.prepareStatement(q);
 
                 pst.execute();
@@ -294,8 +294,8 @@ public class addnwvehi extends javax.swing.JFrame {
             String type = typbox.getText();
             String modle = mdlbox.getText();
             String rate = rtbox.getText();
-
-            String sql = "UPDATE vehivle SET Type = '" + type + "',Model = '" + modle + "',Rate = '" + rate + "',Availability='Available' where Vehi_Num = '" + num + "'";
+            String sid = supplierCombo.getSelectedItem().toString();
+            String sql = "UPDATE vehivle SET Vehi_Num = '" + num + "',Brand = '" + type + "',Model = '" + modle + "',Rate = '" + rate + "',Supplier_ID = '"+sid+"' where Vehi_Num = '" + num + "'";
             try {
                 pst = (PreparedStatement) conn.prepareStatement(sql);
 

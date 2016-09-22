@@ -49,11 +49,15 @@ public class Csr extends javax.swing.JFrame {
         stp = new javax.swing.JRadioButton();
         stpbx = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Create statistics reports.");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 85, 271, -1));
 
         jButton1.setText("<back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -61,8 +65,10 @@ public class Csr extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 394, -1, -1));
 
         jLabel2.setText("Get income and expenses details for.......");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 187, -1));
 
         pmbx.setText("previous month");
         pmbx.addActionListener(new java.awt.event.ActionListener() {
@@ -70,12 +76,16 @@ public class Csr extends javax.swing.JFrame {
                 pmbxActionPerformed(evt);
             }
         });
+        getContentPane().add(pmbx, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 152, -1, -1));
 
         pm3bx.setText("previous 3 months.");
+        getContentPane().add(pm3bx, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 178, -1, -1));
 
         pm6bx.setText("previous 6 months.");
+        getContentPane().add(pm6bx, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 204, -1, -1));
 
         pybx.setText("previous year.");
+        getContentPane().add(pybx, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
 
         jButton2.setText("Get details.");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -83,6 +93,7 @@ public class Csr extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 394, -1, -1));
 
         stp.setText("Select time period ");
         stp.addActionListener(new java.awt.event.ActionListener() {
@@ -90,72 +101,23 @@ public class Csr extends javax.swing.JFrame {
                 stpActionPerformed(evt);
             }
         });
+        getContentPane().add(stp, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 259, -1, -1));
 
         stpbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 stpbxActionPerformed(evt);
             }
         });
+        getContentPane().add(stpbx, new org.netbeans.lib.awtextra.AbsoluteConstraints(183, 260, 228, -1));
 
         jButton3.setText("Print");
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(544, 394, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(stp)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                                .addComponent(stpbx, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(pybx)
-                                    .addComponent(pm6bx)
-                                    .addComponent(pm3bx)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(pmbx)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(67, 67, 67)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3)
-                        .addGap(31, 31, 31))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(pmbx)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pm3bx)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pm6bx)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pybx)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(stp)
-                    .addComponent(stpbx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addGap(21, 21, 21))
-        );
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/log.png"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 6, 467, 68));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 440));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -227,6 +189,8 @@ public class Csr extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JRadioButton pm3bx;
     private javax.swing.JRadioButton pm6bx;
     private javax.swing.JRadioButton pmbx;

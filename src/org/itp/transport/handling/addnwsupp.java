@@ -30,7 +30,7 @@ public class addnwsupp extends javax.swing.JFrame {
         
         conn = dbcoonnect.connect();
         
-        setSize(1500, 1000);
+        setSize(1366, 700);
         
         tableload();
     }
@@ -204,7 +204,7 @@ public class addnwsupp extends javax.swing.JFrame {
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(446, 11, 468, 73));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1380, 700));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 700));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

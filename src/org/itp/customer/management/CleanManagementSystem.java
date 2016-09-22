@@ -7,6 +7,7 @@ package org.itp.customer.management;
 
 import com.mysql.jdbc.Connection;
 import org.itp.finance.management.MainFinance;
+import org.itp.inventory.management.InventoryDetails;
 import org.itp.openems.ui.EmployeeMainInterface;
 import org.itp.sales.handling.Sales_Main;
 import org.itp.service.scheduling.jobschedulemain;
@@ -79,6 +80,11 @@ public class CleanManagementSystem extends javax.swing.JFrame {
         jButton4.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jButton4.setForeground(new java.awt.Color(0, 153, 153));
         jButton4.setText("Inventory Management System");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 130, 360, 75));
 
         jButton5.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
@@ -189,6 +195,12 @@ public class CleanManagementSystem extends javax.swing.JFrame {
         tm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        InventoryDetails in = new InventoryDetails();
+        in.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

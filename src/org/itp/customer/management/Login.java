@@ -47,6 +47,7 @@ PreparedStatement pst=null;
         jLabel4 = new javax.swing.JLabel();
         jusername = new javax.swing.JTextField();
         jCheckBox1 = new javax.swing.JCheckBox();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(650, 650));
@@ -156,6 +157,9 @@ PreparedStatement pst=null;
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 158, -1, -1));
 
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 660, 600));
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -184,7 +188,7 @@ PreparedStatement pst=null;
         
        // rs=pst.executeQuery();
        // if(rs.next()){
-       // JOptionPane.showMessageDialog(null, "Login Succuessfully");
+        JOptionPane.showMessageDialog(null, "Login Succuessfully");
         String p = jPassword.getText();
         String n = jusername.getText();
         
@@ -326,6 +330,7 @@ PreparedStatement pst=null;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPassword;
     private javax.swing.JTextField jusername;

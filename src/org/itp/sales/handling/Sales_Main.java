@@ -68,6 +68,7 @@ public class Sales_Main extends javax.swing.JFrame {
         jdp1 = new javax.swing.JDesktopPane();
         jLabel2 = new javax.swing.JLabel();
         backButn = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         mdate = new javax.swing.JMenu();
         mtime = new javax.swing.JMenu();
@@ -98,10 +99,12 @@ public class Sales_Main extends javax.swing.JFrame {
         setForeground(new java.awt.Color(255, 0, 51));
         setLocation(new java.awt.Point(0, 0));
         setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 16)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 255));
         jLabel1.setText("Sales Main");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(716, 22, 100, -1));
 
         jButton1.setBackground(new java.awt.Color(102, 102, 0));
         jButton1.setText("Enter Sales");
@@ -111,6 +114,7 @@ public class Sales_Main extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 129, 120, 68));
 
         jButton2.setBackground(new java.awt.Color(102, 102, 0));
         jButton2.setText("Monthly Profit");
@@ -119,6 +123,7 @@ public class Sales_Main extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 262, 120, 67));
 
         jButton3.setBackground(new java.awt.Color(102, 102, 0));
         jButton3.setText("Return Items");
@@ -128,6 +133,7 @@ public class Sales_Main extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 393, 120, 68));
 
         jButton4.setBackground(new java.awt.Color(102, 102, 0));
         jButton4.setText("Generate Invoice");
@@ -137,6 +143,7 @@ public class Sales_Main extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 515, 120, 67));
 
         jdp1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -144,12 +151,14 @@ public class Sales_Main extends javax.swing.JFrame {
         jdp1.setLayout(jdp1Layout);
         jdp1Layout.setHorizontalGroup(
             jdp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1137, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1120, Short.MAX_VALUE)
         );
         jdp1Layout.setVerticalGroup(
             jdp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 751, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
+
+        getContentPane().add(jdp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 48, 1120, -1));
 
         backButn.setBackground(new java.awt.Color(102, 102, 0));
         backButn.setText("Back");
@@ -158,6 +167,10 @@ public class Sales_Main extends javax.swing.JFrame {
                 backButnActionPerformed(evt);
             }
         });
+        getContentPane().add(backButn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 726, 115, 73));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1330, 860));
 
         jMenuBar2.setBackground(new java.awt.Color(102, 102, 0));
         jMenuBar2.setForeground(new java.awt.Color(102, 102, 0));
@@ -171,48 +184,6 @@ public class Sales_Main extends javax.swing.JFrame {
         jMenuBar2.add(mtime);
 
         setJMenuBar(jMenuBar2);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(backButn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jdp1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 716, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(509, 509, 509))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(64, 64, 64)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(backButn, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jdp1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(59, 59, 59))
-        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -288,6 +259,7 @@ public class Sales_Main extends javax.swing.JFrame {
     private javax.swing.JFrame jFrame2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JDesktopPane jdp1;
     private javax.swing.JMenu mdate;

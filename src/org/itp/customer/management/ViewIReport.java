@@ -32,7 +32,7 @@ public class ViewIReport extends JFrame{
             try{
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
 
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/itp","itp","itp");
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cleanmaster?zeroDateTimeBehavior=convertToNull","root","123456");
 
 
                 JasperPrint print = JasperFillManager.fillReport(fileName, parameter, con);

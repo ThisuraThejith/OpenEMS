@@ -29,7 +29,7 @@ public class GetItem extends javax.swing.JFrame {
         
         conn = dbcoonnect.connect();
         
-        setSize(1500, 1000);
+        setSize(1400, 690);
         
         tableload();
     }
@@ -115,7 +115,7 @@ public class GetItem extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 660, 90, 30));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 570, 90, 30));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("Search");

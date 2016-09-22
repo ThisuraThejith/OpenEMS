@@ -27,7 +27,7 @@ public class checkItems extends javax.swing.JFrame {
         initComponents();
         conn = dbcoonnect.connect();
         
-        setSize(1500, 1000);
+        setSize(1120, 708);
         
         tableload();
     }
@@ -114,7 +114,7 @@ public class checkItems extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 650, 140, 40));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 610, 140, 40));
 
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton4.setText("Back");
@@ -123,7 +123,7 @@ public class checkItems extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 660, 80, 30));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 610, 80, 30));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("Search");
@@ -180,7 +180,7 @@ public class checkItems extends javax.swing.JFrame {
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 19, 498, 75));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 720));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1130, 710));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

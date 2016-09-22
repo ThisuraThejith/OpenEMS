@@ -52,27 +52,38 @@ Connection conn = null;
         rn = new javax.swing.JLabel();
         rnbx = new javax.swing.JTextField();
         bck = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pd.setText("Payment date.& time.");
+        getContentPane().add(pd, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 81, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("ISSUE PAYMENT");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 152, -1));
 
         am.setText("Amount(Rs).");
+        getContentPane().add(am, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 208, 157, -1));
 
         bdap.setText("Brief description about payment.");
+        getContentPane().add(bdap, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 243, -1, -1));
 
         bdapbx.setColumns(20);
         bdapbx.setRows(5);
         jScrollPane1.setViewportView(bdapbx);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 243, 302, 105));
 
         ambx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ambxActionPerformed(evt);
             }
         });
+        getContentPane().add(ambx, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 205, 302, -1));
+        getContentPane().add(pdbx, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 167, 302, -1));
 
         subbtton.setText("SUBMIT");
         subbtton.addActionListener(new java.awt.event.ActionListener() {
@@ -80,8 +91,11 @@ Connection conn = null;
                 subbttonActionPerformed(evt);
             }
         });
+        getContentPane().add(subbtton, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 377, 114, -1));
 
         rn.setText("Recievers name.");
+        getContentPane().add(rn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 132, 108, -1));
+        getContentPane().add(rnbx, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 129, 302, -1));
 
         bck.setText("<back");
         bck.addActionListener(new java.awt.event.ActionListener() {
@@ -89,58 +103,13 @@ Connection conn = null;
                 bckActionPerformed(evt);
             }
         });
+        getContentPane().add(bck, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 377, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(am, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bdap)
-                    .addComponent(bck)
-                    .addComponent(pd, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pdbx)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
-                    .addComponent(ambx)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(subbtton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(rnbx))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rn)
-                    .addComponent(rnbx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pd)
-                    .addComponent(pdbx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ambx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(am))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bdap)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(subbtton)
-                    .addComponent(bck))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/log.png"))); // NOI18N
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 25, 477, 66));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 430));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -228,6 +197,8 @@ Connection conn = null;
     private javax.swing.JTextArea bdapbx;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel pd;
     private javax.swing.JTextField pdbx;

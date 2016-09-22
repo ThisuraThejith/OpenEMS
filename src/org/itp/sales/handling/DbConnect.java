@@ -12,7 +12,7 @@ public class DbConnect {
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","12345");
+            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/cleanmaster?zeroDateTimeBehavior=convertToNull","root","123456");
         } catch (Exception e) {
             
             System.out.println(e);

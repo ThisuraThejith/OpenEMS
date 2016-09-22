@@ -27,7 +27,7 @@ public class Getjob extends javax.swing.JFrame {
         initComponents();
          conn = dbcoonnect.connect();
         
-        setSize(1500, 1000);
+        setSize(1259, 612);
         
         tableload();
         
@@ -143,7 +143,7 @@ public class Getjob extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 540, 90, 40));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 520, 90, 40));
 
         completecombo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         completecombo.setText("Complete");
@@ -152,7 +152,7 @@ public class Getjob extends javax.swing.JFrame {
                 completecomboActionPerformed(evt);
             }
         });
-        getContentPane().add(completecombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 560, 120, 30));
+        getContentPane().add(completecombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 520, 120, 30));
 
         vnumcbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         vnumcbox.addActionListener(new java.awt.event.ActionListener() {
@@ -191,7 +191,7 @@ public class Getjob extends javax.swing.JFrame {
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(379, 11, 473, 63));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -70, 1430, 900));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1260, 610));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
