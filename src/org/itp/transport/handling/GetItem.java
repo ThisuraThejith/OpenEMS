@@ -77,14 +77,15 @@ public class GetItem extends javax.swing.JFrame {
         IQt = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         Qt = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe Script", 1, 36)); // NOI18N
         jLabel1.setText("Get Items");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(470, 10, 170, 59);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, -1, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -105,8 +106,7 @@ public class GetItem extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(510, 210, 800, 330);
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 260, 800, 330));
 
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton4.setText("Back");
@@ -115,8 +115,7 @@ public class GetItem extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4);
-        jButton4.setBounds(130, 660, 90, 30);
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 660, 90, 30));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("Search");
@@ -125,24 +124,18 @@ public class GetItem extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(620, 90, 100, 30);
-        getContentPane().add(jTextField4);
-        jTextField4.setBounds(460, 90, 130, 30);
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 180, 100, 30));
+        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 180, 130, 30));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Name");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(350, 90, 80, 30);
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 180, 80, 30));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Product_Id");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(40, 210, 90, 40);
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(170, 210, 150, 40);
-        getContentPane().add(jTextField2);
-        jTextField2.setBounds(170, 270, 150, 40);
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 90, 40));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 150, 40));
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 150, 40));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setText("Enter");
@@ -151,46 +144,44 @@ public class GetItem extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(170, 520, 120, 40);
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 570, 120, 40));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Product_Name");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(40, 270, 120, 30);
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 120, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Return Quntity");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(40, 400, 100, 40);
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, 100, 40));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Issue Quntity");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(40, 450, 100, 30);
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 500, 100, 30));
 
         RQt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RQtActionPerformed(evt);
             }
         });
-        getContentPane().add(RQt);
-        RQt.setBounds(170, 400, 90, 30);
-        getContentPane().add(IQt);
-        IQt.setBounds(170, 450, 90, 30);
+        getContentPane().add(RQt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 450, 90, 30));
+        getContentPane().add(IQt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 500, 90, 30));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Quntity");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(50, 324, 70, 40);
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, 70, 40));
 
         Qt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 QtActionPerformed(evt);
             }
         });
-        getContentPane().add(Qt);
-        Qt.setBounds(170, 330, 90, 40);
+        getContentPane().add(Qt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 380, 90, 40));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/log.png"))); // NOI18N
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 11, 481, 83));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1420, 700));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -315,6 +306,8 @@ public class GetItem extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;

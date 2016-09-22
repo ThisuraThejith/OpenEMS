@@ -99,35 +99,30 @@ public class addnwvehi extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         supplierCombo = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe Script", 1, 36)); // NOI18N
         jLabel1.setText("Add New Vehicle");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(410, 10, 340, 59);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 91, 340, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Brand");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(20, 240, 90, 30);
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 251, 90, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Model");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(20, 300, 80, 30);
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 311, 80, 30));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Rate");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(20, 350, 80, 30);
-        getContentPane().add(typbox);
-        typbox.setBounds(130, 240, 120, 40);
-        getContentPane().add(mdlbox);
-        mdlbox.setBounds(130, 290, 120, 40);
-        getContentPane().add(rtbox);
-        rtbox.setBounds(130, 340, 120, 40);
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 361, 80, 30));
+        getContentPane().add(typbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 251, 120, 40));
+        getContentPane().add(mdlbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 301, 120, 40));
+        getContentPane().add(rtbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 351, 120, 40));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -155,8 +150,7 @@ public class addnwvehi extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(460, 170, 800, 320);
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 181, 800, 320));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setText("Insert");
@@ -165,13 +159,11 @@ public class addnwvehi extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(50, 560, 90, 40);
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 571, 90, 40));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("vehicle_num");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(20, 190, 110, 30);
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 201, 110, 30));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton2.setText("Update");
@@ -180,8 +172,7 @@ public class addnwvehi extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(150, 560, 120, 40);
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 571, 120, 40));
 
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton3.setText("Delete");
@@ -190,8 +181,7 @@ public class addnwvehi extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3);
-        jButton3.setBounds(280, 560, 130, 40);
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 571, 130, 40));
 
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton4.setText("Back");
@@ -200,16 +190,14 @@ public class addnwvehi extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4);
-        jButton4.setBounds(1140, 520, 90, 40);
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 531, 90, 40));
 
         num1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 num1FocusLost(evt);
             }
         });
-        getContentPane().add(num1);
-        num1.setBounds(130, 190, 120, 40);
+        getContentPane().add(num1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 201, 120, 40));
 
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton5.setText("Search");
@@ -218,23 +206,24 @@ public class addnwvehi extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5);
-        jButton5.setBounds(310, 470, 120, 40);
-        getContentPane().add(jTextField4);
-        jTextField4.setBounds(120, 470, 150, 40);
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 481, 120, 40));
+        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 481, 150, 40));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Brand");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(10, 470, 100, 40);
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 481, 100, 40));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Supplier ID");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(20, 410, 70, 17);
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 421, 70, -1));
 
-        getContentPane().add(supplierCombo);
-        supplierCombo.setBounds(130, 410, 120, 20);
+        getContentPane().add(supplierCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 421, 120, -1));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/log.png"))); // NOI18N
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(332, 11, 468, 74));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 740));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -412,6 +401,8 @@ public class addnwvehi extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField4;

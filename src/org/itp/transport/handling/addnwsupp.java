@@ -78,14 +78,15 @@ public class addnwsupp extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jTextField4 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe Script", 1, 36)); // NOI18N
         jLabel1.setText("Add New Supplier");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(470, 10, 357, 59);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 90, -1, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -105,40 +106,32 @@ public class addnwsupp extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(680, 160, 630, 390);
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 160, 630, 390));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("ID");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(90, 180, 20, 20);
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 20, 20));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Name");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(90, 240, 50, 17);
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 50, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Address");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(90, 280, 60, 17);
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 60, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Contact_number");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(90, 320, 110, 17);
-        getContentPane().add(namebox);
-        namebox.setBounds(260, 220, 260, 30);
-        getContentPane().add(addbox);
-        addbox.setBounds(260, 260, 270, 30);
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, 110, -1));
+        getContentPane().add(namebox, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 260, 30));
+        getContentPane().add(addbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 270, 30));
 
         cnbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cnboxActionPerformed(evt);
             }
         });
-        getContentPane().add(cnbox);
-        cnbox.setBounds(260, 310, 90, 30);
+        getContentPane().add(cnbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 310, 90, 30));
 
         Update.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Update.setText("Update");
@@ -147,8 +140,7 @@ public class addnwsupp extends javax.swing.JFrame {
                 UpdateActionPerformed(evt);
             }
         });
-        getContentPane().add(Update);
-        Update.setBounds(240, 520, 90, 25);
+        getContentPane().add(Update, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 520, 90, -1));
 
         insrt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         insrt.setText("Insert");
@@ -157,8 +149,7 @@ public class addnwsupp extends javax.swing.JFrame {
                 insrtActionPerformed(evt);
             }
         });
-        getContentPane().add(insrt);
-        insrt.setBounds(80, 520, 67, 25);
+        getContentPane().add(insrt, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 520, -1, -1));
 
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton4.setText("Back");
@@ -167,8 +158,7 @@ public class addnwsupp extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4);
-        jButton4.setBounds(1250, 600, 61, 25);
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 600, -1, -1));
 
         jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -185,8 +175,7 @@ public class addnwsupp extends javax.swing.JFrame {
                 jTextField1KeyPressed(evt);
             }
         });
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(260, 170, 120, 30);
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 120, 30));
 
         delete.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         delete.setText("Delete");
@@ -195,8 +184,7 @@ public class addnwsupp extends javax.swing.JFrame {
                 deleteActionPerformed(evt);
             }
         });
-        getContentPane().add(delete);
-        delete.setBounds(430, 520, 71, 25);
+        getContentPane().add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 520, -1, -1));
 
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton5.setText("Search");
@@ -205,15 +193,18 @@ public class addnwsupp extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5);
-        jButton5.setBounds(390, 440, 100, 30);
-        getContentPane().add(jTextField4);
-        jTextField4.setBounds(230, 440, 130, 30);
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 440, 100, 30));
+        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 440, 130, 30));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Name");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(120, 440, 80, 30);
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 440, 80, 30));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/log.png"))); // NOI18N
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(446, 11, 468, 73));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1380, 700));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -412,6 +403,8 @@ public class addnwsupp extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;

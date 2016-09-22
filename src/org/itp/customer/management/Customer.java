@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -923,7 +925,46 @@ public class Customer extends javax.swing.JFrame {
         } else {
             nicLbl.setText(null);
         }
-
+ int CusID = 0;
+                    Connection con2 = DBconnect.connect();
+        //String sqlq="select * from employees where fe1="+jTextField1.getText();
+    //        String sqlstsmt = ?;
+            //To remove previously added rows
+                    String str = jNIC.getText();
+                    String sqlstsmt="select * from customer where NIC=? ";
+                    
+                    
+                    try (PreparedStatement pst = con2.prepareStatement(sqlstsmt)) {
+                        pst.setString(1, this.jNIC.toString());
+                        rs1 = pst.executeQuery();
+                        
+                        //    Connection connect = new DBconnect(Constants.USER, Constants.PASSWORD).getConnection();
+                        //   PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_EMPLOYEE_ID_BY_NIC);
+                        pst.setString(1, this.jNIC.getText().toString());
+                        ResultSet resultset = pst.executeQuery();
+                        int count = 0;
+                        while (resultset.next()) {
+                            CusID = resultset.getInt("CusID");
+                            count++;
+                        }
+                        if (count != 0) {
+                            int CusId = CusID;JOptionPane.showMessageDialog(null, "An Customer with this NIC "
+                                    + " is Already registered. Please Input Valid NIC", "Error", JOptionPane.ERROR_MESSAGE);
+                           jNIC.setText("");
+                            return;
+                          
+                        } else {
+                            
+                        }
+                        resultset.close();
+                        
+                        
+                        
+                    }
+                    
+                    catch (SQLException ex) {
+            Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jNICFocusLost
 
     private void jAds1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jAds1FocusGained

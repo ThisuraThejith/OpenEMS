@@ -32,14 +32,15 @@ public class transportmain extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         c1 = new javax.swing.JComboBox();
         jComboBox1 = new javax.swing.JComboBox();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe Script", 1, 36)); // NOI18N
         jLabel1.setText("Transport");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(600, 10, 231, 59);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, 231, -1));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton2.setText("Check Items");
@@ -48,8 +49,7 @@ public class transportmain extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(580, 380, 280, 60);
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 480, 280, 60));
 
         c1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         c1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Type Add", "Add New Supplier", "Add New Vehicle" }));
@@ -58,8 +58,7 @@ public class transportmain extends javax.swing.JFrame {
                 c1ActionPerformed(evt);
             }
         });
-        getContentPane().add(c1);
-        c1.setBounds(340, 200, 310, 60);
+        getContentPane().add(c1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 300, 310, 60));
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Get Type", "Get Job", "Get Items" }));
@@ -68,8 +67,13 @@ public class transportmain extends javax.swing.JFrame {
                 jComboBox1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBox1);
-        jComboBox1.setBounds(770, 190, 300, 60);
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 290, 300, 60));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/log.png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(353, 36, 487, 76));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 890));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -160,5 +164,7 @@ public class transportmain extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

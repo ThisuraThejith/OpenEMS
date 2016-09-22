@@ -198,6 +198,7 @@ public class PCust extends javax.swing.JFrame {
 
     private void jFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFindActionPerformed
        
+        
         try {
             String str = jKeyword.getText();
           //   String CusType = CustomerType;
@@ -246,6 +247,7 @@ public class PCust extends javax.swing.JFrame {
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
+
     }//GEN-LAST:event_jFindActionPerformed
     
     

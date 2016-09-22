@@ -91,14 +91,15 @@ public class Getjob extends javax.swing.JFrame {
         jd = new javax.swing.JTextField();
         ep = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe Script", 1, 36)); // NOI18N
         jLabel1.setText("Get Jobs");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(470, 10, 190, 59);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, 190, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -119,8 +120,7 @@ public class Getjob extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(340, 190, 760, 300);
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, 760, 300));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("Search");
@@ -129,15 +129,12 @@ public class Getjob extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(100, 210, 100, 30);
-        getContentPane().add(jTextField4);
-        jTextField4.setBounds(140, 150, 130, 30);
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 100, 30));
+        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 130, 30));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Name");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(30, 150, 80, 30);
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 80, 30));
 
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton4.setText("Back");
@@ -146,8 +143,7 @@ public class Getjob extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4);
-        jButton4.setBounds(1120, 540, 90, 40);
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 540, 90, 40));
 
         completecombo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         completecombo.setText("Complete");
@@ -156,8 +152,7 @@ public class Getjob extends javax.swing.JFrame {
                 completecomboActionPerformed(evt);
             }
         });
-        getContentPane().add(completecombo);
-        completecombo.setBounds(110, 560, 120, 30);
+        getContentPane().add(completecombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 560, 120, 30));
 
         vnumcbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         vnumcbox.addActionListener(new java.awt.event.ActionListener() {
@@ -165,40 +160,38 @@ public class Getjob extends javax.swing.JFrame {
                 vnumcboxActionPerformed(evt);
             }
         });
-        getContentPane().add(vnumcbox);
-        vnumcbox.setBounds(160, 470, 120, 30);
+        getContentPane().add(vnumcbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 470, 120, 30));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Job ID");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(30, 274, 120, 30);
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 274, 120, 30));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Job Date");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(30, 314, 120, 30);
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 314, 120, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Employee Pass");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(30, 360, 110, 30);
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 110, 30));
 
         jid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jidActionPerformed(evt);
             }
         });
-        getContentPane().add(jid);
-        jid.setBounds(170, 260, 150, 30);
-        getContentPane().add(jd);
-        jd.setBounds(170, 310, 150, 30);
-        getContentPane().add(ep);
-        ep.setBounds(170, 360, 150, 30);
+        getContentPane().add(jid, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 150, 30));
+        getContentPane().add(jd, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 150, 30));
+        getContentPane().add(ep, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 360, 150, 30));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Vehi num");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(50, 470, 80, 30);
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 470, 80, 30));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/log.png"))); // NOI18N
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(379, 11, 473, 63));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -70, 1430, 900));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -339,6 +332,8 @@ public class Getjob extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField4;
