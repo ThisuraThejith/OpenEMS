@@ -21,6 +21,7 @@ import org.itp.commons.Constants;
 import org.itp.commons.DBConnect;
 import org.itp.commons.DBUtils;
 import org.itp.customer.management.CleanManagementSystem;
+import org.itp.customer.management.DeoMain;
 import org.itp.customer.management.Login;
 import org.itp.openems.model.Salary;
 
@@ -52,13 +53,12 @@ public class DEOInterface extends javax.swing.JFrame {
         setAttBtn = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        logoutBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Employee Management System");
         setExtendedState(5);
-        setPreferredSize(new java.awt.Dimension(1031, 650));
+        setPreferredSize(new java.awt.Dimension(1370, 768));
         setSize(new java.awt.Dimension(1366, 768));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -69,7 +69,7 @@ public class DEOInterface extends javax.swing.JFrame {
                 registerEmpBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(registerEmpBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 342, 75));
+        getContentPane().add(registerEmpBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, 342, 75));
 
         calcSalBtn.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         calcSalBtn.setText("Calculate Salary");
@@ -78,7 +78,7 @@ public class DEOInterface extends javax.swing.JFrame {
                 calcSalBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(calcSalBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 160, 342, 75));
+        getContentPane().add(calcSalBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 220, 342, 75));
 
         viewSalaryEmp.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         viewSalaryEmp.setText("View Salary");
@@ -88,7 +88,7 @@ public class DEOInterface extends javax.swing.JFrame {
                 viewSalaryEmpActionPerformed(evt);
             }
         });
-        getContentPane().add(viewSalaryEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 410, 342, 75));
+        getContentPane().add(viewSalaryEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 470, 342, 75));
 
         setAttBtn.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         setAttBtn.setText("Set Attendance");
@@ -97,7 +97,7 @@ public class DEOInterface extends javax.swing.JFrame {
                 setAttBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(setAttBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 410, 342, 75));
+        getContentPane().add(setAttBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 470, 342, 75));
 
         jButton9.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jButton9.setText("Back");
@@ -106,22 +106,13 @@ public class DEOInterface extends javax.swing.JFrame {
                 jButton9ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 540, 115, 58));
+        getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 600, 115, 58));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/log.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, 519, 75));
-
-        logoutBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        logoutBtn.setText("Log Out");
-        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(logoutBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 90, 100, 30));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 40, 519, 75));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 760));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 770));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -187,14 +178,10 @@ public class DEOInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_calcSalBtnActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        DeoMain de=new DeoMain();
+        de.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
-
-    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
-        Login lg=new Login();
-        lg.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_logoutBtnActionPerformed
 
     private void viewSalaryEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewSalaryEmpActionPerformed
         DEOViewSalary v1 = new DEOViewSalary();
@@ -245,7 +232,6 @@ public class DEOInterface extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JButton logoutBtn;
     private javax.swing.JButton registerEmpBtn;
     private javax.swing.JButton setAttBtn;
     private javax.swing.JButton viewSalaryEmp;

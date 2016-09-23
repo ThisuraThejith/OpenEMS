@@ -159,6 +159,7 @@ public class DeoMain extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         DEOInterface de=new DEOInterface();
         de.setVisible(true);
+        this.dispose();
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
