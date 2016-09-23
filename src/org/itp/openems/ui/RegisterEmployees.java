@@ -604,6 +604,27 @@ public class RegisterEmployees extends javax.swing.JFrame {
     private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
         if (validateFields()) {
             try {
+                int employeeID = 0;
+                Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+                PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_EMPLOYEE_ID_BY_NIC);
+                preparedStatement.setString(1, this.nicTxt.getText());
+                ResultSet resultset = preparedStatement.executeQuery();
+                int count = 0;
+                while (resultset.next()) {
+                    employeeID = resultset.getInt("EmployeeID");
+                    count++;
+                }
+                if (count != 0) {
+                    nicLbl.setText("*Already registered");
+                    JOptionPane.showMessageDialog(null, "An employee with this NIC No is already registered.Please input a valid NIC No.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                resultset.close();
+                preparedStatement.close();
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+            try {
 
                 int roleID = 0;
                 Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
@@ -846,26 +867,7 @@ public class RegisterEmployees extends javax.swing.JFrame {
         else{
             nicLbl.setText(null);
         }
-        try {
-            int employeeID = 0;
-            Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
-            PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_EMPLOYEE_ID_BY_NIC);
-            preparedStatement.setString(1, this.nicTxt.getText());
-            ResultSet resultset = preparedStatement.executeQuery();
-            int count = 0;
-            while (resultset.next()){
-                employeeID = resultset.getInt("EmployeeID");
-                count++;
-            }
-            if (count != 0) {
-                JOptionPane.showMessageDialog(null, "An employee with this NIC No is already registered.Please input a valid NIC No.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            resultset.close();
-            preparedStatement.close();
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
+        
     }//GEN-LAST:event_nicTxtFocusLost
 
     private void mobileTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mobileTxtFocusLost
@@ -1129,26 +1131,7 @@ public class RegisterEmployees extends javax.swing.JFrame {
                     isValid = false;
                 }
             }
-            try {
-                int employeeID = 0;
-                Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
-                PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_EMPLOYEE_ID_BY_NIC);
-                preparedStatement.setString(1, this.nicTxt.getText());
-                ResultSet resultset = preparedStatement.executeQuery();
-                int count = 0;
-                while (resultset.next()) {
-                    employeeID = resultset.getInt("EmployeeID");
-                    count++;
-                }
-                if (count != 0) {
-                    nicLbl.setText("*Already registered NIC No");
-                    isValid = false;
-                }
-                resultset.close();
-                preparedStatement.close();
-            } catch (SQLException e) {
-                System.out.println(e);
-            }
+            
             if (!radioFemale.isSelected() && !radioMale.isSelected()) {
                 JOptionPane.showMessageDialog(null, "You haven't selected a gender", "Error", JOptionPane.ERROR_MESSAGE);
                 return false;
