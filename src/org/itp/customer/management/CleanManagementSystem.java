@@ -58,7 +58,6 @@ public class CleanManagementSystem extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton2.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 153, 153));
         jButton2.setText("Employee Management System");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,7 +67,6 @@ public class CleanManagementSystem extends javax.swing.JFrame {
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 342, 75));
 
         jButton3.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(0, 153, 153));
         jButton3.setText("Financial Management System");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,7 +76,6 @@ public class CleanManagementSystem extends javax.swing.JFrame {
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 270, 360, 75));
 
         jButton4.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(0, 153, 153));
         jButton4.setText("Inventory Management System");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,7 +85,6 @@ public class CleanManagementSystem extends javax.swing.JFrame {
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 130, 360, 75));
 
         jButton5.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(0, 153, 153));
         jButton5.setText("Service Scheduling");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,7 +94,6 @@ public class CleanManagementSystem extends javax.swing.JFrame {
         getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 410, 360, 75));
 
         jButton6.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(0, 153, 153));
         jButton6.setText("Sales handling");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,7 +103,6 @@ public class CleanManagementSystem extends javax.swing.JFrame {
         getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 410, 342, 75));
 
         jButton7.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(0, 153, 153));
         jButton7.setText("Customer Management System");
         jButton7.setToolTipText("");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -119,12 +113,10 @@ public class CleanManagementSystem extends javax.swing.JFrame {
         getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, 342, 75));
 
         jButton8.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(0, 153, 153));
         jButton8.setText("Feedback & Complaint rating System");
         getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 560, 360, 75));
 
         jButton9.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        jButton9.setForeground(new java.awt.Color(0, 153, 153));
         jButton9.setText("Transport Management System");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,7 +129,6 @@ public class CleanManagementSystem extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 461, 75));
 
         jButton11.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        jButton11.setForeground(new java.awt.Color(153, 0, 0));
         jButton11.setText("Log Out");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

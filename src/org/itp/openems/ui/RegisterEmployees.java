@@ -716,7 +716,7 @@ public class RegisterEmployees extends javax.swing.JFrame {
                         registerBtn.setEnabled(true);
 
                     } catch (SQLException ex) {
-                        JOptionPane.showMessageDialog(null, "Employee update failed", "Error", JOptionPane.ERROR_MESSAGE);
+                        //JOptionPane.showMessageDialog(null, "Employee update failed", "Error", JOptionPane.ERROR_MESSAGE);
                         System.out.println(ex);
                         return;
                     }
@@ -845,6 +845,26 @@ public class RegisterEmployees extends javax.swing.JFrame {
         }
         else{
             nicLbl.setText(null);
+        }
+        try {
+            int employeeID = 0;
+            Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+            PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_EMPLOYEE_ID_BY_NIC);
+            preparedStatement.setString(1, this.nicTxt.getText());
+            ResultSet resultset = preparedStatement.executeQuery();
+            int count = 0;
+            while (resultset.next()){
+                employeeID = resultset.getInt("EmployeeID");
+                count++;
+            }
+            if (count != 0) {
+                JOptionPane.showMessageDialog(null, "An employee with this NIC No is already registered.Please input a valid NIC No.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            resultset.close();
+            preparedStatement.close();
+        } catch (SQLException e) {
+            System.out.println(e);
         }
     }//GEN-LAST:event_nicTxtFocusLost
 
@@ -1108,6 +1128,26 @@ public class RegisterEmployees extends javax.swing.JFrame {
                     emailLbl.setText("*Invalid");
                     isValid = false;
                 }
+            }
+            try {
+                int employeeID = 0;
+                Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+                PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_EMPLOYEE_ID_BY_NIC);
+                preparedStatement.setString(1, this.nicTxt.getText());
+                ResultSet resultset = preparedStatement.executeQuery();
+                int count = 0;
+                while (resultset.next()) {
+                    employeeID = resultset.getInt("EmployeeID");
+                    count++;
+                }
+                if (count != 0) {
+                    nicLbl.setText("*Already registered NIC No");
+                    isValid = false;
+                }
+                resultset.close();
+                preparedStatement.close();
+            } catch (SQLException e) {
+                System.out.println(e);
             }
             if (!radioFemale.isSelected() && !radioMale.isSelected()) {
                 JOptionPane.showMessageDialog(null, "You haven't selected a gender", "Error", JOptionPane.ERROR_MESSAGE);

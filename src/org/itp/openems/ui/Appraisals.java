@@ -241,6 +241,11 @@ public class Appraisals extends javax.swing.JFrame {
         jLabel1.setText("NIC No");
         jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
+        nicTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                nicTxtFocusLost(evt);
+            }
+        });
         nicTxt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 nicTxtMouseClicked(evt);
@@ -581,6 +586,12 @@ public class Appraisals extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_bonusTxtFocusLost
+
+    private void nicTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nicTxtFocusLost
+        if (!Validation.ValidNIC(this.nicTxt.getText())) {
+                nicLbl.setText("*Invalid NIC No");
+        }
+    }//GEN-LAST:event_nicTxtFocusLost
     private void clear() {
         reviewsTxt.setText(null);
         bonusTxt.setText(null);
