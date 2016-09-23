@@ -28,18 +28,7 @@ public class EmployeeManagementSystem {
         Login l1=new Login();
         l1.setVisible(true);
             
-        // TODO code application logic here
-//        try{
-//        Connection connect = new DBConnect("root", "123456").getConnection();
-//        
-//        PreparedStatement prep = connect.prepareStatement(Queries.EMS.Insert.APPRAISALS);
-//        PreparedStatement prep1 = connect.prepareStatement(Queries.EMS.Insert.ATTENDANCE);
-//        PreparedStatement prep2 = connect.prepareStatement(Queries.EMS.Insert.EMPLOYEE);
-//        
-//        
-//        
-//        
-//                }catch(SQLException e){}
+
     }
     
 }

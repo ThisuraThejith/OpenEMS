@@ -187,8 +187,6 @@ public class DEOInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_calcSalBtnActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        CleanManagementSystem cm=new CleanManagementSystem();
-        cm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
 

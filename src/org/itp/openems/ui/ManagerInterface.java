@@ -52,14 +52,13 @@ public class ManagerInterface extends javax.swing.JFrame {
         jButton9 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         empRepBtn = new javax.swing.JButton();
-        logoutBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Employee Management System");
         setExtendedState(5);
-        setPreferredSize(new java.awt.Dimension(1150, 650));
-        setSize(new java.awt.Dimension(1366, 768));
+        setPreferredSize(new java.awt.Dimension(1370, 768));
+        setSize(new java.awt.Dimension(1370, 768));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         empDetBtn.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
@@ -69,7 +68,7 @@ public class ManagerInterface extends javax.swing.JFrame {
                 empDetBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(empDetBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 342, 75));
+        getContentPane().add(empDetBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 342, 75));
 
         viewSalaryEmp.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         viewSalaryEmp.setText("View Salary");
@@ -79,7 +78,7 @@ public class ManagerInterface extends javax.swing.JFrame {
                 viewSalaryEmpActionPerformed(evt);
             }
         });
-        getContentPane().add(viewSalaryEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 410, 342, 75));
+        getContentPane().add(viewSalaryEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 430, 342, 75));
 
         appraisalBtn.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         appraisalBtn.setText("Appraisals");
@@ -88,7 +87,7 @@ public class ManagerInterface extends javax.swing.JFrame {
                 appraisalBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(appraisalBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 410, 342, 75));
+        getContentPane().add(appraisalBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 430, 342, 75));
 
         jButton9.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jButton9.setText("Back");
@@ -97,10 +96,10 @@ public class ManagerInterface extends javax.swing.JFrame {
                 jButton9ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 530, 115, 58));
+        getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 580, 115, 58));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/log.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, 519, 75));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 40, 519, 75));
 
         empRepBtn.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         empRepBtn.setText("Employee Reports");
@@ -109,19 +108,10 @@ public class ManagerInterface extends javax.swing.JFrame {
                 empRepBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(empRepBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 210, 342, 75));
-
-        logoutBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        logoutBtn.setText("Log Out");
-        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(logoutBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 100, 100, 30));
+        getContentPane().add(empRepBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 230, 342, 75));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 760));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 1370, 790));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -147,6 +137,7 @@ public class ManagerInterface extends javax.swing.JFrame {
     private void empRepBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empRepBtnActionPerformed
         EmployeeReports em=new EmployeeReports();
         em.setVisible(true);
+        //this.dispose();
     }//GEN-LAST:event_empRepBtnActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -154,12 +145,6 @@ public class ManagerInterface extends javax.swing.JFrame {
         cm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
-
-    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
-        Login lg=new Login();
-        lg.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_logoutBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,7 +191,6 @@ public class ManagerInterface extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JButton logoutBtn;
     private javax.swing.JButton viewSalaryEmp;
     // End of variables declaration//GEN-END:variables
 }

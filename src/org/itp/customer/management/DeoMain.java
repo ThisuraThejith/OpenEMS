@@ -47,10 +47,11 @@ public class DeoMain extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1370, 768));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 153, 153));
         jButton2.setText("Employee Management System");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -58,19 +59,19 @@ public class DeoMain extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 135, 240, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 390, 100));
 
-        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jButton3.setForeground(new java.awt.Color(0, 153, 153));
         jButton3.setText("Financial Management System");
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, 200, -1));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 290, 390, 100));
 
-        jButton4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jButton4.setForeground(new java.awt.Color(0, 153, 153));
         jButton4.setText("Inventory Management System");
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 130, 200, -1));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 160, 390, 100));
 
-        jButton5.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton5.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jButton5.setForeground(new java.awt.Color(0, 153, 153));
         jButton5.setText("Service Scheduling");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -78,9 +79,9 @@ public class DeoMain extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, 200, -1));
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 410, 390, 100));
 
-        jButton6.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton6.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jButton6.setForeground(new java.awt.Color(0, 153, 153));
         jButton6.setText("Sales handling");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -88,9 +89,9 @@ public class DeoMain extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 220, 240, -1));
+        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, 390, 100));
 
-        jButton7.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton7.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jButton7.setForeground(new java.awt.Color(0, 153, 153));
         jButton7.setText("Customer Management System");
         jButton7.setToolTipText("");
@@ -99,22 +100,22 @@ public class DeoMain extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 176, 240, -1));
+        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, 390, 100));
 
-        jButton8.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton8.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jButton8.setForeground(new java.awt.Color(0, 153, 153));
         jButton8.setText("Feedback & Complaint rating System");
-        getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 260, 200, -1));
+        getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 540, 390, 100));
 
-        jButton9.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton9.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jButton9.setForeground(new java.awt.Color(0, 153, 153));
         jButton9.setText("Transport Management System");
-        getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 261, 240, -1));
+        getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 550, 390, 100));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/log.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 461, 50));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, 530, 100));
 
-        jButton11.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton11.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jButton11.setForeground(new java.awt.Color(204, 0, 0));
         jButton11.setText("Log Out");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
@@ -122,10 +123,10 @@ public class DeoMain extends javax.swing.JFrame {
                 jButton11ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(597, 315, 75, -1));
+        getContentPane().add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 670, 120, 50));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 410));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, 1390, 820));
 
         pack();
         setLocationRelativeTo(null);
@@ -158,7 +159,7 @@ public class DeoMain extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         DEOInterface de=new DEOInterface();
         de.setVisible(true);
-        this.dispose();
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
