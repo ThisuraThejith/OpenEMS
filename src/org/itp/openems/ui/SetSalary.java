@@ -342,13 +342,9 @@ public class SetSalary extends javax.swing.JFrame {
     }//GEN-LAST:event_CancelBtnActionPerformed
 
     private void SaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveBtnActionPerformed
-        clearlabels();
-        if (roleCmb.getSelectedItem().toString().equals("--Select--")) {
-            roleLbl.setText("Please select a role");
-            JOptionPane.showMessageDialog(null, "You haven't selected a role", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        } else {
-            try {
+        //clearlabels();
+        try {
+                roleLbl.setText("");
                 int roleID = 0;
                 int salaryID = 0;
                 Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
@@ -380,20 +376,15 @@ public class SetSalary extends javax.swing.JFrame {
             } catch (SQLException e) {
                 System.out.println(e);
             }
-        }
-
-        if (basicSalaryTxt.getText().isEmpty() || epfTxt.getText().isEmpty() || etfTxt.getText().isEmpty() || nopayTxt.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Fields Cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        } else {
-
+        if(validateFields()){
+            
+            
+        
+        
             try {
 
-                if (!validateFields()) {
-                    JOptionPane.showMessageDialog(null, "One or more fields are invalid", "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                } else {
-                    clearlabels();
+                 
+                    //clearlabels();
                     int roleID = 0;
                     Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
                     PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_ROLE_ID_BY_NAME);
@@ -405,11 +396,7 @@ public class SetSalary extends javax.swing.JFrame {
                     resultset.close();
                     preparedStatement.close();
 
-                    /**
-                     * if (Double.parseDouble(this.basicSalaryTxt.getText()) < 0) { JOptionPane.showMessageDialog(null,
-                     * "Basic Salary cannot be negative", "Error", JOptionPane.ERROR_MESSAGE); return;
-                    }
-                     */
+                    
                     connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
                     preparedStatement = connect.prepareStatement(Queries.EMS.Insert.SALARY);
                     preparedStatement.setInt(1, roleID);
@@ -423,54 +410,28 @@ public class SetSalary extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Added Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
                     tableload();
                     cleartext();
-                }
+                
 
             } catch (SQLException e) {
                 System.out.println(e);
             }
-
+            
         }
+        
 
     }//GEN-LAST:event_SaveBtnActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
         //clearlabels();
-        if (roleCmb.getSelectedItem().toString().equals("--Select--")) {
-            JOptionPane.showMessageDialog(null, "No role or record is selected to update salary", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        } else if (basicSalaryTxt.getText().isEmpty() || epfTxt.getText().isEmpty() || etfTxt.getText().isEmpty() || nopayTxt.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please press the search button or select a record to update", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        } else if (!validateFields()) {
-            JOptionPane.showMessageDialog(null, "One or more fields are invalid", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        } else {
+       if(validateFields()) {
             try {
                 int roleID = 0;
-                int salaryID = 0;
                 Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
                 PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_ROLE_ID_BY_NAME);
                 preparedStatement.setString(1, this.roleCmb.getSelectedItem().toString());
                 ResultSet resultset = preparedStatement.executeQuery();
                 while (resultset.next()) {
                     roleID = resultset.getInt("RoleID");
-                }
-                resultset.close();
-                preparedStatement.close();
-
-                connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
-                preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_SALARY_ID_BY_ROLE_ID);
-                preparedStatement.setInt(1, roleID);
-                resultset = preparedStatement.executeQuery();
-                int count = 0;
-                while (resultset.next()) {
-                    salaryID = resultset.getInt("SalaryID");
-                    count++;
-                }
-                if (count == 0) {
-                    JOptionPane.showMessageDialog(null, "Can't update a non existing record", "Error", JOptionPane.ERROR_MESSAGE);
-                    clearlabels();
-                    return;
                 }
                 resultset.close();
                 preparedStatement.close();
@@ -486,18 +447,21 @@ public class SetSalary extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Updated Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
                 tableload();
                 cleartext();
+                SaveBtn.setEnabled(true);
+                searchBtn.setEnabled(true);
+                updateBtn.setEnabled(false);
             } catch (SQLException e) {
                 System.out.println(e);
             }
-        }
+       }
     }//GEN-LAST:event_updateBtnActionPerformed
 
     private void demoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_demoBtnActionPerformed
-        this.roleCmb.setSelectedItem("Manager");
+        this.roleCmb.setSelectedItem("Driver");
         this.basicSalaryTxt.setText("20000");
-        this.epfTxt.setText("0.1");
-        this.etfTxt.setText("0.1");
-        this.nopayTxt.setText("10");
+        this.epfTxt.setText("10");
+        this.etfTxt.setText("10");
+        this.nopayTxt.setText("20");
     }//GEN-LAST:event_demoBtnActionPerformed
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
@@ -615,8 +579,11 @@ public class SetSalary extends javax.swing.JFrame {
     private void epfTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_epfTxtFocusLost
         if (this.epfTxt.getText().isEmpty()) {
             epfLbl.setText("*Necessary Field");
-        } else if (!Validation.ValidPercentage(this.epfTxt.getText())) {
+        } 
+        else if (!Validation.ValidDigits(this.epfTxt.getText())) {
             epfLbl.setText("*Invalid EPF");
+        }else if (!Validation.ValidPercentage(this.epfTxt.getText())) {
+            epfLbl.setText("*EPF can't be > 100");
         } else if (Double.parseDouble(this.epfTxt.getText()) < 0) {
             epfLbl.setText("*EPF cannot be negative");
         }
@@ -628,8 +595,11 @@ public class SetSalary extends javax.swing.JFrame {
     private void etfTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_etfTxtFocusLost
         if (this.etfTxt.getText().isEmpty()) {
             etfLbl.setText("*Necessary Field");
-        } else if (!Validation.ValidPercentage(this.etfTxt.getText())) {
+        }
+        else if (!Validation.ValidDigits(this.etfTxt.getText())) {
             etfLbl.setText("*Invalid ETF");
+        }else if (!Validation.ValidPercentage(this.etfTxt.getText())) {
+            etfLbl.setText("*ETF can't be > 100");
         } else if (Double.parseDouble(this.etfTxt.getText()) < 0) {
             etfLbl.setText("*ETF cannot be negative");
         }
@@ -643,7 +613,7 @@ public class SetSalary extends javax.swing.JFrame {
             nopayLbl.setText("*Necessary Field");
         } else if (!Validation.ValidDigits(this.nopayTxt.getText())) {
             nopayLbl.setText("*Invalid Leave amount");
-        } else if (Double.parseDouble(this.nopayTxt.getText()) < 0) {
+        } else if (Integer.parseInt(this.nopayTxt.getText()) < 0) {
             nopayLbl.setText("*Leaves cannot be negative");
         }
         else{
@@ -701,38 +671,73 @@ public class SetSalary extends javax.swing.JFrame {
     }//GEN-LAST:event_basicSalaryTxtFocusGained
 
     private boolean validateFields() {
-        boolean isValid = true;
+        if (roleCmb.getSelectedItem().toString().equals("--Select--")) {
+            roleLbl.setText("Please select a role");
+            JOptionPane.showMessageDialog(null, "You haven't selected a role", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        roleLbl.setText("");
+        if (basicSalaryTxt.getText().isEmpty() || epfTxt.getText().isEmpty() || etfTxt.getText().isEmpty() || nopayTxt.getText().isEmpty()) {
+            if(basicSalaryTxt.getText().isEmpty()){
+                basicSalLbl.setText("*This field is necessary");
+            }
+            if(epfTxt.getText().isEmpty()){
+                epfLbl.setText("*This field is necessary");
+            }
+            if(etfTxt.getText().isEmpty()){
+                etfLbl.setText("*This field is necessary");
+            }
+            if(nopayTxt.getText().isEmpty()){
+                nopayLbl.setText("*This field is necessary");
+            }
+            
+            JOptionPane.showMessageDialog(null, "Necessary fields cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        else{
+            clearlabels();
+            boolean isValid = true;
+        
         if (!Validation.ValidDigits(this.basicSalaryTxt.getText())) {
             basicSalLbl.setText("*Invalid Salary");
             isValid = false;
-        } else if (Double.parseDouble(this.basicSalaryTxt.getText()) < 0) {
+        }else if (Double.parseDouble(this.basicSalaryTxt.getText()) < 0) {
             basicSalLbl.setText("*Salary cannot be negative");
             isValid = false;
-        } else if (Double.parseDouble(this.epfTxt.getText()) < 0) {
-            epfLbl.setText("*EPF cannot be negative");
-            isValid = false;
-        } else if (Double.parseDouble(this.etfTxt.getText()) < 0) {
-            etfLbl.setText("*ETF cannot be negative");
-            isValid = false;
-        } else if (Double.parseDouble(this.nopayTxt.getText()) < 0) {
-            nopayLbl.setText("*Leaves cannot be negative");
-            isValid = false;
         }
-        if (!Validation.ValidPercentage(this.epfTxt.getText())) {
+        if (!Validation.ValidDigits(this.epfTxt.getText())) {
             epfLbl.setText("*Invalid EPF");
             isValid = false;
-        }
-
-        if (!Validation.ValidPercentage(this.etfTxt.getText())) {
-            etfLbl.setText("*Invalid ETF");
+        }else if (Double.parseDouble(this.epfTxt.getText()) < 0) {
+            epfLbl.setText("*EPF cannot be negative");
+            isValid = false;
+        }else if (!Validation.ValidPercentage(this.epfTxt.getText())) {
+            epfLbl.setText("*EPF can't be > 100");
             isValid = false;
         }
-
+        if (!Validation.ValidDigits(this.etfTxt.getText())) {
+            etfLbl.setText("*Invalid ETF");
+            isValid = false;
+        }else  if (Double.parseDouble(this.etfTxt.getText()) < 0) {
+            etfLbl.setText("*ETF cannot be negative");
+            isValid = false;
+        }else if (!Validation.ValidPercentage(this.etfTxt.getText())) {
+            etfLbl.setText("*ETF can't be > 100");
+            isValid = false;
+        }
         if (!Validation.ValidDigits(this.nopayTxt.getText())) {
             nopayLbl.setText("*Invalid Leave amount");
             isValid = false;
+        }else if (Integer.parseInt(this.nopayTxt.getText()) < 0) {
+            nopayLbl.setText("*Leaves cannot be negative");
+            isValid = false;
+        }
+        
+        if (!isValid) {
+                JOptionPane.showMessageDialog(null, "One or more fields are invalid", "Error", JOptionPane.ERROR_MESSAGE);
         }
         return isValid;
+        }
     }
 
     private void clearlabels() {

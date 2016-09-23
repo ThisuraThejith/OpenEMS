@@ -126,7 +126,7 @@ public class CleanManagementSystem extends javax.swing.JFrame {
         getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 560, 342, 75));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/log.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 461, 75));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 480, 75));
 
         jButton11.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jButton11.setText("Log Out");
