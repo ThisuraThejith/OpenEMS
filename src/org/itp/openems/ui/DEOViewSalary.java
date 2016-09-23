@@ -190,8 +190,8 @@ public class DEOViewSalary extends javax.swing.JFrame {
                 return;
             }
             this.basicSalLbl.setText(Double.toString(salary.getBasicSalary()));
-            this.epfLbl.setText(Double.toString(salary.getEpf()/100 * salary.getBasicSalary()));
-            this.etfLbl.setText(Double.toString(salary.getEtf()/100 * salary.getBasicSalary()));
+            this.epfLbl.setText(Double.toString(salary.getEpfRate()/100 * salary.getBasicSalary()));
+            this.etfLbl.setText(Double.toString(salary.getEtfRate()/100 * salary.getBasicSalary()));
             this.bonusLbl.setText(Double.toString(salary.getBonus()));
             this.totalSalLbl.setText(Double.toString(salary.calculateSalary()));
             

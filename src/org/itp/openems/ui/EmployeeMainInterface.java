@@ -5,10 +5,12 @@
  */
 package org.itp.openems.ui;
 
+import java.awt.Container;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -17,6 +19,11 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import jdk.nashorn.internal.objects.NativeArray;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JRViewer;
 import org.itp.commons.Constants;
 import org.itp.commons.DBConnect;
 import org.itp.commons.DBUtils;
@@ -213,42 +220,24 @@ public class EmployeeMainInterface extends javax.swing.JFrame {
                 dir.mkdirs();
             }
             for(int eid : eids){
-                
                 String status=DBUtils.getStatusByEmployeeID(eid);
                 if(status.equals("Resigned")){
-                    //writer.close();
                     continue;
-                }
-                Salary salary = DBUtils.getSalaryForEmployeeID(eid);
-                File file = new File(Constants.REPORT_LOCATION + File.separator + eid + ".txt");
-                
-                if (salary.getAbsentCount() + (salary.getHalfDayCount() / 2) > salary.getMaxLeaves()){
-                    if(!file.exists()){
-                        file.createNewFile();
-                    }
-                    FileWriter writer = new FileWriter(file);
-                    writer.write("No Pay");
-                    writer.flush();
-                    writer.close();
-                }
-                
-                else{
-                    if(!file.exists()){
-                        file.createNewFile();
-                    }
-                    FileWriter writer = new FileWriter(file);
-                    writer.write(salary.toString());
-                    writer.flush();
-                    writer.close();
+                }                            
+                try {
+                    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cleanmaster?zeroDateTimeBehavior=convertToNull", "root", "123456");
+                    JasperPrint print = JasperFillManager.fillReport("./reports/salaryreport.jasper", ViewIReport.getParameterMapForSalaryReport(eid), con);
+                    JasperExportManager.exportReportToPdfFile(print, Constants.REPORT_LOCATION + File.separator + eid + ".pdf");
+                } catch (SQLException sqle) {
+                    sqle.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }  
             JOptionPane.showMessageDialog(null, "All the files are saved at the "+ Constants.REPORT_LOCATION+  " folder.", "Success", JOptionPane.INFORMATION_MESSAGE);
         } 
         catch (SQLException e) {
         } 
-        catch (IOException e){
-        }
-
     }//GEN-LAST:event_calcSalBtnActionPerformed
 
     private void empRepBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empRepBtnActionPerformed

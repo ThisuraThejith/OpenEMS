@@ -14,6 +14,8 @@ import java.util.Calendar;
 import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import org.itp.openems.model.Appraisals;
+import org.itp.openems.model.Employee;
 import org.itp.openems.model.Salary;
 
 /**
@@ -75,8 +77,9 @@ public class DBUtils {
         Salary salary = new Salary();
         Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
         PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_NO_OF_ABSENTS_FOR_EMPLOYEE);
-        preparedStatement.setString(1, Integer.toString(Calendar.getInstance().get(Calendar.YEAR)) + "01-01");
-        preparedStatement.setDate(2, new java.sql.Date(Calendar.getInstance().getTime().getTime()));
+        preparedStatement.setString(1, Integer.toString(Calendar.getInstance().get(Calendar.YEAR)) + "-01-01");
+        Calendar today = Calendar.getInstance();
+        preparedStatement.setString(2, Integer.toString(today.get(Calendar.YEAR)) + "-" + Integer.toString(today.get(Calendar.MONTH) + 1)+ "-" + today.get(Calendar.DATE));
         preparedStatement.setInt(3, employeeID);
         ResultSet resultset = preparedStatement.executeQuery();
         while (resultset.next()) {
@@ -87,7 +90,7 @@ public class DBUtils {
 
         preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_NO_OF_HALFDAYS_FOR_EMPLOYEE);
         preparedStatement.setString(1, Integer.toString(Calendar.getInstance().get(Calendar.YEAR)) + "01-01");
-        preparedStatement.setDate(2, new java.sql.Date(Calendar.getInstance().getTime().getTime()));
+        preparedStatement.setString(2, Integer.toString(today.get(Calendar.YEAR)) + Integer.toString(today.get(Calendar.MONTH) + 1)+ today.get(Calendar.DATE));
         preparedStatement.setInt(3, employeeID);
         resultset = preparedStatement.executeQuery();
         while (resultset.next()) {
@@ -119,13 +122,30 @@ public class DBUtils {
         resultset = preparedStatement.executeQuery();
         while (resultset.next()) {
             salary.setBasicSalary(resultset.getDouble("BasicSalary"));
-            salary.setEpf(resultset.getDouble("EPF"));
-            salary.setEtf(resultset.getDouble("ETF"));
+            salary.setEpfRate(resultset.getDouble("EPF"));
+            salary.setEtfRate(resultset.getDouble("ETF"));
             salary.setMaxLeaves(resultset.getInt("No_of_Leaves_for_no_pay"));
         }
         resultset.close();
         preparedStatement.close();
         return salary;
+    }
+    
+    public static Employee getEmployee(int employeeID) throws SQLException{
+        Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+        PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_EMPLOYEE);
+        preparedStatement.setInt(1, employeeID);
+        ResultSet resultset = preparedStatement.executeQuery();
+        Employee employee = new Employee();
+        while (resultset.next()) {
+            employee.setEmpID(employeeID);
+            employee.setFirstName(resultset.getString("First_Name"));
+            employee.setLastName(resultset.getString("Last_Name"));
+            employee.setRoleName(resultset.getString("RoleName"));
+        }
+        resultset.close();
+        preparedStatement.close();
+        return employee;
     }
     
     public static List<Integer> getEmployeeIds() throws SQLException{
@@ -139,5 +159,34 @@ public class DBUtils {
         resultset.close();
         preparedStatement.close();
         return eids;
+    }
+    
+    public static Appraisals getAppraisal(int employeeID) throws SQLException{
+        Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+        PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_REVIEWS);
+        preparedStatement.setInt(1, employeeID);
+        ResultSet resultset = preparedStatement.executeQuery();
+        Appraisals appraisal = new Appraisals();
+        while (resultset.next()) {
+            appraisal.setReviews(resultset.getString("Reviews"));
+        }
+        resultset.close();
+        preparedStatement.close();
+        return appraisal;
+    }
+    
+    public static Employee getEmployeeNICStatus(int employeeID) throws SQLException{
+        Connection connect = new DBConnect(Constants.USER, Constants.PASSWORD).getConnection();
+        PreparedStatement preparedStatement = connect.prepareStatement(Queries.EMS.Select.GET_NIC_STATUS);
+        preparedStatement.setInt(1, employeeID);
+        ResultSet resultset = preparedStatement.executeQuery();
+        Employee employee = new Employee();
+        while (resultset.next()) {
+            employee.setNIC(resultset.getString("NIC_No"));
+            employee.setCstatus(resultset.getString("Current_Status"));
+        }
+        resultset.close();
+        preparedStatement.close();
+        return employee;
     }
 }

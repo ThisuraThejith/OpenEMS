@@ -30,8 +30,8 @@ public class Queries {
             public static String GET_BONUS_BY_EMPLOYEE_ID="Select Bonus from Appraisals where EmpID=?";
             public static String GET_SALARY_BY_ROLE_ID="Select BasicSalary,EPF,ETF,No_of_Leaves_for_no_pay from Salary where RoleID=?";
             public static String GET_ACTIVE_EMPLOYEES_LIST="Select EmployeeID,First_Name,Last_Name from Employee where Current_Status='Working'";
-            public static String GET_NO_OF_ABSENTS_FOR_EMPLOYEE="SELECT COUNT(*) AS COUNT FROM openems.attendance WHERE (Work_Date BETWEEN ? AND ?) AND EmpID = ? AND Presence='Absent'";
-            public static String GET_NO_OF_HALFDAYS_FOR_EMPLOYEE="SELECT COUNT(*) AS COUNT FROM openems.attendance WHERE (Work_Date BETWEEN ? AND ?) AND EmpID = ? AND Presence='Half_Day'";
+            public static String GET_NO_OF_ABSENTS_FOR_EMPLOYEE="SELECT COUNT(*) AS COUNT FROM attendance WHERE (Work_Date BETWEEN ? AND ?) AND EmpID = ? AND Presence='Absent'";
+            public static String GET_NO_OF_HALFDAYS_FOR_EMPLOYEE="SELECT COUNT(*) AS COUNT FROM attendance WHERE (Work_Date BETWEEN ? AND ?) AND EmpID = ? AND Presence='Half_Day'";
             public static String GET_EMPLOYEE_IDS="SELECT EmployeeID FROM Employee";
             public static String GET_EMPLOYEE_ID_BY_NIC="Select EmployeeID from Employee where NIC_No=?";
             public static String GET_WORK_DATE="Select EmpID from Attendance where Work_Date=?";
@@ -46,6 +46,9 @@ public class Queries {
             public static String GET_CSTATUS_BY_EMPLOYEE_ID="Select Current_Status from Employee where EmployeeID=?";
             public static String SEARCH_APPRAISALS="Select EmployeeID,First_Name,Last_Name,NIC_No,AppraisalID,Bonus,Reviews from Employee e,Appraisals a where a.EmpID=e.EmployeeID AND (EmployeeID like ? or First_Name like ? or Last_Name like ? or NIC_No like ? or Bonus like ? or Reviews like ?)";
             public static String GET_ROLE_TABLE="Select RoleID,RoleName,Description from Role where role_status='Active'";
+            public static String GET_EMPLOYEE = "SELECT First_Name,Last_Name,RoleName FROM employee,role Where EmployeeID = ? AND employee.RoleID = role.RoleID";
+            public static String GET_REVIEWS="Select Reviews from Appraisals where EmpID=?";
+            public static String GET_NIC_STATUS="Select NIC_No ,Current_Status from cleanmaster.Employee where EmployeeID=?";
         }
         public static class Update{
             public static String EMPLOYEE="Update Employee Set First_Name=?,Last_Name=?,Address=?,Date_of_Birth=?,NIC_No=?,Gender=?,Marital_Status=?,Mobile_No=?,Home_No=?,Email=?,Current_Status=?,RoleID=? Where EmployeeID=?";

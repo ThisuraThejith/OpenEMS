@@ -16,8 +16,8 @@ public class Salary {
     private int halfDayCount;
     private int maxLeaves;
     private double bonus;
-    private double epf;
-    private double etf;
+    private double epfRate;
+    private double etfRate;
     private double basicSalary;
 
     /**
@@ -93,29 +93,41 @@ public class Salary {
     /**
      * @return the epf
      */
-    public double getEpf() {
-        return epf;
+    public double getEpfRate() {
+        return epfRate;
     }
 
     /**
      * @param epf the epf to set
      */
-    public void setEpf(double epf) {
-        this.epf = epf;
+    public void setEpfRate(double epf) {
+        this.epfRate = epf;
     }
 
     /**
      * @return the etf
      */
-    public double getEtf() {
-        return etf;
+    public double getEtfRate() {
+        return etfRate;
     }
 
     /**
      * @param etf the etf to set
      */
-    public void setEtf(double etf) {
-        this.etf = etf;
+    public void setEtfRate(double etf) {
+        this.etfRate = etf;
+    }
+    
+    /**
+     * 
+     * @return the epf amount
+     */
+    public double getEpf() {
+        return this.epfRate * this.basicSalary / 100;
+    }
+    
+    public double getEtf(){
+        return this.etfRate * this.basicSalary / 100;
     }
 
     /**
@@ -134,9 +146,7 @@ public class Salary {
     
     public double calculateSalary() {
         double totalSalary;
-
-        totalSalary = basicSalary - ((epf + etf)/100) * basicSalary + bonus;
-
+        totalSalary = basicSalary - ((epfRate + etfRate)/100) * basicSalary + bonus;
         return totalSalary;
     }
     
@@ -145,8 +155,8 @@ public class Salary {
         StringBuilder builder = new StringBuilder();
         builder.append("Basic Salary : " + this.basicSalary + "\n");
         builder.append("Bonus : " + this.bonus + "\n");
-        builder.append("EPF : " + this.epf/100 * this.basicSalary + "\n");
-        builder.append("ETF : " + this.etf/100 * this.basicSalary+ "\n");
+        builder.append("EPF : " + this.epfRate/100 * this.basicSalary + "\n");
+        builder.append("ETF : " + this.etfRate/100 * this.basicSalary+ "\n");
         builder.append("Total Salary : " + this.calculateSalary()+ "\n");
         return builder.toString();
     }
