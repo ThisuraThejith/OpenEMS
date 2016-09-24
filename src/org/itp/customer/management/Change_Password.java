@@ -143,23 +143,20 @@ public class Change_Password extends javax.swing.JFrame {
     }//GEN-LAST:event_Change_Password_text1ActionPerformed
 
     private void Change_Password_btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Change_Password_btn1ActionPerformed
-        
         String user=Change_Password_text1.getText();
         String pwd1=Change_Password_pwd1.getText();
         String pwd2=Change_Password_pwd2.getText();
         String pwd3=Change_Password_pwd3.getText();
         
-        String query1="Update Login Set Password = \""+pwd2+"\" where User_Name = \""+user+"\""+" AND Password = \""+pwd1+"\"" ;
-        String query2="select UserName from Login where User_Name = \""+user+"\"";
-        String query3="select Password from Login where User_Name= \""+user+"\"";
+        String query1="Update users Set Password = '"+pwd2+"' where User_Name = '"+user+"' AND Password = '"+pwd1+"'" ;
+        String query2="select User_Name from users where User_Name = '"+user+"'";
+        String query3="select Password from users where User_Name= '"+user+"'";
         String check="";
         try{
             
-        String host = "jdbc:mysql://localhost:3306/itp";
-        String Name = "itp";
-        String Pass= "itp";
+      
         
-        Connection con=DriverManager.getConnection(host,Name,Pass);
+         Connection con2 = DBconnect.connect();
         
         Statement stmt2;
         Statement stmt3;
@@ -167,8 +164,8 @@ public class Change_Password extends javax.swing.JFrame {
         ResultSet rs2;
         ResultSet rs3;
           
-        stmt2=con.createStatement();
-        stmt3=con.createStatement();
+        stmt2=con2.createStatement();
+        stmt3=con2.createStatement();
            
         rs2=stmt2.executeQuery(query2);
         rs3=stmt3.executeQuery(query3);
@@ -211,7 +208,7 @@ public class Change_Password extends javax.swing.JFrame {
         {
             Statement stmt1;
             
-            stmt1=con.createStatement();
+            stmt1=con2.createStatement();
             stmt1.executeUpdate(query1);
             JOptionPane.showMessageDialog(null,"Password Changed Successully");
             
@@ -231,6 +228,7 @@ public class Change_Password extends javax.swing.JFrame {
         catch ( SQLException err ) {
             JOptionPane.showMessageDialog(null,err.getMessage());
         }
+
        
         
     }//GEN-LAST:event_Change_Password_btn1ActionPerformed

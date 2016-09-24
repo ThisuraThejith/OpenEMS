@@ -143,7 +143,7 @@ public class DeoMain extends javax.swing.JFrame {
         {
                     this.setVisible(false);
                     new Login().setVisible(true);
-                }
+        }
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -153,7 +153,7 @@ public class DeoMain extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
          this.setVisible(false);
-                    new ManagerCus().setVisible(true);
+                    new DEOCust().setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

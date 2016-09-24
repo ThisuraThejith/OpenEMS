@@ -176,55 +176,91 @@ PreparedStatement pst=null;
     }//GEN-LAST:event_ClearActionPerformed
 
     private void LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginActionPerformed
-      // String sql="select * from users where User_Name=? and Password=?";
-      //  System.out.println(sql);
-       
-     // try{
+                       String user = jusername.getText();
+                    String pwd = jPassword.getText();
+     
+        String check="";
+        
+        try{
+        
+        
+       Connection con2 = DBconnect.connect();
+        
+        String query1="select User_Name from users where User_Name = '"+user+"'";
+        String query2="select Password from users where Password= '"+pwd+"'";
+        
+        Statement stmt1;
+        Statement stmt2;
+        
+         ResultSet rs1;
+          ResultSet rs2;
+          
+           stmt1=con2.createStatement();
+           stmt2=con2.createStatement();
            
-             //   pst=conn.prepareStatement(sql);
-            
-       // pst.setString(1,jusername.getText());
-       // pst.setString(2,jPassword.getText());
-        
-       // rs=pst.executeQuery();
-       // if(rs.next()){
-        JOptionPane.showMessageDialog(null, "Login Succuessfully");
-        String p = jPassword.getText();
-        String n = jusername.getText();
-        
-        //String x = 
-        
-        if (n.equals("ADMIN") && (p.equals("admin@123")))
+            rs1=stmt1.executeQuery(query1);
+           rs2=stmt2.executeQuery(query2);
+           
+           if(!rs1.next())//validating user name is incorrect
+           {
+               JOptionPane.showMessageDialog(null,"User Name is invalid!!!");
+               jusername.setText("");
+               jPassword.setText("");
+           }
+           
+           else if(rs2.first())//user name is correct
+           {
+                check=rs2.getString("Password");//getting input from database
+               
+                 //checking password is correct or not with retrieved database results
+           if(!check.equals(pwd))
+           {
+               JOptionPane.showMessageDialog(null,"Password is incorrect!!!");
+               jusername.setText("");
+               jPassword.setText("");
+           }
+           
+           else
+           {
+               JOptionPane.showMessageDialog(null,"You are logged in as "+user);
+               
+               //after login is successful and poping up message moving to correct form
+              
+               
+       
+               
+         if (user.equals("ADMIN"))
             {
                 this.setVisible(false);
                 new Admin().setVisible(true);
             }
-        else if (n.equals("DEO") && (p.equals("deo@123")))
+        else if (user.equals("DEO"))
                 {
                     this.setVisible(false);
                     new DeoMain().setVisible(true);
-                    
                 }
-        else if (n.equals("MANAGER") && (p.equals("mgr@123")))
+        else if (user.equals("MANAGER") )
                 {
                     this.setVisible(false);
                     new MngrMain().setVisible(true);
          }
-        else {System.out.println("henagahapan");
+        else {System.out.println("Ops");
             
            JOptionPane.showMessageDialog(null, "The user name or password is incorrect.");
-//                     JOptionPane.showMessageDialog(null,"Please Re-Enter the Password");
-//                    jusername.setText("");
-//                    jPassword.setText("");
-//        }
-////        
-//       } 
-//        }catch(SQLException ex){
-//                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//               
-//  
+
         }
+           }
+           }
+           
+          
+           
+           
+        }
+        
+        catch ( SQLException err ) {
+            JOptionPane.showMessageDialog(null,err.getMessage());
+        }
+
     }//GEN-LAST:event_LoginActionPerformed
 
     private void Change_PasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Change_PasswordActionPerformed
