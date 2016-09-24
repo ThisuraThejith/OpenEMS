@@ -151,7 +151,7 @@ public class RegisterEmployees extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Register Employees");
+        setTitle("Manage Employees");
         setExtendedState(5);
         setSize(new java.awt.Dimension(1366, 768));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -216,6 +216,9 @@ public class RegisterEmployees extends javax.swing.JFrame {
 
         dobDc.setDateFormatString("yyyy-MM-dd");
         dobDc.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                dobDcFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 dobDcFocusLost(evt);
             }
@@ -236,20 +239,45 @@ public class RegisterEmployees extends javax.swing.JFrame {
 
         gender.add(radioMale);
         radioMale.setText("Male");
+        radioMale.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                radioMaleFocusGained(evt);
+            }
+        });
 
         gender.add(radioFemale);
         radioFemale.setText("Female");
+        radioFemale.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                radioFemaleFocusGained(evt);
+            }
+        });
 
         jLabel6.setText("Marital Status");
 
         marital.add(radioSingle);
         radioSingle.setText("Single");
+        radioSingle.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                radioSingleFocusGained(evt);
+            }
+        });
 
         marital.add(radioMarried);
         radioMarried.setText("Married");
+        radioMarried.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                radioMarriedFocusGained(evt);
+            }
+        });
 
         jLabel7.setText("Role");
 
+        roleCmb.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                roleCmbFocusGained(evt);
+            }
+        });
         roleCmb.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 roleCmbMouseClicked(evt);
@@ -375,6 +403,11 @@ public class RegisterEmployees extends javax.swing.JFrame {
         jLabel14.setText("Current Status");
 
         cstatusCmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Working", "Resigned" }));
+        cstatusCmb.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                cstatusCmbFocusGained(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -951,7 +984,7 @@ public class RegisterEmployees extends javax.swing.JFrame {
     }//GEN-LAST:event_nicTxtFocusGained
 
     private void roleCmbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roleCmbMouseClicked
-        if(fnameTxt.getText().isEmpty()||lnameTxt.getText().isEmpty()||addressTxt.getText().isEmpty()||nicTxt.getText().isEmpty()){
+        if(fnameTxt.getText().isEmpty()||lnameTxt.getText().isEmpty()||addressTxt.getText().isEmpty()||nicTxt.getText().isEmpty()||((JTextField) dobDc.getDateEditor().getUiComponent()).getText().isEmpty()){
             if(fnameTxt.getText().isEmpty()){
                 fnameLbl.setText("*This field is necessary");
             }
@@ -963,12 +996,15 @@ public class RegisterEmployees extends javax.swing.JFrame {
             }
             if(nicTxt.getText().isEmpty()){
                 nicLbl.setText("*This field is necessary");
+            }
+            if(((JTextField) dobDc.getDateEditor().getUiComponent()).getText().isEmpty()){
+                dobLbl.setText("*This field is necessary");
             }
         }
     }//GEN-LAST:event_roleCmbMouseClicked
 
     private void mobileTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mobileTxtFocusGained
-        if(fnameTxt.getText().isEmpty()||lnameTxt.getText().isEmpty()||addressTxt.getText().isEmpty()||nicTxt.getText().isEmpty()){
+        if(fnameTxt.getText().isEmpty()||lnameTxt.getText().isEmpty()||addressTxt.getText().isEmpty()||nicTxt.getText().isEmpty()||((JTextField) dobDc.getDateEditor().getUiComponent()).getText().isEmpty()){
             if(fnameTxt.getText().isEmpty()){
                 fnameLbl.setText("*This field is necessary");
             }
@@ -980,12 +1016,15 @@ public class RegisterEmployees extends javax.swing.JFrame {
             }
             if(nicTxt.getText().isEmpty()){
                 nicLbl.setText("*This field is necessary");
+            }
+            if(((JTextField) dobDc.getDateEditor().getUiComponent()).getText().isEmpty()){
+                dobLbl.setText("*This field is necessary");
             }
         }
     }//GEN-LAST:event_mobileTxtFocusGained
 
     private void homeTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_homeTxtFocusGained
-        if(fnameTxt.getText().isEmpty()||lnameTxt.getText().isEmpty()||addressTxt.getText().isEmpty()||nicTxt.getText().isEmpty()){
+        if(fnameTxt.getText().isEmpty()||lnameTxt.getText().isEmpty()||addressTxt.getText().isEmpty()||nicTxt.getText().isEmpty()||((JTextField) dobDc.getDateEditor().getUiComponent()).getText().isEmpty()){
             if(fnameTxt.getText().isEmpty()){
                 fnameLbl.setText("*This field is necessary");
             }
@@ -997,6 +1036,9 @@ public class RegisterEmployees extends javax.swing.JFrame {
             }
             if(nicTxt.getText().isEmpty()){
                 nicLbl.setText("*This field is necessary");
+            }
+            if(((JTextField) dobDc.getDateEditor().getUiComponent()).getText().isEmpty()){
+                dobLbl.setText("*This field is necessary");
             }
         }
     }//GEN-LAST:event_homeTxtFocusGained
@@ -1006,7 +1048,7 @@ public class RegisterEmployees extends javax.swing.JFrame {
     }//GEN-LAST:event_emailTxtActionPerformed
 
     private void emailTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailTxtFocusGained
-        if(fnameTxt.getText().isEmpty()||lnameTxt.getText().isEmpty()||addressTxt.getText().isEmpty()||nicTxt.getText().isEmpty()){
+        if(fnameTxt.getText().isEmpty()||lnameTxt.getText().isEmpty()||addressTxt.getText().isEmpty()||nicTxt.getText().isEmpty()||((JTextField) dobDc.getDateEditor().getUiComponent()).getText().isEmpty()){
             if(fnameTxt.getText().isEmpty()){
                 fnameLbl.setText("*This field is necessary");
             }
@@ -1018,6 +1060,9 @@ public class RegisterEmployees extends javax.swing.JFrame {
             }
             if(nicTxt.getText().isEmpty()){
                 nicLbl.setText("*This field is necessary");
+            }
+            if(((JTextField) dobDc.getDateEditor().getUiComponent()).getText().isEmpty()){
+                dobLbl.setText("*This field is necessary");
             }
         }
     }//GEN-LAST:event_emailTxtFocusGained
@@ -1033,6 +1078,144 @@ public class RegisterEmployees extends javax.swing.JFrame {
     private void dobDcMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dobDcMousePressed
    
     }//GEN-LAST:event_dobDcMousePressed
+
+    private void radioMaleFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_radioMaleFocusGained
+        if(fnameTxt.getText().isEmpty()||lnameTxt.getText().isEmpty()||addressTxt.getText().isEmpty()||nicTxt.getText().isEmpty()||((JTextField) dobDc.getDateEditor().getUiComponent()).getText().isEmpty()){
+            if(fnameTxt.getText().isEmpty()){
+                fnameLbl.setText("*This field is necessary");
+            }
+            if(lnameTxt.getText().isEmpty()){
+                lnameLbl.setText("*This field is necessary");
+            }
+            if(addressTxt.getText().isEmpty()){
+                addressLbl.setText("*This field is necessary");
+            }
+            if(nicTxt.getText().isEmpty()){
+                nicLbl.setText("*This field is necessary");
+            }
+            if(((JTextField) dobDc.getDateEditor().getUiComponent()).getText().isEmpty()){
+                dobLbl.setText("*This field is necessary");
+            }
+        }
+    }//GEN-LAST:event_radioMaleFocusGained
+
+    private void dobDcFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dobDcFocusGained
+        if(fnameTxt.getText().isEmpty()||lnameTxt.getText().isEmpty()||addressTxt.getText().isEmpty()||nicTxt.getText().isEmpty()){
+            if(fnameTxt.getText().isEmpty()){
+                fnameLbl.setText("*This field is necessary");
+            }
+            if(lnameTxt.getText().isEmpty()){
+                lnameLbl.setText("*This field is necessary");
+            }
+            if(addressTxt.getText().isEmpty()){
+                addressLbl.setText("*This field is necessary");
+            }
+            if(nicTxt.getText().isEmpty()){
+                nicLbl.setText("*This field is necessary");
+            }
+            
+        }
+    }//GEN-LAST:event_dobDcFocusGained
+
+    private void radioFemaleFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_radioFemaleFocusGained
+       if(fnameTxt.getText().isEmpty()||lnameTxt.getText().isEmpty()||addressTxt.getText().isEmpty()||nicTxt.getText().isEmpty()||((JTextField) dobDc.getDateEditor().getUiComponent()).getText().isEmpty()){
+            if(fnameTxt.getText().isEmpty()){
+                fnameLbl.setText("*This field is necessary");
+            }
+            if(lnameTxt.getText().isEmpty()){
+                lnameLbl.setText("*This field is necessary");
+            }
+            if(addressTxt.getText().isEmpty()){
+                addressLbl.setText("*This field is necessary");
+            }
+            if(nicTxt.getText().isEmpty()){
+                nicLbl.setText("*This field is necessary");
+            }
+            if(((JTextField) dobDc.getDateEditor().getUiComponent()).getText().isEmpty()){
+                dobLbl.setText("*This field is necessary");
+            }
+        }
+    }//GEN-LAST:event_radioFemaleFocusGained
+
+    private void radioSingleFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_radioSingleFocusGained
+        if(fnameTxt.getText().isEmpty()||lnameTxt.getText().isEmpty()||addressTxt.getText().isEmpty()||nicTxt.getText().isEmpty()||((JTextField) dobDc.getDateEditor().getUiComponent()).getText().isEmpty()){
+            if(fnameTxt.getText().isEmpty()){
+                fnameLbl.setText("*This field is necessary");
+            }
+            if(lnameTxt.getText().isEmpty()){
+                lnameLbl.setText("*This field is necessary");
+            }
+            if(addressTxt.getText().isEmpty()){
+                addressLbl.setText("*This field is necessary");
+            }
+            if(nicTxt.getText().isEmpty()){
+                nicLbl.setText("*This field is necessary");
+            }
+            if(((JTextField) dobDc.getDateEditor().getUiComponent()).getText().isEmpty()){
+                dobLbl.setText("*This field is necessary");
+            }
+        }
+    }//GEN-LAST:event_radioSingleFocusGained
+
+    private void radioMarriedFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_radioMarriedFocusGained
+        if(fnameTxt.getText().isEmpty()||lnameTxt.getText().isEmpty()||addressTxt.getText().isEmpty()||nicTxt.getText().isEmpty()||((JTextField) dobDc.getDateEditor().getUiComponent()).getText().isEmpty()){
+            if(fnameTxt.getText().isEmpty()){
+                fnameLbl.setText("*This field is necessary");
+            }
+            if(lnameTxt.getText().isEmpty()){
+                lnameLbl.setText("*This field is necessary");
+            }
+            if(addressTxt.getText().isEmpty()){
+                addressLbl.setText("*This field is necessary");
+            }
+            if(nicTxt.getText().isEmpty()){
+                nicLbl.setText("*This field is necessary");
+            }
+            if(((JTextField) dobDc.getDateEditor().getUiComponent()).getText().isEmpty()){
+                dobLbl.setText("*This field is necessary");
+            }
+        }
+    }//GEN-LAST:event_radioMarriedFocusGained
+
+    private void roleCmbFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_roleCmbFocusGained
+        if(fnameTxt.getText().isEmpty()||lnameTxt.getText().isEmpty()||addressTxt.getText().isEmpty()||nicTxt.getText().isEmpty()||((JTextField) dobDc.getDateEditor().getUiComponent()).getText().isEmpty()){
+            if(fnameTxt.getText().isEmpty()){
+                fnameLbl.setText("*This field is necessary");
+            }
+            if(lnameTxt.getText().isEmpty()){
+                lnameLbl.setText("*This field is necessary");
+            }
+            if(addressTxt.getText().isEmpty()){
+                addressLbl.setText("*This field is necessary");
+            }
+            if(nicTxt.getText().isEmpty()){
+                nicLbl.setText("*This field is necessary");
+            }
+            if(((JTextField) dobDc.getDateEditor().getUiComponent()).getText().isEmpty()){
+                dobLbl.setText("*This field is necessary");
+            }
+        }
+    }//GEN-LAST:event_roleCmbFocusGained
+
+    private void cstatusCmbFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cstatusCmbFocusGained
+        if(fnameTxt.getText().isEmpty()||lnameTxt.getText().isEmpty()||addressTxt.getText().isEmpty()||nicTxt.getText().isEmpty()||((JTextField) dobDc.getDateEditor().getUiComponent()).getText().isEmpty()){
+            if(fnameTxt.getText().isEmpty()){
+                fnameLbl.setText("*This field is necessary");
+            }
+            if(lnameTxt.getText().isEmpty()){
+                lnameLbl.setText("*This field is necessary");
+            }
+            if(addressTxt.getText().isEmpty()){
+                addressLbl.setText("*This field is necessary");
+            }
+            if(nicTxt.getText().isEmpty()){
+                nicLbl.setText("*This field is necessary");
+            }
+            if(((JTextField) dobDc.getDateEditor().getUiComponent()).getText().isEmpty()){
+                dobLbl.setText("*This field is necessary");
+            }
+        }
+    }//GEN-LAST:event_cstatusCmbFocusGained
 
     private void clearLabels() {
         fnameLbl.setText(null);

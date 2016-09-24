@@ -73,7 +73,7 @@ public class EmployeeMainInterface extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         registerEmpBtn.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        registerEmpBtn.setText("Register Employees");
+        registerEmpBtn.setText("Manage Employees");
         registerEmpBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registerEmpBtnActionPerformed(evt);
