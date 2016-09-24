@@ -24,7 +24,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,-91,0,0,3,-43"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,-27,0,0,4,9"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
@@ -133,12 +133,19 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="Available_Quantitytxt">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="Available_QuantitytxtKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="stocktxt">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="stocktxtKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="ItemNametxt">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ItemNametxtActionPerformed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ItemNametxtKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
@@ -150,8 +157,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="Cost_Per_Itemtxt">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="Cost_Per_ItemtxtKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="itemcodetxt">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="itemcodetxtKeyTyped"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -173,7 +186,7 @@
                       <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="56" max="32767" attributes="0"/>
+                  <EmptySpace pref="60" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="expiredate" pref="144" max="32767" attributes="0"/>
                       <Component id="issuedate" alignment="1" max="32767" attributes="0"/>
@@ -207,7 +220,7 @@
                       <Component id="Customer_Nametxt" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="57" max="32767" attributes="0"/>
+                  <EmptySpace pref="67" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -246,8 +259,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="Supplier_Nametxt">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="Supplier_NametxtKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="Customer_Nametxt">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="Customer_NametxtKeyTyped"/>
+          </Events>
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="expiredate">
         </Component>
@@ -262,9 +281,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Main Menu"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
-      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="820" y="80" width="135" height="-1"/>
@@ -290,7 +306,7 @@
     <Container class="javax.swing.JDesktopPane" name="jDesktopPane1">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="40" y="390" width="860" height="-1"/>
+          <AbsoluteConstraints x="40" y="400" width="850" height="-1"/>
         </Constraint>
       </Constraints>
 
@@ -298,7 +314,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="16" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="832" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -423,7 +439,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="290" y="610" width="105" height="40"/>
+          <AbsoluteConstraints x="290" y="640" width="105" height="40"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -439,7 +455,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="450" y="610" width="105" height="40"/>
+          <AbsoluteConstraints x="440" y="640" width="105" height="40"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -455,7 +471,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="160" y="610" width="105" height="40"/>
+          <AbsoluteConstraints x="150" y="640" width="105" height="40"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -471,7 +487,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="600" y="610" width="90" height="40"/>
+          <AbsoluteConstraints x="590" y="640" width="90" height="40"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -487,7 +503,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="60" y="610" width="-1" height="40"/>
+          <AbsoluteConstraints x="50" y="640" width="-1" height="40"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -503,12 +519,15 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="729" y="610" width="90" height="40"/>
+          <AbsoluteConstraints x="740" y="640" width="90" height="40"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel12">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/org/itp/image/images.jpg"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="jLabel12"/>
       </Properties>
       <Constraints>
@@ -529,7 +548,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="850" y="610" width="80" height="40"/>
+          <AbsoluteConstraints x="880" y="640" width="80" height="40"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -541,7 +560,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="220" y="10" width="520" height="60"/>
+          <AbsoluteConstraints x="230" y="11" width="480" height="71"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -553,7 +572,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="0" width="990" height="680"/>
+          <AbsoluteConstraints x="0" y="0" width="1040" height="740"/>
         </Constraint>
       </Constraints>
     </Component>

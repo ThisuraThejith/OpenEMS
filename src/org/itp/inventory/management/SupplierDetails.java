@@ -22,7 +22,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
-import org.itp.customer.management.CleanManagementSystem;
 
 /**
  *
@@ -30,26 +29,27 @@ import org.itp.customer.management.CleanManagementSystem;
  */
 public class SupplierDetails extends javax.swing.JFrame {
 
-    PreparedStatement pst=null;
-    Connection con=DbConnect.connect();
-    ResultSet rs=null;
-      
+    PreparedStatement pst = null;
+    Connection con = DbConnect.connect();
+    ResultSet rs = null;
+
     /**
      * Creates new form SupplierDetails
      */
     public SupplierDetails() {
         initComponents();
-         con=DbConnect.connect();
+        con = DbConnect.connect();
         tableLoad();
         setCombobox();
+        setCombobox2();
+
     }
-    
-    
+
     public void setCombobox() {
         try {
 
             Statement stmt = con.createStatement();
-            String quer = "Select * from supplier_details_management";
+            String quer = "Select * from inventory_management";
             ResultSet rs = stmt.executeQuery(quer);
 
             while (rs.next()) {
@@ -60,23 +60,53 @@ public class SupplierDetails extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error");
         }
     }
-    
-     public void setCombobox2() {
+
+    public void setCombobox2() {
         try {
 
             Statement stmt = con.createStatement();
-            String quer = "Select * from supplier_details_management";
+            String quer = "Select * from inventory_management";
             ResultSet rs = stmt.executeQuery(quer);
 
             while (rs.next()) {
-                ItemCodecmb.addItem(rs.getString("Item_Name"));
+                ItemNamecmb.addItem(rs.getString("Item_Name"));
             }
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error");
         }
     }
-
+    
+    void EmailValidator1(){
+     try {
+            String mydomain =  Emailtxt.getText();
+            String emailregex = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+            Boolean b = mydomain.matches(emailregex);
+            
+            if (b == false) {
+                
+                JOptionPane.showMessageDialog(rootPane, "Invalid E-mail address!");
+               Emailtxt.setText("");
+                }else if(b == true){
+             //Emailtxt.grabFocus();
+                
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+    }
+    
+      void CheckPhone()
+    {
+        String phones = ContactNumbertxt.getText();
+        int length =  phones.length();
+        if(length>10 || length<10 ){
+             JOptionPane.showMessageDialog(rootPane, "Invalid phone number!");
+             ContactNumbertxt.setText("");
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -122,11 +152,14 @@ public class SupplierDetails extends javax.swing.JFrame {
         Clearbtn = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         Demobtn = new javax.swing.JButton();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jPanel1KeyTyped(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Supplier Id");
@@ -143,10 +176,33 @@ public class SupplierDetails extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("Quantity");
 
+        Supplier_ID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                Supplier_IDKeyTyped(evt);
+            }
+        });
+
+        Supplier_Name.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                Supplier_NameKeyTyped(evt);
+            }
+        });
+
+        Quantitytxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                QuantitytxtKeyTyped(evt);
+            }
+        });
+
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Cost per Item");
 
-        ItemCodecmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID45" }));
+        CostPerItemtxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                CostPerItemtxtKeyTyped(evt);
+            }
+        });
+
         ItemCodecmb.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ItemCodecmb.setInheritsPopupMenu(true);
         ItemCodecmb.addActionListener(new java.awt.event.ActionListener() {
@@ -166,6 +222,43 @@ public class SupplierDetails extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel11.setText("Address");
+
+        ContactNumbertxt.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                ContactNumbertxtCaretUpdate(evt);
+            }
+        });
+        ContactNumbertxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                ContactNumbertxtFocusLost(evt);
+            }
+        });
+        ContactNumbertxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ContactNumbertxtActionPerformed(evt);
+            }
+        });
+        ContactNumbertxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ContactNumbertxtKeyTyped(evt);
+            }
+        });
+
+        Emailtxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                EmailtxtFocusLost(evt);
+            }
+        });
+        Emailtxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EmailtxtActionPerformed(evt);
+            }
+        });
+        Emailtxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                EmailtxtKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -214,7 +307,12 @@ public class SupplierDetails extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Supplier Details");
 
-        ItemNamecmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ItemNamecmb.setToolTipText("");
+        ItemNamecmb.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ItemNamecmbKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -264,7 +362,7 @@ public class SupplierDetails extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(Supplier_Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
+                        .addGap(30, 30, 30)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(ItemCodecmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -287,16 +385,8 @@ public class SupplierDetails extends javax.swing.JFrame {
                 .addGap(18, 18, 18))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 101, -1, -1));
-
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("Main Menu");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(831, 68, 196, -1));
 
         Inventory_Details.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Inventory_Details.setText("Inventory Details");
@@ -305,21 +395,20 @@ public class SupplierDetails extends javax.swing.JFrame {
                 Inventory_DetailsActionPerformed(evt);
             }
         });
-        getContentPane().add(Inventory_Details, new org.netbeans.lib.awtextra.AbsoluteConstraints(831, 111, 196, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "SuppireID", "SupplireName", "ItemCode", "ItemName", "Quantity", "SupplyDate", "Email", "ContactNo", "Address"
+                "SuppireID", "SupplireName", "ItemCode", "ItemName", "Quantity", "Cost_Per_Item", "SupplyDate", "Email", "ContactNo", "Address"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Object.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Object.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -341,7 +430,7 @@ public class SupplierDetails extends javax.swing.JFrame {
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 892, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 987, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jDesktopPane1Layout.setVerticalGroup(
@@ -351,8 +440,6 @@ public class SupplierDetails extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-
-        getContentPane().add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(62, 470, -1, -1));
 
         Addbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Addbtn.setText("Add");
@@ -366,7 +453,6 @@ public class SupplierDetails extends javax.swing.JFrame {
                 AddbtnActionPerformed(evt);
             }
         });
-        getContentPane().add(Addbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(62, 742, 100, 33));
 
         Update.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Update.setText("Update");
@@ -375,7 +461,6 @@ public class SupplierDetails extends javax.swing.JFrame {
                 UpdateActionPerformed(evt);
             }
         });
-        getContentPane().add(Update, new org.netbeans.lib.awtextra.AbsoluteConstraints(206, 742, 100, 33));
 
         Deletebtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Deletebtn.setText("Delete");
@@ -384,7 +469,6 @@ public class SupplierDetails extends javax.swing.JFrame {
                 DeletebtnActionPerformed(evt);
             }
         });
-        getContentPane().add(Deletebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(347, 742, 103, 33));
 
         Searchbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Searchbtn.setText("Search");
@@ -393,7 +477,6 @@ public class SupplierDetails extends javax.swing.JFrame {
                 SearchbtnActionPerformed(evt);
             }
         });
-        getContentPane().add(Searchbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(505, 742, 99, 33));
 
         Printbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Printbtn.setText("Print");
@@ -402,7 +485,6 @@ public class SupplierDetails extends javax.swing.JFrame {
                 PrintbtnActionPerformed(evt);
             }
         });
-        getContentPane().add(Printbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(622, 742, 85, 33));
 
         Clearbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Clearbtn.setText("Clear");
@@ -411,8 +493,8 @@ public class SupplierDetails extends javax.swing.JFrame {
                 ClearbtnActionPerformed(evt);
             }
         });
-        getContentPane().add(Clearbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 742, 75, 33));
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(831, 154, 254, 242));
+
+        jLabel12.setIcon(new javax.swing.ImageIcon("C:\\Users\\ASUS\\Desktop\\images (1).jpg")); // NOI18N
 
         Demobtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Demobtn.setText("Demo");
@@ -421,13 +503,68 @@ public class SupplierDetails extends javax.swing.JFrame {
                 DemobtnActionPerformed(evt);
             }
         });
-        getContentPane().add(Demobtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(853, 742, 90, 33));
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/log.png"))); // NOI18N
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(231, 11, 479, -1));
-
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 880));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Inventory_Details, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Addbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41)
+                                .addComponent(Update, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(37, 37, 37)
+                                .addComponent(Deletebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(52, 52, 52)
+                                .addComponent(Searchbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(Printbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(Clearbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(40, 40, 40)
+                                .addComponent(Demobtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(58, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(Inventory_Details)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(74, 74, 74))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)))
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Addbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Update, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Deletebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Searchbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Printbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Clearbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Demobtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(116, 116, 116))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -443,58 +580,58 @@ public class SupplierDetails extends javax.swing.JFrame {
         String SupplierId = Supplier_ID.getText();
         String SupplierName = Supplier_Name.getText();
         String ItemCode = (String) ItemCodecmb.getSelectedItem();
-        String ItemName = (String)ItemNamecmb.getSelectedItem();
+        String ItemName = (String) ItemNamecmb.getSelectedItem();
         int Quantity = Integer.parseInt(Quantitytxt.getText());
         double CostPerItem = Double.parseDouble(CostPerItemtxt.getText());
-         java.util.Date s = SupplyDatetxt1.getDate();
+        java.util.Date s = SupplyDatetxt1.getDate();
         //String SupplierDate = ((JTextField) this.SupplyDatetxt.getDateEditor().getUiComponent()).getText();
         String Email = Emailtxt.getText();
         int ContactNumber = Integer.parseInt(ContactNumbertxt.getText());
         String Address = Addresstxt.getText();
-  
-    
+
         try {
             System.out.println("feadf");
 
             String qry = "insert into supplier_details_management  (Supplier_ID,Supplier_Name,Item_Code,Item_Name,Quantity,Cost_per_Item,Supply_date,Email,Contact_No,Address) values(?,?,?,?,?,?,?,?,?,?)"; //('"+ this.itemcodetxt.getText() +"', '"+ this.ItemNametxt.getText() +"', '"+ aveilableQuantity +"', '"+ Stock +"', '"+ CostPerItem +"', '"+ this.Supplier_Nametxt.getText()+"', '"+ this.expiredate.getDateEditor().getUiComponent()).getText() +"', '"+ this.issuedate.getDateEditor().getUiComponent()).getText();+"','"+ this.Customer_Nametxt.getText()+"')";
-            
+
             pst = con.prepareStatement(qry);
-            
+
             pst.setString(1, SupplierId);
             pst.setString(2, SupplierName);
             pst.setString(3, ItemCode);
             pst.setString(4, ItemName);
             pst.setInt(5, Quantity);
             pst.setDouble(6, CostPerItem);
-            pst.setDate(7,convertJavaDateToSqlDate(s) );
+            pst.setDate(7, convertJavaDateToSqlDate(s));
             pst.setString(8, Email);
             pst.setInt(9, ContactNumber);
             pst.setString(10, Address);
 
             pst.execute();
             JOptionPane.showMessageDialog(null, "Data Saved");
-               
-        }
-        catch(Exception e){
+            new SupplierDetails().setVisible(true);
+            tableLoad();
+
+        } catch (Exception e) {
             System.out.println(e);
         }
 
     }//GEN-LAST:event_AddbtnActionPerformed
     public java.sql.Date convertJavaDateToSqlDate(java.util.Date date) {
-    return new java.sql.Date(date.getTime());
-}   
-    
+        return new java.sql.Date(date.getTime());
+    }
+
     private void DeletebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletebtnActionPerformed
         // TODO add your handling code here:
-         int rep = JOptionPane.showConfirmDialog(rootPane, "Are you sure you want to Delete this row", "confirm", JOptionPane.YES_NO_CANCEL_OPTION);
+        int rep = JOptionPane.showConfirmDialog(rootPane, "Are you sure you want to Delete this row", "confirm", JOptionPane.YES_NO_CANCEL_OPTION);
         if (rep == JOptionPane.YES_OPTION) {
-           String quary= "delete from supplier_details_management where Supplier_ID='" + Supplier_ID.getText()+"'";
+            String quary = "delete from supplier_details_management where Supplier_ID='" + Supplier_ID.getText() + "'";
             try {
                 pst = con.prepareStatement(quary);
                 //int eavailable=
                 pst.execute();
                 JOptionPane.showMessageDialog(rootPane, "Row deleted", "", JOptionPane.INFORMATION_MESSAGE);
-              //  new schedulemain();
+                //  new schedulemain();
                 //this.dispose();
 
                 //System.out.println(sqlq);
@@ -502,7 +639,7 @@ public class SupplierDetails extends javax.swing.JFrame {
                 System.err.print(e);
                 JOptionPane.showMessageDialog(rootPane, "job deletion failure", "Error", JOptionPane.ERROR_MESSAGE);
             }
-             new SupplierDetails().setVisible(true);
+            new SupplierDetails().setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_DeletebtnActionPerformed
@@ -531,41 +668,34 @@ public class SupplierDetails extends javax.swing.JFrame {
     }//GEN-LAST:event_ItemCodecmbActionPerformed
 
     private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
-       
-      /* // update
-        //UPDATE table_name SET column1=value1,column2=value2,... WHERE some_column=some_value;
-        //String cid=jTextField1.getText()
-        java.sql.Date d1=convertJavaDateToSqlDate(SupplyDatetxt1.getDate());
-        //java.sql.Date d2=convertJavaDateToSqlDate(issuedate.getDate());
+
+     
+        java.sql.Date d1 = InventoryDetails.convertJavaDateToSqlDate(SupplyDatetxt1.getDate());
         String SupplierID = Supplier_ID.getText();
-        String SupplierName= Supplier_Name.getText();
-        int AvalibleQuantity= Integer.parseInt(Available_Quantitytxt.getText());
-       // gpr = Double.parseDouble(eneed)*spr*1.15;
+        String SupplierName = Supplier_Name.getText();
+     
+        String sqlq = "update supplier_details_management set Supplier_ID='" + SupplierID + "', Supplier_Name='" + SupplierName + "',Item_Code='" + ItemCodecmb.getSelectedItem().toString() + "',"
+                + "Item_Name ='" + ItemNamecmb.getSelectedItem().toString() + "',Quantity='" + Integer.parseInt(Quantitytxt.getText()) + "', Cost_per_Item='" + Double.parseDouble(CostPerItemtxt.getText()) + "',Supply_date='" + d1 + "',"
+                + " Email='" + Emailtxt.getText() + "', Contact_No='" + Integer.parseInt(ContactNumbertxt.getText()) + "' ,Address='" + Addresstxt.getText() + "' where Supplier_ID='" + SupplierID + "'";
 
-        String sqlq= "update supplier_details_management set Supplier_ID='" +Supplier_ID + "', Supplier_Name='" +Supplier_Name + "',Item_Code='" +ItemCodecmb+ "',"
-                + "Item_Name ='" +Integer.parseInt(stocktxt.getText())+ "',Cost_Per_Item='" +Double.parseDouble(Cost_Per_Itemtxt.getText())+ "', Supplier_name='" +Supplier_Nametxt.getText() +"',Expire_Date='" +d1+ "',"
-                + " Issue_Date='" +d2+"', Customer_Name='" +Customer_Nametxt.getText()+"' where Item_Code='" +ItemCode +"'";
-
-        int rep = JOptionPane.showConfirmDialog(rootPane, "Are you sure you want ot update this job?", "Confirm", JOptionPane.YES_NO_CANCEL_OPTION);
+        int rep = JOptionPane.showConfirmDialog(rootPane, "Are you sure you want ot update this SupplierDetails?", "Confirm", JOptionPane.YES_NO_CANCEL_OPTION);
         if (rep == JOptionPane.YES_OPTION) {
             try {
 
                 pst = con.prepareStatement(sqlq);
-                pst.execute(sqlq);
-                JOptionPane.showMessageDialog(rootPane, "InventoryDetails updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-                new InventoryDetails().setVisible(true);
+                pst.executeUpdate(sqlq);
+                JOptionPane.showMessageDialog(rootPane, "SupplierDetails updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                new SupplierDetails().setVisible(true);
                 tableLoad();
                 this.dispose();
 
             } catch (Exception e) {
                 System.out.print(e);
-                JOptionPane.showMessageDialog(rootPane, "InventoryDetails update failed", "Error", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(rootPane, "SupplierDetails update failed", "Error", JOptionPane.WARNING_MESSAGE);
                 return;
             }
-        }  
+        }
 
-               
-*/
 
     }//GEN-LAST:event_UpdateActionPerformed
 
@@ -575,79 +705,76 @@ public class SupplierDetails extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        try{
-            
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        DefaultTableModel model=(DefaultTableModel) jTable1.getModel();
-        int r = jTable1.getSelectedRow();
-        String SupplireID =jTable1.getValueAt(r,0). toString();
-        String SupplireName =jTable1.getValueAt(r,1). toString();
-        String ItemCode =jTable1.getValueAt(r,2). toString();
-        String ItemName =jTable1.getValueAt(r,3). toString();
-        String Quantity =jTable1.getValueAt(r,4). toString();
-        String Cost_per_Item =jTable1.getValueAt(r,5). toString();
-       // Date Supply_Date =(Date)jTable1.getValueAt(r,6);
-       String DDate=model.getValueAt(r, 6).toString();
-       
-       try{
-        java.util.Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(DDate);
-        //String sd2=dateFormat.format(date1);
-        SupplyDatetxt1.setDate(date1);
-       }
-       catch(Exception e){
-            JOptionPane.showMessageDialog(null, "invalide Date format");
-        }
-        
-        String Email =jTable1.getValueAt(r,7). toString();
-        String Contact_Number =jTable1.getValueAt(r,8). toString();
-        String Address =jTable1.getValueAt(r,9). toString();
-        
-        Supplier_ID.setText(SupplireID);
-        Supplier_Name.setText(SupplireName);
-        ItemCodecmb.setSelectedItem(ItemCode);
-       // Item_Nametxt.setText(ItemName);
-        Quantitytxt.setText(Quantity);
-        CostPerItemtxt.setText(Cost_per_Item);
-        //SupplyDatetxt.setDate(Supply_Date);
-        Emailtxt.setText(Email);
-        ContactNumbertxt.setText(Contact_Number);
-        Addresstxt.setText(Address);
-        }
-        
-        catch(Exception e){
-             JOptionPane.showMessageDialog(null, e);
+        try {
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            int r = jTable1.getSelectedRow();
+            String SupplireID = jTable1.getValueAt(r, 0).toString();
+            String SupplireName = jTable1.getValueAt(r, 1).toString();
+            String ItemCode = jTable1.getValueAt(r, 2).toString();
+            String ItemName = jTable1.getValueAt(r, 3).toString();
+            String Quantity = jTable1.getValueAt(r, 4).toString();
+            String Cost_per_Item = jTable1.getValueAt(r, 5).toString();
+            // Date Supply_Date =(Date)jTable1.getValueAt(r,6);
+            String DDate = model.getValueAt(r, 6).toString();
+
+            try {
+                java.util.Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(DDate);
+                //String sd2=dateFormat.format(date1);
+                SupplyDatetxt1.setDate(date1);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "invalide Date format");
+            }
+
+            String Email = jTable1.getValueAt(r, 7).toString();
+            String Contact_Number = jTable1.getValueAt(r, 8).toString();
+            String Address = jTable1.getValueAt(r, 9).toString();
+
+            Supplier_ID.setText(SupplireID);
+            Supplier_Name.setText(SupplireName);
+            ItemCodecmb.setSelectedItem(ItemCode);
+            // Item_Nametxt.setText(ItemName);
+            Quantitytxt.setText(Quantity);
+            CostPerItemtxt.setText(Cost_per_Item);
+            //SupplyDatetxt.setDate(Supply_Date);
+            Emailtxt.setText(Email);
+            ContactNumbertxt.setText(Contact_Number);
+            Addresstxt.setText(Address);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void SearchbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchbtnActionPerformed
         // TODO add your handling code here:
-         //if()
+        //if()
         try {
 
             String SupplierID = Supplier_ID.getText();
             String SupplierName = Supplier_Name.getText();
-            
-            String qry = "select * from supplier_details_management where Supplier_ID = '" +SupplierID+ "' and Supplier_Name ='" +SupplierName+ "'";
-            
+
+            String qry = "select * from supplier_details_management where Supplier_ID = '" + SupplierID + "' and Supplier_Name ='" + SupplierName + "'";
+
             pst = con.prepareStatement(qry);
-           // pst.setString(1, Supplier_ID.getText());
-           // pst.setString(2, Supplier_Name.getText());
+            // pst.setString(1, Supplier_ID.getText());
+            // pst.setString(2, Supplier_Name.getText());
             rs = pst.executeQuery();
 //            tableLoad(jTable1, qry);
 
-            if(rs.next()){
+            if (rs.next()) {
                 JOptionPane.showMessageDialog(null, "hiiiiiiiiiiiii");
                 String a = rs.getString("Supplier_ID");
                 Supplier_ID.setText(a);
                 String b = rs.getString("Supplier_Name");
                 Supplier_Name.setText(b);
                 String c = rs.getString("Item_Code");
-               // ItemCodecmb.setText(c);
+                // ItemCodecmb.setText(c);
                 String d = rs.getString("Item_Name");
-             //   Item_Nametxt.setText(d);
+                //   Item_Nametxt.setText(d);
                 String e = rs.getString("Quantity");
                 Quantitytxt.setText(e);
-                String f= rs.getString("Cost_per_Item");
+                String f = rs.getString("Cost_per_Item");
                 CostPerItemtxt.setText(f);
                 Date g = rs.getDate("Supply_date");
                 SupplyDatetxt1.setDate(g);
@@ -655,7 +782,7 @@ public class SupplierDetails extends javax.swing.JFrame {
                 Emailtxt.setText(h);
                 String i = rs.getString("Contact_No");
                 ContactNumbertxt.setText(i);
-                String j= rs.getString("Address");
+                String j = rs.getString("Address");
                 Addresstxt.setText(j);
                 System.out.println("ok111");
             }
@@ -666,36 +793,34 @@ public class SupplierDetails extends javax.swing.JFrame {
         }
 
 
-        
     }//GEN-LAST:event_SearchbtnActionPerformed
 
     private void PrintbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrintbtnActionPerformed
-      
-                try {
-                    boolean complete=jTable1.print();
-                    if(complete){
-                        
-                        JOptionPane.showMessageDialog(null, "Done Printing...");
-                        
-                    }
-                    else{
-                        
-                        JOptionPane.showMessageDialog(null, "Printing...");
-                    }   } catch (PrinterException ex) {
-                    Logger.getLogger(SupplierDetails.class.getName()).log(Level.SEVERE, null, ex);
-                }
-        
-        
-         
+
+        try {
+            boolean complete = jTable1.print();
+            if (complete) {
+
+                JOptionPane.showMessageDialog(null, "Done Printing...");
+
+            } else {
+
+                JOptionPane.showMessageDialog(null, "Printing...");
+            }
+        } catch (PrinterException ex) {
+            Logger.getLogger(SupplierDetails.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
     }//GEN-LAST:event_PrintbtnActionPerformed
 
     private void DemobtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DemobtnActionPerformed
         // TODO add your handling code here:
-        
+
         Supplier_ID.setText("213");
-        java.util.Date date1=new java.util.Date();
+        java.util.Date date1 = new java.util.Date();
         Supplier_Name.setText("daad");
-       // ItemCodecmb.setSelectedItem(1);
+        // ItemCodecmb.setSelectedItem(1);
         //ItemNamecmb.setSelectedItem(2);
         Quantitytxt.setText("");
         CostPerItemtxt.setText("");
@@ -703,15 +828,86 @@ public class SupplierDetails extends javax.swing.JFrame {
         Emailtxt.setText("");
         ContactNumbertxt.setText("");
         Addresstxt.setText("");
-        
-        
+
+
     }//GEN-LAST:event_DemobtnActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        CleanManagementSystem cm=new CleanManagementSystem();
-        cm.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void EmailtxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_EmailtxtKeyTyped
+        // TODO add your handling code here:
+        Validation.validateLetters(Emailtxt.getText());
+    }//GEN-LAST:event_EmailtxtKeyTyped
+
+    private void jPanel1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel1KeyTyped
+
+    private void Supplier_NameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Supplier_NameKeyTyped
+        // TODO add your handling code here:
+        char v = evt.getKeyChar();
+        if (Character.isDigit(v)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_Supplier_NameKeyTyped
+
+    private void QuantitytxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_QuantitytxtKeyTyped
+        // TODO add your handling code here:
+        char v = evt.getKeyChar();
+        if (Character.isLetter(v)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_QuantitytxtKeyTyped
+
+    private void ContactNumbertxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ContactNumbertxtKeyTyped
+        // TODO add your handling code here:
+        char v = evt.getKeyChar();
+        if (Character.isLetter(v)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_ContactNumbertxtKeyTyped
+
+    private void CostPerItemtxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CostPerItemtxtKeyTyped
+        // TODO add your handling code here:
+        char v = evt.getKeyChar();
+        if (Character.isLetter(v)) {
+            evt.consume();
+        }
+        
+    }//GEN-LAST:event_CostPerItemtxtKeyTyped
+
+    private void ItemNamecmbKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ItemNamecmbKeyTyped
+        // TODO add your handling code here:
+        char v = evt.getKeyChar();
+        if (Character.isDigit(v)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_ItemNamecmbKeyTyped
+
+    private void EmailtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmailtxtActionPerformed
+        // TODO add your handling code here:
+         EmailValidator1();
+    }//GEN-LAST:event_EmailtxtActionPerformed
+
+    private void ContactNumbertxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContactNumbertxtActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_ContactNumbertxtActionPerformed
+
+    private void Supplier_IDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Supplier_IDKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Supplier_IDKeyTyped
+
+    private void ContactNumbertxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_ContactNumbertxtCaretUpdate
+        
+    }//GEN-LAST:event_ContactNumbertxtCaretUpdate
+
+    private void ContactNumbertxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ContactNumbertxtFocusLost
+        CheckPhone();
+    }//GEN-LAST:event_ContactNumbertxtFocusLost
+
+    private void EmailtxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_EmailtxtFocusLost
+        
+        EmailValidator1();
+    }//GEN-LAST:event_EmailtxtFocusLost
 
     /**
      * @param args the command line arguments
@@ -774,8 +970,6 @@ public class SupplierDetails extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -791,19 +985,17 @@ public class SupplierDetails extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void tableLoad() {
-     //  throw new UnsupportedOperationException("Not supported yet.");
+        //  throw new UnsupportedOperationException("Not supported yet.");
         //To change body of generated methods, choose Tools | Templates.
-         try{
+        try {
             String qry = "select * from supplier_details_management";
             pst = con.prepareStatement(qry);
             rs = pst.executeQuery();
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-        } 
-         
-         catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e);
-            
+
         }
-    
+
     }
 }

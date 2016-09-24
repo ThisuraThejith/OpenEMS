@@ -15,9 +15,11 @@ import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import org.itp.sales.handling.DbConnect;
+import java.awt.print.PrinterException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
-import org.itp.customer.management.CleanManagementSystem;
 
 /**
  *
@@ -119,14 +121,43 @@ public class InventoryDetails extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Stock");
 
+        Available_Quantitytxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                Available_QuantitytxtKeyTyped(evt);
+            }
+        });
+
+        stocktxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                stocktxtKeyTyped(evt);
+            }
+        });
+
         ItemNametxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ItemNametxtActionPerformed(evt);
             }
         });
+        ItemNametxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ItemNametxtKeyTyped(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel8.setText("Cost Per Item");
+
+        Cost_Per_Itemtxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                Cost_Per_ItemtxtKeyTyped(evt);
+            }
+        });
+
+        itemcodetxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                itemcodetxtKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -191,6 +222,18 @@ public class InventoryDetails extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setText("Customer Name");
 
+        Supplier_Nametxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                Supplier_NametxtKeyTyped(evt);
+            }
+        });
+
+        Customer_Nametxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                Customer_NametxtKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -202,7 +245,7 @@ public class InventoryDetails extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(jLabel6)
                     .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(expiredate, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
                     .addComponent(issuedate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -229,18 +272,13 @@ public class InventoryDetails extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Customer_Nametxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 130, 320, 220));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("Main Menu");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 80, 135, -1));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -284,7 +322,7 @@ public class InventoryDetails extends javax.swing.JFrame {
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 832, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -296,7 +334,7 @@ public class InventoryDetails extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 860, -1));
+        getContentPane().add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 850, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("Inventory Details");
@@ -309,7 +347,7 @@ public class InventoryDetails extends javax.swing.JFrame {
                 DeletebtnActionPerformed(evt);
             }
         });
-        getContentPane().add(Deletebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 610, 105, 40));
+        getContentPane().add(Deletebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 640, 105, 40));
 
         Searchbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Searchbtn.setText("Search");
@@ -318,7 +356,7 @@ public class InventoryDetails extends javax.swing.JFrame {
                 SearchbtnActionPerformed(evt);
             }
         });
-        getContentPane().add(Searchbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 610, 105, 40));
+        getContentPane().add(Searchbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 640, 105, 40));
 
         Update.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Update.setText("Update");
@@ -327,7 +365,7 @@ public class InventoryDetails extends javax.swing.JFrame {
                 UpdateActionPerformed(evt);
             }
         });
-        getContentPane().add(Update, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 610, 105, 40));
+        getContentPane().add(Update, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 640, 105, 40));
 
         Clearbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Clearbtn.setText("Clear");
@@ -336,7 +374,7 @@ public class InventoryDetails extends javax.swing.JFrame {
                 ClearbtnActionPerformed(evt);
             }
         });
-        getContentPane().add(Clearbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 610, 90, 40));
+        getContentPane().add(Clearbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 640, 90, 40));
 
         Addbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Addbtn.setText("Add");
@@ -345,7 +383,7 @@ public class InventoryDetails extends javax.swing.JFrame {
                 AddbtnActionPerformed(evt);
             }
         });
-        getContentPane().add(Addbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 610, -1, 40));
+        getContentPane().add(Addbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 640, -1, 40));
 
         PRINTbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         PRINTbtn.setText("PRINT");
@@ -354,8 +392,9 @@ public class InventoryDetails extends javax.swing.JFrame {
                 PRINTbtnActionPerformed(evt);
             }
         });
-        getContentPane().add(PRINTbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(729, 610, 90, 40));
+        getContentPane().add(PRINTbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 640, 90, 40));
 
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/images.jpg"))); // NOI18N
         jLabel12.setText("jLabel12");
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 160, 240, 220));
 
@@ -366,13 +405,13 @@ public class InventoryDetails extends javax.swing.JFrame {
                 DemobtnActionPerformed(evt);
             }
         });
-        getContentPane().add(Demobtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 610, 80, 40));
+        getContentPane().add(Demobtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 640, 80, 40));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/log.png"))); // NOI18N
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 520, 60));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 11, 480, 71));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, 680));
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1040, 740));
 
         pack();
         setLocationRelativeTo(null);
@@ -405,7 +444,8 @@ public class InventoryDetails extends javax.swing.JFrame {
         //String IssueDate = issuedate.getText();
         String CustomerName = Customer_Nametxt.getText();
         //JOptionPane.showMessageDialog(null, "hiii");*/
-
+        int loss =Stock-aveilableQuantity ;
+        
         try {
             System.out.println("feadf");
 
@@ -424,6 +464,9 @@ public class InventoryDetails extends javax.swing.JFrame {
 
             pst.execute();
             JOptionPane.showMessageDialog(null, "Data Saved");
+            JOptionPane.showMessageDialog(null, "loss amount :"+Integer.toString(loss));
+            new InventoryDetails().setVisible(true);
+            tableLoad();
             //   tableLoad();
 
         } catch (Exception e) {
@@ -432,7 +475,7 @@ public class InventoryDetails extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_AddbtnActionPerformed
-    public java.sql.Date convertJavaDateToSqlDate(java.util.Date date) {
+    public static java.sql.Date convertJavaDateToSqlDate(java.util.Date date) {
         return new java.sql.Date(date.getTime());
     }
     private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
@@ -447,11 +490,11 @@ public class InventoryDetails extends javax.swing.JFrame {
         int AvalibleQuantity= Integer.parseInt(Available_Quantitytxt.getText());
        // gpr = Double.parseDouble(eneed)*spr*1.15;
 
-        String sqlq= "update inventory_management set Item_Code='" + ItemCode + "', Item_Name='" + ItemName + "',Avalible_Quantity='" +AvalibleQuantity+ "',"
-                + "Stock ='" +Integer.parseInt(stocktxt.getText())+ "',Cost_Per_Item='" +Double.parseDouble(Cost_Per_Itemtxt.getText())+ "', Supplier_name='" +Supplier_Nametxt.getText() +"',Expire_Date='" +d1+ "',"
+        String sqlq= "update inventory_management  set Item_Code='" + ItemCode + "', Item_Name='" + ItemName + "',Avalible_Quantity=" +AvalibleQuantity+ ","
+                + "Stock =" +Integer.parseInt(stocktxt.getText())+ ",Cost_Per_Item=" +Double.parseDouble(Cost_Per_Itemtxt.getText())+ ", Supplier_name='" +Supplier_Nametxt.getText() +"',Expire_Date='" +d1+ "',"
                 + " Issue_Date='" +d2+"', Customer_Name='" +Customer_Nametxt.getText()+"' where Item_Code='" +ItemCode +"'";
 
-        int rep = JOptionPane.showConfirmDialog(rootPane, "Are you sure you want ot update this job?", "Confirm", JOptionPane.YES_NO_CANCEL_OPTION);
+        int rep = JOptionPane.showConfirmDialog(rootPane, "Are you sure you want ot update this InventoryDetails ?", "Confirm", JOptionPane.YES_NO_CANCEL_OPTION);
         if (rep == JOptionPane.YES_OPTION) {
             try {
 
@@ -602,7 +645,7 @@ public class InventoryDetails extends javax.swing.JFrame {
                 //System.out.println(sqlq);
             } catch (Exception e) {
                 System.err.print(e);
-                JOptionPane.showMessageDialog(rootPane, "job deletion failure", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(rootPane, "InventoryDetails deletion failure", "Error", JOptionPane.ERROR_MESSAGE);
             }
             new InventoryDetails().setVisible(true);
             this.dispose();
@@ -612,6 +655,22 @@ public class InventoryDetails extends javax.swing.JFrame {
     }//GEN-LAST:event_DeletebtnActionPerformed
 
     private void PRINTbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PRINTbtnActionPerformed
+        
+        try {
+                    boolean complete=jTable1.print();
+                    if(complete){
+                        
+                        JOptionPane.showMessageDialog(null, "Done Printing...");
+                        
+                    }
+                    else{
+                        
+                        JOptionPane.showMessageDialog(null, "Printing...");
+                    }   } catch (PrinterException ex) {
+                    Logger.getLogger(SupplierDetails.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        
+        
         
     }//GEN-LAST:event_PRINTbtnActionPerformed
 
@@ -623,22 +682,72 @@ public class InventoryDetails extends javax.swing.JFrame {
         ItemNametxt.setText("daad");
        // ItemCodecmb.setSelectedItem(1);
         //ItemNamecmb.setSelectedItem(2);
-        Available_Quantitytxt.setText("");
-        stocktxt.setText("");
-        Cost_Per_Itemtxt.setText("");
-        Supplier_Nametxt.setText("");
+        Available_Quantitytxt.setText("56");
+        stocktxt.setText("100");
+        Cost_Per_Itemtxt.setText("50.00");
+        Supplier_Nametxt.setText("Amal");
         expiredate.setDate(date1);
         issuedate.setDate(date2);
-        Customer_Nametxt.setText("");
+        Customer_Nametxt.setText("Kasun");
         
         
     }//GEN-LAST:event_DemobtnActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        CleanManagementSystem cm=new CleanManagementSystem();
-        cm.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void stocktxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_stocktxtKeyTyped
+      // TODO add your handling code here:
+       char v = evt.getKeyChar();
+        if (Character.isLetter(v)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_stocktxtKeyTyped
+
+    private void ItemNametxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ItemNametxtKeyTyped
+      // TODO add your handling code here:
+       char v = evt.getKeyChar();
+        if (Character.isDigit(v)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_ItemNametxtKeyTyped
+
+    private void Supplier_NametxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Supplier_NametxtKeyTyped
+        // TODO add your handling code here:
+        char v = evt.getKeyChar();
+        if (Character.isDigit(v)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_Supplier_NametxtKeyTyped
+
+    private void Customer_NametxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Customer_NametxtKeyTyped
+        // TODO add your handling code here:
+        char v = evt.getKeyChar();
+        if (Character.isDigit(v)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_Customer_NametxtKeyTyped
+
+    private void Cost_Per_ItemtxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Cost_Per_ItemtxtKeyTyped
+        // TODO add your handling code here:
+        char v = evt.getKeyChar();
+        if (Character.isLetter(v)) {
+            evt.consume();
+        }
+        
+        
+    }//GEN-LAST:event_Cost_Per_ItemtxtKeyTyped
+
+    private void Available_QuantitytxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Available_QuantitytxtKeyTyped
+        // TODO add your handling code here:
+        char v = evt.getKeyChar();
+        if (Character.isLetter(v)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_Available_QuantitytxtKeyTyped
+
+    private void itemcodetxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_itemcodetxtKeyTyped
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_itemcodetxtKeyTyped
 
     /**
      * @param args the command line arguments
