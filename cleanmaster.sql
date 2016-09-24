@@ -30,7 +30,7 @@ CREATE TABLE `appraisals` (
   PRIMARY KEY (`AppraisalID`),
   KEY `EmpID` (`EmpID`),
   CONSTRAINT `appraisals_ibfk_1` FOREIGN KEY (`EmpID`) REFERENCES `employee` (`EmployeeID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `appraisals` (
 
 LOCK TABLES `appraisals` WRITE;
 /*!40000 ALTER TABLE `appraisals` DISABLE KEYS */;
-INSERT INTO `appraisals` VALUES (1,2,2000.00,'Very Good');
+INSERT INTO `appraisals` VALUES (1,2,2000.00,'Very Good'),(2,1,2500.00,'Excellent'),(3,12,1000.00,'Good');
 /*!40000 ALTER TABLE `appraisals` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -58,7 +58,7 @@ CREATE TABLE `attendance` (
   PRIMARY KEY (`AttendanceID`),
   KEY `EmpID` (`EmpID`),
   CONSTRAINT `attendance_ibfk_1` FOREIGN KEY (`EmpID`) REFERENCES `employee` (`EmployeeID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,6 +67,7 @@ CREATE TABLE `attendance` (
 
 LOCK TABLES `attendance` WRITE;
 /*!40000 ALTER TABLE `attendance` DISABLE KEYS */;
+INSERT INTO `attendance` VALUES (1,1,'2016-09-24','Present'),(2,2,'2016-09-24','Absent'),(3,3,'2016-09-24','Present'),(4,4,'2016-09-24','Present'),(5,9,'2016-09-24','Absent'),(6,1,'2016-09-08','Present'),(7,2,'2016-09-08','Present'),(8,3,'2016-09-08','Present'),(9,4,'2016-09-08','Present'),(10,9,'2016-09-08','Absent'),(11,1,'2016-09-30','Present'),(12,2,'2016-09-30','Present'),(13,3,'2016-09-30','Present'),(14,4,'2016-09-30','Present'),(15,9,'2016-09-30','Absent'),(16,10,'2016-09-30','Present'),(17,11,'2016-09-30','Present'),(18,12,'2016-09-30','HalfDay');
 /*!40000 ALTER TABLE `attendance` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -147,9 +148,10 @@ CREATE TABLE `customer` (
   `email` varchar(45) DEFAULT NULL,
   `Type` varchar(45) DEFAULT NULL,
   `Level` varchar(50) DEFAULT NULL,
+  `PReason` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`CusID`),
   UNIQUE KEY `NIC` (`NIC`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -158,7 +160,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (1,'Mr','Supun','Chathuranga','931090771V','No 156/B','Sunethrarama Road','Kadawata','Male','0712768008','0112929709','chathu6@gmail.com','Ordinary','Default Customer'),(2,'Miss','Dinushi','Rathnaweera','939010660V','Uduravanapura','Kandy Road','Galle','Male','0718597810','0112745859','dinu6@gmail.com','Bulk','Platinum Customer'),(3,'Dr','Chathu','Raaksha','931080445V','Ravanapura','Yamaweediya','Matara','Male','0714578901','0112424289','ravanaraaksha@gmail.com','Bulk','Gold Customer'),(4,'Mrs','Amaya','Godagama','910641578V','Pahalakaragama','Hettiweediya','Colombo','Female','0774541782','0115468740','amaya2@hotmail.com','Bulk','Bronze Customer'),(5,'Mr','E.G.','Sunil','551090771V','Sunetrarama Road','Kelanimulla','Kadawata','Male','0718040410','0115555555','sunil@rocketmail.com','Bulk','Level 1'),(6,'Mr','Buddihka','Nanayakkara','758070117V','Maradana Parana Para','Ananda Road','Colombo','Male','0715465782','0112458745','buddhikan@ceb.lk','Bulk','Level 3'),(7,'Mr','Satira','Paranasena','931040445V','Angoda','Thuththiriya','Colombo','Male','0712454756','0112458745','pxs@gmail.com','Bulk','Level 5');
+INSERT INTO `customer` VALUES (1,'Mr','Supun','Chathuranga','931090771V','No 156/B','Sunethrarama Road','Kadawata','Male','0712768008','0112929709','chathu6@gmail.com','Ordinary','Default Customer',NULL),(2,'Miss','Dinushi','Rathnaweera','939010660V','Uduravanapura','Kandy Road','Galle','Male','0718597810','0112745859','dinu6@gmail.com','Bulk','Platinum Customer',NULL),(3,'Dr','Chathu','Raaksha','931080445V','Ravanapura','Yamaweediya','Matara','Male','0714578901','0112424289','ravanaraaksha@gmail.com','Bulk','Gold Customer',NULL),(4,'Mrs','Amaya','Godagama','910641578V','Pahalakaragama','Hettiweediya','Colombo','Female','0774541782','0115468740','amaya2@hotmail.com','Bulk','Bronze Customer',NULL),(5,'Mr','E.G.','Sunil','551090771V','Sunetrarama Road','Kelanimulla','Kadawata','Male','0718040410','0115555555','sunil@rocketmail.com','Bulk','Level 1',NULL),(6,'Mr','Buddihka','Nanayakkara','758070117V','Maradana Parana Para','Ananda Road','Colombo','Male','0715465782','0112458745','buddhikan@ceb.lk','Bulk','Level 3',NULL),(7,'Mr','Satira','Paranasena','931040445V','Angoda','Thuththiriya','Colombo','Male','0712454756','0112458745','pxs@gmail.com','Bulk','Level 5',NULL),(8,'Mr','Satellite','Paranaa','931040999V','Angoda','Thuththiriya','Colombo','null','0712454756','0112458745','pxs@gmail.com','null','Level 5',NULL);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -213,7 +215,7 @@ CREATE TABLE `employee` (
   UNIQUE KEY `NIC_No` (`NIC_No`),
   KEY `RoleID` (`RoleID`),
   CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`RoleID`) REFERENCES `role` (`RoleID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -222,7 +224,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (1,'Thisura','Thejith','Elpitiya,Galle','1994-10-07','942811110v','Male','Single','0776139937','0912290157','ttcphilips@gmail.com','Working',1),(2,'Chamara','Hareendra','Maharagam,Colombo','1990-08-20','903753743v','Male','Single','0763434354','0112347483','chcphilips@gmail.com','Working',1),(3,'Charles','Philips','Kurundugahahethepma,Galle','1995-09-13','953453454v','Male','Married','0713233432','0913234342','charlesphil@yahoo.com','Working',1),(4,'Hasitha','Jayarathna','PnJ City,Galle','1994-10-27','948787687v','Male','Married','0773543466','0912286876','hasithajay@gmail.com','Working',1);
+INSERT INTO `employee` VALUES (1,'Thisura','Thejith','Elpitiya,Galle','1994-10-07','942811110v','Male','Single','0776139937','0912290157','ttcphilips@gmail.com','Working',1),(2,'Chamara','Hareendra','Maharagam,Colombo','1990-08-20','903753743v','Male','Single','0763434354','0112347483','chcphilips@gmail.com','Working',1),(3,'Charles','Philips','Kurundugahahethepma,Galle','1995-09-13','953453454v','Male','Married','0713233432','0913234342','charlesphil@yahoo.com','Working',1),(4,'Hasitha','Jayarathna','PnJ City,Galle','1994-10-27','948787687v','Male','Married','0773543466','0912286876','hasithajay@gmail.com','Working',1),(9,'afhg','jgsuyj','xhjvGampaha','1993-06-01','942823420v','Male','Single','0775453432','','','Resigned',4),(10,'Justin','Bolt','675-F,Malabe,Colombo','1995-09-15','956836744v','Male','Single','0773433989','0112948765','jbolt@yahoo.com','Working',4),(11,'Sehan','Silva','Kumarakanda,Galle','1995-09-01','956836745v','Male','Married','','','','Working',3),(12,'Tharindu','Kalhara','Maharagama,Colombo02','1993-09-02','938468444v','Male','Married','0762544252','0112373338','tharindu@gmail.com','Working',5);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -253,7 +255,7 @@ CREATE TABLE `inventory_management` (
 
 LOCK TABLES `inventory_management` WRITE;
 /*!40000 ALTER TABLE `inventory_management` DISABLE KEYS */;
-INSERT INTO `inventory_management` VALUES ('sda','dsa',434,434,434.34,'fdaf','2016-07-07','2016-01-20','dffs'),('ic56','Isuu',45,100,100,'Lss','2016-11-12','2016-01-10','hjd'),('iu15','lkd',45,89,50,'hjgfd','2016-12-07','2016-07-04','kjkjdgas');
+INSERT INTO `inventory_management` VALUES ('ic56','detol',45,100,150,'Hashan','2016-11-12','2016-01-10','Sathira'),('ID45','soap',50,100,50,'Kasun','2016-12-14','2016-06-07','Mahesh');
 /*!40000 ALTER TABLE `inventory_management` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -354,7 +356,7 @@ CREATE TABLE `role` (
   `role_status` char(10) NOT NULL DEFAULT 'Active',
   PRIMARY KEY (`RoleID`),
   UNIQUE KEY `RoleName` (`RoleName`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -363,7 +365,7 @@ CREATE TABLE `role` (
 
 LOCK TABLES `role` WRITE;
 /*!40000 ALTER TABLE `role` DISABLE KEYS */;
-INSERT INTO `role` VALUES (1,'Manager','Takes care of the management issues of the company','Active'),(2,'Admin','Handles the administration purposes of the company\n','Active'),(3,'DEO','Enters data in to the system of the company','Active'),(4,'Permanent Cleaner','Works for the company permanently','Active'),(5,'Driver','Fulfills the transportation issues of the company','Active');
+INSERT INTO `role` VALUES (1,'Manager','Takes care of the management issues of the company','Active'),(2,'Admin','Handles the administration purposes of the company\n','Active'),(3,'DEO','Enters data in to the system of the company','Active'),(4,'Permanent Cleaner','Works for the company permanently','Active'),(5,'Driver','Fulfills the transportation issues of the company','Active'),(6,'Lab Assistant','Lab assisting','Deactive'),(7,'Lab Reporter','Generate and checks lab reports','Deactive');
 /*!40000 ALTER TABLE `role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -384,7 +386,7 @@ CREATE TABLE `salary` (
   PRIMARY KEY (`SalaryID`),
   UNIQUE KEY `RoleID` (`RoleID`),
   CONSTRAINT `salary_ibfk_1` FOREIGN KEY (`RoleID`) REFERENCES `role` (`RoleID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -393,7 +395,7 @@ CREATE TABLE `salary` (
 
 LOCK TABLES `salary` WRITE;
 /*!40000 ALTER TABLE `salary` DISABLE KEYS */;
-INSERT INTO `salary` VALUES (1,1,60000.00,10,10,30),(2,4,25000.00,10,10,30);
+INSERT INTO `salary` VALUES (1,1,60000.00,10,10,30),(2,4,25000.00,10,10,20),(3,3,30000.00,10,10,25),(4,5,20000.00,10,10,20);
 /*!40000 ALTER TABLE `salary` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -409,7 +411,7 @@ CREATE TABLE `sales` (
   `Product_Name` varchar(45) NOT NULL,
   `Price` varchar(45) NOT NULL,
   `Quantity` varchar(45) NOT NULL,
-  `Isue_Date` varchar(45) NOT NULL,
+  `Isue_Date` date NOT NULL,
   `Customer_Name` varchar(45) NOT NULL,
   `Level` varchar(45) DEFAULT NULL,
   `Discount` varchar(45) DEFAULT NULL,
@@ -425,7 +427,7 @@ CREATE TABLE `sales` (
 
 LOCK TABLES `sales` WRITE;
 /*!40000 ALTER TABLE `sales` DISABLE KEYS */;
-INSERT INTO `sales` VALUES ('','','','','2016-8-12','','Choose Level','','',NULL),('','','','','2016-8-7','kamal','Choose Level','','',NULL),('001l','Harpic Large','190','18','2016-8-10','akila','Choose Level','10','3410','2'),('001l','Harpic Large','190','4','2016-8-11','ananda','Choose Level','10','750','1'),('001l','Harpic Large','190','5','2016-8-10','aruna','Choose Level','10','940',NULL),('001l','Harpic Large','190','4','2016-8-10','aruni','Choose Level','10','750','1'),('001l','Harpic Large','190','5','2016-8-11','aruni','Choose Level','10','940',NULL),('001l','Harpic Large','190','7','2016-8-11','avs1','Choose Level','10','1320',NULL),('001l','Harpic Large','190','35','2016-8-10','bandula','Choose Level','34','6616',NULL),('001l','Harpic Large','190','2','2016-8-10','kali','Choose Level','23','357',NULL),('001l','Harpic Large','190','5','2016-8-11','kanda','Choose Level','12','938',NULL),('001l','Harpic Large','190','5','2016-8-10','kavidu','Choose Level','10','940',NULL),('001l','Harpic Large','190','3','2016-8-10','kavinda','Choose Level','10','560','2'),('001l','Harpic Large','190','5','2016-8-11','madahas','Choose Level','10','940',NULL),('001l','Harpic Large','190','5','2016-8-11','mahinda','Choose Level','10','940',NULL),('001l','Harpic Large','190','5','2016-8-11','mahindaa','Choose Level','10','940',NULL),('001l','Harpic Large','190','5','2016-8-11','mashi','Choose Level','10','940',NULL),('001l','Harpic Large','190','5','2016-8-10','sampath','Choose Level','10','940',NULL),('001l','Harpic Large','190','5','2016-8-10','tara','Choose Level','23','927',NULL),('001l','Harpic Large','190','5','2016-8-11','udeni','Choose Level','12','938',NULL),('001m','Harpic Medium','125','','2016-8-12','','Choose Level','','',NULL),('001m','Harpic Medium','125','5','2016-8-10','ads','Choose Level','4','621',NULL),('001m','Harpic_Medium','125','600','2016-07-25','amda','Level 2','45','74955','3'),('001m','Harpic Medium','125','1','2016-8-6','arnald','Choose Level','34','91','1'),('001m','Harpic_Medium','125','24','2016-8-6','asd','Choose Level','23','2977',NULL),('001m','Harpic Medium','125','24','2016-8-7','buddima','Choose Level','23','2977',NULL),('001m','Harpic_Medium','125','2','2016-07-25','ds','Level 1','45','234',NULL),('001m','Harpic_Medium','125','4','2016-8-6','isuru','Choose Level','23','477',NULL),('001m','Harpic Medium','125','20','2016-8-8','mariyan','Choose Level','24','2476','4'),('001m','Harpic Medium','125','24','2016-8-8','mariyan1','Choose Level','24','2976',NULL),('001m','Harpic Medium','125','2','2016-8-10','ranjan','Choose Level','23','227',NULL),('001m','Harpic Medium','125','21','2016-8-8','rejinold','Choose Level','56','2569','3'),('001m','Harpic Medium','125','1','2016-8-12','sasha','Choose Level','12','113',NULL),('001m','Harpic Medium','125','1','2016-8-12','shane','Choose Level','10','115',NULL),('001m','Harpic Medium','125','2','2016-8-18','sthira','Level 1','34','216',NULL),('001m','Harpic Medium','125','10','2016-8-10','sunil','Choose Level','23','1227',NULL),('001m','Harpic Medium','125','2','2016-8-18','Supun','Default Customer','2','248',NULL),('001m','Harpic Medium','125','1','2016-8-22','Supun','Level 4','1','124',NULL),('001s','Harpic_Small','75','3','2016-7-29','','Choose Level','45','180',NULL),('001s','Harpic_Small','75','2','2016-8-5','kamal','Choose Level','3','147',NULL),('001s','Harpic Small','75','5','2016-8-10','kanda','Choose Level','6','369',NULL),('001s','Harpic Small','75','3','2016-8-22','rrr','-Select Customer Level-','22','203',NULL),('001s','Harpic Small','75','2','2016-8-22','Supun','Default Customer','12','138',NULL),('002l','Detol Large','195','1','2016-8-10','rasa','Choose Level','2','193',NULL),('002l','Detol Large','195','1','2016-8-10','tarushi','Choose Level','12','183',NULL),('002m','Detol_Medium','140','4','2016-7-30','','Choose Level','34','526',NULL),('002m','Detol_Medium','140','2','2016-7-29','dada','Choose Level','45','235',NULL),('002m','Detol_Medium','140','2','2016-8-5','saman','Level 3','34','246',NULL);
+INSERT INTO `sales` VALUES ('','','','','2016-08-12','','Choose Level','','',NULL),('','','','','2016-08-07','kamal','Choose Level','','',NULL),('001l','Harpic Large','190','20','2016-08-10','akila','Choose Level','10','3790',NULL),('001l','Harpic Large','190','5','2016-08-11','ananda','Choose Level','10','940',NULL),('001l','Harpic Large','190','5','2016-08-10','aruna','Choose Level','10','940',NULL),('001l','Harpic Large','190','5','2016-08-10','aruni','Choose Level','10','940',NULL),('001l','Harpic Large','190','5','2016-08-11','aruni','Choose Level','10','940',NULL),('001l','Harpic Large','190','7','2016-08-11','avs1','Choose Level','10','1320',NULL),('001l','Harpic Large','190','35','2016-08-10','bandula','Choose Level','34','6616',NULL),('001l','Harpic Large','190','2','2016-08-10','kali','Choose Level','23','357',NULL),('001l','Harpic Large','190','5','2016-08-11','kanda','Choose Level','12','938',NULL),('001l','Harpic Large','190','5','2016-08-10','kavidu','Choose Level','10','940',NULL),('001l','Harpic Large','190','5','2016-08-10','kavinda','Choose Level','10','940',NULL),('001l','Harpic Large','190','5','2016-08-11','madahas','Choose Level','10','940',NULL),('001l','Harpic Large','190','5','2016-08-11','mahinda','Choose Level','10','940',NULL),('001l','Harpic Large','190','5','2016-08-11','mahindaa','Choose Level','10','940',NULL),('001l','Harpic Large','190','5','2016-08-11','mashi','Choose Level','10','940',NULL),('001l','Harpic Large','190','5','2016-08-10','sampath','Choose Level','10','940',NULL),('001l','Harpic Large','190','5','2016-08-10','tara','Choose Level','23','927',NULL),('001l','Harpic Large','190','5','2016-08-11','udeni','Choose Level','12','938',NULL),('001m','Harpic Medium','125','','2016-08-12','','Choose Level','','',NULL),('001m','Harpic Medium','125','5','2016-08-10','ads','Choose Level','4','621',NULL),('001m','Harpic_Medium','125','600','2016-07-25','amda','Level 2','45','74955','3'),('001m','Harpic Medium','125','1','2016-08-06','arnald','Choose Level','34','91','1'),('001m','Harpic_Medium','125','24','2016-08-06','asd','Choose Level','23','2977',NULL),('001m','Harpic Medium','125','24','2016-08-07','buddima','Choose Level','23','2977',NULL),('001m','Harpic_Medium','125','2','2016-07-25','ds','Level 1','45','234',NULL),('001m','Harpic_Medium','125','4','2016-08-06','isuru','Choose Level','23','477',NULL),('001m','Harpic Medium','125','20','2016-08-08','mariyan','Choose Level','24','2476','4'),('001m','Harpic Medium','125','24','2016-08-08','mariyan1','Choose Level','24','2976',NULL),('001m','Harpic Medium','125','2','2016-08-10','ranjan','Choose Level','23','227',NULL),('001m','Harpic Medium','125','21','2016-08-08','rejinold','Choose Level','56','2569','3'),('001m','Harpic Medium','125','1','2016-08-12','sasha','Choose Level','12','113',NULL),('001m','Harpic Medium','125','1','2016-08-12','shane','Choose Level','10','115',NULL),('001m','Harpic Medium','125','2','2016-08-18','sthira','Level 1','34','216',NULL),('001m','Harpic Medium','125','10','2016-08-10','sunil','Choose Level','23','1227',NULL),('001m','Harpic Medium','125','2','2016-08-18','Supun','Default Customer','2','248',NULL),('001s','Harpic_Small','75','3','2016-07-29','','Choose Level','45','180',NULL),('001s','Harpic_Small','75','2','2016-08-05','kamal','Choose Level','3','147',NULL),('001s','Harpic Small','75','5','2016-08-10','kanda','Choose Level','6','369',NULL),('002l','Detol Large','195','1','2016-08-10','rasa','Choose Level','2','193',NULL),('002l','Detol Large','195','1','2016-08-10','tarushi','Choose Level','12','183',NULL),('002m','Detol_Medium','140','4','2016-07-30','','Choose Level','34','526',NULL),('002m','Detol_Medium','140','2','2016-07-29','dada','Choose Level','45','235',NULL),('002m','Detol_Medium','140','2','2016-08-05','saman','Level 3','34','246',NULL);
 /*!40000 ALTER TABLE `sales` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -470,7 +472,7 @@ CREATE TABLE `supplier_details_management` (
   `Item_Code` varchar(35) NOT NULL,
   `Item_Name` varchar(35) NOT NULL,
   `Quantity` int(11) NOT NULL,
-  `Cost_per_Item` float NOT NULL,
+  `Cost_per_Item` double NOT NULL,
   `Supply_date` varchar(35) NOT NULL,
   `Email` varchar(35) NOT NULL,
   `Contact_No` varchar(12) NOT NULL,
@@ -485,7 +487,7 @@ CREATE TABLE `supplier_details_management` (
 
 LOCK TABLES `supplier_details_management` WRITE;
 /*!40000 ALTER TABLE `supplier_details_management` DISABLE KEYS */;
-INSERT INTO `supplier_details_management` VALUES ('23','WDC','ID45','Item 1',3,33,'2016-08-03','DC','333333333','DCWDC'),('454','kljhf','Detol','kkh',80,40,'2016-08-02','njbhvlscd','112489565','fsafagg'),('IJ78','KLHOJHGD','ID45','Item 2',70,45,'2016-09-07','HGOUFOADS','11265432','HOUGUG'),('IR45','kjkgg','ID45','Item 2',45,50,'2016-07-01','hjghsda','112489562','kho;hdugwdw');
+INSERT INTO `supplier_details_management` VALUES ('454','kljhf','Detol','kkh',80,40,'2016-08-02','njbhvlscd','112489565','fsafagg'),('IR45','kjkgg','ID45','Item 2',45,50,'2016-07-01','hjghsda','112489562','kho;hdugwdw'),('IT12','Dasun','ID45','detol',60,150,'2016-07-04','','112488506','No:455/8 kaduwela');
 /*!40000 ALTER TABLE `supplier_details_management` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -499,6 +501,7 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `User_Name` varchar(45) NOT NULL,
   `Password` varchar(45) DEFAULT NULL,
+  `seqnum` varchar(45) NOT NULL,
   PRIMARY KEY (`User_Name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -509,6 +512,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES ('ADMIN','admin@123','1'),('DEO','deo@1234','2'),('MANAGER','mgr@123','3');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -549,4 +553,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-09-23  9:03:38
+-- Dump completed on 2016-09-24 23:31:03

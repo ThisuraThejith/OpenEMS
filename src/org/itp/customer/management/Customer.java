@@ -35,6 +35,7 @@ public class Customer extends javax.swing.JFrame {
         JLabel ID = jID;
         initComponents();
         con = DBconnect.connect();
+        jUpdate.setEnabled(false);
     }
 
     /**
@@ -578,7 +579,8 @@ public class Customer extends javax.swing.JFrame {
         ofcLbl.setText("");
         emailLbl.setText("");
         lvlLbl.setText("");
-
+        jAdd.setEnabled(true);
+        jUpdate.setEnabled(false);
 
     }//GEN-LAST:event_jClearActionPerformed
 
@@ -709,6 +711,7 @@ public class Customer extends javax.swing.JFrame {
     }//GEN-LAST:event_jSearchActionPerformed
 
     private void jTable_tableitpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_tableitpMouseClicked
+        jUpdate.setEnabled(true);
         int i = jTable_tableitp.getSelectedRow();
         TableModel model = jTable_tableitp.getModel();
         jTitle.setSelectedItem(model.getValueAt(i, 1).toString());
@@ -752,6 +755,7 @@ public class Customer extends javax.swing.JFrame {
 
             jFemale.setSelected(true);
         }
+        jAdd.setEnabled(false);
 
         //jMale.setText((model.getValueAt(i, 5).toString());
     }//GEN-LAST:event_jTable_tableitpMouseClicked
@@ -774,6 +778,8 @@ public class Customer extends javax.swing.JFrame {
                     pst.execute();
 
                     JOptionPane.showMessageDialog(null, "Customer updated");
+                    jUpdate.setEnabled(false);
+                    jAdd.setEnabled(true);
         genderr.clearSelection();
         Type.clearSelection();
         jFName.setText("");
@@ -838,7 +844,8 @@ public class Customer extends javax.swing.JFrame {
         ofcLbl.setText("");
         emailLbl.setText("");
         lvlLbl.setText("");
-
+        
+        
             }
 
         } catch (Exception e) {
