@@ -64,6 +64,7 @@ public class DEOCust extends javax.swing.JFrame {
         jMobile = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jEMail = new javax.swing.JLabel();
+        Back = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -234,6 +235,16 @@ public class DEOCust extends javax.swing.JFrame {
         jEMail.setForeground(new java.awt.Color(0, 51, 51));
         getContentPane().add(jEMail, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, 210, 20));
 
+        Back.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        Back.setForeground(new java.awt.Color(0, 102, 102));
+        Back.setText("Back");
+        Back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Back, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 250, -1, -1));
+
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 610, 560));
 
@@ -387,6 +398,12 @@ public class DEOCust extends javax.swing.JFrame {
         jtarrif.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+        this.setVisible(false);
+                    new DeoMain().setVisible(true);
+               
+    }//GEN-LAST:event_BackActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -426,6 +443,7 @@ public class DEOCust extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Back;
     private javax.swing.JLabel NIC;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

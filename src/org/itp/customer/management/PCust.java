@@ -36,7 +36,7 @@ public class PCust extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        Type = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         NIC = new javax.swing.JLabel();
@@ -61,6 +61,7 @@ public class PCust extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jReason = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -123,6 +124,11 @@ public class PCust extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(0, 102, 102));
         jButton3.setText("Clear");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 350, -1, -1));
 
         jButton4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -153,7 +159,7 @@ public class PCust extends javax.swing.JFrame {
         });
         getContentPane().add(jUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, -1, -1));
 
-        buttonGroup1.add(jOrdinary);
+        Type.add(jOrdinary);
         jOrdinary.setForeground(new java.awt.Color(0, 102, 102));
         jOrdinary.setText("Ordinary");
         jOrdinary.addActionListener(new java.awt.event.ActionListener() {
@@ -163,7 +169,7 @@ public class PCust extends javax.swing.JFrame {
         });
         getContentPane().add(jOrdinary, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, -1, -1));
 
-        buttonGroup1.add(jBulk);
+        Type.add(jBulk);
         jBulk.setForeground(new java.awt.Color(0, 102, 102));
         jBulk.setText("Bulk");
         jBulk.addActionListener(new java.awt.event.ActionListener() {
@@ -189,6 +195,16 @@ public class PCust extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, -1, -1));
 
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 102, 102));
+        jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 310, 60, -1));
+
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 400));
 
@@ -198,13 +214,11 @@ public class PCust extends javax.swing.JFrame {
 
     private void jFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFindActionPerformed
        
-        
         try {
             String str = jKeyword.getText();
-          //   String CusType = CustomerType;
-          //  String Level = jLevel.getSelectedItem().toString();
+          
             Connection con2 = DBconnect.connect();
-        //String sqlq="select * from employees where fe1="+jTextField1.getText();
+     
             String sqlstsmt = str;
             //To remove previously added rows
             PreparedStatement pst = con2.prepareStatement(sqlstsmt);
@@ -223,6 +237,7 @@ public class PCust extends javax.swing.JFrame {
             
             jOrdinary.setSelected(true);
             }
+            jReason.setText(rs1.getString("PReason"));
             //    System.out.println(Type);
             
     //    Strinf S=    CustomerType.get(rs1.getString("Type"));
@@ -273,50 +288,54 @@ public class PCust extends javax.swing.JFrame {
     }//GEN-LAST:event_jBulkActionPerformed
 
     private void jUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUpdateActionPerformed
-        Connection con2 = DBconnect.connect();
+        try {
+       String CusID = jKeyword.getText();
+         String Reason=jReason.getText();
+            
+        String q=jLevel.getSelectedItem().toString();
+        String sql=("update customer set Level='"+q+"',PReason='"+Reason+"' where CusID='"+CusID+"'");
+  
+         pst=con.prepareStatement(sql);
+           pst.execute();
+       if(pst.execute()){          
+        JOptionPane.showMessageDialog(null, "Updated is not Done Privilage Successfully");
+         jKeyword.setText("");
+       jCusID.setText("");
+       jName.setText("");
+       jLevel.setSelectedItem("- Customer Level-");
+       jReason.setText("");
+       Type.clearSelection();
+       }
        
-            if (buttonGroup1.equals("Bulk")){
-            jBulk.setSelected(true);
-            }
-            else {
+       else{
+       
+       JOptionPane.showMessageDialog(null, "Update  Privilage Successfully");
+       jKeyword.setText("");
+       jCusID.setText("");
+       jName.setText("");
+       jLevel.setSelectedItem("- Customer Level-");
+       jReason.setText("");
+       }
+        } catch (Exception e) {
             
-            jOrdinary.setSelected(true);
-            }
-      
-            
-
-        try {    
-            
-            PreparedStatement pst = con2.prepareStatement(Queries.query.Select.GET_Privilage);
-             pst.setString(1, this.jKeyword.getText());
-                    ResultSet resultset = pst.executeQuery();
-                    
-                    while (resultset.next()) {
-                        jCusID.setText(resultset.getString("CusID"));
-                    }
-                    resultset.close();
-                    pst.close();
-
-            pst.setString(1, buttonGroup1.getSelection().getActionCommand());
-            pst.setString(2, this.jLevel.getSelectedItem().toString());
-            
-             pst.executeUpdate();
-                        //System.out.println("affected rows=" + affectedRows);
-                        pst.close();
-                        JOptionPane.showMessageDialog(null, "Updated Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-                        
-                        buttonGroup1.clearSelection();
-                        
-                        
- 
-                        
-                        jUpdate.setEnabled(false);
-                        jFind.setEnabled(true);
-
-        } catch (SQLException ex) {
-            Logger.getLogger(PCust.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }//GEN-LAST:event_jUpdateActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+         jKeyword.setText("");
+       jCusID.setText("");
+       jName.setText("");
+       jLevel.setSelectedItem("- Customer Level-");
+       jReason.setText("");
+       Type.clearSelection();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.setVisible(false);
+                    new Login().setVisible(true);
+               
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -354,9 +373,10 @@ public class PCust extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel NIC;
-    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup Type;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JRadioButton jBulk;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

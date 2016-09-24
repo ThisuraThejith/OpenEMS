@@ -46,8 +46,8 @@ public class Customer extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        buttonGroup2 = new javax.swing.ButtonGroup();
+        genderr = new javax.swing.ButtonGroup();
+        Type = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTitle = new javax.swing.JComboBox();
@@ -257,7 +257,7 @@ public class Customer extends javax.swing.JFrame {
         jLabel13.setText("Gender");
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 404, -1, 20));
 
-        buttonGroup1.add(jMale);
+        genderr.add(jMale);
         jMale.setForeground(new java.awt.Color(0, 102, 102));
         jMale.setText("Male");
         jMale.addActionListener(new java.awt.event.ActionListener() {
@@ -275,7 +275,7 @@ public class Customer extends javax.swing.JFrame {
         });
         getContentPane().add(jMale, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 400, -1, -1));
 
-        buttonGroup1.add(jFemale);
+        genderr.add(jFemale);
         jFemale.setForeground(new java.awt.Color(0, 102, 102));
         jFemale.setText("Female");
         jFemale.addActionListener(new java.awt.event.ActionListener() {
@@ -297,7 +297,7 @@ public class Customer extends javax.swing.JFrame {
         jLabel14.setText("Customer Category");
         getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 564, -1, 20));
 
-        buttonGroup2.add(jOrdinary);
+        Type.add(jOrdinary);
         jOrdinary.setForeground(new java.awt.Color(0, 102, 102));
         jOrdinary.setText("Ordinary Customer");
         jOrdinary.addActionListener(new java.awt.event.ActionListener() {
@@ -312,7 +312,7 @@ public class Customer extends javax.swing.JFrame {
         });
         getContentPane().add(jOrdinary, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 580, -1, 30));
 
-        buttonGroup2.add(jBulk);
+        Type.add(jBulk);
         jBulk.setForeground(new java.awt.Color(0, 102, 102));
         jBulk.setText("Bulk Customer");
         jBulk.addActionListener(new java.awt.event.ActionListener() {
@@ -391,7 +391,7 @@ public class Customer extends javax.swing.JFrame {
         jPanel2.add(emailLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 480, 170, 20));
 
         jLevel.setForeground(new java.awt.Color(0, 102, 102));
-        jLevel.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-Select Customer Level-", "Default Customer", "Level 1", "Level 2", "Level 3", "Level 4", "Level 5", "Level 6", "Level 7", "Level 8", "Level 9", "Level 10", "Inner Circle Customer", "Bronze Customer", "Silver Customer", "Gold Customer", "Platinum Customer" }));
+        jLevel.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-Select Customer Level-", "Bulk Level", "Default Customer", "Level 1", "Level 2", "Level 3", "Level 4", "Level 5", "Level 6", "Level 7", "Level 8", "Level 9", "Level 10", "Inner Circle Customer", "Bronze Customer", "Silver Customer", "Gold Customer", "Platinum Customer" }));
         jLevel.setMinimumSize(new java.awt.Dimension(84, 20));
         jLevel.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -554,6 +554,7 @@ public class Customer extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jClearActionPerformed
+        
         jFName.setText("");
         jLName.setText("");
         jNIC.setText("");
@@ -582,34 +583,7 @@ public class Customer extends javax.swing.JFrame {
     }//GEN-LAST:event_jClearActionPerformed
 
     private void jAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAddActionPerformed
-  //      if (jTitle.getSelectedItem().toString().isEmpty() || jFName.getText().isEmpty() || jLName.getText().isEmpty() || jNIC.getText().isEmpty() || jAds1.getText().isEmpty() || jAds2.getText().isEmpty() || jCity.getSelectedItem().toString().isEmpty() || gender.isEmpty() || jMobile.getText().isEmpty() || jOffice.getText().isEmpty() || jEmail.getText().isEmpty() || CustomerType.isEmpty() || jLevel.getSelectedItem().toString().isEmpty()) {
-        //           JOptionPane.showMessageDialog(null, "Please Enter Valid Inputs !");
-        //      }
-
-//        } 
-//        else if(!Validation.ValidLName(jLName.getText())){
-//        JOptionPane.showMessageDialog(null, "Please Enter the Valid name");
-//        return;
-//       
-//        
-//        }
-//        else if(!Validation.ValidFName(jFName.getText())){
-//        JOptionPane.showMessageDialog(null, "Please Enter the Valid name");
-//        return;
-//        }
-//        else if(!Validation.ValidAddress(jAds1.getText())){
-//        JOptionPane.showMessageDialog(null, "Please Enter Valid Address");
-//        return;
-//        }
-//        else if(!Validation.ValidAddress(jAds2.getText())){
-//        JOptionPane.showMessageDialog(null, "Please Enter Valid Address");
-//        return;
-//        }
-//        else if(!Validation.validateEmail(jEmail.getText())){
-//        
-//        JOptionPane.showMessageDialog(null, "Please Enter Valid Email Address");
-//        }
-        //  else {
+        
         String Title = jTitle.getSelectedItem().toString();
         String FName = jFName.getText();
         String LName = jLName.getText();
@@ -617,23 +591,13 @@ public class Customer extends javax.swing.JFrame {
         String Ads1 = jAds1.getText();
         String Ads2 = jAds2.getText();
         String City = jCity.getSelectedItem().toString();
-        String Gender = gender;
+        String Gender = genderr.getSelection().getActionCommand();
         String Mobile = jMobile.getText();
         String Office = jOffice.getText();
         String Email = jEmail.getText();
-        String CusType = CustomerType;
+        String CusType = Type.getSelection().getActionCommand();
         String Level = jLevel.getSelectedItem().toString();
-//        
-//            if (!validateNic(NIC)) {
-//                JOptionPane.showMessageDialog(null, "Invalid NIC");
-//
-//                jNIC.setText("");
-//                return;
-//
-//            }
 
-    //     if (jTitle.getSelectedItem().toString().isEmpty() || jFName.getText().isEmpty() || jLName.getText().isEmpty() || jNIC.getText().isEmpty() || jAds1.getText().isEmpty() || jAds2.getText().isEmpty() || jCity.getSelectedItem().toString().isEmpty() || gender.isEmpty() || jMobile.getText().isEmpty() || jOffice.getText().isEmpty() || jEmail.getText().isEmpty() || CustomerType.isEmpty() || jLevel.getSelectedItem().toString().isEmpty()) {
-        //         JOptionPane.showMessageDialog(null, "Please Enter Valid Inputs !");   
         if (Validation.ValidFName(FName)) {
             if (Validation.ValidLName(LName)) {
                 if (Validation.ValidNIC(NIC)) {
@@ -647,7 +611,32 @@ public class Customer extends javax.swing.JFrame {
                                             String query = "INSERT INTO customer(Title,FName,LName,NIC,Ad1,Ad2,City,Gender,Mobile,Office,email,Type,Level) values ('" + Title + "', '" + FName + "', '" + LName + "', '" + NIC + "', '" + Ads1 + "', '" + Ads2 + "', '" + City + "', '" + Gender + "', '" + Mobile + "', '" + Office + "', '" + Email + "', '" + CusType + "', '" + Level + "')";
                                             pst = con.prepareStatement(query);
                                             pst.execute();
-                                            JOptionPane.showMessageDialog(null, "Data Saved Succussfully");
+                                            JOptionPane.showMessageDialog(null, "Customer Registered  Succussfully");
+                                           genderr.clearSelection();
+                                           Type.clearSelection();
+                                            jFName.setText("");
+                                            jLName.setText("");
+                                            jNIC.setText("");
+                                            jAds1.setText("");
+                                            jAds2.setText("");
+                                            jMobile.setText("");
+                                            jOffice.setText("");
+                                            jEmail.setText("");
+                                            jKeyword.setText("");
+                                            jLevel.setSelectedItem("-Select Customer Level-");
+                                            jTitle.setSelectedItem("-Select Title-");
+                                            jCity.setSelectedItem("-Select City-");
+                                            titleLbl.setText("");
+                                            fnameLbl.setText("");
+                                            lnameLbl.setText("");
+                                            nicLbl.setText("");
+                                            ads1Lbl.setText("");
+                                            ads2Lbl.setText("");
+                                            cityLbl.setText("");
+                                            mblLbl.setText("");
+                                            ofcLbl.setText("");
+                                            emailLbl.setText("");
+                                            lvlLbl.setText("");
 
                                         } catch (Exception e) {
                                             System.out.println(e);
@@ -677,21 +666,16 @@ public class Customer extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Invalide Fname");
         }
-        //   }
-        //  else{
-        //   JOptionPane.showMessageDialog(null,"Invalide Fname");
-        //   }
+        
 
         DefaultTableModel model = (DefaultTableModel) jTable_tableitp.getModel();
         String kword = jFName.getText();
-            //String kword="lab";
-        //String sqlstsmt = "select * from customer where Title like '%" + kword + "%' or FName like '%" + kword + "%' or LName like '%" + kword + "%' or NIC like '%" + kword + "%' or Ad1 like '%" + kword + "%' or Ad2 like '%" + kword + "%' or City like '%" + kword + "%' or Gender like '%" + kword + "%' or Mobile like '%" + kword + "%' or Office like '%" + kword + "%'or email like '%" + kword + "%'or Type like '%" + kword + "%'or Level like '%" + kword + "%'"
-        //      ;
+              
 
         String sqlstsmt = "select * from customer order by CusID desc limit 1";
-        //String sqlstsmt="select * from jobs where location like '%lab%'";
+        
         FillTable(jTable_tableitp, sqlstsmt);
-        //   }
+        
     }//GEN-LAST:event_jAddActionPerformed
 
     private void jMaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMaleActionPerformed
@@ -709,6 +693,7 @@ public class Customer extends javax.swing.JFrame {
 
     private void jBulkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBulkActionPerformed
         CustomerType = "Bulk";
+        jLevel.setSelectedItem("Bulk Level");
     }//GEN-LAST:event_jBulkActionPerformed
 
     private void jSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSearchActionPerformed
@@ -730,6 +715,20 @@ public class Customer extends javax.swing.JFrame {
         jFName.setText(model.getValueAt(i, 2).toString());
         jLName.setText(model.getValueAt(i, 3).toString());
         jNIC.setText(model.getValueAt(i, 4).toString());
+        
+        if(model.getValueAt(i, 8).toString().equals("Male")){
+            genderr.setSelected(jMale.getModel(), true);
+        }
+        else{
+            genderr.setSelected(jFemale.getModel(), true);
+        }
+        
+        if(model.getValueAt(i, 12).toString().equals("Bulk")){
+            Type.setSelected(jBulk.getModel(), true);
+        }
+        else{
+            Type.setSelected(jOrdinary.getModel(), true);
+        }
         //  jLevel.setSelectedItem(model.getValueAt(i, 4).toString());
         jAds1.setText(model.getValueAt(i, 5).toString());
         jAds2.setText(model.getValueAt(i, 6).toString());
@@ -759,17 +758,15 @@ public class Customer extends javax.swing.JFrame {
 
     private void jUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUpdateActionPerformed
         try {
-            /*String query="  DELETE FROM `customer` WHERE CusID=?";
-             pst.execute();
-             JOptionPane.showMessageDialog(null, "Data Deleted Succussfully");*/
+    
 
             int selectedRow = jTable_tableitp.getSelectedRow();
-            //int cusID=jTable_tableitp.g
+          
 
             if (selectedRow != -1) {
                 int CusID = (int) jTable_tableitp.getValueAt(selectedRow, 0);
 
-                String query = "UPDATE customer SET Title='" + jTitle.getSelectedItem() + "',FName='" + jFName.getText() + "',LName='" + jLName.getText() + "',NIC='" + jNIC.getText() + "',Ad1='" + jAds1.getText() + "',Ad2='" + jAds2.getText() + "',City='" + jCity.getSelectedItem() + "',Gender='" + gender + ",Mobile='" + jMobile.getText() + "',Office='" + jOffice.getText() + "',email='" + jEmail.getText() + "',Type='" + CustomerType + "',Level='" + jCity.getSelectedItem() + "' WHERE Cusid=" + CusID + "";
+                String query = "UPDATE customer SET Title='" + jTitle.getSelectedItem() + "',FName='" + jFName.getText() + "',LName='" + jLName.getText() + "',NIC='" + jNIC.getText() + "',Ad1='" + jAds1.getText() + "',Ad2='" + jAds2.getText() + "',City='" + jCity.getSelectedItem() + "',Mobile='" + jMobile.getText() + "',Office='" + jOffice.getText() + "',email='" + jEmail.getText() + "',Level='" + jLevel.getSelectedItem() + "' WHERE Cusid='" + CusID + "'";
 
                 System.out.println(query);
                 try {
@@ -777,40 +774,77 @@ public class Customer extends javax.swing.JFrame {
                     pst.execute();
 
                     JOptionPane.showMessageDialog(null, "Customer updated");
+        genderr.clearSelection();
+        Type.clearSelection();
+        jFName.setText("");
+        jLName.setText("");
+        jNIC.setText("");
+        jAds1.setText("");
+        jAds2.setText("");
+        jMobile.setText("");
+        jOffice.setText("");
+        jEmail.setText("");
+        jKeyword.setText("");
+        jLevel.setSelectedItem("-Select Customer Level-");
+        jTitle.setSelectedItem("-Select Title-");
+        jCity.setSelectedItem("-Select City-");
+        titleLbl.setText("");
+        fnameLbl.setText("");
+        lnameLbl.setText("");
+        nicLbl.setText("");
+        ads1Lbl.setText("");
+        ads2Lbl.setText("");
+        cityLbl.setText("");
+        mblLbl.setText("");
+        ofcLbl.setText("");
+        emailLbl.setText("");
+        lvlLbl.setText("");
+           DefaultTableModel model = (DefaultTableModel) jTable_tableitp.getModel();
+        String kword = jFName.getText();
+              
 
+        String sqlstsmt = "select * from customer order by CusID desc limit 1";
+        
+        FillTable(jTable_tableitp, sqlstsmt);
+       
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "Customer update failed");
-                    System.out.println(ex);
                     return;
                 }
 
-                /*   try {
-                 //String kword = jKeyword.getText();
-                 //String kword="lab";
-                 String sqlstsmt = "select * from customer ";
-                 //String sqlstsmt="select * from jobs where location like '%lab%'";
-                 FillTable(jTable_tableitp, sqlstsmt);
-                 } catch (Exception e) {
-                 System.err.println(e.getMessage());
-                 }*/
+             
             } else {
                 JOptionPane.showMessageDialog(null, "No Item Selected");
+                jFName.setText("");
+        jLName.setText("");
+        jNIC.setText("");
+        jAds1.setText("");
+        jAds2.setText("");
+        jMobile.setText("");
+        jOffice.setText("");
+        jEmail.setText("");
+        jKeyword.setText("");
+        jLevel.setSelectedItem("-Select Customer Level-");
+        jTitle.setSelectedItem("-Select Title-");
+        jCity.setSelectedItem("-Select City-");
+        titleLbl.setText("");
+        fnameLbl.setText("");
+        lnameLbl.setText("");
+        nicLbl.setText("");
+        ads1Lbl.setText("");
+        ads2Lbl.setText("");
+        cityLbl.setText("");
+        mblLbl.setText("");
+        ofcLbl.setText("");
+        emailLbl.setText("");
+        lvlLbl.setText("");
+
             }
 
         } catch (Exception e) {
             System.out.println(e);
         }
-        /*
-         try {
-         String query = "UPDATE customer SET `Title`='" + jTitle.getSelectedItem() + "',`FName`='" + jFName.getText() + "',`LName`='" + jLName.getText() + "',`NIC`='" + jNIC.getText() + "',`Ad1`='" + jAds1.getText() + "',`Ad2`='" + jAds2.getText() + "',`City`='" + jCity.getSelectedItem() + "',`Gender`='" + gender + ",`Mobile`='" + jMobile.getText() + "',`Office`='" + jOffice.getText() + "',`email`='" + jEmail.getText() + "',`Type`='" + CustomerType + "',`Level`='" + jCity.getSelectedItem() + "' WHERE ='" + CusID + "'";
-         pst = con.prepareStatement(query);
-         pst.execute();
-         JOptionPane.showMessageDialog(null, "Data Updated Succussfully");
-
-         } catch (Exception e) {
-         System.out.println(e);
-         }*/
-
+       
     }//GEN-LAST:event_jUpdateActionPerformed
 
     private void jDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDeleteActionPerformed
@@ -918,14 +952,18 @@ public class Customer extends javax.swing.JFrame {
     }//GEN-LAST:event_jNICFocusGained
 
     private void jNICFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jNICFocusLost
-        if (this.jNIC.getText().isEmpty()) {
-            nicLbl.setText("*This field is necessary");
-        } else if (!Validation.ValidNIC(this.jNIC.getText())) {
-            nicLbl.setText("*Invalid NIC No");
-        } else {
-            nicLbl.setText(null);
-        }
- int CusID = 0;
+        
+            if (this.jNIC.getText().isEmpty()) {
+                nicLbl.setText("*This field is necessary");
+            } else if (!Validation.ValidNIC(this.jNIC.getText())) {
+                nicLbl.setText("*Invalid NIC No");
+            } else {
+                nicLbl.setText(null);
+            }
+            
+            
+            
+             int CusID = 0;
                     Connection con2 = DBconnect.connect();
         //String sqlq="select * from employees where fe1="+jTextField1.getText();
     //        String sqlstsmt = ?;
@@ -949,7 +987,7 @@ public class Customer extends javax.swing.JFrame {
                         }
                         if (count != 0) {
                             int CusId = CusID;JOptionPane.showMessageDialog(null, "An Customer with this NIC "
-                                    + " is Already registered. Please Input Valid NIC", "Error", JOptionPane.ERROR_MESSAGE);
+                                    + " is Already registered. Please Input Valid NIC", "Warning", JOptionPane.WARNING_MESSAGE);
                            jNIC.setText("");
                             return;
                           
@@ -965,6 +1003,32 @@ public class Customer extends javax.swing.JFrame {
                     catch (SQLException ex) {
             Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
         }
+                
+
+            
+
+            
+            
+            
+        
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }//GEN-LAST:event_jNICFocusLost
 
     private void jAds1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jAds1FocusGained
@@ -1190,7 +1254,7 @@ public class Customer extends javax.swing.JFrame {
     private void jOfficeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jOfficeFocusLost
         if (this.jOffice.getText().isEmpty()) {
             ofcLbl.setText("*This field is necessary");
-        } else if (!Validation.validateTel(this.jOffice.getText())) {
+        } else if (!Validation.validateTel(this.jMobile.getText())) {
             ofcLbl.setText("*Invalid Office Number");
         } else {
             ofcLbl.setText(null);
@@ -1268,7 +1332,7 @@ public class Customer extends javax.swing.JFrame {
         if (this.jEmail.getText().isEmpty()) {
             emailLbl.setText("*This field is necessary");
         } else if (!Validation.validateEmail(this.jEmail.getText())) {
-            emailLbl.setText("*Invalid Email");
+            emailLbl.setText("*Invalid Mobile");
         } else {
             emailLbl.setText(null);
         }
@@ -1490,13 +1554,13 @@ public class Customer extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup Type;
     private javax.swing.JLabel ads1Lbl;
     private javax.swing.JLabel ads2Lbl;
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JLabel cityLbl;
     private javax.swing.JLabel emailLbl;
     private javax.swing.JLabel fnameLbl;
+    private javax.swing.ButtonGroup genderr;
     private javax.swing.JButton jAdd;
     private javax.swing.JTextField jAds1;
     private javax.swing.JTextField jAds2;

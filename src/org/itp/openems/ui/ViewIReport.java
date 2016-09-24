@@ -78,6 +78,24 @@ public class ViewIReport extends JFrame{
         ViewIReport viewer = new ViewIReport("./reports/jobReport.jasper", param);
         viewer.setVisible(true);
     }
+    
+    public static void inventoryReport() {
+        HashMap param = new HashMap();
+        ViewIReport viewer = new ViewIReport("./reports/innentoryreport.jasper", param);
+        viewer.setVisible(true);
+    }
+    
+    public static void supplierReport() {
+        HashMap param = new HashMap();
+        ViewIReport viewer = new ViewIReport("./reports/supplierreport.jasper", param);
+        viewer.setVisible(true);
+    }
+    
+    public static void salesReport() {
+        HashMap param = new HashMap();
+        ViewIReport viewer = new ViewIReport("./reports/salesreport.jasper", param);
+        viewer.setVisible(true);
+    }
 
     public static HashMap getParameterMapForSalaryReport(int empID) throws SQLException {
         HashMap param = new HashMap();

@@ -65,6 +65,8 @@ public class ManagerCus extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jEMail = new javax.swing.JLabel();
         Back = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jReason = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -242,10 +244,18 @@ public class ManagerCus extends javax.swing.JFrame {
         });
         getContentPane().add(Back, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 360, -1, -1));
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 610, 570));
+        jLabel12.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel12.setText("Remarks");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 530, -1, -1));
 
-        setSize(new java.awt.Dimension(611, 587));
+        jReason.setForeground(new java.awt.Color(255, 0, 0));
+        getContentPane().add(jReason, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 510, 200, 50));
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 610, 590));
+
+        setSize(new java.awt.Dimension(611, 618));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -272,6 +282,7 @@ public class ManagerCus extends javax.swing.JFrame {
             jMobile.setText(rs1.getString("Mobile"));
             jGender.setText(rs1.getString("Gender"));
             jEMail.setText(rs1.getString("email"));
+            jReason.setText(rs1.getString("PReason"));
             String m =rs1.getString("Level");
             
            
@@ -393,6 +404,7 @@ public class ManagerCus extends javax.swing.JFrame {
         jType.setText("");
         jLevel.setText("");
         jtarrif.setText("");
+        jReason.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
@@ -452,6 +464,7 @@ public class ManagerCus extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -467,6 +480,7 @@ public class ManagerCus extends javax.swing.JFrame {
     private javax.swing.JLabel jMobile;
     private javax.swing.JLabel jNIC;
     private javax.swing.JLabel jName;
+    private javax.swing.JLabel jReason;
     private javax.swing.JLabel jTarrif;
     private javax.swing.JLabel jType;
     private javax.swing.JLabel jtarrif;

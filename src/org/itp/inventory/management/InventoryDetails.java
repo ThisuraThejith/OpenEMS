@@ -20,6 +20,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
+import org.itp.customer.management.CleanManagementSystem;
+import org.itp.openems.ui.ViewIReport;
 
 /**
  *
@@ -102,6 +104,7 @@ public class InventoryDetails extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         Demobtn = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
+        genrepBtn = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -279,6 +282,11 @@ public class InventoryDetails extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("Main Menu");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 80, 135, -1));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -392,7 +400,7 @@ public class InventoryDetails extends javax.swing.JFrame {
                 PRINTbtnActionPerformed(evt);
             }
         });
-        getContentPane().add(PRINTbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 640, 90, 40));
+        getContentPane().add(PRINTbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 640, 90, 40));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/images.jpg"))); // NOI18N
         jLabel12.setText("jLabel12");
@@ -405,10 +413,19 @@ public class InventoryDetails extends javax.swing.JFrame {
                 DemobtnActionPerformed(evt);
             }
         });
-        getContentPane().add(Demobtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 640, 80, 40));
+        getContentPane().add(Demobtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 560, 80, 40));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/log.png"))); // NOI18N
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 11, 480, 71));
+
+        genrepBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        genrepBtn.setText("Generate Report");
+        genrepBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                genrepBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(genrepBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 640, 170, 40));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1040, 740));
@@ -749,6 +766,16 @@ public class InventoryDetails extends javax.swing.JFrame {
         
     }//GEN-LAST:event_itemcodetxtKeyTyped
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        CleanManagementSystem cm =new CleanManagementSystem();
+        cm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void genrepBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genrepBtnActionPerformed
+        ViewIReport.inventoryReport();
+    }//GEN-LAST:event_genrepBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -798,6 +825,7 @@ public class InventoryDetails extends javax.swing.JFrame {
     private javax.swing.JTextField Supplier_Nametxt;
     private javax.swing.JButton Update;
     private com.toedter.calendar.JDateChooser expiredate;
+    private javax.swing.JButton genrepBtn;
     private com.toedter.calendar.JDateChooser issuedate;
     private javax.swing.JTextField itemcodetxt;
     private javax.swing.JButton jButton1;

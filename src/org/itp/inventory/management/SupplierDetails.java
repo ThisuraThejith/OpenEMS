@@ -22,6 +22,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
+import org.itp.customer.management.CleanManagementSystem;
+import org.itp.openems.ui.ViewIReport;
 
 /**
  *
@@ -153,6 +155,7 @@ public class SupplierDetails extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         Demobtn = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -392,7 +395,12 @@ public class SupplierDetails extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("Main Menu");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(831, 64, 196, -1));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 60, 196, -1));
 
         Inventory_Details.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Inventory_Details.setText("Inventory Details");
@@ -519,10 +527,19 @@ public class SupplierDetails extends javax.swing.JFrame {
                 DemobtnActionPerformed(evt);
             }
         });
-        getContentPane().add(Demobtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 700, 90, 33));
+        getContentPane().add(Demobtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 700, 90, 33));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/log.png"))); // NOI18N
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 6, 480, 78));
+
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton2.setText("Generate Report");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 700, 150, 33));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itp/image/b2.jpg"))); // NOI18N
         getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -110, 1150, 970));
@@ -870,6 +887,16 @@ public class SupplierDetails extends javax.swing.JFrame {
         EmailValidator1();
     }//GEN-LAST:event_EmailtxtFocusLost
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        CleanManagementSystem cm =new CleanManagementSystem();
+        cm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        ViewIReport.supplierReport();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -926,6 +953,7 @@ public class SupplierDetails extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser SupplyDatetxt1;
     private javax.swing.JButton Update;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
