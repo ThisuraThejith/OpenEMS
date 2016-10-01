@@ -457,11 +457,11 @@ public class SetSalary extends javax.swing.JFrame {
     }//GEN-LAST:event_updateBtnActionPerformed
 
     private void demoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_demoBtnActionPerformed
-        this.roleCmb.setSelectedItem("Driver");
-        this.basicSalaryTxt.setText("20000");
+        this.roleCmb.setSelectedItem("Admin");
+        this.basicSalaryTxt.setText("50000");
         this.epfTxt.setText("10");
         this.etfTxt.setText("10");
-        this.nopayTxt.setText("20");
+        this.nopayTxt.setText("30");
     }//GEN-LAST:event_demoBtnActionPerformed
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
